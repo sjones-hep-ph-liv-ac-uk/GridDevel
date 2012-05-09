@@ -1,0 +1,7 @@
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/t2k.org?/t2k.org' "
+VOMSES="'t2k.org voms.gridpp.ac.uk 15003 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk t2k.org' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+SW_DIR=$VO_SW_DIR/t2k
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/t2k
+
