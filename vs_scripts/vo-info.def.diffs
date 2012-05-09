@@ -1,0 +1,6 @@
+VO_CEDAR_VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/cedar"
+VO_CEDAR_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/cedar?/cedar/' "
+VO_NA48_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/na48?/na48/' "
+VO_NA48_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/na48?/na48'"
+
+VO_NA48_VOMS_EXTRA_MAPS="Role=admin na48adm"

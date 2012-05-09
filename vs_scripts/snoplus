@@ -1,0 +1,110 @@
+<IDCard CIC_ID="2552" Name="snoplus.snolab.ca" Serial="151" Status="Production" Alias="snoplus.snolab.ca" GridId="">
+    <ValidationDate TimeZone="UTC">2011-06-17 09:11:18</ValidationDate>
+    <LastChange TimeZone="UTC">2011-06-17 09:11:18</LastChange>
+    <Scope>Global</Scope>
+    <SupportProcedure/>
+    <Discipline>High-Energy Physics</Discipline>
+    <EnrollmentUrl>https://voms.gridpp.ac.uk:8443/voms/snoplus.snolab.ca</EnrollmentUrl>
+    <HomepageUrl>http://snoplus.phy.queensu.ca/Home.html</HomepageUrl>
+    <AUP type="text">This Acceptable Use Policy applies to all members of snoplus.snolab.ca Virtual Organisation, hereafter referred to as the VO, with reference to use of the European Grid Infrastructure (EGI), hereafter referred to as the Grid.
+
+The SNO+ VO management owns and gives authority to this policy.
+
+
+
+Goal and description of the VO: 
+
+Vo for the snoplus experiment
+
+
+
+Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Rules, VO Security Policy and other relevant Grid Policies, and to use the Grid only in the furtherance of the stated goal of the VO.
+
+</AUP>
+    <Description>VO for the snoplus experiment, a multi-purpose liquid scintillator neutrino experiment based in Sudbury, Canada. Members of the snoplus virtual organisation will contribute to the European computing effort to accurately simulate the SNOplus detector response.</Description>
+    <Middlewares ARC="0" gLite="1" UNICORE="0" GLOBUS="0"/>
+    <gLiteConf>
+        <FQANs/>
+        <VOMSServers>
+            <VOMS_Server HttpsPort="8443" VomsesPort="15503" IsVomsAdminServer="1" MembersListUrl="https://voms.gridpp.ac.uk:8443/voms/snoplus.snolab.ca/services/VOMSAdmin?method=listMembers">
+                <hostname>voms.gridpp.ac.uk</hostname>
+                <X509Cert>
+                    <DN>/C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk</DN>
+                    <CA_DN>/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIIE+DCCA+CgAwIBAgIDAIYjMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVLMRMwEQYDVQQK
+EwplU2NpZW5jZUNBMRIwEAYDVQQLEwlBdXRob3JpdHkxGzAZBgNVBAMTElVLIGUtU2NpZW5jZSBD
+QSAyQjAeFw0xMjAyMTAxMDQ3NTFaFw0xMzAzMTExMDQ3NTFaMF8xCzAJBgNVBAYTAlVLMREwDwYD
+VQQKEwhlU2NpZW5jZTETMBEGA1UECxMKTWFuY2hlc3RlcjEMMAoGA1UEBxMDSEVQMRowGAYDVQQD
+ExF2b21zLmdyaWRwcC5hYy51azCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANCBPfSL
+gagTac33ghJm9rDE9AaKXUyfwATACBkX7mHCIknig7oP5r+yxr9//3LLAX8FSnBz8paTX60bZtEK
+nLyTR+GlCg4Jae9W5pN+mnlBKDI1jYmE6oVmUgzhJBBh8kcF1WljMdT5i3h2bsDtLTWLrZZ+EbiW
+HPypekUCR1nQzmwivX3iws6jE/gsVjCevzjVcxJt75IGpb569mnmpjZPl5WbUhy+dptzuXLFGuMi
+QcgdarSKW6RrM2mvpBNkO/V59V2xLGwTCmphpond5zryg1MAOWGtCNDHCP39TeYfhVOkKsrFjR2V
+jsebPvkuN/DNX75l2vqjHjSTDz2DcrECAwEAAaOCAccwggHDMAwGA1UdEwEB/wQCMAAwEQYJYIZI
+AYb4QgEBBAQDAgbAMA4GA1UdDwEB/wQEAwIDqDAsBglghkgBhvhCAQ0EHxYdVUsgZS1TY2llbmNl
+IEhvc3QgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFIJM9LC53OqctncOFKbdp1kkz3ACMB8GA1UdIwQY
+MBaAFBKlv5Gff+KvalwJ8uL6WeA24fNVMBwGA1UdEQQVMBOCEXZvbXMuZ3JpZHBwLmFjLnVrMCUG
+A1UdEgQeMByBGnN1cHBvcnRAZ3JpZC1zdXBwb3J0LmFjLnVrMBkGA1UdIAQSMBAwDgYMKwYBBAHZ
+LwEBAQEIMEAGCWCGSAGG+EIBBAQzFjFodHRwOi8vY2EuZ3JpZC1zdXBwb3J0LmFjLnVrL3B1Yi9j
+cmwvcm9vdC1jcmwuY3JsMD4GCWCGSAGG+EIBAwQxFi9odHRwOi8vY2EuZ3JpZC1zdXBwb3J0LmFj
+LnVrL3B1Yi9jcmwvY2EtY3JsLmNybDBABgNVHR8EOTA3MDWgM6Axhi9odHRwOi8vY2EuZ3JpZC1z
+dXBwb3J0LmFjLnVrL3B1Yi9jcmwvY2EtY3JsLmNybDANBgkqhkiG9w0BAQUFAAOCAQEAdT3KiPNE
+oPEsjfZa3W7p8AjERXT4kfjTcdr0CuohqxWLTmNqHylZe9NYDlRvyCvZa0y1XFXGWOAfZknqs/1k
+ITryoeS6MQkLvUCTVhhsoHTO/b9ysOhdJ9FZHgNBxykuTh6BRY/5ecM4bmt3KQkxPLmWiKmC3I4k
+6blyzxAZ6lEdTnWkntwPjULkI0R6xDteczCVsSxw5uH87UaZ/L0aZuCgfD5U8O9Sv0kDU+hslv/I
+zSf08SLv9FfKFFV2ALXXBlVLIZlcO6PwdiQeNRFCP6ewoOaJF6xF+f5b5GGfswfxP3UEzVW0oTDR
+uqXrOG5Jg1y1ibOnVhjf5r5xpFSs3g==
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>34339</SerialNumber>
+                </X509Cert>
+            </VOMS_Server>
+        </VOMSServers>
+    </gLiteConf>
+    <ARCConf/>
+    <UNICOREConf/>
+    <Contacts>
+        <MailingList>
+            <Admins>
+                Not available
+            </Admins>
+            <Operations>
+                Not available
+            </Operations>
+            <UserSupport>
+                Not available
+            </UserSupport>
+            <Users>
+                Not available
+            </Users>
+            <Security>
+                Not available
+            </Security>
+        </MailingList>
+        <Individuals>
+            <Contact>
+                <Name>Jeanne Wilson</Name>
+                <Role>VO MANAGER</Role>
+                <Email>
+                Not available
+            </Email>
+                <DN>
+                Not available
+            </DN>
+                <Phone/>
+            </Contact>
+        </Individuals>
+    </Contacts>
+    <Ressources>
+        <RAM_per_i386_Core>0</RAM_per_i386_Core>
+        <RAM_per_x86_64_Core>0</RAM_per_x86_64_Core>
+        <JobScratchSpace>0</JobScratchSpace>
+        <JobMaxCPUTime>0</JobMaxCPUTime>
+        <JobMaxWallClockTime>0</JobMaxWallClockTime>
+        <OtherRequirements/>
+    </Ressources>
+</IDCard>
+
+
+

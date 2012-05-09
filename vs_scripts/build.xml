@@ -1,0 +1,58 @@
+<project name="VomsSnooper" default="dist" basedir=".">
+
+    <description>
+        Parses a VOMS XML and spits output in various interesting formats
+    </description>
+  <!-- global properties for this build -->
+  <property name="src" location="/user2/sjones/workspace/VomsSnooper/src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+
+
+    <!-- <classpath> <pathelement location="/user2/sjones/old/utils/dev/ec64/extjars/java-getopt-1.0.14.jar"/> </classpath>
+    <javac srcdir="${src}" destdir="${build}"/> -->
+
+    <javac srcdir="${src}" destdir="${build}">
+      <classpath> <pathelement location="/user2/sjones/old/utils/dev/ec64/extjars/java-getopt-1.0.14.jar"/> </classpath>
+    </javac>
+
+  </target>
+
+  <target name="dist" depends="compile"
+        description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+
+        <jar destfile="/user2/sjones/old/utils/dev/ec64/VomsSnooper.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="liv.ac.uk.vomssnooper.Controller"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="/user2/sjones/workspace/VomsSnooper/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="/user2/sjones/old/utils/dev/ec64/extjars/java-getopt-1.0.14.jar"/>
+        </jar>
+
+  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>
+
+

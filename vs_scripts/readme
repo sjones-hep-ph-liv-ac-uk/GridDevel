@@ -1,0 +1,53 @@
+Notes for using VomsSnooper
+***************************
+
+Version 1.0
+March 2012
+
+Part 1: Install VomsSnooper
+
+The VomsSnooper.tar file is at http://hep.ph.liv.ac.uk/~sjones/
+Download it and put it ~/somewhere/good, e.g.
+
+mkdir -p  ~/somewhere/good
+cd  ~/somewhere/good
+wget -O VomsSnooper.tar http://hep.ph.liv.ac.uk/~sjones/VomsSnooper.tar
+
+cd  ~/somewhere/good
+
+tar -xvf VomsSnooper.tar
+
+cd VomsSnooper
+
+Part 2: Use VomsSnooper
+
+./makeMyVomsData.sh
+
+Part 3: Reference
+
+VomsSnooper takes five arguments;
+--xmlfile : an file of VOID data from CICS portal
+--myvos   : a list of the VOS I want to extract and support
+--outfile : the file to print VOs that need to be in SID format (see below).
+--vodfile : a list of VOs that need to be in VOD format (see below)
+--voddir  : the directory where to put VODs (see below)
+
+You must provide them all, even if some are empty files!
+
+VOD format or SID format.
+************************
+
+The VO data in your site-info.def is called SID format data, or SIDS.
+Sadly, when VOs get DNS style names (t2k.org) the site-info.def file
+is unsuitable for them. Instead, they go in a directory, called vo.d.
+Each VO has its own file - these are called VODs. Thus VomsSnooper
+supports the idea of formatting the output in SID format (which
+goes in --outfile x) or VOD format (which go is discrete files
+under the --voddir vo.d dir).
+
+Good luck. Let me know about problems.
+
+sjones@hep.ph.liv.ac.uk
+March 2012
+
+
