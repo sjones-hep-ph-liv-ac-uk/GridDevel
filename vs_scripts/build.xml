@@ -38,7 +38,7 @@
 
         <jar destfile="/user2/sjones/git/GridDevel/vs_scripts/VomsSnooper.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="liv.ac.uk.vomssnooper.Controller"/>
+                <attribute name="Main-Class" value="liv.ac.uk.vomssnooper.VomsSnooper"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="/user2/sjones/workspace/VomsSnooper/bin"/>
