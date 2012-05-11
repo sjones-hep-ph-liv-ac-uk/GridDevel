@@ -6,6 +6,18 @@
 package liv.ac.uk.vomssnooper;
 
 public class VomsServer {
+	
+	/**
+	 * Class to facilitate a sort function
+	 * @author sjones
+	 *
+	 */
+	public static class ByVomsServerDn implements java.util.Comparator<VomsServer> {
+		public int compare(VomsServer first, VomsServer second) {
+			// System.out.println("VSes: " + first.getDn() + " " + second.getDn() +".");
+			return ((first.getDn() != null) ? first.getDn() : "").compareTo(((second.getDn() != null) ? second.getDn() : ""));
+		}
+	}
 
 	private Integer httpsPort;
 	private Integer vomsesPort;

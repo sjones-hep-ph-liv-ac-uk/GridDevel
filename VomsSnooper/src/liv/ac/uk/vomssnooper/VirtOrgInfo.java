@@ -1,25 +1,42 @@
-
 package liv.ac.uk.vomssnooper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn;
 
-/** Represents one VO 
- * @author      Steve Jones  <sjones@hep.ph.liv.ac.uk>                                    
- * @since       2012-02-24          
+/**
+ * Represents one VO
+ * 
+ * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
+ * @since 2012-02-24
  */
 public class VirtOrgInfo {
 
-	private String voName;                     // Name of this VO
-	private String voNickName;                 // SHort name, explained below
-	private ArrayList<VomsServer> vomsServers; // List of VOMS server for this VO
-	private Boolean atMySite;                  // Do we support this                  
-	private Boolean vodStyle;                  // Is it in vo.d style for DNS style names (default is site-info.def style)
-	private ArrayList<IndividualContact> individualContacts; // Contacts for this VO
+	/**
+	 * Class to facilitate a sort function
+	 * 
+	 * @author sjones
+	 * 
+	 */
+	public static class ByVoName implements java.util.Comparator<VirtOrgInfo> {
+		public int compare(VirtOrgInfo first, VirtOrgInfo second) {
+			return first.getVoNickName().compareTo(second.getVoNickName());
+		}
+	}
 
-  /**
-   * Basic Constructor
-   */
+	private String voName; // Name of this VO
+	private String voNickName; // SHort name, explained below
+	private ArrayList<VomsServer> vomsServers; // List of VOMS server for this VO
+	private Boolean atMySite; // Do we support this
+	private Boolean vodStyle; // Is it in vo.d style for DNS style names (default
+														// is site-info.def style)
+	private ArrayList<IndividualContact> individualContacts; // Contacts for this
+																														// VO
+
+	/**
+	 * Basic Constructor
+	 */
 	public VirtOrgInfo() {
 		voName = "";
 		voNickName = "";
@@ -29,6 +46,7 @@ public class VirtOrgInfo {
 
 	/**
 	 * Returns a representative string
+	 * 
 	 * @return String to represent the object
 	 */
 	public String toString() {
@@ -43,7 +61,9 @@ public class VirtOrgInfo {
 
 	/**
 	 * Add a new VOMS server for this VO
-	 * @param v vomsserver
+	 * 
+	 * @param v
+	 *          vomsserver
 	 */
 	public void addVomsServer(VomsServer v) {
 		vomsServers.add(v);
@@ -51,7 +71,9 @@ public class VirtOrgInfo {
 
 	/**
 	 * Add a new contact for this VO
-	 * @param ic contact
+	 * 
+	 * @param ic
+	 *          contact
 	 */
 	public void addIc(IndividualContact ic) {
 		individualContacts.add(ic);
@@ -69,8 +91,11 @@ public class VirtOrgInfo {
 
 	/**
 	 * Invoked to retrieve all the VOMS lines for this VO
-	 * @param validOnly only VOMS that are valid/complete
-	 * @param extraFields some extra fields this program can generate
+	 * 
+	 * @param validOnly
+	 *          only VOMS that are valid/complete
+	 * @param extraFields
+	 *          some extra fields this program can generate
 	 * @return VOMS lines
 	 */
 	public ArrayList<String> getVomsLines(Boolean validOnly, Boolean extraFields) {
@@ -79,15 +104,20 @@ public class VirtOrgInfo {
 		StringBuffer vomsServerLine = new StringBuffer();
 		StringBuffer vomsesLine = new StringBuffer();
 		StringBuffer cadnLine = new StringBuffer();
-		StringBuffer swDirLine = new StringBuffer();
-		StringBuffer defaultSe = new StringBuffer();
-		StringBuffer storageDir = new StringBuffer();
 
 		vomsServerLine.append("VOMS_SERVERS=\"");
 		vomsesLine.append("VOMSES=\"");
 		cadnLine.append("VOMS_CA_DN=\"");
 
-		Iterator<VomsServer> vomsServer = vomsServers.iterator();
+		Iterator<VomsServer> vomsServer ;
+		// vomsServer = vomsServers.iterator();
+		// while (vomsServer.hasNext()) {
+		// VomsServer v = vomsServer.next();
+		// }
+
+		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
+
+		vomsServer = vomsServers.iterator();
 		while (vomsServer.hasNext()) {
 
 			VomsServer v = vomsServer.next();
@@ -100,7 +130,7 @@ public class VirtOrgInfo {
 
 			// Populate Voms server line
 			vomsServerLine.append("'");
-			vomsServerLine.append(v.makeUrl(voName));
+			vomsServerLine.append(v.makeUrl(this.voName.toLowerCase()));
 			vomsServerLine.append("' ");
 
 			// Populate vomses Line line
@@ -131,9 +161,10 @@ public class VirtOrgInfo {
 		}
 		return vomsLines;
 	}
-	
+
 	/**
-	 * Getter for a field - is this VO at my site 
+	 * Getter for a field - is this VO at my site
+	 * 
 	 * @return the field requested
 	 */
 	public Boolean isAtMySite() {
@@ -141,7 +172,8 @@ public class VirtOrgInfo {
 	}
 
 	/**
-	 * Setter for a field - is this VO at my site 
+	 * Setter for a field - is this VO at my site
+	 * 
 	 * @return null
 	 */
 	public void setAtMySite(Boolean atMySite) {
@@ -149,16 +181,17 @@ public class VirtOrgInfo {
 	}
 
 	/**
-	 * Getter for a field - does this data need to be in VOD style 
+	 * Getter for a field - does this data need to be in VOD style
+	 * 
 	 * @return the field requested
 	 */
 	public Boolean isVodStyle() {
 		return vodStyle;
 	}
 
-	
 	/**
-	 * Setter for a field - does this data need to be in VOD style 
+	 * Setter for a field - does this data need to be in VOD style
+	 * 
 	 * @return null
 	 */
 	public void setVodStyle(Boolean vodStyle) {
@@ -167,6 +200,7 @@ public class VirtOrgInfo {
 
 	/**
 	 * Getter for a field - vo name
+	 * 
 	 * @return the field requested
 	 */
 	public String getVoName() {
@@ -175,6 +209,7 @@ public class VirtOrgInfo {
 
 	/**
 	 * Getter for a field - vo nick name
+	 * 
 	 * @return the field requested
 	 */
 	public String getVoNickName() {
@@ -182,7 +217,8 @@ public class VirtOrgInfo {
 	}
 
 	/**
-	 * Setter for two field, name and nickname. Nickname is derived from name 
+	 * Setter for two field, name and nickname. Nickname is derived from name
+	 * 
 	 * @return null
 	 */
 	public void setVoNameAndVoNickName(String voName) {
@@ -207,7 +243,8 @@ public class VirtOrgInfo {
 	}
 
 	/**
-	 * Getter for a field - all the voms server for this VO 
+	 * Getter for a field - all the voms server for this VO
+	 * 
 	 * @return the field requested
 	 */
 	public ArrayList<VomsServer> getVomsServers() {
@@ -216,15 +253,16 @@ public class VirtOrgInfo {
 
 	/**
 	 * Setter for a field - all the VOMS server for this VO
+	 * 
 	 * @return null
 	 */
 	public void setVomsServers(ArrayList<VomsServer> vomsServers) {
 		this.vomsServers = vomsServers;
 	}
-	
-	
+
 	/**
-	 * Getter for a field - the contacts list of the VO 
+	 * Getter for a field - the contacts list of the VO
+	 * 
 	 * @return the field requested
 	 */
 	public ArrayList<IndividualContact> getIndividualContacts() {
@@ -232,7 +270,8 @@ public class VirtOrgInfo {
 	}
 
 	/**
-	 * Setter for a field - the contact list for this VO 
+	 * Setter for a field - the contact list for this VO
+	 * 
 	 * @return null
 	 */
 	public void setIndividualContacts(ArrayList<IndividualContact> individualContacts) {

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -35,7 +36,7 @@ public class SidFormatter {
 	private String oldSidDir;
 	private String newSidDir;
 
-	private ArrayList<VirtOrgInfo> voidInfo = new ArrayList<VirtOrgInfo>();;
+	private HashMap<String, VirtOrgInfo> voidInfo ;
 
 	/**
 	 * Basic constructor
@@ -48,6 +49,7 @@ public class SidFormatter {
 	public SidFormatter(String os, String ns) {
 		oldSidDir = os;
 		newSidDir = ns;
+		voidInfo = new HashMap<String, VirtOrgInfo>();
 	}
 
 	/**
@@ -57,10 +59,15 @@ public class SidFormatter {
 	 */
 	public void parse() {
 
-		SidParser sp = new SidParser(oldSidDir, (ArrayList<VirtOrgInfo>) voidInfo);
+		SidParser sp = new SidParser(oldSidDir, voidInfo);
 
 		sp.parseDocument();
 
+	}
+	
+	public void printResults(){
+		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values ()); 
+		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false);
 	}
 
 	/**
@@ -145,5 +152,9 @@ public class SidFormatter {
 
 		// Parse the File
 		sf.parse();
+		
+		// Print out various results
+		sf.printResults();
+		
 	}
 }
