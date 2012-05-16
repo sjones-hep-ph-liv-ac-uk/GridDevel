@@ -4,7 +4,7 @@
         Parses a VOMS XML and spits output in various interesting formats
     </description>
   <!-- global properties for this build -->
-  <property name="src" location="/user2/sjones/workspace/VomsSnooper/src"/>
+  <property name="src" location="/user2/sjones/git/GridDevel/VomsSnooper/src"/>
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
 
@@ -41,7 +41,7 @@
                 <attribute name="Main-Class" value="liv.ac.uk.vomssnooper.VomsSnooper"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="/user2/sjones/workspace/VomsSnooper/bin"/>
+            <fileset dir="/user2/sjones/git/GridDevel/VomsSnooper/bin"/>
             <zipfileset excludes="META-INF/*.SF" src="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/>
         </jar>
 

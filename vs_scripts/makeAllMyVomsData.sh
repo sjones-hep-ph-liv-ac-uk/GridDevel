@@ -15,7 +15,9 @@ sort < vo-info.def | uniq > t
 mv t vo-info.def
 
 ./addSpaces.pl < vo-info.def > t
-mv t vo-info.def
+mv t site-info.def
+
+
 
 
 
