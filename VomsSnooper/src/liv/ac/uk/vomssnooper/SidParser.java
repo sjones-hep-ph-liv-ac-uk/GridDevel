@@ -28,7 +28,19 @@ public class SidParser {
 	public void parseDocument() {
 
 		// First get the sid lines
-		ArrayList<String> yaimVariables = cmdExec("bash -x " + oldSidDir + "/site-info.def");
+		File sid = new File(oldSidDir + "/site-info.def");
+		if (!sid.isFile()) {
+			System.out.println("site-info.def file " + sid + " not found");
+			System.exit(1);
+		}
+		ArrayList<String> yaimVariables = new ArrayList<String> ();
+		try {
+		  yaimVariables = cmdExec("bash -x " + oldSidDir + "/site-info.def");
+		}
+		catch (Exception e) {
+			System.out.println("Problem while while reading old site-info.def " + e.getMessage());
+			System.exit(1);
+		}
 		Collections.sort(yaimVariables, String.CASE_INSENSITIVE_ORDER);
 
 		Iterator<String> yvi = yaimVariables.iterator();
@@ -44,13 +56,10 @@ public class SidParser {
 					allVoidInfo.put(voName, new VirtOrgInfo());
 				}
 
-				// VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification
-				// Authority' ...
 				VirtOrgInfo thisVo = allVoidInfo.get(voName);
 				thisVo.setVoNameAndVoNickName(voName);
 				thisVo.setVodStyle(false);
 				thisVo.setAtMySite(true);
-				
 
 				if (yaimVariable.matches(".*CA_DN.*")) {
 					thisVo.setVomsServers(new ArrayList<VomsServer>());
@@ -58,6 +67,7 @@ public class SidParser {
 					Iterator<String> ei = elements.iterator();
 					while (ei.hasNext()) {
 						VomsServer currentVomsServer = new VomsServer();
+						currentVomsServer.setMembersListUrl("dummy");
 						String caDn = (String) ei.next();
 						currentVomsServer.setCaDn(caDn);
 						thisVo.addVomsServer(currentVomsServer);
@@ -71,21 +81,20 @@ public class SidParser {
 					while (ei.hasNext()) {
 						ii++;
 						ArrayList<VomsServer> vses = thisVo.getVomsServers();
-						// vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas
 						String vs = (String) ei.next();
-
+						
 						Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+)");
 						Matcher m = p.matcher(vs);
 						if (m.find()) {
 							String h = m.group(1);
 							vses.get(ii).setHostname(h);
 							String n = m.group(2);
-							vses.get(ii).setHttpsPort(Integer.parseInt(n));
+							int nPort = Integer.parseInt(n);
+							vses.get(ii).setVomsServerPort(nPort);
 						}
 					}
 				}
 				if (yaimVariable.matches(".*VOMSES.*")) {
-					// VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' "
 					ArrayList<String> elements = breakString(yaimVariable);
 					Iterator<String> ei = elements.iterator();
 					int ii = -1;
@@ -94,8 +103,6 @@ public class SidParser {
 						ArrayList<VomsServer> vses = thisVo.getVomsServers();
 						String vomses = (String) ei.next();
 
-						// atlas lcg-voms.cern.ch 15001
-						// /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas
 						Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
 						Matcher m = p.matcher(vomses);
 						if (m.find()) {
@@ -105,9 +112,9 @@ public class SidParser {
 							String dn = m.group(4);
 							String exp2 = m.group(5);
 							vses.get(ii).setHostname(host);
-							vses.get(ii).setVomsesPort(Integer.parseInt(port));
+							int nPort = Integer.parseInt(port);
+							vses.get(ii).setHttpsPort(nPort);
 							vses.get(ii).setDn(dn);
-							vses.get(ii).setComplete(true);
 						}
 					}
 				}
@@ -127,7 +134,14 @@ public class SidParser {
 			for (int i = 0; i < chld.length; i++) {
 				String fileName = chld[i];
 
-				ArrayList<String> vodYaimVariables = cmdExec("bash -x " + oldSidDir + "/vo.d/" + fileName);
+				ArrayList<String> vodYaimVariables = new ArrayList<String> (); 
+				try {
+				  vodYaimVariables = cmdExec("bash -x " + oldSidDir + "/vo.d/" + fileName);
+				}
+				catch (Exception e) {
+					System.out.println("Problem while while reading old vod. file " + fileName + ", " + e.getMessage());
+					System.exit(1);
+				}
 				Collections.sort(vodYaimVariables, String.CASE_INSENSITIVE_ORDER);
 
 				Iterator<String> vyvi = vodYaimVariables.iterator();
@@ -142,9 +156,6 @@ public class SidParser {
 							allVoidInfo.put(voName, new VirtOrgInfo());
 						}
 
-						// VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/minos.vo.gridpp.ac.uk?/minos.vo.gridpp.ac.uk' "
-						// VOMSES="'minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk minos.vo.gridpp.ac.uk' "
-						// VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 						VirtOrgInfo thisVo = allVoidInfo.get(voName);
 						thisVo.setVoNameAndVoNickName(voName);
 						thisVo.setVodStyle(true);
@@ -156,6 +167,7 @@ public class SidParser {
 							Iterator<String> ei = elements.iterator();
 							while (ei.hasNext()) {
 								VomsServer currentVomsServer = new VomsServer();
+								currentVomsServer.setMembersListUrl("dummy");
 								String caDn = (String) ei.next();
 								currentVomsServer.setCaDn(caDn);
 								thisVo.addVomsServer(currentVomsServer);
@@ -170,22 +182,19 @@ public class SidParser {
 								ii++;
 								ArrayList<VomsServer> vses = thisVo.getVomsServers();
 								String vs = (String) ei.next();
-
+								
 								Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+)");
 								Matcher m = p.matcher(vs);
 								if (m.find()) {
 									String h = m.group(1);
 									vses.get(ii).setHostname(h);
 									String n = m.group(2);
-									vses.get(ii).setHttpsPort(Integer.parseInt(n));
+									int nPort = Integer.parseInt(n);
+									vses.get(ii).setVomsServerPort(nPort);
 								}
 							}
 						}
-						// VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/minos.vo.gridpp.ac.uk?/minos.vo.gridpp.ac.uk' "
-						// VOMSES="'minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk minos.vo.gridpp.ac.uk' "
-						// VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 						if (vodYaimVariable.matches(".*VOMSES.*")) {
-							// VOMSES="'minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk minos.vo.gridpp.ac.uk' "
 							ArrayList<String> elements = breakString(vodYaimVariable);
 							Iterator<String> ei = elements.iterator();
 							int ii = -1;
@@ -194,9 +203,6 @@ public class SidParser {
 								ArrayList<VomsServer> vses = thisVo.getVomsServers();
 								String vomses = (String) ei.next();
 
-								// minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016
-								// /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk
-								// minos.vo.gridpp.ac.uk
 								Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
 								Matcher m = p.matcher(vomses);
 								if (m.find()) {
@@ -206,9 +212,8 @@ public class SidParser {
 									String dn = m.group(4);
 									String exp2 = m.group(5);
 									vses.get(ii).setHostname(host);
-									vses.get(ii).setVomsesPort(Integer.parseInt(port));
+									vses.get(ii).setHttpsPort(Integer.parseInt(port));
 									vses.get(ii).setDn(dn);
-									vses.get(ii).setComplete(true);
 								}
 							}
 						}
@@ -217,20 +222,25 @@ public class SidParser {
 			}
 		}
 	}
-
-	public static ArrayList<String> cmdExec(String cmdLine) {
-		String line;
+  /**
+   * Executes some command and returns its stdout
+   * @param cmdLine command to execute
+   * @return output from command
+   */
+	public static ArrayList<String> cmdExec(String cmdLine) throws Exception {
 		ArrayList<String> output = new ArrayList<String>();
 
+		String lineBack;
 		try {
 			Process p = Runtime.getRuntime().exec(cmdLine);
 			BufferedReader input = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			while ((line = input.readLine()) != null) {
-				output.add(line);
+			while ((lineBack = input.readLine()) != null) {
+				output.add(lineBack);
 			}
 			input.close();
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			throw new Exception("Some problem occured while running " + cmdLine + " " + ex.getMessage());
 		}
 		return output;
 	}
@@ -241,10 +251,6 @@ public class SidParser {
 		// be the payload. The payload consists of elements. Each element is bounded
 		// by a
 		// preceding single_quote, backslash, single_quote, single_quote, i.e. '\''
-		// e.g.
-		// +
-		// VO_OPS_VOMS_SERVERS=''\''vomss://lcg-voms.cern.ch:8443/voms/ops?/ops'\''
-		// '\''vomss://voms.cern.ch:8443/voms/ops?/ops'\'' '
 
 		String payload = s.substring(s.indexOf('=') + 1);
 		payload = payload.trim();
