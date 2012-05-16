@@ -120,7 +120,7 @@ public class VirtOrgInfo {
 			v.setWhetherComplete();
 			if ((!v.isComplete())) {
 				if (validOnly ) {
-					System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded\n");
+					System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded; " + v.toString() + "\n");
 					v.printIncomplete();
 					continue;
   			}
@@ -133,7 +133,7 @@ public class VirtOrgInfo {
 
 			// Populate vomses Line line
 			vomsesLine.append("'");
-			vomsesLine.append(voName.toLowerCase() + " " + v.getHostname() + " " + v.getHttpsPort() + " " + v.getDn() + " " + voName.toLowerCase());
+			vomsesLine.append(voName.toLowerCase() + " " + v.getHostname() + " " + v.getVomsesPort() + " " + v.getDn() + " " + voName.toLowerCase());
 			vomsesLine.append("' ");
 
 			// Populate cadn line
@@ -274,5 +274,9 @@ public class VirtOrgInfo {
 	 */
 	public void setIndividualContacts(ArrayList<IndividualContact> individualContacts) {
 		this.individualContacts = individualContacts;
+	}
+	
+	public void sortVomsServers() {
+		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
 	}
 }
