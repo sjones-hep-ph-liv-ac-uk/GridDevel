@@ -14,7 +14,6 @@ public class VomsServer {
 	 */
 	public static class ByVomsServerDn implements java.util.Comparator<VomsServer> {
 		public int compare(VomsServer first, VomsServer second) {
-			// System.out.println("VSes: " + first.getDn() + " " + second.getDn() +".");
 			return ((first.getDn() != null) ? first.getDn() : "").compareTo(((second.getDn() != null) ? second.getDn() : ""));
 		}
 	}
@@ -218,7 +217,7 @@ public class VomsServer {
 	 */
 	public String makeUrl(String vo) {
 		StringBuffer url = new StringBuffer();
-		url.append("vomss://" + hostname + ":" + this.vomsServerPort + "/voms/" + vo + "?/" + vo);
+		url.append("vomss://" + hostname + ":" + this.httpsPort + "/voms/" + vo + "?/" + vo);
 
 		return url.toString();
 	}

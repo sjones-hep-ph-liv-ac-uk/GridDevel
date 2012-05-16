@@ -10,15 +10,22 @@ import java.util.Iterator;
 
 import liv.ac.uk.vomssnooper.VirtOrgInfo.ByVoName;
 
+/**
+ * General spot for nick knacks
+ * 
+ * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
+ * @since 2012-05-10
+ */
+
+
 public class Utils {
 	
 	/**
 	 * Prints the SID in regular output file
 	 * 
-	 * @param v
-	 *          The vo to print
-	 * @param ps
-	 *          Where to print it
+	 * @param The vo to print
+	 * @param Where to print it
+	 * 
 	 * @return null
 	 */
 	private static void printStandardStyle(VirtOrgInfo v, PrintStream ps, Boolean extraFields) {
@@ -35,8 +42,7 @@ public class Utils {
 	/**
 	 * Prints in the vo.d style
 	 * 
-	 * @param v
-	 *          The vo to print
+	 * @param The vo to print
 	 * @return null
 	 */
 	private static void printVodStyle(VirtOrgInfo v, String vodDir, Boolean extraFields) {

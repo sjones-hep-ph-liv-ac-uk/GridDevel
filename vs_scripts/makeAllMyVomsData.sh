@@ -2,24 +2,11 @@
 
 wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
 
-./VomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile vod.txt --voddir vo.d --outfile vo-info.def 
+cat  VOIDCardInfo.xml | sed -e "s%</VoDump>%%" > deleteme1
+cat  ExtraVOIDCardInfo.xml | grep -v "^<VoDump>"  > deleteme2
 
+cat deleteme1 deleteme2 > VOIDCardInfo.xml
 
-./VomsSnooper.sh --xmlfile ExtraVOIDCardInfo.xml  --myvos myvos.txt --vodfile vod.txt --voddir vo.d --outfile Extra-vo-info.def 
-
-cat Extra-vo-info.def >> vo-info.def
-
-cat ExtraFields.txt  >> vo-info.def
-
-sort < vo-info.def | uniq > t
-mv t vo-info.def
-
-./addSpaces.pl < vo-info.def > t
-mv t site-info.def
-
-
-
-
-
+./VomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile vod.txt --voddir /user2/sjones/git/GridDevel/vs_scripts/test/xml/vo.d --outfile /user2/sjones/git/GridDevel/vs_scripts/test/xml/site-info.def
 
 

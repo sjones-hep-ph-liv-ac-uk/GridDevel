@@ -424,7 +424,7 @@ uqXrOG5Jg1y1ibOnVhjf5r5xpFSs3g==
     </Ressources>
 </IDCard><IDCard CIC_ID="10259" Name="israelvo.isragrid.org.il" Serial="259" Status="Production" Alias="israel" GridId="">
     <ValidationDate TimeZone="UTC">2011-12-12 14:36:56</ValidationDate>
-    <LastChange TimeZone="UTC">2011-12-12 14:36:56</LastChange>
+    <LastChange TimeZone="UTC">2012-05-16 07:55:39</LastChange>
     <Scope>National - NGI_IL</Scope>
     <SupportProcedure/>
     <Discipline>Multidisciplinary VOs</Discipline>
@@ -448,7 +448,7 @@ The VO enables researchers to collaborate and share resources in a standard way.
     <gLiteConf>
         <FQANs/>
         <VOMSServers>
-            <VOMS_Server HttpsPort="8443" VomsesPort="15001" IsVomsAdminServer="1" MembersListUrl="https://ngi-il-voms1.isragrid.org.il:8443/voms/israel/services/VOMSAdmin?method=listMembers">
+            <VOMS_Server HttpsPort="8443" VomsesPort="15001" IsVomsAdminServer="1" MembersListUrl="https://ngi-il-voms1.isragrid.org.il:8443/voms/israelvo.isragrid.org.il/services/VOMSAdmin?method=listMembers">
                 <hostname>ngi-il-voms1.isragrid.org.il</hostname>
                 <X509Cert>
                     <DN>/DC=org/DC=terena/DC=tcs/C=IL/ST=TelAviv/L=TelAviv/O=IUCC/OU=Isragrid/CN=ngi-il-voms1.isragrid.org.il</DN>
@@ -951,6 +951,33 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15002" IsVomsAdminServer="1" MembersListUrl="https://marvoms.in2p3.fr:8443/voms/vo.msfg.fr/services/VOMSAdmin?method=listMembers">
                 <hostname>marvoms.in2p3.fr</hostname>
+                <X509Cert>
+                    <DN>/O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=marvoms.in2p3.fr</DN>
+                    <CA_DN>/C=FR/O=CNRS/CN=GRID2-FR</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIIEADCCAuigAwIBAgICFLIwDQYJKoZIhvcNAQEFBQAwLzELMAkGA1UEBhMCRlIxDTALBgNVBAoT
+BENOUlMxETAPBgNVBAMTCEdSSUQyLUZSMB4XDTExMDkxMjEyNDQwMloXDTEyMDkxMTEyNDQwMlow
+WDEQMA4GA1UEChMHR1JJRC1GUjELMAkGA1UEBhMCRlIxDTALBgNVBAoTBENOUlMxDTALBgNVBAsT
+BENQUE0xGTAXBgNVBAMTEG1hcnZvbXMuaW4ycDMuZnIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAMDlNj0rKDVb5Vi1a7yh0wW7Hy2dIQUqRVK0N+1pt/ERthuseKyC1phuyBTrfSYDzCceS643
+PZprKniK9IZcibHDi/7cZ3MDC5RTW6bdVzXUM/up5duWtU5YNFtvv5PbyQnDRjxCUT0vrFhQiCVx
+YF+/2lu21a3ZMYehg2VTNmHfAgMBAAGjggF/MIIBezAMBgNVHRMBAf8EAjAAMBEGCWCGSAGG+EIB
+AQQEAwIGwDAOBgNVHQ8BAf8EBAMCA/gwKgYJYIZIAYb4QgENBB0WG0dSSUQyLUZSIHNlcnZlciBj
+ZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUiTBoQZyyOxv5OdyspZUn8SuuDOEwXAYDVR0jBFUwU4AUJ5ZI
+J+4htvKvsS19+vfXSCVwlZOhOKQ2MDQxCzAJBgNVBAYTAkZSMQ0wCwYDVQQKEwRDTlJTMRYwFAYD
+VQQDEw1DTlJTMi1Qcm9qZXRzggEDMCcGA1UdIAQgMB4wDgYMKwYBBAHUPQEBCAIBMAwGCiqGSIb3
+TAUCAgEwGwYDVR0RBBQwEoIQbWFydm9tcy5pbjJwMy5mcjBBBgNVHR8EOjA4MDagNKAyhjBodHRw
+Oi8vY3Jscy5zZXJ2aWNlcy5jbnJzLmZyL0dSSUQyLUZSL2dldGRlci5jcmwwFgYIKwYBBAG7YgEE
+CnVuaWNvcmVOSlMwDQYJKoZIhvcNAQEFBQADggEBALZEhfQaSsRYQQxIoVRlx78sPO4IK3h7Oj9s
+5HUzs4ydf+7Y0uLuYJo+jNfRcV1lFo0CiIGH7jghJ+FjB/JmxdvNEc3XVMjd1Wz3m68PqtZT0Nx3
+DblPBsxwQXn3N08cEYiiGJBRdNNmlxf3wQ132RPDcMEPKauhdKOw83FaCM1CRKoNdmo1p5GGl9rO
+D2jFumDsZ2NJbGvTX2XMp7sU5pb680NKNJP+T+/pUOyDKyKaAUS1tooCTHo9PYkBlNn+qlZszYus
+00G8rdIM3BheN8Lc2PcvN+l4yW7Xf85ZRg1eCVl6FB0JeDnGGyn/6YgMf++strZEKrtK5KClMNXy
+hA4=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>5298</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -5071,39 +5098,6 @@ Ip4gSpfJ6B2aFR9ba1fRTmeQR1ttW0FTIBc=
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15003" IsVomsAdminServer="0" MembersListUrl="https://voms02.pic.es:8443/voms/magic/services/VOMSAdmin?method=listMembers">
                 <hostname>voms02.pic.es</hostname>
-                <X509Cert>
-                    <DN>/DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es</DN>
-                    <CA_DN>/DC=es/DC=irisgrid/CN=IRISGridCA</CA_DN>
-                    <X509PublicKey>-----BEGIN CERTIFICATE-----
-MIIFfjCCBGagAwIBAgICFrswDQYJKoZIhvcNAQEFBQAwQzESMBAGCgmSJomT8ixkARkWAmVzMRgw
-FgYKCZImiZPyLGQBGRYIaXJpc2dyaWQxEzARBgNVBAMTCklSSVNHcmlkQ0EwHhcNMTIwMTE4MTIx
-ODQ0WhcNMTMwMTE3MTIxODQ0WjBUMRIwEAYKCZImiZPyLGQBGRMCZXMxGDAWBgoJkiaJk/IsZAEZ
-EwhpcmlzZ3JpZDEMMAoGA1UEChMDcGljMRYwFAYDVQQDEw12b21zMDIucGljLmVzMIGfMA0GCSqG
-SIb3DQEBAQUAA4GNADCBiQKBgQCeNSxv1gWp+xRyE+2E6XgxmPQXuHwgoXYhbupYNoQEhmYKPp1o
-21IJD7ls1t4vA+rRbCqw2/OZZbthoMId9iT1B1i6kl2pXXds8MbM7ZUeZRWK83h2r1X5ebsXsqeO
-KXZLZJg4QCWFuqm8Rno3ebZpRw6jQAfmh+rR4CcMZXnXWwIDAQABo4IC7TCCAukwDAYDVR0TAQH/
-BAIwADAdBgNVHQ4EFgQURinLmOg9ebZLHgO1pJSNC+3hP4AwawYDVR0jBGQwYoAUnUJkLlupXvH/
-bMg8NtPxtkOYrRqhR6RFMEMxEjAQBgoJkiaJk/IsZAEZFgJlczEYMBYGCgmSJomT8ixkARkWCGly
-aXNncmlkMRMwEQYDVQQDEwpJUklTR3JpZENBggEAMA4GA1UdDwEB/wQEAwIE8DA7BgNVHSUENDAy
-BggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEBggrBgEFBQcDAwYIKwYBBQUHAwgwRwYDVR0R
-BEAwPoYtaHR0cDovL3d3dy5pcmlzZ3JpZC5lcy9lZVJlc29sdmVyP2VlPWEyYjUyMmMxgg12b21z
-MDIucGljLmVzMCwGA1UdEgQlMCOGIWh0dHA6Ly93d3cuaXJpc2dyaWQuZXMvSVJJU0dyaWRDQTAR
-BglghkgBhvhCAQEEBAMCBNAwOwYJYIZIAYb4QgENBC4WLElSSVNHcmlkIENlcnRpZmljYXRpb24g
-QXV0aG9yaXR5IENlcnRpZmljYXRlMDcGCWCGSAGG+EIBAwQqFihodHRwOi8vd3d3LmlyaXNncmlk
-LmVzL3BraS9jcmwvY2FjcmwucGVtME4GCWCGSAGG+EIBCARBFj9odHRwOi8vd3d3LmlyaXNncmlk
-LmVzL3BraS9wb2xpY3kvMS4zLjYuMS40LjEuNzU0Ny4yLjIuNC4xLjEuMS8wOAYDVR0fBDEwLzAt
-oCugKYYnaHR0cDovL3BraS5pcmlzZ3JpZC5lcy9jYS9jcmwvY2FjcmwucGVtMHYGA1UdIARvMG0w
-XQYNKwYBBAG6ewICBAEBATBMMEoGCCsGAQUFBwIBFj5odHRwOi8vcGtpLmlyaXNncmlkLmVzL2Nh
-L3BvbGljeS8xLjMuNi4xLjQuMS43NTQ3LjIuMi40LjEuMS4xLzAMBgoqhkiG90wFAgIBMA0GCSqG
-SIb3DQEBBQUAA4IBAQDJeZAw1mR3fQ3xOkdoRSzCno/7XyHLUnKyTXyJFwq+u1med1VWoyMS1+/S
-97EJ3Th2B4Vn+5jAjEZilV0LNgH8OiaByFI3XGFDqZJJDaQIEM9jfFHjT0igMxPbpaJLnLPeDsbf
-M65rNmmwPKH0FuEf8Dcmj4vGcGjQte39GC4XGQmUmCmOihoqN24E3r+bzkXjJPbD/WvuWCDcXO4A
-CpM2TrHsJFutSz3STlLraKHb0ICknSPPUdVSIghWfCxspwAF1AqMXHhK7JkrnFc1BksPJtROUn80
-XQR1U0q+++HOjp2XQBXA0F4XVTFejBa23jFsXOVrCgVW84iH7CsFDZCQ
------END CERTIFICATE-----
-</X509PublicKey>
-                    <SerialNumber>5819</SerialNumber>
-                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -17802,6 +17796,37 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15000" IsVomsAdminServer="1" MembersListUrl="https://caribe.uniandes.edu.co:8443/voms/uniandes.edu.co/services/VOMSAdmin?method=listMembers">
                 <hostname>caribe.uniandes.edu.co</hostname>
+                <X509Cert>
+                    <DN>/DC=BR/DC=UFF/DC=IC/O=UFF LACGrid CA/C=CO/O=UNIANDES/OU=DTI/CN=host/caribe.uniandes.edu.co</DN>
+                    <CA_DN>/DC=BR/DC=UFF/DC=IC/O=UFF LACGrid CA/CN=UFF Latin American and Caribbean Catch-all Grid CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIIFEjCCA/qgAwIBAgICAJwwDQYJKoZIhvcNAQEFBQAwgZMxEjAQBgoJkiaJk/IsZAEZEwJCUjET
+MBEGCgmSJomT8ixkARkTA1VGRjESMBAGCgmSJomT8ixkARkTAklDMRcwFQYDVQQKEw5VRkYgTEFD
+R3JpZCBDQTE7MDkGA1UEAxMyVUZGIExhdGluIEFtZXJpY2FuIGFuZCBDYXJpYmJlYW4gQ2F0Y2gt
+YWxsIEdyaWQgQ0EwHhcNMTEwNTIzMjE1NzU5WhcNMTIwNTIyMjE1NzU5WjCBqjESMBAGCgmSJomT
+8ixkARkWAkJSMRMwEQYKCZImiZPyLGQBGRYDVUZGMRIwEAYKCZImiZPyLGQBGRYCSUMxFzAVBgNV
+BAoTDlVGRiBMQUNHcmlkIENBMQswCQYDVQQGEwJDTzERMA8GA1UEChMIVU5JQU5ERVMxDDAKBgNV
+BAsTA0RUSTEkMCIGA1UEAxMbaG9zdC9jYXJpYmUudW5pYW5kZXMuZWR1LmNvMIIBIjANBgkqhkiG
+9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7Eqeq/JmMDA0WQZ9BqMztX/Slmba7884wcJTEX3HE7o7iQb/
+yEKu8VpT+Lb8osN3Zao2DeTItvMrFRVk996POX9J+uM7ExRxi50Ljl02e7o+gQYV/EisUDeLOIFH
+WlDZOztV9spWa2M0G8GWX/LW99/0BYQLbi9JnKsg6gcl8B2dUP95FRoufpEWLR/VoGFA+EL68yL3
+pUJLw1MLxaTTlfSiw6vWBzwZAdrHRi4n3huofIDwLBchBAafg09DNFhq1Or8ra8llWgahuBWwmPS
+S/kKlVg1h0bP2VAvhVg+aNOpHHrneEeKOAA9IYkzYMh29P+u64Hqk3ZQ5EopNDotuQIDAQABo4IB
+VTCCAVEwDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCBPAwOwYDVR0lBDQwMgYIKwYBBQUHAwEG
+CCsGAQUFBwMCBggrBgEFBQcDBAYIKwYBBQUHAwMGCCsGAQUFBwMIMB0GA1UdDgQWBBSs+1Z48PbP
+/8o7NQDis6aecmcVazAfBgNVHSMEGDAWgBSNNhYRolZAlonz02/CnNORlTPyeDA7BgNVHREENDAy
+gRhhamltZW5lekB1bmlhbmRlcy5lZHUuY2+CFmNhcmliZS51bmlhbmRlcy5lZHUuY28wHgYDVR0S
+BBcwFYETbGFjZ3JpZGNhQGljLnVmZi5icjA5BgNVHR8EMjAwMC6gLKAqhihodHRwOi8vbGFjZ3Jp
+ZGNhLmljLnVmZi5ici9jcmwvY2FjcmwuY3JsMBwGA1UdIAQVMBMwEQYPKwYBBAGBwgcCAQoCAQEA
+MA0GCSqGSIb3DQEBBQUAA4IBAQBJNT1D9Qu4uw/5Llw45s8lOpabVh4QjWdEqTDQT+4qUimxwI0J
+MWcodNoHozb92atdic9nlvRpCHiwqIQz9+ZkjE4HkvvCwlodgdTif7uBMQ5fQ50rIns19UAK1W2z
+1OjSpIGBCJ76dXXGgIkibDqtENEbFh73AxcZlW/ocChO4f9Wnfy3G9VvkaYoe1zHiHhjwxUAmrfb
+08SXDo+W5zOOEEJh4+gAmtZEE3FH7mup0nG41lWbAczAMkUvyQ2Xb9sGFaF+2D80M3VmyNKhhqEy
+MTfNQ2nozhTMAWn/lUEPfkHc85ve6kzRQ7aJp5WrwaBsuP5wxZaFeHFdJz0zXgWg
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>156</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -25406,6 +25431,33 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15000" IsVomsAdminServer="1" MembersListUrl="https://voms.research-infrastructures.eu:8443/voms/d4science.research-infrastructures.eu/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.research-infrastructures.eu</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=NMIS-ISTI/CN=voms.research-infrastructures.eu</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIIEETCCAvmgAwIBAgICXcQwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwNDI2MTMxNTA1WhcNMTMwNDI2MTMxNTA1WjBq
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDESMBAGA1UEBxMJTk1J
+Uy1JU1RJMSkwJwYDVQQDEyB2b21zLnJlc2VhcmNoLWluZnJhc3RydWN0dXJlcy5ldTCBnzANBgkq
+hkiG9w0BAQEFAAOBjQAwgYkCgYEAksox360N17HE1+OMeLO10SulNRpX24NZZWpqv8x6kgUUqALr
+5IA9Q4Bvdc7ronvVQUuxwoS1lO+QKE+OSErQnsCxxRM4OyVwozwSn50o8OgnVBBVxTFe5TwcDTTp
+eGiCgvZluUkuRvjQVZ72f8srjTE93sz0//iLJTm9DPXjufcCAwEAAaOCAX8wggF7MAwGA1UdEwEB
+/wQCMAAwDgYDVR0PAQH/BAQDAgWgMDQGA1UdJQQtMCsGCCsGAQUFBwMBBggrBgEFBQcDAgYKKwYB
+BAGCNwoDAwYJYIZIAYb4QgQBMD0GA1UdHwQ2MDQwMqAwoC6GLGh0dHA6Ly9zZWN1cml0eS5maS5p
+bmZuLml0L0NBL0lORk5DQV9jcmwuZGVyMCUGA1UdIAQeMBwwDAYKKwYBBAHRIwoBBzAMBgoqhkiG
+90wFAgIBMB0GA1UdDgQWBBTpHY9EOmNaEJGVmXy43IWeCYeUJjBWBgNVHSMETzBNgBTRYvOzd3LI
+LvvyeRpvN04nnxPVIKEypDAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoTBElORk4xEDAOBgNVBAMT
+B0lORk4gQ0GCAQAwSAYDVR0RBEEwP4Igdm9tcy5yZXNlYXJjaC1pbmZyYXN0cnVjdHVyZXMuZXWB
+G3Bhc3F1YWxlLnBhZ2Fub0Bpc3RpLmNuci5pdDANBgkqhkiG9w0BAQUFAAOCAQEAx1PtqNI+l8/o
+UscPy0nBJt7nnlr5j7SUNaT5rXykX59c2b1r3FemNjOIE1J6s6zBeTD4MT4bUWw7OnCufjAx8Ai/
+CDwxg2lRbrOwRZF3xYWQxPwWgxzAAarNhMEL7SLWLdV+cAZ1x9FJfX+a/M4VxOx8fEYJhGUUiv+a
+xpykHiz1kBALYhqKUvXSH35W3bx5KydvnemPnRJJSfoECHppCakVBxeBpKasEjYdNp8LESHzF6gG
+yR4W13QYFFQ8UTrUt08wvl3GcU+OloZj8uVNU3DNFgvzPeePmD4Dqs7496Go77TC6zUiEYDpyEqV
+BnuiX3BND0bju9jhaEapjfkMlQ==
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>24004</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -27487,6 +27539,33 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15001" IsVomsAdminServer="1" MembersListUrl="https://marvoms.in2p3.fr:8443/voms/cppm/services/VOMSAdmin?method=listMembers">
                 <hostname>marvoms.in2p3.fr</hostname>
+                <X509Cert>
+                    <DN>/O=GRID-FR/C=FR/O=CNRS/OU=CPPM/CN=marvoms.in2p3.fr</DN>
+                    <CA_DN>/C=FR/O=CNRS/CN=GRID2-FR</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIIEADCCAuigAwIBAgICFLIwDQYJKoZIhvcNAQEFBQAwLzELMAkGA1UEBhMCRlIxDTALBgNVBAoT
+BENOUlMxETAPBgNVBAMTCEdSSUQyLUZSMB4XDTExMDkxMjEyNDQwMloXDTEyMDkxMTEyNDQwMlow
+WDEQMA4GA1UEChMHR1JJRC1GUjELMAkGA1UEBhMCRlIxDTALBgNVBAoTBENOUlMxDTALBgNVBAsT
+BENQUE0xGTAXBgNVBAMTEG1hcnZvbXMuaW4ycDMuZnIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAMDlNj0rKDVb5Vi1a7yh0wW7Hy2dIQUqRVK0N+1pt/ERthuseKyC1phuyBTrfSYDzCceS643
+PZprKniK9IZcibHDi/7cZ3MDC5RTW6bdVzXUM/up5duWtU5YNFtvv5PbyQnDRjxCUT0vrFhQiCVx
+YF+/2lu21a3ZMYehg2VTNmHfAgMBAAGjggF/MIIBezAMBgNVHRMBAf8EAjAAMBEGCWCGSAGG+EIB
+AQQEAwIGwDAOBgNVHQ8BAf8EBAMCA/gwKgYJYIZIAYb4QgENBB0WG0dSSUQyLUZSIHNlcnZlciBj
+ZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQUiTBoQZyyOxv5OdyspZUn8SuuDOEwXAYDVR0jBFUwU4AUJ5ZI
+J+4htvKvsS19+vfXSCVwlZOhOKQ2MDQxCzAJBgNVBAYTAkZSMQ0wCwYDVQQKEwRDTlJTMRYwFAYD
+VQQDEw1DTlJTMi1Qcm9qZXRzggEDMCcGA1UdIAQgMB4wDgYMKwYBBAHUPQEBCAIBMAwGCiqGSIb3
+TAUCAgEwGwYDVR0RBBQwEoIQbWFydm9tcy5pbjJwMy5mcjBBBgNVHR8EOjA4MDagNKAyhjBodHRw
+Oi8vY3Jscy5zZXJ2aWNlcy5jbnJzLmZyL0dSSUQyLUZSL2dldGRlci5jcmwwFgYIKwYBBAG7YgEE
+CnVuaWNvcmVOSlMwDQYJKoZIhvcNAQEFBQADggEBALZEhfQaSsRYQQxIoVRlx78sPO4IK3h7Oj9s
+5HUzs4ydf+7Y0uLuYJo+jNfRcV1lFo0CiIGH7jghJ+FjB/JmxdvNEc3XVMjd1Wz3m68PqtZT0Nx3
+DblPBsxwQXn3N08cEYiiGJBRdNNmlxf3wQ132RPDcMEPKauhdKOw83FaCM1CRKoNdmo1p5GGl9rO
+D2jFumDsZ2NJbGvTX2XMp7sU5pb680NKNJP+T+/pUOyDKyKaAUS1tooCTHo9PYkBlNn+qlZszYus
+00G8rdIM3BheN8Lc2PcvN+l4yW7Xf85ZRg1eCVl6FB0JeDnGGyn/6YgMf++strZEKrtK5KClMNXy
+hA4=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>5298</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -27674,4 +27753,95 @@ alZ0GlLX3+h+YRZUGEwvWcCu
         <JobMaxWallClockTime>4320</JobMaxWallClockTime>
         <OtherRequirements/>
     </Ressources>
-</IDCard></VoDump>
+</IDCard>
+<!-- 
+
+Note: Some of the VOs that Liverpool support do not record their VOMS data at the CIC Portal XML.
+For fix this, I've defined a new XML just for these 4 VOs. The data is processed separately, and
+merged with the data from the CIC Portal XML.
+
+The VOs concerned are cedar, ltwo, totalep and na48
+
+sj, 28 March 2012
+
+-->
+
+
+  <IDCard CIC_ID="7" Name="cedar" Serial="56" Status="Production" Alias="CEDAR" GridId="">
+    <Description> Locally made</Description>
+    <Middlewares ARC="0" gLite="1" UNICORE="0" GLOBUS="0"/>
+    <gLiteConf>
+      <VOMSServers>
+        <VOMS_Server HttpsPort="8443" VomsesPort="15006" IsVomsAdminServer="1" MembersListUrl="Some old rubbish that fills the field">
+          <hostname>voms.gridpp.ac.uk</hostname>
+          <X509Cert>
+            <DN>/C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk</DN>
+            <CA_DN>/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B</CA_DN>
+            <X509PublicKey>More Blah</X509PublicKey>
+          </X509Cert>
+        </VOMS_Server>
+      </VOMSServers>
+    </gLiteConf>
+    <ARCConf/>
+    <UNICOREConf/>
+  </IDCard>
+
+  <IDCard CIC_ID="7" Name="ltwo" Serial="56" Status="Production" Alias="LTWO" GridId="">
+    <Description> Locally made</Description>
+    <Middlewares ARC="0" gLite="1" UNICORE="0" GLOBUS="0"/>
+    <gLiteConf>
+      <VOMSServers>
+        <VOMS_Server HttpsPort="8443" VomsesPort="15005" IsVomsAdminServer="1" MembersListUrl="Some old rubbish that fills the field">
+          <hostname>voms.gridpp.ac.uk</hostname>
+          <X509Cert>
+            <DN>/C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk</DN>
+            <CA_DN>/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B</CA_DN>
+            <X509PublicKey>More Blah</X509PublicKey>
+          </X509Cert>
+        </VOMS_Server>
+      </VOMSServers>
+    </gLiteConf>
+    <ARCConf/>
+    <UNICOREConf/>
+  </IDCard>
+
+  <IDCard CIC_ID="7" Name="na48" Serial="56" Status="Production" Alias="NA48" GridId="">
+    <Description> Locally made</Description>
+    <Middlewares ARC="0" gLite="1" UNICORE="0" GLOBUS="0"/>
+    <gLiteConf>
+      <VOMSServers>
+        <VOMS_Server HttpsPort="8443" VomsesPort="15011" IsVomsAdminServer="1" MembersListUrl="Some old rubbish that fills the field">
+          <hostname>voms.cern.ch</hostname>
+          <X509Cert>
+            <DN>/DC=ch/DC=cern/OU=computers/CN=voms.cern.ch</DN>
+            <CA_DN>/DC=ch/DC=cern/CN=CERN Trusted Certification Authority</CA_DN>
+            <X509PublicKey>More Blah</X509PublicKey>
+          </X509Cert>
+        </VOMS_Server>
+      </VOMSServers>
+    </gLiteConf>
+    <ARCConf/>
+    <UNICOREConf/>
+  </IDCard>
+
+
+  <IDCard CIC_ID="7" Name="totalep" Serial="56" Status="Production" Alias="TOTALEP" GridId="">
+    <Description> Locally made</Description>
+    <Middlewares ARC="0" gLite="1" UNICORE="0" GLOBUS="0"/>
+    <gLiteConf>
+      <VOMSServers>
+        <VOMS_Server HttpsPort="8443" VomsesPort="15026" IsVomsAdminServer="1" MembersListUrl="Some old rubbish that fills the field">
+          <hostname>voms.gridpp.ac.uk</hostname>
+          <X509Cert>
+            <DN>/C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk</DN>
+            <CA_DN>/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B</CA_DN>
+            <X509PublicKey>More Blah</X509PublicKey>
+          </X509Cert>
+        </VOMS_Server>
+      </VOMSServers>
+    </gLiteConf>
+    <ARCConf/>
+    <UNICOREConf/>
+  </IDCard>
+
+</VoDump>

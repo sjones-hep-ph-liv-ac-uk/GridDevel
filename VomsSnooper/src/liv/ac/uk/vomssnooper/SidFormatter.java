@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 
 /**
- * blah
+ * Reads in a site-info.def file (and related vo.d files) and formats them out in sorted and standard manner
  * 
  * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
  * @since 2012-05-10
@@ -17,17 +17,17 @@ import java.util.HashMap;
 
 public class SidFormatter {
 
+	private String oldSidDir; // the location of the old site-info.def file (and vo.d directory)
+	private String newSidDir; // the location of the new site-info.def file (and vo.d directory)
 
-	private String oldSidDir;
-	private String newSidDir;
-
+	// I'll index the VO info on a name
 	private HashMap<String, VirtOrgInfo> voidInfo ;
 
 	/**
 	 * Basic constructor
 	 * 
-	 * @param x
-	 *          x
+	 * @param old SIteInfo.def dir
+	 * @param new SIteInfo.def dir
 	 * 
 	 * @return null
 	 */
@@ -49,7 +49,11 @@ public class SidFormatter {
 		sp.parseDocument();
 
 	}
-	
+
+	/**
+	 * Pass the results info a utility for printing 
+	 * @return null
+	 */
 	public void printResults(){
 		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values ()); 
 		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false);
@@ -73,11 +77,12 @@ public class SidFormatter {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.6 \n\n");
+		System.out.print("Version 1.7 \n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
 
+		// Set up a model of the options
 		LongOpt[] longopts = new LongOpt[OptList.values().length];
 
 		longopts[OptList.oldsiddir.ordinal()] = new LongOpt(OptList.oldsiddir.name(), LongOpt.REQUIRED_ARGUMENT, sb,
@@ -85,6 +90,7 @@ public class SidFormatter {
 		longopts[OptList.newsiddir.ordinal()] = new LongOpt(OptList.newsiddir.name(), LongOpt.REQUIRED_ARGUMENT, sb,
 				OptList.newsiddir.ordinal());
 
+		// Get the options
 		Getopt g = new Getopt("testprog", args, "", longopts);
 		g.setOpterr(false);
 
@@ -97,6 +103,7 @@ public class SidFormatter {
 			System.exit(1);
 		}
 		
+		// Process the options
 		while (c != -1) {
 
 			arg = g.getOptarg();
@@ -108,17 +115,22 @@ public class SidFormatter {
 			}
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.help.ordinal()) {
+				// TODO: put some help code in there
 				System.out.print("You asked for help.\n");
 				System.exit(1);
 			}
 
+			// Option for old site-info.def setup
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.oldsiddir.ordinal()) {
 				oldSidDir = ((arg != null) ? arg : "null");
 			}
 
+			// Option for new site-info.def setup
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.newsiddir.ordinal()) {
 				newSidDir = ((arg != null) ? arg : "null");
 			}
+			
+			// Get next option
 			try { 
 			  c = g.getopt();
 			}
@@ -128,6 +140,7 @@ public class SidFormatter {
 			}
 		}
 
+		// Validate the options
 		if (oldSidDir == null) {
 			System.out.print("The --oldsiddir argument must be given\n");
 			System.exit(1);
@@ -147,7 +160,7 @@ public class SidFormatter {
 			System.exit(1);
 		}
 
-		// Make the Controller class
+		// Make an object to organise the run
 		SidFormatter sf = new SidFormatter(oldSidDir, newSidDir);
 
 		// Parse the File
@@ -155,7 +168,7 @@ public class SidFormatter {
 		
 		// Print out various results
 		sf.printResults();
-		
+
 	}
 }
 

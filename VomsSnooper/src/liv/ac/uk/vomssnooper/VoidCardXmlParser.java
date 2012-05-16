@@ -2,6 +2,7 @@ package liv.ac.uk.vomssnooper;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -51,6 +52,15 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 			// parse the file and also register this class for call backs
 			sp.parse(xmlFile, this);
+			
+			// Finally, sort those voms servers
+			
+			Iterator<VirtOrgInfo> allIt = allVoidInfo.iterator();
+			while (allIt.hasNext()) {
+				VirtOrgInfo voi = allIt.next();
+				voi.sortVomsServers();
+			}
+			
 		} catch (SAXException se) {
 			se.printStackTrace();
 		} catch (ParserConfigurationException pce) {
@@ -82,12 +92,14 @@ public class VoidCardXmlParser extends DefaultHandler {
 			currentTag = "VOMS_Server";
 			currentVomsServer = new VomsServer();
 			try {
+
 				currentVomsServer.setHttpsPort(Integer.valueOf(attributes.getValue("HttpsPort")));
 			} catch (NumberFormatException e) {
 				System.out.print("Bad format for port, HttpsPort\n");
 				currentVomsServer.setHttpsPort(-1);
 			}
 			try {
+
 				currentVomsServer.setVomsServerPort(Integer.valueOf(attributes.getValue("VomsesPort")));
 			} catch (NumberFormatException e) {
 				System.out.print("Bad format for port, VomsesPort\n");

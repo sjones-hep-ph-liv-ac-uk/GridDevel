@@ -1,3 +1,3 @@
 echo $@
 
-java -jar ./VomsSnooper.jar $@
+java -jar ./dist/lib/VomsSnooper.jar $@
