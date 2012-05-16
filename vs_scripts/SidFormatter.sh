@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -cp ./VomsSnooper.jar liv.ac.uk.vomssnooper.SidFormatter  $@
+java -cp ./dist/lib/VomsSnooper.jar liv.ac.uk.vomssnooper.SidFormatter  $@

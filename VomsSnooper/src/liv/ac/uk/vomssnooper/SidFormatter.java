@@ -4,13 +4,9 @@ import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
+
 
 /**
  * blah
@@ -21,17 +17,6 @@ import java.util.Iterator;
 
 public class SidFormatter {
 
-	/**
-	 * Private class to facilitate a sort function
-	 * 
-	 * @author sjones
-	 * 
-	 */
-	private class ByVoName implements java.util.Comparator<VirtOrgInfo> {
-		public int compare(VirtOrgInfo first, VirtOrgInfo second) {
-			return first.getVoNickName().compareTo(second.getVoNickName());
-		}
-	}
 
 	private String oldSidDir;
 	private String newSidDir;
@@ -88,7 +73,7 @@ public class SidFormatter {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.0\n\n");
+		System.out.print("Version 1.6 \n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;

@@ -19,10 +19,6 @@
         description="compile the source " >
     <!-- Compile the java code from ${src} into ${build} -->
 
-
-    <!-- <classpath> <pathelement location="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/> </classpath>
-    <javac srcdir="${src}" destdir="${build}"/> -->
-
     <javac srcdir="${src}" destdir="${build}">
       <classpath> <pathelement location="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/> </classpath>
     </javac>
@@ -36,12 +32,18 @@
 
     <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
 
-        <jar destfile="/user2/sjones/git/GridDevel/vs_scripts/VomsSnooper.jar" filesetmanifest="mergewithoutmain">
+
+        <jar destfile="${dist}/lib/VomsSnooper.jar" > <!-- filesetmanifest="mergewithoutmain">  -->
+
+
             <manifest>
                 <attribute name="Main-Class" value="liv.ac.uk.vomssnooper.VomsSnooper"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="/user2/sjones/git/GridDevel/VomsSnooper/bin"/>
+            <!-- <fileset dir="/user2/sjones/git/GridDevel/VomsSnooper/bin"/> -->
+
+            <fileset dir="${build}"/>
+
             <zipfileset excludes="META-INF/*.SF" src="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/>
         </jar>
 
