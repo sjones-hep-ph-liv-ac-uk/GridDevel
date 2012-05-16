@@ -28,7 +28,6 @@ public class VomsSnooper {
 	private Boolean extraFields;    // Whether to print some common extra fields
 	private String contactsOutFile; // File to write contacts to
 	private String vomsDir;         // Directory where LSC files would get written
-
 	
 	private ArrayList<VirtOrgInfo> voidInfo = new ArrayList<VirtOrgInfo>();;
 

@@ -20,7 +20,7 @@ public class VomsServer {
 	}
 
 	private Integer httpsPort;
-	private Integer vomsesPort;
+	private Integer vomsServerPort;
 	private String hostname;
 	private String dn;
 	private String caDn;
@@ -32,7 +32,7 @@ public class VomsServer {
 	 */
 	public VomsServer() {
 		httpsPort = -1;
-		vomsesPort = -1;
+		vomsServerPort = -1;
 		hostname = null;
 		dn = null;
 		caDn = null;
@@ -48,7 +48,7 @@ public class VomsServer {
 		complete = false;
 		if (httpsPort == -1)
 			return;
-		if (vomsesPort == -1)
+		if (vomsServerPort == -1)
 			return;
 		if (hostname == null)
 			return;
@@ -58,10 +58,31 @@ public class VomsServer {
 			return;
 		if (membersListUrl == null)
 			return;
-		if (complete == null)
-			return;
 		complete = true;
 	}
+	
+	public void printIncomplete() {
+		
+		if (httpsPort == -1) {
+		  System.out.println("null httpsPort");	
+		}
+		if (vomsServerPort == -1) {
+		  System.out.println("null vomsServerPort");	
+		}
+		if (hostname == null) {
+		  System.out.println("null hostname");	
+		}
+		if (dn == null) {
+		  System.out.println("null dn");
+		}
+		if (caDn == null) {
+		  System.out.println("null caDn");
+		}
+		if (membersListUrl == null) {
+		  System.out.println("null membersListUrl");	
+		}
+	}
+	
 
 	/**
 	 * Getter for a field - membersListUrl
@@ -100,15 +121,15 @@ public class VomsServer {
 	 * @return the field requested
 	 */
 	public Integer getVomsesPort() {
-		return vomsesPort;
+		return vomsServerPort;
 	}
 
 	/**
 	 * Setter for a field - vomsesPort
 	 * @return null
 	 */
-	public void setVomsesPort(Integer vomsesPort) {
-		this.vomsesPort = vomsesPort;
+	public void setVomsServerPort(Integer vomsesPort) {
+		this.vomsServerPort = vomsesPort;
 	}
 
 	/**
@@ -183,7 +204,7 @@ public class VomsServer {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(" " + httpsPort + ",");
-		sb.append(" " + vomsesPort + ",");
+		sb.append(" " + vomsServerPort + ",");
 		sb.append(" " + hostname + ",");
 		sb.append(" " + dn + ",");
 		sb.append(" " + caDn + ",");
@@ -197,7 +218,7 @@ public class VomsServer {
 	 */
 	public String makeUrl(String vo) {
 		StringBuffer url = new StringBuffer();
-		url.append("vomss://" + hostname + ":" + httpsPort + "/voms/" + vo + "?/" + vo);
+		url.append("vomss://" + hostname + ":" + this.vomsServerPort + "/voms/" + vo + "?/" + vo);
 
 		return url.toString();
 	}

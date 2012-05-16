@@ -88,10 +88,10 @@ public class VoidCardXmlParser extends DefaultHandler {
 				currentVomsServer.setHttpsPort(-1);
 			}
 			try {
-				currentVomsServer.setVomsesPort(Integer.valueOf(attributes.getValue("VomsesPort")));
+				currentVomsServer.setVomsServerPort(Integer.valueOf(attributes.getValue("VomsesPort")));
 			} catch (NumberFormatException e) {
 				System.out.print("Bad format for port, VomsesPort\n");
-				currentVomsServer.setVomsesPort(-1);
+				currentVomsServer.setVomsServerPort(-1);
 			}
 
 			currentVomsServer.setHostname(attributes.getValue("hostname"));

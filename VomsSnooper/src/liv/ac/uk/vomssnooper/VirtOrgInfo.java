@@ -110,10 +110,6 @@ public class VirtOrgInfo {
 		cadnLine.append("VOMS_CA_DN=\"");
 
 		Iterator<VomsServer> vomsServer ;
-		// vomsServer = vomsServers.iterator();
-		// while (vomsServer.hasNext()) {
-		// VomsServer v = vomsServer.next();
-		// }
 
 		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
 
@@ -121,11 +117,13 @@ public class VirtOrgInfo {
 		while (vomsServer.hasNext()) {
 
 			VomsServer v = vomsServer.next();
-			if (validOnly) {
-				if (!v.isComplete()) {
-					System.out.print("Warning: Some voms server data (e.g. x509?) for " + this.getVoName() + " is incomplete\n");
+			v.setWhetherComplete();
+			if ((!v.isComplete())) {
+				if (validOnly ) {
+					System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded\n");
+					v.printIncomplete();
 					continue;
-				}
+  			}
 			}
 
 			// Populate Voms server line
@@ -135,7 +133,7 @@ public class VirtOrgInfo {
 
 			// Populate vomses Line line
 			vomsesLine.append("'");
-			vomsesLine.append(voName + " " + v.getHostname() + " " + v.getVomsesPort() + " " + v.getDn() + " " + voName);
+			vomsesLine.append(voName.toLowerCase() + " " + v.getHostname() + " " + v.getHttpsPort() + " " + v.getDn() + " " + voName.toLowerCase());
 			vomsesLine.append("' ");
 
 			// Populate cadn line
