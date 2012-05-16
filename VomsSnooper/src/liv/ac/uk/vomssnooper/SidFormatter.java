@@ -88,8 +88,16 @@ public class SidFormatter {
 		Getopt g = new Getopt("testprog", args, "", longopts);
 		g.setOpterr(false);
 
-		int c;
-		while ((c = g.getopt()) != -1) {
+		int c = -1;
+		try { 
+		  c = g.getopt();
+		}
+		catch (NullPointerException e) {
+			System.out.println("Could not parse those options; " + e.getMessage());
+			System.exit(1);
+		}
+		
+		while (c != -1) {
 
 			arg = g.getOptarg();
 
@@ -110,6 +118,13 @@ public class SidFormatter {
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.newsiddir.ordinal()) {
 				newSidDir = ((arg != null) ? arg : "null");
+			}
+			try { 
+			  c = g.getopt();
+			}
+			catch (NullPointerException e) {
+				System.out.println("Could not parse those options; " + e.getMessage());
+				System.exit(1);
 			}
 		}
 
@@ -143,3 +158,4 @@ public class SidFormatter {
 		
 	}
 }
+
