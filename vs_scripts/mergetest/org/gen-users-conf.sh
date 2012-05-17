@@ -1,0 +1,529 @@
+#!/bin/sh
+
+# Note: Max number of VO's supported here is 60. 500 UIDs each for regular users,
+# starting at 20000, 250 UIDs each for additional users, starting at 50000
+
+# Beginning ID for main users (regular, SGM, and PRD)
+STARTUID=20000
+
+# Beginning ID for additional users (pilot)
+STARTADDUID=50000
+
+# Group ID list
+# Grid VO GID run from 2001+
+# 2001 - 2180 is main groups (regular, sgm, prd)
+# 2200+ is additional groups
+
+# MAIN VO GROUPS (see below for additional VO groups)
+# GID is VO group
+# PGID is VO prd group
+# SGID is VO sgm group
+ALICE_GID=2001
+ALICE_PGID=2002
+ALICE_SGID=2003
+ATLAS_GID=2004
+ATLAS_PGID=2005
+ATLAS_SGID=2006
+BABAR_GID=2007
+BABAR_PGID=2008
+BABAR_SGID=2009
+BIOMED_GID=2010
+BIOMED_PGID=2011
+BIOMED_SGID=2012
+CALICE_GID=2013
+CALICE_PGID=2014
+CALICE_SGID=2015
+CAMONT_GID=2016
+CAMONT_PGID=2017
+CAMONT_SGID=2018
+CDF_GID=2019
+CDF_PGID=2020
+CDF_SGID=2021
+CEDAR_GID=2022
+CEDAR_PGID=2023
+CEDAR_SGID=2024
+CMS_GID=2025
+CMS_PGID=2026
+CMS_SGID=2027
+DTEAM_GID=2028
+DTEAM_PGID=2029
+DTEAM_SGID=2030
+DZERO_GID=2031
+DZERO_PGID=2032
+DZERO_SGID=2033
+ESR_GID=2034
+ESR_PGID=2035
+ESR_SGID=2036
+FUSION_GID=2037
+FUSION_PGID=2038
+FUSION_SGID=2039
+GEANT4_GID=2040
+GEANT4_PGID=2041
+GEANT4_SGID=2042
+HONE_GID=2043
+HONE_PGID=2044
+HONE_SGID=2045
+GRIDPP_GID=2046
+GRIDPP_PGID=2047
+GRIDPP_SGID=2048
+ILC_GID=2049
+ILC_PGID=2050
+ILC_SGID=2051
+LHCB_GID=2052
+LHCB_PGID=2053
+LHCB_SGID=2054
+LTWO_GID=2055
+LTWO_PGID=2056
+LTWO_SGID=2057
+MAGIC_GID=2058
+MAGIC_PGID=2059
+MAGIC_SGID=2060
+MANMACE_GID=2061
+MANMACE_PGID=2062
+MANMACE_SGID=2063
+MICE_GID=2064
+MICE_PGID=2065
+MICE_SGID=2066
+MINOS_GID=2067
+MINOS_PGID=2068
+MINOS_SGID=2069
+NA48_GID=2070
+NA48_PGID=2071
+NA48_SGID=2072
+NGS_GID=2073
+NGS_PGID=2074
+NGS_SGID=2075
+OPS_GID=2076
+OPS_PGID=2077
+OPS_SGID=2078
+PHENO_GID=2079
+PHENO_PGID=2080
+PHENO_SGID=2081
+PLANCK_GID=2082
+PLANCK_PGID=2083
+PLANCK_SGID=2084
+SNO_GID=2085
+SNO_PGID=2086
+SNO_SGID=2087
+SUPERNEMO_GID=2088
+SUPERNEMO_PGID=2089
+SUPERNEMO_SGID=2090
+T2K_GID=2091
+T2K_PGID=2092
+T2K_SGID=2093
+TOTALEP_GID=2094
+TOTALEP_PGID=2095
+TOTALEP_SGID=2096
+ZEUS_GID=2097
+ZEUS_PGID=2098
+ZEUS_SGID=2099
+NORTHGRID_GID=2100
+NORTHGRID_PGID=2101
+NORTHGRID_SGID=2102
+SIXT_GID=2103
+SIXT_PGID=2104
+SIXT_SGID=2105
+SNOPLUS_GID=2106
+SNOPLUS_PGID=2107
+SNOPLUS_SGID=2108
+
+
+# ADDITIONAL VO GROUPS (optional)
+# PILGID is VO pilot group
+LHCB_PILGID=2200
+ATLAS_PILGID=2201
+OPS_PILGID=2204
+CMS_PILGID=2205
+ALICE_PILGID=2206
+
+# list of VOs
+# new VOs should be added to the END of the list
+VOS="ALICE ATLAS BABAR BIOMED CALICE CAMONT CDF CEDAR CMS DTEAM DZERO ESR FUSION GEANT4 HONE GRIDPP ILC LHCB LTWO MAGIC MANMACE MICE MINOS NA48 NGS OPS PHENO PLANCK SNO SUPERNEMO T2K TOTALEP ZEUS NORTHGRID SIXT SNOPLUS"
+
+# Per VO config
+# NAME - full name (DNS style where applicable)
+# NAME3 - 3 letter VO name
+# NAME5 - up to 5 letter VO name
+# NAME8 - up to 8 letter VO name
+# USERS - number of regular user accounts to create (1-299)
+# SGM - number of SGM accounts to create (1-99)
+# PRD - number of PRD accounts to create (1-99)
+# PIL - number of pilot accounts to create (1-50(?)) (omit for no pilot accounts)
+
+ALICE_NAME="alice"
+ALICE_NAME3="alc"
+ALICE_NAME5="alice"
+ALICE_NAME8="alice"
+ALICE_USERS=99
+ALICE_SGM=50
+ALICE_PRD=50
+ALICE_PIL=25
+
+ATLAS_NAME="atlas"
+ATLAS_NAME3="atl"
+ATLAS_NAME5="atlas"
+ATLAS_NAME8="atlas"
+ATLAS_USERS=199
+ATLAS_SGM=99
+ATLAS_PRD=99
+ATLAS_PIL=25
+
+BABAR_NAME="babar"
+BABAR_NAME3="bbr"
+BABAR_NAME5="babar"
+BABAR_NAME8="babar"
+BABAR_USERS=99
+BABAR_SGM=50
+BABAR_PRD=50
+
+BIOMED_NAME="biomed"
+BIOMED_NAME3="bmd"
+BIOMED_NAME5="biomd"
+BIOMED_NAME8="biomed"
+BIOMED_USERS=199
+BIOMED_SGM=99
+BIOMED_PRD=99
+
+CALICE_NAME="calice"
+CALICE_NAME3="clc"
+CALICE_NAME5="calic"
+CALICE_NAME8="calice"
+CALICE_USERS=99
+CALICE_SGM=50
+CALICE_PRD=50
+
+CAMONT_NAME="camont"
+CAMONT_NAME3="cmt"
+CAMONT_NAME5="camnt"
+CAMONT_NAME8="camont"
+CAMONT_USERS=50
+CAMONT_SGM=25
+CAMONT_PRD=25
+
+CDF_NAME="cdf"
+CDF_NAME3="cdf"
+CDF_NAME5="cdf"
+CDF_NAME8="cdf"
+CDF_USERS=99
+CDF_SGM=50
+CDF_PRD=50
+
+CEDAR_NAME="cedar"
+CEDAR_NAME3="cdr"
+CEDAR_NAME5="cedar"
+CEDAR_NAME8="cedar"
+CEDAR_USERS=50
+CEDAR_SGM=25
+CEDAR_PRD=25
+
+CMS_NAME="cms"
+CMS_NAME3="cms"
+CMS_NAME5="cms"
+CMS_NAME8="cms"
+CMS_USERS=99
+CMS_SGM=50
+CMS_PRD=50
+CMS_PIL=25
+
+DTEAM_NAME="dteam"
+DTEAM_NAME3="dtm"
+DTEAM_NAME5="dteam"
+DTEAM_NAME8="dteam"
+DTEAM_USERS=199
+DTEAM_SGM=99
+DTEAM_PRD=99
+
+DZERO_NAME="dzero"
+DZERO_NAME3="dzr"
+DZERO_NAME5="dzero"
+DZERO_NAME8="dzero"
+DZERO_USERS=99
+DZERO_SGM=50
+DZERO_PRD=50
+
+ESR_NAME="esr"
+ESR_NAME3="esr"
+ESR_NAME5="esr"
+ESR_NAME8="esr"
+ESR_USERS=99
+ESR_SGM=50
+ESR_PRD=50
+
+FUSION_NAME="fusion"
+FUSION_NAME3="fsn"
+FUSION_NAME5="fusio"
+FUSION_NAME8="fusion"
+FUSION_USERS=99
+FUSION_SGM=50
+FUSION_PRD=50
+
+GEANT4_NAME="geant4"
+GEANT4_NAME3="gnt"
+GEANT4_NAME5="geant"
+GEANT4_NAME8="geant4"
+GEANT4_USERS=99
+GEANT4_SGM=50
+GEANT4_PRD=50
+
+HONE_NAME="hone"
+HONE_NAME3="hne"
+HONE_NAME5="hone"
+HONE_NAME8="hone"
+HONE_USERS=99
+HONE_SGM=50
+HONE_PRD=50
+
+GRIDPP_NAME="gridpp"
+GRIDPP_NAME3="gpp"
+GRIDPP_NAME5="grdpp"
+GRIDPP_NAME8="gridpp"
+GRIDPP_USERS=99
+GRIDPP_SGM=50
+GRIDPP_PRD=50
+
+ILC_NAME="ilc"
+ILC_NAME3="ilc"
+ILC_NAME5="ilc"
+ILC_NAME8="ilc"
+ILC_USERS=99
+ILC_SGM=50
+ILC_PRD=50
+
+LHCB_NAME="lhcb"
+LHCB_NAME3="lhb"
+LHCB_NAME5="lhcb"
+LHCB_NAME8="lhcb"
+LHCB_USERS=199
+LHCB_SGM=99
+LHCB_PRD=99
+LHCB_PIL=25
+
+LTWO_NAME="ltwo"
+LTWO_NAME3="ltw"
+LTWO_NAME5="ltwo"
+LTWO_NAME8="ltwo"
+LTWO_USERS=50
+LTWO_SGM=25
+LTWO_PRD=25
+
+MAGIC_NAME="magic"
+MAGIC_NAME3="mgc"
+MAGIC_NAME5="magic"
+MAGIC_NAME8="magic"
+MAGIC_USERS=50
+MAGIC_SGM=25
+MAGIC_PRD=25
+
+MANMACE_NAME="manmace"
+MANMACE_NAME3="mmc"
+MANMACE_NAME5="mmace"
+MANMACE_NAME8="manmace"
+MANMACE_USERS=50
+MANMACE_SGM=25
+MANMACE_PRD=25
+
+MICE_NAME="mice"
+MICE_NAME3="mce"
+MICE_NAME5="mice"
+MICE_NAME8="mice"
+MICE_USERS=50
+MICE_SGM=25
+MICE_PRD=25
+
+MINOS_NAME="minos.vo.gridpp.ac.uk"
+MINOS_NAME3="mns"
+MINOS_NAME5="minos"
+MINOS_NAME8="minos"
+MINOS_USERS=50
+MINOS_SGM=25
+MINOS_PRD=25
+
+NA48_NAME="na48"
+NA48_NAME3="n48"
+NA48_NAME5="na48"
+NA48_NAME8="na48"
+NA48_USERS=50
+NA48_SGM=25
+NA48_PRD=25
+
+NGS_NAME="ngs.ac.uk"
+NGS_NAME3="ngs"
+NGS_NAME5="ngs"
+NGS_NAME8="ngs"
+NGS_USERS=199
+NGS_SGM=99
+NGS_PRD=99
+
+OPS_NAME="ops"
+OPS_NAME3="ops"
+OPS_NAME5="ops"
+OPS_NAME8="ops"
+OPS_USERS=99
+OPS_SGM=50
+OPS_PRD=50
+OPS_PIL=25
+
+PHENO_NAME="pheno"
+PHENO_NAME3="phn"
+PHENO_NAME5="pheno"
+PHENO_NAME8="pheno"
+PHENO_USERS=99
+PHENO_SGM=50
+PHENO_PRD=50
+
+PLANCK_NAME="planck"
+PLANCK_NAME3="plk"
+PLANCK_NAME5="plnck"
+PLANCK_NAME8="planck"
+PLANCK_USERS=99
+PLANCK_SGM=50
+PLANCK_PRD=50
+
+SNO_NAME="sno"
+SNO_NAME3="sno"
+SNO_NAME5="sno"
+SNO_NAME8="sno"
+SNO_USERS=50
+SNO_SGM=25
+SNO_PRD=25
+
+SUPERNEMO_NAME="supernemo.vo.eu-egee.org"
+SUPERNEMO_NAME3="snm"
+SUPERNEMO_NAME5="snemo"
+SUPERNEMO_NAME8="suprnemo"
+SUPERNEMO_USERS=50
+SUPERNEMO_SGM=25
+SUPERNEMO_PRD=25
+
+T2K_NAME="t2k.org"
+T2K_NAME3="t2k"
+T2K_NAME5="t2k"
+T2K_NAME8="t2k"
+T2K_USERS=99
+T2K_SGM=50
+T2K_PRD=50
+
+TOTALEP_NAME="totalep"
+TOTALEP_NAME3="tep"
+TOTALEP_NAME5="ttlep"
+TOTALEP_NAME8="totalep"
+TOTALEP_USERS=50
+TOTALEP_SGM=25
+TOTALEP_PRD=25
+
+ZEUS_NAME="zeus"
+ZEUS_NAME3="zeu"
+ZEUS_NAME5="zeus"
+ZEUS_NAME8="zeus"
+ZEUS_USERS=99
+ZEUS_SGM=50
+ZEUS_PRD=50
+
+NORTHGRID_NAME="vo.northgrid.ac.uk"
+NORTHGRID_NAME3="nor"
+NORTHGRID_NAME5="north"
+NORTHGRID_NAME8="northgrd"
+NORTHGRID_USERS=50
+NORTHGRID_SGM=25
+NORTHGRID_PRD=25
+
+SIXT_NAME="vo.sixt.cern.ch"
+SIXT_NAME3="six"
+SIXT_NAME5="sixt"
+SIXT_NAME8="sixt"
+SIXT_USERS=50
+SIXT_SGM=25
+SIXT_PRD=25
+
+SNOPLUS_NAME="snoplus.snolab.ca"
+SNOPLUS_NAME3="snp"
+SNOPLUS_NAME5="snopl"
+SNOPLUS_NAME8="snoplus"
+SNOPLUS_USERS=50
+SNOPLUS_SGM=25
+SNOPLUS_PRD=25
+
+# VOUID - first UID in VO's range
+# VOADDUID - first UID in the additional range for VO
+VOUID=$STARTUID
+VOADDUID=$STARTADDUID
+
+for vo in $VOS
+do
+  name=$(eval "echo \$$(echo ${vo}_NAME)")
+  name3=$(eval "echo \$$(echo ${vo}_NAME3)")
+  name5=$(eval "echo \$$(echo ${vo}_NAME5)")
+  name8=$(eval "echo \$$(echo ${vo}_NAME8)")
+  gid=$(eval "echo \$$(echo ${vo}_GID)")
+  pgid=$(eval "echo \$$(echo ${vo}_PGID)")
+  sgid=$(eval "echo \$$(echo ${vo}_SGID)")
+  pilgid=$(eval "echo \$$(echo ${vo}_PILGID)")
+
+# USERS
+  NUID=$VOUID
+  n=$(eval "echo \$$(echo ${vo}_USERS)")
+  for ((i=1; i <=n; i++))
+  do
+    suffix=$i
+    while [ ${#suffix} -lt 3 ]
+    do 
+      suffix="0${suffix}"
+    done
+    echo "$NUID:$name5$suffix:$gid:$name8:$name::"
+    NUID=$(($NUID+1))
+  done
+
+# PRODUCTION USERS
+
+  NUID=$(($VOUID+300))
+  n=$(eval "echo \$$(echo ${vo}_PRD)")
+  for ((i=1; i <=n; i++))
+  do
+    suffix=$i
+    while [ ${#suffix} -lt 2 ]
+    do
+      suffix="0${suffix}"
+    done
+    echo "$NUID:prd$name3$suffix:$pgid,$gid:${name5}prd,$name8:$name:prd:"
+    NUID=$(($NUID+1))
+  done
+
+# SGM USERS
+
+  NUID=$(($VOUID+400))
+  n=$(eval "echo \$$(echo ${vo}_SGM)")
+  for ((i=1; i <=n; i++))
+  do
+    suffix=$i
+    while [ ${#suffix} -lt 2 ]
+    do
+      suffix="0${suffix}"
+    done
+    echo "$NUID:sgm$name3$suffix:$sgid,$gid:${name5}sgm,$name8:$name:sgm:"
+    NUID=$(($NUID+1))
+  done
+
+# PILOT USERS (in additional range)
+
+  NUID=$VOADDUID
+  n=$(eval "echo \$$(echo ${vo}_PIL)")
+  for ((i=1; i <=n; i++))
+  do
+    suffix=$i
+    while [ ${#suffix} -lt 2 ]
+    do
+      suffix="0${suffix}"
+    done
+    echo "$NUID:pil$name3$suffix:$pilgid,$gid:${name5}pil,$name8:$name:pilot:"
+    NUID=$(($NUID+1))
+  done
+
+
+# set VOUID and VOADDUID for next VO
+  VOUID=$((VOUID+500))
+  VOADDUID=$((VOADDUID+250))
+
+done # end of for vo in $VOS
+ 
+
+

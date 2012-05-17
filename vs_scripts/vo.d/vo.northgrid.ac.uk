@@ -1,4 +1,7 @@
 VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/vo.northgrid.ac.uk?/vo.northgrid.ac.uk' "
 VOMSES="'vo.northgrid.ac.uk voms.gridpp.ac.uk 15018 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk vo.northgrid.ac.uk' "
 VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+SW_DIR=$VO_SW_DIR/northgrid
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/northgrid
 

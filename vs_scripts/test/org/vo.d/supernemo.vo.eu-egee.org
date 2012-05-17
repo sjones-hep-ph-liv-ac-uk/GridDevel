@@ -1,0 +1,7 @@
+SW_DIR=$VO_SW_DIR/supernemo
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/supernemo
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/supernemo.vo.eu-egee.org?/supernemo.vo.eu-egee.org' "
+VOMSES="'supernemo.vo.eu-egee.org voms.gridpp.ac.uk 15012 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk supernemo.vo.eu-egee.org' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+

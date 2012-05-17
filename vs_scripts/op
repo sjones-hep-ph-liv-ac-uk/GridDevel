@@ -1,0 +1,383 @@
+--oldsiddir ./test/org/ --newsiddir ./test/new/
+Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)
+
+Version 1.0
+
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.cern.ch:8443/voms/alice?/alice
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: alice voms.cern.ch 15000 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch alice
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: /DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.cern.ch:8443/voms/atlas?/atlas
+TOKEN: vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas
+TOKEN: vomss://vo.racf.bnl.gov:8443/voms/atlas?/atlas
+TOKEN: BOT -----------------
+VSPa: 8443
+VSPa: 8443
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas
+TOKEN: atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas
+TOKEN: atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar/
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=FR/O=CNRS/CN=GRID2-FR
+TOKEN: /C=FR/O=CNRS/CN=GRID2-FR
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms-biomed.in2p3.fr:8443/voms/biomed?/biomed
+TOKEN: vomss://cclcgvomsli01.in2p3.fr:8443/voms/biomed?/biomed
+TOKEN: BOT -----------------
+VSPa: 8443
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: biomed voms-biomed.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-LYON/CN=cclcgvomsli01.in2p3.fr biomed
+TOKEN: biomed cclcgvomsli01.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-IN2P3/CN=cclcgvomsli01.in2p3.fr biomed
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=DE/O=GermanGrid/CN=GridKa-CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://grid-voms.desy.de:8443/voms/calice?/calice
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: calice grid-voms.desy.de 15102 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de calice
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/camont?/camont
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: camont voms.gridpp.ac.uk 15025 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk camont
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=IT/O=INFN/CN=INFN CA
+TOKEN: /DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1
+TOKEN: /C=IT/O=INFN/CN=INFN CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms-01.pd.infn.it:8443/voms/cdf?/cdf
+TOKEN: vomss://voms.fnal.gov:8443/voms/cdf?/cdf
+TOKEN: vomss://voms.cnaf.infn.it:8443/voms/cdf?/cdf
+TOKEN: BOT -----------------
+VSPa: 8443
+VSPa: 8443
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: cdf voms-01.pd.infn.it 15001 /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it cdf
+TOKEN: cdf voms.fnal.gov 15020 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cdf
+TOKEN: cdf voms.cnaf.infn.it 15001 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it cdf
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/cedar?/cedar/
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: cedar voms.gridpp.ac.uk 15006 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk cedar
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://lcg-voms.cern.ch:8443/voms/cms?/cms
+TOKEN: vomss://voms.cern.ch:8443/voms/cms?/cms
+TOKEN: BOT -----------------
+VSPa: 8443
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms
+TOKEN: cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006
+TOKEN: /C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam/
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam 24
+TOKEN: dteam voms2.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms2.hellasgrid.gr dteam 24
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.fnal.gov:8443/voms/dzero?/dzero
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: dzero voms.fnal.gov 15002 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov dzero
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=NL/O=NIKHEF/CN=NIKHEF medium-security certification auth
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.grid.sara.nl:8443/voms/esr?/esr
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: esr voms.grid.sara.nl 30001 /O=dutchgrid/O=hosts/OU=sara.nl/CN=voms.grid.sara.nl esr
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=es/DC=irisgrid/CN=IRISGridCA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms-prg.bifi.unizar.es:8443/voms/fusion?/fusion
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: fusion voms-prg.bifi.unizar.es 15001 /DC=es/DC=irisgrid/O=bifi-unizar/CN=voms-prg.bifi.unizar.es fusion
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://lcg-voms.cern.ch:8443/voms/geant4?/geant4
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: geant4 lcg-voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch geant4
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/gridpp?/gridpp
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: gridpp voms.gridpp.ac.uk 15000 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk gridpp
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=DE/O=GermanGrid/CN=GridKa-CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://grid-voms.desy.de:8443/voms/hone?/hone
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: hone grid-voms.desy.de 15106 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de hone
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=DE/O=GermanGrid/CN=GridKa-CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://grid-voms.desy.de:8443/voms/ilc?/ilc
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: ilc grid-voms.desy.de 15110 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de ilc
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://lcg-voms.cern.ch:8443/voms/lhcb?/lhcb
+TOKEN: vomss://voms.cern.ch:8443/voms/lhcb?/lhcb
+TOKEN: BOT -----------------
+VSPa: 8443
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: lhcb lcg-voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch lhcb
+TOKEN: lhcb voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch lhcb
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/ltwo?/ltwo/
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: ltwo voms.gridpp.ac.uk 15005 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk ltwo
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=es/DC=irisgrid/CN=IRISGridCA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms01.pic.es:8443/voms/magic?/magic
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/mice?/mice/
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: mice voms.gridpp.ac.uk 15001 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk mice
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.cern.ch:8443/voms/na48?/na48
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: na48 voms.cern.ch 15011 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch na48
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://lcg-voms.cern.ch:8443/voms/ops?/ops
+TOKEN: vomss://voms.cern.ch:8443/voms/ops?/ops
+TOKEN: BOT -----------------
+VSPa: 8443
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: ops lcg-voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch ops
+TOKEN: ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/pheno?/pheno
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: pheno voms.gridpp.ac.uk 15011 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk pheno
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=IT/O=INFN/CN=INFN CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.cnaf.infn.it:8443/voms/planck?/planck
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: planck voms.cnaf.infn.it 15002 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it planck
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/totalep?/totalep/
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: totalep voms.gridpp.ac.uk 15026 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk totalep
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=DE/O=GermanGrid/CN=GridKa-CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://grid-voms.desy.de:8443/voms/zeus?/zeus
+TOKEN: BOT -----------------
+VSPa: 8443
+TOKEN: TOP -----------------
+TOKEN: zeus grid-voms.desy.de 15112 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de zeus
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: /DC=ch/DC=cern/CN=CERN Trusted Certification Authority
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://lcg-voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch
+TOKEN: vomss://voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch
+TOKEN: BOT -----------------
+VSPb: 8443
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: vo.sixt.cern.ch lcg-voms.cern.ch 15005 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch vo.sixt.cern.ch
+TOKEN: vo.sixt.cern.ch voms.cern.ch 15005 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch vo.sixt.cern.ch
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/snoplus.snolab.ca?/snoplus.snolab.ca
+TOKEN: BOT -----------------
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: snoplus.snolab.ca voms.gridpp.ac.uk 15503 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk snoplus.snolab.ca
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/supernemo.vo.eu-egee.org?/supernemo.vo.eu-egee.org
+TOKEN: BOT -----------------
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: supernemo.vo.eu-egee.org voms.gridpp.ac.uk 15012 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk supernemo.vo.eu-egee.org
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/minos.vo.gridpp.ac.uk?/minos.vo.gridpp.ac.uk
+TOKEN: BOT -----------------
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk minos.vo.gridpp.ac.uk
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/t2k.org?/t2k.org
+TOKEN: BOT -----------------
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: t2k.org voms.gridpp.ac.uk 15003 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk t2k.org
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.gridpp.ac.uk:8443/voms/vo.northgrid.ac.uk?/vo.northgrid.ac.uk
+TOKEN: BOT -----------------
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: vo.northgrid.ac.uk voms.gridpp.ac.uk 15018 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk vo.northgrid.ac.uk
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: /C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA
+TOKEN: BOT -----------------
+TOKEN: TOP -----------------
+TOKEN: vomss://voms.ngs.ac.uk:8443/voms/ngs.ac.uk?/ngs.ac.uk
+TOKEN: BOT -----------------
+VSPb: 8443
+TOKEN: TOP -----------------
+TOKEN: ngs.ac.uk voms.ngs.ac.uk 15010 /C=UK/O=eScience/OU=Manchester/L=MC/CN=voms.ngs.ac.uk/EMAILADDRESS=support@grid-support.ac.uk ngs.ac.uk
+TOKEN: BOT -----------------

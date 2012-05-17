@@ -1,0 +1,8 @@
+vo.sixt.cern.ch
+ngs.ac.uk
+t2k.org
+vo.northgrid.ac.uk
+supernemo.vo.eu-egee.org
+minos.vo.gridpp.ac.uk
+camont.gridpp.ac.uk
+snoplus.snolab.ca

@@ -261,5 +261,9 @@ TEXT
       die ("newsiddir must has a vo.d dir\n");
     }
   }
+
+  $parameter{'OLDSIDDIR'} .= '/';
+  $parameter{'NEWSIDDIR'} .= '/';
+  $parameter{'DELTADIR'} .= '/';
 }
 

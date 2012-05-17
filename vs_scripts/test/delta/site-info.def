@@ -1,0 +1,273 @@
+# ALICE
+VO_ALICE_SW_DIR=$VO_SW_DIR/alice
+VO_ALICE_DEFAULT_SE=$DPM_HOST
+VO_ALICE_STORAGE_DIR=$STORAGE_PATH/alice
+VO_ALICE_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/alice?/alice'"
+VO_ALICE_VOMS_POOL_PATH="Some sort of test, eh??????"
+VO_ALICE_VOMS_EXTRA_MAPS="Another go at a test"
+VO_ALICE_VOMSES="'alice voms.cern.ch 15000 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch alice'"
+VO_ALICE_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+# ATLAS
+VO_ATLAS_SW_DIR=/cvmfs/atlas.cern.ch/repo/sw
+VO_ATLAS_DEFAULT_SE=$DPM_HOST
+VO_ATLAS_STORAGE_DIR=$STORAGE_PATH/atlas
+VO_ATLAS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://vo.racf.bnl.gov:8443/voms/atlas?/atlas'"
+VO_ATLAS_VOMS_POOL_PATH="/lcg1"
+#VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas'"
+#VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+VO_ATLAS_VOMSES="'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas'"
+VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1'"
+
+
+# BIOMED
+VO_BIOMED_SW_DIR=$VO_SW_DIR/biomed
+VO_BIOMED_DEFAULT_SE=$DPM_HOST
+VO_BIOMED_STORAGE_DIR=$STORAGE_PATH/biomed
+VO_BIOMED_VOMS_SERVERS="'vomss://voms-biomed.in2p3.fr:8443/voms/biomed?/biomed' 'vomss://cclcgvomsli01.in2p3.fr:8443/voms/biomed?/biomed'"
+VO_BIOMED_VOMSES="'biomed voms-biomed.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-LYON/CN=cclcgvomsli01.in2p3.fr biomed' \
+                  'biomed cclcgvomsli01.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-IN2P3/CN=cclcgvomsli01.in2p3.fr biomed'"
+VO_BIOMED_VOMS_CA_DN="'/C=FR/O=CNRS/CN=GRID2-FR' '/C=FR/O=CNRS/CN=GRID2-FR'"
+
+
+# CMS
+VO_CMS_SW_DIR=$VO_SW_DIR/cms
+VO_CMS_DEFAULT_SE=$DPM_HOST
+VO_CMS_STORAGE_DIR=$STORAGE_PATH/cms
+VO_CMS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.cern.ch:8443/voms/cms?/cms'"
+VO_CMS_VOMS_POOL_PATH=""
+VO_CMS_VOMS_EXTRA_MAPS=""
+VO_CMS_VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms'"
+VO_CMS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+##--------------------------
+# DTEAM SWAPPED TO GREECE
+##--------------------------
+
+VO_DTEAM_VOMS_SERVERS='vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam/' 
+
+VO_DTEAM_VOMSES="\
+'dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam 24' \
+'dteam voms2.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms2.hellasgrid.gr dteam 24'" 
+
+
+VO_DTEAM_VOMS_CA_DN="\
+'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' \
+'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006'"
+
+# DTEAM AS WAS
+VO_DTEAM_SW_DIR=$VO_SW_DIR/dteam
+VO_DTEAM_DEFAULT_SE=$DPM_HOST
+VO_DTEAM_STORAGE_DIR=$STORAGE_PATH/dteam
+#VO_DTEAM_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/dteam?/dteam' 'vomss://voms.cern.ch:8443/voms/dteam?/dteam'"
+#VO_DTEAM_VOMSES="'dteam lcg-voms.cern.ch 15004 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch dteam' 'dteam voms.cern.ch 15004 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch dteam'"
+#VO_DTEAM_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+# ESR
+VO_ESR_SW_DIR=$VO_SW_DIR/esr
+VO_ESR_DEFAULT_SE=$DPM_HOST
+VO_ESR_STORAGE_DIR=$STORAGE_PATH/esr
+VO_ESR_VOMS_SERVERS="'vomss://voms.grid.sara.nl:8443/voms/esr?/esr'"
+VO_ESR_VOMSES="'esr voms.grid.sara.nl 30001 /O=dutchgrid/O=hosts/OU=sara.nl/CN=voms.grid.sara.nl esr'"
+VO_ESR_VOMS_CA_DN="'/C=NL/O=NIKHEF/CN=NIKHEF medium-security certification auth'"
+
+# GEANT4
+VO_GEANT4_SW_DIR=$VO_SW_DIR/geant4
+VO_GEANT4_DEFAULT_SE=$DPM_HOST
+VO_GEANT4_STORAGE_DIR=$STORAGE_PATH/geant4
+VO_GEANT4_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/geant4?/geant4'"
+VO_GEANT4_VOMSES="'geant4 lcg-voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch geant4'"
+VO_GEANT4_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+# LHCB
+VO_LHCB_SW_DIR=/cvmfs/lhcb.cern.ch
+VO_LHCB_DEFAULT_SE=$DPM_HOST
+VO_LHCB_STORAGE_DIR=$STORAGE_PATH/lhcb
+VO_LHCB_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/lhcb?/lhcb' 'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb'"
+VO_LHCB_VOMS_EXTRA_MAPS="lcgprod lhcbprod"
+VO_LHCB_VOMSES="'lhcb lcg-voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch lhcb' 'lhcb voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch lhcb'"
+VO_LHCB_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+
+# MAGIC
+VO_MAGIC_SW_DIR=$VO_SW_DIR/magic
+VO_MAGIC_DEFAULT_SE=$DPM_HOST
+VO_MAGIC_STORAGE_DIR=$STORAGE_PATH/magic
+VO_MAGIC_VOMS_SERVERS="'vomss://voms01.pic.es:8443/voms/magic?/magic'"
+VO_MAGIC_VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic'"
+VO_MAGIC_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA'"
+
+# PLANCK
+VO_PLANCK_SW_DIR=$VO_SW_DIR/planck
+VO_PLANCK_DEFAULT_SE=$DPM_HOST
+VO_PLANCK_STORAGE_DIR=$STORAGE_PATH/planck
+VO_PLANCK_VOMS_SERVERS="'vomss://voms.cnaf.infn.it:8443/voms/planck?/planck'"
+VO_PLANCK_VOMSES="'planck voms.cnaf.infn.it 15002 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it planck'"
+VO_PLANCK_VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA'"
+
+# OPS
+VO_OPS_SW_DIR=$VO_SW_DIR/ops
+VO_OPS_DEFAULT_SE=$DPM_HOST
+VO_OPS_STORAGE_DIR=$STORAGE_PATH/ops
+
+#VO_OPS_VOMS_SERVERS="vomss://voms.cern.ch:8443/voms/ops?/ops/"
+#VO_OPS_VOMSES="'ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops'"
+#VO_OPS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+VO_OPS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/ops?/ops' 'vomss://voms.cern.ch:8443/voms/ops?/ops'"
+VO_OPS_VOMSES="'ops lcg-voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch ops' 'ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops'"
+VO_OPS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+# BABAR
+VO_BABAR_SW_DIR=$VO_SW_DIR/babar
+VO_BABAR_DEFAULT_SE=$DPM_HOST
+VO_BABAR_STORAGE_DIR=$STORAGE_PATH/babar
+VO_BABAR_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar/' "
+VO_BABAR_VOMSES="'babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar' "
+VO_BABAR_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+
+# CDF
+VO_CDF_SW_DIR=$VO_SW_DIR/cdf
+VO_CDF_DEFAULT_SE=$DPM_HOST
+VO_CDF_STORAGE_DIR=$STORAGE_PATH/cdf
+VO_CDF_VOMS_SERVERS="'vomss://voms-01.pd.infn.it:8443/voms/cdf?/cdf' 'vomss://voms.fnal.gov:8443/voms/cdf?/cdf' 'vomss://voms.cnaf.infn.it:8443/voms/cdf?/cdf'"
+VO_CDF_VOMS_POOL_PATH=""
+VO_CDF_VOMS_EXTRA_MAPS=""
+VO_CDF_VOMSES="'cdf voms-01.pd.infn.it 15001 /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it cdf' 'cdf voms.fnal.gov 15020 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cdf' 'cdf voms.cnaf.infn.it 15001 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it cdf'"
+VO_CDF_VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' '/C=IT/O=INFN/CN=INFN CA'"
+
+# DZERO
+VO_DZERO_SW_DIR=$VO_SW_DIR/dzero
+VO_DZERO_DEFAULT_SE=$DPM_HOST
+VO_DZERO_STORAGE_DIR=$STORAGE_PATH/dzero
+VO_DZERO_VOMS_SERVERS="'vomss://voms.fnal.gov:8443/voms/dzero?/dzero'"
+VO_DZERO_VOMS_POOL_PATH=""
+VO_DZERO_VOMS_EXTRA_MAPS=""
+VO_DZERO_VOMSES="'dzero voms.fnal.gov 15002 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov dzero'"
+
+VO_DZERO_VOMS_CA_DN="'/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1'"
+
+# HONE
+VO_HONE_SW_DIR=$VO_SW_DIR/hone
+VO_HONE_DEFAULT_SE=$DPM_HOST
+VO_HONE_STORAGE_DIR=$STORAGE_PATH/hone
+VO_HONE_VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/hone?/hone'"
+VO_HONE_VOMSES="'hone grid-voms.desy.de 15106 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de hone'"
+VO_HONE_VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA'"
+
+# ILC
+VO_ILC_SW_DIR=$VO_SW_DIR/ilc
+VO_ILC_DEFAULT_SE=$DPM_HOST
+VO_ILC_STORAGE_DIR=$STORAGE_PATH/ilc
+VO_ILC_VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/ilc?/ilc'"
+VO_ILC_VOMSES="'ilc grid-voms.desy.de 15110 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de ilc'"
+VO_ILC_VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA'"
+
+
+# NA48
+VO_NA48_SW_DIR=$VO_SW_DIR/na48
+VO_NA48_DEFAULT_SE=$DPM_HOST
+VO_NA48_STORAGE_DIR=$STORAGE_PATH/na48
+VO_NA48_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/na48?/na48'"
+VO_NA48_VOMS_EXTRA_MAPS="Role=admin na48adm"
+VO_NA48_VOMSES="'na48 voms.cern.ch 15011 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch na48'"
+VO_NA48_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority'"
+
+# ZEUS
+VO_ZEUS_SW_DIR=$VO_SW_DIR/zeus
+VO_ZEUS_DEFAULT_SE=$DPM_HOST
+VO_ZEUS_STORAGE_DIR=$STORAGE_PATH/zeus
+VO_ZEUS_VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/zeus?/zeus'"
+VO_ZEUS_VOMS_POOL_PATH=""
+VO_ZEUS_VOMS_EXTRA_MAPS=""
+VO_ZEUS_VOMSES="'zeus grid-voms.desy.de 15112 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de zeus'"
+VO_ZEUS_VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA'"
+
+# GRIDPP
+VO_GRIDPP_SW_DIR=$VO_SW_DIR/gridpp
+VO_GRIDPP_DEFAULT_SE=$DPM_HOST
+VO_GRIDPP_STORAGE_DIR=$STORAGE_PATH/gridpp
+VO_GRIDPP_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/gridpp?/gridpp'"
+VO_GRIDPP_VOMSES="'gridpp voms.gridpp.ac.uk 15000 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk gridpp'"
+VO_GRIDPP_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B'"
+
+# PHENO
+VO_PHENO_SW_DIR=$VO_SW_DIR/pheno
+VO_PHENO_DEFAULT_SE=$DPM_HOST
+VO_PHENO_STORAGE_DIR=$STORAGE_PATH/pheno
+VO_PHENO_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/pheno?/pheno'"
+VO_PHENO_VOMSES="'pheno voms.gridpp.ac.uk 15011 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk pheno'"
+VO_PHENO_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B'"
+
+# CEDAR
+VO_CEDAR_SW_DIR=$VO_SW_DIR/cedar
+VO_CEDAR_DEFAULT_SE=$DPM_HOST
+VO_CEDAR_STORAGE_DIR=$STORAGE_PATH/cedar
+VO_CEDAR_VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/cedar"
+VO_CEDAR_VOMSES="'cedar voms.gridpp.ac.uk 15006 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk cedar'"
+VO_CEDAR_VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B"
+
+# MICE
+VO_MICE_RBS="gfe01.hep.ph.ic.ac.uk lcgrb01.gridpp.rl.ac.uk lcgrb02.gridpp.rl.ac.uk"
+VO_MICE_SW_DIR=$VO_SW_DIR/mice
+VO_MICE_DEFAULT_SE=$DPM_HOST
+VO_MICE_STORAGE_DIR=$STORAGE_PATH/mice
+VO_MICE_VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/mice?/mice/"
+VO_MICE_VOMSES="'mice voms.gridpp.ac.uk 15001 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk mice'"
+VO_MICE_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B'"
+
+# LTWO
+VO_LTWO_SW_DIR=$VO_SW_DIR/ltwo
+VO_LTWO_DEFAULT_SE=$DPM_HOST
+VO_LTWO_STORAGE_DIR=$STORAGE_PATH/ltwo
+VO_LTWO_VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/ltwo?/ltwo/"
+VO_LTWO_VOMSES="'ltwo voms.gridpp.ac.uk 15005 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk ltwo'"
+VO_LTWO_VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B"
+
+# TOTALEP
+VO_TOTALEP_SW_DIR=$VO_SW_DIR/totalep
+VO_TOTALEP_DEFAULT_SE=$DPM_HOST
+VO_TOTALEP_STORAGE_DIR=$STORAGE_PATH/totalep
+VO_TOTALEP_VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/totalep?/totalep/"
+VO_TOTALEP_VOMSES="'totalep voms.gridpp.ac.uk 15026 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk totalep'"
+VO_TOTALEP_VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B"
+
+# FUSION
+VO_FUSION_SW_DIR=$VO_SW_DIR/fusion
+VO_FUSION_DEFAULT_SE=$DPM_HOST
+VO_FUSION_STORAGE_DIR=$STORAGE_PATH/fusion
+VO_FUSION_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA'"
+VO_FUSION_VOMS_SERVERS="'vomss://voms-prg.bifi.unizar.es:8443/voms/fusion?/fusion'"
+VO_FUSION_VOMSES="'fusion voms-prg.bifi.unizar.es 15001 /DC=es/DC=irisgrid/O=bifi-unizar/CN=voms-prg.bifi.unizar.es fusion'"
+
+# CALICE
+VO_CALICE_SW_DIR=$VO_SW_DIR/calice
+VO_CALICE_DEFAULT_SE=$DPM_HOST
+VO_CALICE_STORAGE_DIR=$STORAGE_PATH/calice
+VO_CALICE_VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/calice?/calice'"
+VO_CALICE_VOMSES="'calice grid-voms.desy.de 15102 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de calice'"
+VO_CALICE_VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA'"
+
+# CAMONT
+VO_CAMONT_SW_DIR=$VO_SW_DIR/camont
+VO_CAMONT_DEFAULT_SE=$DPM_HOST
+VO_CAMONT_STORAGE_DIR=$STORAGE_PATH/camont
+VO_CAMONT_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+VO_CAMONT_VOMSES="'camont voms.gridpp.ac.uk 15025 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk camont' "
+VO_CAMONT_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/camont?/camont' "
+
+# MINOS
+# see vo.d/minos.vo.gridpp.ac.uk
+# SIXT
+# see vo.d/vo.sixt.cern.ch
+
+# SUPERNEMO
+# see vo.d/supernemo.vo.eu-egee.org
+
+# NGS
+# see vo.d/ngs.ac.uk
+
+# NORTHGRID
+# see vo.d/vo.northgrid.ac.uk
+
+
