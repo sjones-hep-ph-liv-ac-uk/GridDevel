@@ -1,6 +1,0 @@
-SW_DIR=$VO_SW_DIR/minos
-DEFAULT_SE=$DPM_HOST
-STORAGE_DIR=$STORAGE_PATH/minos
-VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/minos.vo.gridpp.ac.uk?/minos.vo.gridpp.ac.uk/"
-VOMSES="'minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15003 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk/Email=hostmaster@hep.man.ac.uk minos.vo.gridpp.ac.uk'"
-VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=CA"
