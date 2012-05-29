@@ -29,7 +29,7 @@ cat  ExtraVOIDCardInfo.xml | grep -v "^<VoDump>"  > deleteme2
 cat deleteme1 deleteme2 > VOIDCardInfo.xml
 
 # Convert it into sidvod format
-java -jar ./dist/lib/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir ~/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/vo.d --outfile /user2/sjones/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/site-info.def
+../../ant/VomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir ~/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/vo.d --outfile /user2/sjones/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/site-info.def
 
 ############################################
 # Section 2 - Get the operational data,    #

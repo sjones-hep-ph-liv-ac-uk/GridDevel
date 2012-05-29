@@ -1,3 +1,3 @@
-echo $@
+#!/bin/bash
 
-java -jar ~/git/GridDevel/vs_scripts/dist/lib/VomsSnooper.jar $@
+java -jar ~/git/GridDevel/vs_scripts/ant/dist/lib/VomsSnooper.jar $@
