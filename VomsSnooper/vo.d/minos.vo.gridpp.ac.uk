@@ -1,0 +1,5 @@
+# vo.d/minos.vo.gridpp.ac.uk
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/minos.vo.gridpp.ac.uk?/minos.vo.gridpp.ac.uk' "
+VOMSES="'minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk minos.vo.gridpp.ac.uk' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+
