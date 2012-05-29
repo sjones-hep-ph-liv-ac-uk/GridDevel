@@ -56,7 +56,7 @@ public class SidFormatter {
 	 */
 	public void printResults(){
 		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values ()); 
-		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false);
+		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false,false,false);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class SidFormatter {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.7 \n\n");
+		System.out.print("Version 1.8 \n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;

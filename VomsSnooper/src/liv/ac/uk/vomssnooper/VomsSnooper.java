@@ -26,6 +26,8 @@ public class VomsSnooper {
 	private String vodDir;   // where to print the VOD files
 	private String sidFile;  // where to print the SID records
 	private Boolean extraFields;    // Whether to print some common extra fields
+	private Boolean noSillySids;    // Whether to omit silly SIDs, (e.g. VO_VO.LONDONGRID.AC.UK)
+	private Boolean printVodTitleLine;    // Whether to print the vo.d dir name used
 	private String contactsOutFile; // File to write contacts to
 	private String vomsDir;         // Directory where LSC files would get written
 	
@@ -53,7 +55,7 @@ public class VomsSnooper {
 	 *          
 	 * @return null
 	 */
-	public VomsSnooper(String x, String vos, String vods, String dir, String out, Boolean ef, String cos, String vd) {
+	public VomsSnooper(String x, String vos, String vods, String dir, String out, Boolean ef, Boolean nss, Boolean pvd, String cos, String vd) {
 
 		xmlFile = x;
 		myVos = vos;
@@ -61,6 +63,8 @@ public class VomsSnooper {
 		vodDir = dir;
 		sidFile = out;
 		extraFields = ef;
+		noSillySids = nss;
+		printVodTitleLine = pvd;
 		contactsOutFile = cos;
 		vomsDir = vd;
 	}
@@ -121,7 +125,8 @@ public class VomsSnooper {
 	}
 	
 	public void printResults(){
-		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields);
+		
+		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields,noSillySids, printVodTitleLine);
 		Utils.printContacts(voidInfo, contactsOutFile);
 		Utils.printLscFiles(voidInfo, vomsDir);
 	}
@@ -136,7 +141,7 @@ public class VomsSnooper {
 
 	// List of the CLI options
 	private enum OptList {
-		extrafields, xmlfile, myvos, vodfile, voddir, outfile, help, contactsoutfile, vomsdir
+		printvodtitle, nosillysids, extrafields, xmlfile, myvos, vodfile, voddir, outfile, help, contactsfile, vomsdir
 	}
 
 	public static void main(String[] args) {
@@ -147,14 +152,14 @@ public class VomsSnooper {
 		String vodFile = null;
 		String outFile = null;
 		Boolean extraFields = false;
+		Boolean noSillySids = false;
+		Boolean printVodTitle = false;
 		String contactsOutFile = null;
 		String vomsDir = null;
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.5\n\n");
-
-		System.out.print("This program does not provide VO_RBS, VOMS_EXTRA_MAPS nor VOMS_POOL_PATH parameters\n\n");
+		System.out.print("Version 1.9\n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
@@ -172,8 +177,12 @@ public class VomsSnooper {
 				OptList.outfile.ordinal());
 		longopts[OptList.extrafields.ordinal()] = new LongOpt(OptList.extrafields.name(), LongOpt.NO_ARGUMENT, sb,
 				OptList.extrafields.ordinal());
-		longopts[OptList.contactsoutfile.ordinal()] = new LongOpt(OptList.contactsoutfile.name(), LongOpt.REQUIRED_ARGUMENT, sb,
-				OptList.contactsoutfile.ordinal());
+		longopts[OptList.nosillysids.ordinal()] = new LongOpt(OptList.nosillysids.name(), LongOpt.NO_ARGUMENT, sb,
+				OptList.nosillysids.ordinal());
+		longopts[OptList.printvodtitle.ordinal()] = new LongOpt(OptList.printvodtitle.name(), LongOpt.NO_ARGUMENT, sb,
+				OptList.printvodtitle.ordinal());
+		longopts[OptList.contactsfile.ordinal()] = new LongOpt(OptList.contactsfile.name(), LongOpt.REQUIRED_ARGUMENT, sb,
+				OptList.contactsfile.ordinal());
 		longopts[OptList.vomsdir.ordinal()] = new LongOpt(OptList.vomsdir.name(), LongOpt.REQUIRED_ARGUMENT, sb,
 				OptList.vomsdir.ordinal());
 
@@ -199,6 +208,12 @@ public class VomsSnooper {
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.extrafields.ordinal()) {
 				extraFields = true;
 			}
+			if ((char) (new Integer(sb.toString())).intValue() == OptList.nosillysids.ordinal()) {
+				noSillySids = true;
+			}
+			if ((char) (new Integer(sb.toString())).intValue() == OptList.printvodtitle.ordinal()) {
+				printVodTitle = true;
+			}
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.xmlfile.ordinal()) {
 				xmlFile = ((arg != null) ? arg : "null");
@@ -210,7 +225,7 @@ public class VomsSnooper {
 				vodDir = ((arg != null) ? arg : "null");
 			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.outfile.ordinal()) {
 				outFile = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.contactsoutfile.ordinal()) {
+			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.contactsfile.ordinal()) {
 				contactsOutFile = ((arg != null) ? arg : "null");
 			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.vomsdir.ordinal()) {
 				vomsDir = ((arg != null) ? arg : "null");
@@ -262,7 +277,8 @@ public class VomsSnooper {
 		}
 
 		// Make the Controller class
-		VomsSnooper vs = new VomsSnooper(xmlFile, myVos, vodFile, vodDir, outFile, extraFields, contactsOutFile, vomsDir);
+		
+		VomsSnooper vs = new VomsSnooper(xmlFile, myVos, vodFile, vodDir, outFile, extraFields, noSillySids, printVodTitle, contactsOutFile, vomsDir);
 
 		// Parse the XML File
 		vs.parse();

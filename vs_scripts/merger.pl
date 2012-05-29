@@ -121,72 +121,84 @@ foreach my $k (keys( %hashOfDeltaFiles)) {
   close (DELTAFILE);
 }
 
-my @oldKeysInOrder ;
+my @oldKeysInOrder ;   # This is used to link the old files to the delta ones
 my $oldFileBases = '';
-
-
 foreach my $k (sort (keys( %hashOfOldFiles))) {
   push(@oldKeysInOrder,$k);
   $oldFileBases = $oldFileBases . basename($k) . ', ';
+}
+  
+my @deltaKeysInOrder; # This is used to link the old files to the delta ones
+my $deltaFileBases = '';
+
+# Ensure that every file in the old dir is matched by one in the delta dir
+foreach my $k (sort (keys( %hashOfDeltaFiles))) {
+  push(@deltaKeysInOrder,$k);
+  $deltaFileBases = $deltaFileBases . basename($k) . ', ';;
+}
+my @oldKeysInOrder = sort (keys( %hashOfOldFiles));
+my @deltaKeysInOrder = sort (keys( %hashOfDeltaFiles));
+  
+# For every old file, you need a new file, and vice versa.
+die ("Incompatible - different files in each repo\n$oldFileBases,$deltaFileBases\n") unless ($oldFileBases eq $deltaFileBases);
+
+ # Now go over the old files 
+for (my $ii = 0; $ii <= $#oldKeysInOrder; $ii++) {
+  
+  my $deltaKey = $deltaKeysInOrder[$ii];
+  my @deltaLines = @{$hashOfDeltaFiles{$deltaKey}};
+ 
+  # Make the delta data into a hash - indexes are easier to program. 
+  my %deltaHash;
+  foreach my $dline (@deltaLines) {
+    if ($dline =~ /^([0-9A-Za-z\_\-]+)\=(.*)/) {
+      my $name = $1; my $payload = $2;
+      $deltaHash{$name} = $payload;
+    }
   }
-  
-  my @deltaKeysInOrder;
-  my $deltaFileBases = '';
-  foreach my $k (sort (keys( %hashOfDeltaFiles))) {
-    push(@deltaKeysInOrder,$k);
-    $deltaFileBases = $deltaFileBases . basename($k) . ', ';;
-  }
-  my @oldKeysInOrder = sort (keys( %hashOfOldFiles));
-  my @deltaKeysInOrder = sort (keys( %hashOfDeltaFiles));
-  
-  # For every old file, you need a new file, and vice versa.
-  die ("Incompatible - different files in each repo\n$oldFileBases,$deltaFileBases\n") unless ($oldFileBases eq $deltaFileBases);
-  
-  for (my $ii = 0; $ii <= $#oldKeysInOrder; $ii++) {
-  
-    my $deltaKey = $deltaKeysInOrder[$ii];
-    my @deltaLines = @{$hashOfDeltaFiles{$deltaKey}};
-  
-    my %deltaHash;
-    foreach my $dline (@deltaLines) {
-      if ($dline =~ /^([0-9A-Za-z\_\-]+)\=(.*)/) {
-        my $name = $1; my $payload = $2;
-        $deltaHash{$name} = $payload;
+
+  # Now get the lines fro the old file
+  my $oldKey = $oldKeysInOrder[$ii];
+  my @oldLines = @{$hashOfOldFiles{$oldKey}};
+  my $olCount = scalar(@{$hashOfOldFiles{$oldKey}});
+ 
+  # Go over the lines in the old file, looking for matches with
+  # the delta hash
+ 
+  for (my $jj = 0; $jj <=  $olCount ; $jj++ ) {  
+    my $l = ${$hashOfOldFiles{$oldKey}}[$jj];
+    if ($l =~ /^([0-9A-Za-z\_\-]+)\=(.*)/) {
+      my $name = $1; my $payload = $2;
+
+      # Here's where I do the match. If I find one, update the record with the delta data.
+      if (defined($deltaHash{$name})) {
+        ${$hashOfOldFiles{$oldKey}}[$jj]  = $name . '=' . $deltaHash{$name} . "\n";  
       }
     }
-  
-    my $oldKey = $oldKeysInOrder[$ii];
-    my @oldLines = @{$hashOfOldFiles{$oldKey}};
-    my $olCount = scalar(@{$hashOfOldFiles{$oldKey}});
-  
-    for (my $jj = 0; $jj <=  $olCount ; $jj++ ) {  
-      my $l = ${$hashOfOldFiles{$oldKey}}[$jj];
-      if ($l =~ /^([0-9A-Za-z\_\-]+)\=(.*)/) {
-        my $name = $1; my $payload = $2;
-        if (defined($deltaHash{$name})) {
-          ${$hashOfOldFiles{$oldKey}}[$jj]  = $name . '=' . $deltaHash{$name} . "\n";  
-        }
-      }
-    }
   }
+}
+
+# Now that all the data from the delta records has been merged into the
+# old data, write the merged data out. This is done by just
+# switching the directory.
   
-  foreach my $k (keys( %hashOfOldFiles)) {
-    # Convert the path to the old dir to a path in the new dir
-    my $newPath = $k;
-    $newPath =~ s/$parameter{'OLDSIDDIR'}/$parameter{'NEWSIDDIR'}/;
-    print("Printing $newPath\n");
-    my @lines = @{$hashOfOldFiles{$k}};
-    open(NEWPATH,">$newPath") or die("Can't write $newPath");
-    foreach my $l (@lines) {
-      print NEWPATH $l;
-    }
-    close(NEWPATH);
+foreach my $k (keys( %hashOfOldFiles)) {
+  # Convert the path to the old dir to a path in the new dir
+  my $newPath = $k;
+  $newPath =~ s/$parameter{'OLDSIDDIR'}/$parameter{'NEWSIDDIR'}/;
+  print("Printing $newPath\n");
+  my @lines = @{$hashOfOldFiles{$k}};
+  open(NEWPATH,">$newPath") or die("Can't write $newPath");
+  foreach my $l (@lines) {
+    print NEWPATH $l;
   }
+  close(NEWPATH);
+}
   
-  #--------------------------------------------
-  # Read the command line options
-  #--------------------------------------------
-  sub initParams() {
+#--------------------------------------------
+# Read the command line options
+#--------------------------------------------
+sub initParams() {
   
   # Read the options
   GetOptions ('h|help'           =>   \$parameter{'HELP'},
@@ -228,6 +240,7 @@ TEXT
     exit(0);
   }
 
+  # Validate the args
 
   if (! (-d $parameter{'OLDSIDDIR'})) { 
     die ("You must give an --oldsiddir option\n");
@@ -262,8 +275,10 @@ TEXT
     }
   }
 
+  # Put in some slashes, to make sure
   $parameter{'OLDSIDDIR'} .= '/';
   $parameter{'NEWSIDDIR'} .= '/';
   $parameter{'DELTADIR'} .= '/';
 }
+
 

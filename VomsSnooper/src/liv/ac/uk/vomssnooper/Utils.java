@@ -28,13 +28,30 @@ public class Utils {
 	 * 
 	 * @return null
 	 */
-	private static void printStandardStyle(VirtOrgInfo v, PrintStream ps, Boolean extraFields) {
+	private static void printStandardStyle(VirtOrgInfo v, PrintStream ps, Boolean extraFields, Boolean noSillySids) {
 
 		ArrayList<String> vomsLines = v.getVomsLines(true, extraFields);
 		Iterator<String> i = vomsLines.iterator();
 		while (i.hasNext()) {
 			String vs = i.next();
-			ps.print("VO_" + v.getVoName().toUpperCase() + "_" + vs + "\n");
+
+			String n = v.getVoName().toUpperCase() ;
+			
+			if (noSillySids) {
+				if (n.contains(".") == false) {
+  			  ps.print("VO_" + n + "_" + vs + "\n");
+				}
+				else {
+					System.out.print("Silly SID was dropped - " + n + "\n");
+  			  ps.print("# VO_" + n + "_" + vs + "\n");
+				}
+			}
+			else {
+				if (n.contains(".") == true) {
+					System.out.print("Silly SID was found, but printed anyway - " + n + "\n");
+				}
+  			ps.print("VO_" + n + "_" + vs + "\n");
+			}
 		}
 		ps.print("\n");
 	}
@@ -45,7 +62,7 @@ public class Utils {
 	 * @param The vo to print
 	 * @return null
 	 */
-	private static void printVodStyle(VirtOrgInfo v, String vodDir, Boolean extraFields) {
+	private static void printVodStyle(VirtOrgInfo v, String vodDir, Boolean extraFields, Boolean printVodTitleLine) {
 
 		String filename = vodDir + "/" + v.getVoName();
 		
@@ -54,6 +71,10 @@ public class Utils {
 			fos = new FileOutputStream(filename);
 			PrintStream ps = new PrintStream(fos);
 			ArrayList<String> vomsLines = v.getVomsLines(true, extraFields);
+			
+			if (printVodTitleLine) {
+				ps.print("# $YAIM_LOCATION/vo.d/" + v.getVoName() + "\n");
+			}
 			Iterator<String> i = vomsLines.iterator();
 			while (i.hasNext()) {
 				String vs = i.next();
@@ -83,7 +104,8 @@ public class Utils {
 	 * 
 	 * @return null
 	 */
-	public static void printVoVariables(ArrayList<VirtOrgInfo> voidInfo, String sidFile, String vodDir , Boolean extraFields) {
+	public static void printVoVariables(ArrayList<VirtOrgInfo> voidInfo, String sidFile, String vodDir , 
+			Boolean extraFields, Boolean noSillySids, Boolean printVodTitle) {
 
 		Collections.sort(voidInfo, new ByVoName());
 
@@ -99,9 +121,9 @@ public class Utils {
 				VirtOrgInfo v = allIt.next();
 				if (v.isAtMySite()) {
 					if (v.isVodStyle()) {
-						printVodStyle(v, vodDir, extraFields);
+						printVodStyle(v, vodDir, extraFields, printVodTitle);
 					} else {
-						printStandardStyle(v, ps, extraFields);
+						printStandardStyle(v, ps, extraFields,noSillySids);
 					}
 				}
 			}

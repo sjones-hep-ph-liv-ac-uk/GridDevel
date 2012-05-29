@@ -2,7 +2,7 @@
 
 ##########################################################################
 # Script automate the update to our site-info.def_vo.d (i.e. "sidvods"). #
-# sj, 17 March 2012                                                      #
+# sj, 17 May 2012                                                        #
 ##########################################################################
 
 mkdir -p void/deployed/vo.d
@@ -41,6 +41,5 @@ java -jar ./dist/lib/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/my
 rsync -av --delete root@hepgrid6:/root/glitecfg/ /user2/sjones/git/GridDevel/vs_scripts/void/deployed
 
 ./merger.pl --oldsiddir void/deployed --deltadir void/xml/ --newsiddir  void/merged
-
 
 
