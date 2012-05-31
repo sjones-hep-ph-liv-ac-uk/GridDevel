@@ -105,12 +105,10 @@ public class Utils {
 	 * @return null
 	 */
 	public static void printVoVariables(ArrayList<VirtOrgInfo> voidInfo, String sidFile, String vodDir , 
-			Boolean extraFields, Boolean noSillySids, Boolean printVodTitle) {
+			Boolean extraFields, Boolean noSillySids, Boolean printVodTitle, Boolean flat) {
 
 		Collections.sort(voidInfo, new ByVoName());
 
-		// Print out the standard ones
-		
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(sidFile);
@@ -120,10 +118,12 @@ public class Utils {
 
 				VirtOrgInfo v = allIt.next();
 				if (v.isAtMySite()) {
-					if (v.isVodStyle()) {
-						printVodStyle(v, vodDir, extraFields, printVodTitle);
-					} else {
+					
+					// Print out on standard style if either not a VOD, or if flat is specified
+					if ( (v.isVodStyle() != true) | (flat)) {
 						printStandardStyle(v, ps, extraFields,noSillySids);
+					} else {
+						printVodStyle(v, vodDir, extraFields, printVodTitle);
 					}
 				}
 			}

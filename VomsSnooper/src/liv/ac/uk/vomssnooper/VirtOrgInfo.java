@@ -20,8 +20,11 @@ public class VirtOrgInfo {
 	 * 
 	 */
 	public static class ByVoName implements java.util.Comparator<VirtOrgInfo> {
+		
 		public int compare(VirtOrgInfo first, VirtOrgInfo second) {
-			return first.getVoNickName().compareTo(second.getVoNickName());
+			String f = first.getVoNickName().toLowerCase();
+			String s = second.getVoNickName().toLowerCase();
+			return f.compareTo(s);
 		}
 	}
 
@@ -229,7 +232,7 @@ public class VirtOrgInfo {
 		// But sometimes, they put the string "vo." in front, in which
 		// case the nickname is the second part.
 
-		voNickName = voName;
+		voNickName = voName.toLowerCase();
 
 		if (voName.indexOf('.') > -1) {
 			String tmp = voName;
@@ -238,6 +241,7 @@ public class VirtOrgInfo {
 			}
 			voNickName = tmp.substring(0, tmp.indexOf('.'));
 		}
+		// System.out.println("VO NICK NAME: " + this.voNickName);
 	}
 
 	/**

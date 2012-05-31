@@ -19,6 +19,7 @@ public class SidFormatter {
 
 	private String oldSidDir; // the location of the old site-info.def file (and vo.d directory)
 	private String newSidDir; // the location of the new site-info.def file (and vo.d directory)
+	private Boolean flat;     // flat output, for diff
 
 	// I'll index the VO info on a name
 	private HashMap<String, VirtOrgInfo> voidInfo ;
@@ -26,14 +27,15 @@ public class SidFormatter {
 	/**
 	 * Basic constructor
 	 * 
-	 * @param old SIteInfo.def dir
-	 * @param new SIteInfo.def dir
+	 * @param old SiteInfo.def dir
+	 * @param new SiteInfo.def dir
 	 * 
 	 * @return null
 	 */
-	public SidFormatter(String os, String ns) {
+	public SidFormatter(String os, String ns, Boolean f) {
 		oldSidDir = os;
 		newSidDir = ns;
+		flat = f;
 		voidInfo = new HashMap<String, VirtOrgInfo>();
 	}
 
@@ -56,7 +58,7 @@ public class SidFormatter {
 	 */
 	public void printResults(){
 		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values ()); 
-		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false,false,false);
+		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false,false,false,flat);
 	}
 
 	/**
@@ -67,28 +69,33 @@ public class SidFormatter {
 
 	// List of the CLI options
 	private enum OptList {
-		oldsiddir, newsiddir, help
+		oldsiddir, newsiddir, flat, help, 
 	}
 
 	public static void main(String[] args) {
 
 		String oldSidDir = null;
 		String newSidDir = null;
+		Boolean flat = false;
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.8 \n\n");
+		System.out.print("Version 1.10 \n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
 
 		// Set up a model of the options
-		LongOpt[] longopts = new LongOpt[OptList.values().length];
+		LongOpt[] longopts = new LongOpt[OptList.values().length+1];
 
+		longopts[OptList.help.ordinal()] = new LongOpt(OptList.help.name(), LongOpt.NO_ARGUMENT, sb,
+				OptList.help.ordinal());
 		longopts[OptList.oldsiddir.ordinal()] = new LongOpt(OptList.oldsiddir.name(), LongOpt.REQUIRED_ARGUMENT, sb,
 				OptList.oldsiddir.ordinal());
 		longopts[OptList.newsiddir.ordinal()] = new LongOpt(OptList.newsiddir.name(), LongOpt.REQUIRED_ARGUMENT, sb,
 				OptList.newsiddir.ordinal());
+		longopts[OptList.flat.ordinal()] = new LongOpt(OptList.flat.name(), LongOpt.NO_ARGUMENT, sb,
+				OptList.flat.ordinal());
 
 		// Get the options
 		Getopt g = new Getopt("testprog", args, "", longopts);
@@ -99,7 +106,8 @@ public class SidFormatter {
 		  c = g.getopt();
 		}
 		catch (NullPointerException e) {
-			System.out.println("Could not parse those options; " + e.getMessage());
+			System.out.println("Could not parse those options ; " + e.getMessage());
+			// TODO put help in here
 			System.exit(1);
 		}
 		
@@ -111,12 +119,14 @@ public class SidFormatter {
 			// It only takes long options
 			if (c != 0) {
 				System.out.print("Some option was given that I don't understand, " + sb.toString() + " \n");
+				// TODO put help in here
 				System.exit(1);
 			}
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.help.ordinal()) {
 				// TODO: put some help code in there
 				System.out.print("You asked for help.\n");
+				// TODO put help in here
 				System.exit(1);
 			}
 
@@ -130,12 +140,17 @@ public class SidFormatter {
 				newSidDir = ((arg != null) ? arg : "null");
 			}
 			
+			// Flat output (for diff)
+			if ((char) (new Integer(sb.toString())).intValue() == OptList.flat.ordinal()) {
+				flat = true;
+			}
+			
 			// Get next option
 			try { 
 			  c = g.getopt();
 			}
 			catch (NullPointerException e) {
-				System.out.println("Could not parse those options; " + e.getMessage());
+				System.out.println("Could not parse those options: " + e.getMessage());
 				System.exit(1);
 			}
 		}
@@ -147,7 +162,7 @@ public class SidFormatter {
 		}
 
 		if (!(new File(oldSidDir)).isDirectory()) {
-			System.out.print("The --oldSidDir(" + oldSidDir + ") doesn't exist\n");
+			System.out.print("The --oldsiddir (" + oldSidDir + ") doesn't exist\n");
 			System.exit(1);
 		}
 
@@ -156,12 +171,12 @@ public class SidFormatter {
 			System.exit(1);
 		}
 		if (!(new File(newSidDir)).isDirectory()) {
-			System.out.print("The --newSidDir(" + newSidDir + ") doesn't exist\n");
+			System.out.print("The --newsiddir (" + newSidDir + ") doesn't exist\n");
 			System.exit(1);
 		}
 
 		// Make an object to organise the run
-		SidFormatter sf = new SidFormatter(oldSidDir, newSidDir);
+		SidFormatter sf = new SidFormatter(oldSidDir, newSidDir,flat);
 
 		// Parse the File
 		sf.parse();

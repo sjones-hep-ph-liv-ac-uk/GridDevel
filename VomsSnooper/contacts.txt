@@ -14,9 +14,6 @@ John Hover, VO DEPUTY, null, ,
 Jay Packard, VO DEPUTY, null, null, 
 Luca Vaccarossa, VO DEPUTY, null, null, 
 
-Contacts for babar:
-Chris Brew, VO MANAGER, null, null, 
-
 Contacts for biomed:
 Yannick Legre, VO MANAGER, null, null, 
 Franck Michel, VO MANAGER, null, null, 

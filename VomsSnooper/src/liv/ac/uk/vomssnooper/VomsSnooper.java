@@ -126,7 +126,7 @@ public class VomsSnooper {
 	
 	public void printResults(){
 		
-		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields,noSillySids, printVodTitleLine);
+		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields,noSillySids, printVodTitleLine,false);
 		Utils.printContacts(voidInfo, contactsOutFile);
 		Utils.printLscFiles(voidInfo, vomsDir);
 	}
