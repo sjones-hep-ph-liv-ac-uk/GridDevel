@@ -80,7 +80,7 @@ public class SidFormatter {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.10 \n\n");
+		System.out.print("Version 1.11 \n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
