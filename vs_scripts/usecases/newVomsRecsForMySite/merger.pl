@@ -16,6 +16,8 @@
 # The final parameter, --newsiddir, gives the
 # location where the results will get written.
 #
+# I'm sure I can do this is a more simple way!
+#
 # 15/05/12, sj, init version
 #
 #---------------------------------------------

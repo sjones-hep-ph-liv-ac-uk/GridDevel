@@ -1,24 +1,26 @@
 #!/usr/bin/perl
 #---------------------------------------------
-# Assemble some SID-VOD records for inclusion in the Approved VOs document
+# Assemble some SID/VOD records for inclusion in the Approved VOs document,
+# then merge the records in.
 #
 # Notes:
-# The contract for this software:                     
-# A directory must give given that contains a site-info.def with records
+# The contract for this software is:  
+#
+# A directory must be given that contains a site-info.def with new VOMS records
 # for 1 or more VOs. The records must be for VOMS_SERVERS, VOMSES and VOMS_CA_DN.
 # For each VO, another semantically identical set of records must also
-# exist in a vo.d subdirectory.
+# exist in a vo.d subdirectory. Typically, these structures will have been 
+# prepared by two runs of VomsSnooper.
+#
+# It is necessary to go to https://www.gridpp.ac.uk/wiki/GridPP_approved_VOs,
+# click "edit" and clip the current text out and put it in a file. Then
+# feed the file to this script, which will merge the new VOMS records
+# into the wiki file, creating a new one with updated VOMS fields.
+# Put this back in the wiki by hand.
 #
 # There is no error handling - if the contract is broken, the script dies.
 #
-# The script will merge these records into a format that is suitable for
-# adding them (by hand) to https://www.gridpp.ac.uk/wiki/GridPP_approved_VOs
-#
-# In due course, a script will be provided to merge these records into the
-# content without manual edits.
-#
 # 28/05/12, sj, initial version
-#
 #---------------------------------------------
 use strict;
 

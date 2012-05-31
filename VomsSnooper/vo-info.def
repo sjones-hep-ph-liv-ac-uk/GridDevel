@@ -12,13 +12,6 @@ VO_ATLAS_SW_DIR=$VO_SW_DIR/atlas
 VO_ATLAS_DEFAULT_SE=$DPM_HOST
 VO_ATLAS_STORAGE_DIR=$STORAGE_PATH/atlas
 
-VO_BABAR_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar' "
-VO_BABAR_VOMSES="'babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar' "
-VO_BABAR_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
-VO_BABAR_SW_DIR=$VO_SW_DIR/babar
-VO_BABAR_DEFAULT_SE=$DPM_HOST
-VO_BABAR_STORAGE_DIR=$STORAGE_PATH/babar
-
 VO_BIOMED_VOMS_SERVERS="'vomss://cclcgvomsli01.in2p3.fr:8443/voms/biomed?/biomed' "
 VO_BIOMED_VOMSES="'biomed cclcgvomsli01.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-IN2P3/CN=cclcgvomsli01.in2p3.fr biomed' "
 VO_BIOMED_VOMS_CA_DN="'/C=FR/O=CNRS/CN=GRID2-FR' "

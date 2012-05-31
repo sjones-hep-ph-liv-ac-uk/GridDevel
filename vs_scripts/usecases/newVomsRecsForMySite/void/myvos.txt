@@ -16,7 +16,6 @@ lhcb
 magic
 planck
 ops
-babar
 cdf
 dzero
 hone

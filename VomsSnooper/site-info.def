@@ -6,10 +6,6 @@ VO_ATLAS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas' 'vomss:
 VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
 VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 
-VO_BABAR_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar' "
-VO_BABAR_VOMSES="'babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar' "
-VO_BABAR_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
-
 VO_BIOMED_VOMS_SERVERS="'vomss://cclcgvomsli01.in2p3.fr:8443/voms/biomed?/biomed' "
 VO_BIOMED_VOMSES="'biomed cclcgvomsli01.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-IN2P3/CN=cclcgvomsli01.in2p3.fr biomed' "
 VO_BIOMED_VOMS_CA_DN="'/C=FR/O=CNRS/CN=GRID2-FR' "

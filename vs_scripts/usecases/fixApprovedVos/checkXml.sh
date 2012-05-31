@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# Quick script to see if the CIC Portal XML has changed.
+# Doesn't seem to work properly, yet!
+# sj, 29 May 2012
+#
 
 # Test lines
 #wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
