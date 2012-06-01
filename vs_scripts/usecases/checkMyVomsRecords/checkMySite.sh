@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf glitecfg/ site-formatted/ newest/
+
 mkdir -p glitecfg/vo.d
 mkdir -p site-formatted/vo.d
 mkdir -p newest/vo.d

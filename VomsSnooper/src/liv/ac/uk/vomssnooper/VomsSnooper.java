@@ -143,6 +143,27 @@ public class VomsSnooper {
 	private enum OptList {
 		printvodtitle, nosillysids, extrafields, xmlfile, myvos, vodfile, voddir, outfile, help, contactsfile, vomsdir
 	}
+	
+	public static void printHelpPage() {
+		System.out.println("");
+		System.out.println("This tool takes an XML file from the CIC portal, and ");
+		System.out.println("formats it into a standard, sorted manner for Yaim. ");
+		System.out.println("");
+		System.out.println("Mandatory arguments: ");
+	  System.out.println("  --xmlfile f       # Input XML file downloaded from CIC portal");
+	  System.out.println("  --myvos   f       # Names of VO that I support");
+	  System.out.println("  --vodfile f       # Names of VO that must be output in VOD format");
+	  System.out.println("  --outfile f       # Where to write SIDs (records that can be represented in a site-info.def)");
+		System.out.println("Optional arguments: ");
+		System.out.println("  --help            # Prints this info");
+	  System.out.println("  --voddir  d       # Where to write VODs (records that cannot be represented in a site-info.def)");
+ 	  System.out.println("  --printvodtitle   # When printing VODs, put the name of the VOD file in the output");
+ 	  System.out.println("  --nosillysids     # When printing SIDs, don't reject ones with silly names (DNS/dot style)");
+ 	  System.out.println("  --extrafields     # Print some extra fields (not recommended)");
+ 	  System.out.println("  --contactsfile    # Where to print the VO contacts (not recommended)");
+ 	  System.out.println("  --vomsdir         # Where to print LSC Files (not recommended)");
+	}
+	
 
 	public static void main(String[] args) {
 
@@ -197,11 +218,12 @@ public class VomsSnooper {
 			// It only takes long options
 			if (c != 0) {
 				System.out.print("Some option was given that I don't understand, " + sb.toString() + " \n");
+				printHelpPage();
 				System.exit(1);
 			}
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.help.ordinal()) {
-				System.out.print("You asked for help.\n");
+				printHelpPage();
 				System.exit(1);
 			}
 

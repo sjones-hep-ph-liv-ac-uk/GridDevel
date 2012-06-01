@@ -71,6 +71,20 @@ public class SidFormatter {
 	private enum OptList {
 		oldsiddir, newsiddir, flat, help, 
 	}
+	
+	public static void printHelpPage() {
+		System.out.println("");
+		System.out.println("This tool takes an existing populated site-info.def file and vo.d directory, and ");
+		System.out.println("formats it into a standard, sorted manner. It writes its output into a new, ");
+		System.out.println("unpopulated site-info.def file and vo.d directory.");
+		System.out.println("");
+		System.out.println("Mandatory arguments: ");
+		System.out.println("  --oldsiddir dir   # Some existing directory that contains a populated site-info.def file and vo.d directory");
+		System.out.println("  --newsiddir dir   # Some existing directory that contains an unpopulated site-info.def file and vo.d directory");
+		System.out.println("Optional arguments: ");
+		System.out.println("  --flat            # Print all the records out in a site-info.def, even when they are silly sids");
+		System.out.println("  --help            # Prints this info");
+	}
 
 	public static void main(String[] args) {
 
@@ -107,7 +121,7 @@ public class SidFormatter {
 		}
 		catch (NullPointerException e) {
 			System.out.println("Could not parse those options ; " + e.getMessage());
-			// TODO put help in here
+			printHelpPage();
 			System.exit(1);
 		}
 		
@@ -119,14 +133,12 @@ public class SidFormatter {
 			// It only takes long options
 			if (c != 0) {
 				System.out.print("Some option was given that I don't understand, " + sb.toString() + " \n");
-				// TODO put help in here
+				printHelpPage();
 				System.exit(1);
 			}
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.help.ordinal()) {
-				// TODO: put some help code in there
-				System.out.print("You asked for help.\n");
-				// TODO put help in here
+				printHelpPage();
 				System.exit(1);
 			}
 
@@ -151,6 +163,7 @@ public class SidFormatter {
 			}
 			catch (NullPointerException e) {
 				System.out.println("Could not parse those options: " + e.getMessage());
+				printHelpPage();
 				System.exit(1);
 			}
 		}
