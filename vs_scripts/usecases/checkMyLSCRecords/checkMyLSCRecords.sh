@@ -16,18 +16,18 @@ wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all
 ~/git/GridDevel/vs_scripts/ant/VomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile novos.txt  --voddir cic_portal_siddir/vo.d --outfile cic_portal_siddir/site-info.def  --vomsdir cic_portal_vomsdir
 
 # Now get the site's voms dir
-rsync -av --delete root@hepgrid6:/etc/grid-security/vomsdir/ site_vomsdir/
+rsync -a --delete root@hepgrid6:/etc/grid-security/vomsdir/ site_vomsdir/
 
 
 # Get a sorted list of site lsc files, sort each one, and print the md5 of it
 for f in `find site_vomsdir/ -type f -name "*.lsc" | sort `; do 
-  echo -n $f" " |  sed -e "s/^[^/]*\///" ; cat  $f | sort | md5sum; 
+  echo -n $f" " |  sed -e "s/^[^/]*\///" ; cat  $f |  md5sum; 
 done > site_vomsdir.md5
 
 
 # Get a sorted list of CIC Portal lsc files, sort each one, and print the md5 of it
 for f in `find cic_portal_vomsdir/ -type f -name "*.lsc" | sort `; do 
-  echo -n $f" " | sed -e "s/^[^/]*\///" ; cat  $f | sort | md5sum; 
+  echo -n $f" " | sed -e "s/^[^/]*\///" ; cat  $f |  md5sum; 
 done > cic_portal_vomsdir.md5
 
 # Compare results

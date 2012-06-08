@@ -38,7 +38,7 @@ cat deleteme1 deleteme2 > VOIDCardInfo.xml
 ############################################
 #
 # Transfer from hepgrid6 via:
-rsync -av --delete root@hepgrid6:/root/glitecfg/ $HOME/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/deployed
+rsync -a --delete root@hepgrid6:/root/glitecfg/ $HOME/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/deployed
 
 ./merger.pl --oldsiddir void/deployed --deltadir void/xml/ --newsiddir  void/merged
 
