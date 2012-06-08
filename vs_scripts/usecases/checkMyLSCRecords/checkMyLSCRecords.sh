@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Set up some dirs for this job
-rm -rf glitecfg/ site-formatted/ cic_portal_siddir/ cic_portal_vomsdir site_vomsdir
+rm -rf site-formatted/ cic_portal_siddir/ cic_portal_vomsdir/ site_vomsdir/
+rm  VOIDCardInfo.xml  site_vomsdir.md5  diffs.txt  cic_portal_vomsdir.md5
+
+
 mkdir -p cic_portal_siddir/vo.d
 mkdir -p cic_portal_vomsdir
 mkdir -p site_vomsdir
