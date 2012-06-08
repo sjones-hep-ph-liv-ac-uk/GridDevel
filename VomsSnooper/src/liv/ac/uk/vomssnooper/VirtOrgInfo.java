@@ -123,8 +123,8 @@ public class VirtOrgInfo {
 			v.setWhetherComplete();
 			if ((!v.isComplete())) {
 				if (validOnly ) {
-					System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded; " + v.toString() + "\n");
-					v.printIncomplete();
+					System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded\n");
+					// v.printIncomplete();
 					continue;
   			}
 			}
