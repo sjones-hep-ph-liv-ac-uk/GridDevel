@@ -102,7 +102,7 @@ public class CicToLsc {
 		System.out.println("Mandatory arguments: ");
 	  System.out.println("  --xmlfile       f       # Input XML file downloaded from CIC portal");
 	  System.out.println("  --approvedvos   f       # File of names of VOs that I support");
- 	  System.out.println("  --vomsdir               # Where to print LSC Files (not recommended)");
+ 	  System.out.println("  --vomsdir               # Where to print LSC Files ");
 		System.out.println("Optional arguments: ");
 		System.out.println("  --help                  # Prints this info");
 	}

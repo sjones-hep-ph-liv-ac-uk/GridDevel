@@ -86,11 +86,6 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 !Contact
 
 |-
-|[http://www.slac.stanford.edu/BFROOT/ babar]
-|Particle physics detector for B meson studies at SLAC
-|
-
-|-
 |[http://www-cdf.fnal.gov/ cdf]
 |Particle physics detector at Fermilab
 |
@@ -111,7 +106,7 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 |
 
 |-
-|[http://www-numi.fnal.gov:8875/ MINOS]
+|[http://www-numi.fnal.gov:8875/ minos.vo.gridpp.ac.uk]
 |Main Injector Neutrino Oscillation Search, is an experiment at Fermilab designed to study the phenomena of neutrino oscillations
 |
 
@@ -132,6 +127,11 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 |
 
 |-
+|[http://na62.web.cern.ch/NA62/ na62.vo.gridpp.ac.uk]
+|Another CP violation experiment at CERN
+|
+
+|-
 |
 |'''The VOs below are now not in the CIC Portal data'''
 |
@@ -146,10 +146,6 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 |[http://na48.web.cern.ch/NA48/Welcome.html na48]
 |CP violation experiment at CERN
 |David Britton david.britton@glasgow.ac.uk 
-
-|-
-|[http://na62.web.cern.ch/NA62/ NA62]
-|Another CP violation experiment at CERN
 |}
 
 == Approved Local VOs==
@@ -186,7 +182,7 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 
 
 |-
-|[http://snoplus.phy.queensu.ca/Home.html Sno+]
+|[http://snoplus.phy.queensu.ca/Home.html snoplus.snolab.ca]
 | A  Diverse Instrument for Neutrino Research within the SNOLAB Underground facility
 | Jeanne Wilson (QMUL)
 
@@ -231,11 +227,10 @@ This area can be used to record information about VOs that are site specific or 
 !Contact
 
 |-
-|[http://www.ngs.ac.uk/ NGS]
+|[http://www.ngs.ac.uk/ ngs.ac.uk]
 |The National Grid Service, UK
 |Mike Jones, support@grid-support.ac.uk
 |}
-
 
 == Approved VOs in the process of being established ==
 
@@ -265,6 +260,8 @@ Not all the VOs below are approved by GridPP but many are enabled within GridPP 
 More details can often be found on the CIC portal http://cic.gridops.org/index.php?section=home&page=volist
 
 === General notes and settings ===
+
+The records in the sections below were prepared by the [[VomsSnooper Tools]], that are located at http://hep.ph.liv.ac.uk/~sjones/ . 
 
 First, it is important to realize that many of the Yaim variables described below  can be given to Yaim 
 in one of two formats. The original format, for inclusion within the site-info.def file itself, 
@@ -315,20 +312,20 @@ records (technically, this variable is processed by a script, libexec/YAIM2gLite
 up a map of what VO can run of what queue. This is used by (e.g.) a torque server). An example might be:
 
 <pre>
-VO_BABAR_QUEUES="babar"
+VO_XYZ_QUEUES="xyz"
 </pre>
 
 Some sites don't use VO_<UCVONAME>_QUEUES records at all; instead defining shared queues for VOs (see http://northgrid-tech.blogspot.co.uk/2008/12/phasing-out-vo-queues.html). The point is that the use of QUEUES records varies a lot depending on site circumstances, and all the possible settings are outside the scope of this document at present. But by way of a guide, the verbatim settings of the shared queues configuration at Liverpool (which use no pre-VO queues) are presented below, showing the use of the VOS, QUEUES and _GROUP_ENABLE variables.
 
 <pre>
-VOS="alice atlas babar biomed calice camont cdf cedar cms dteam dzero esr fusion geant4 hone gridpp ilc \
+VOS="alice atlas biomed calice camont cdf cedar cms dteam dzero esr fusion geant4 hone gridpp ilc \
  lhcb ltwo magic mice minos.vo.gridpp.ac.uk na48 ngs.ac.uk ops pheno planck vo.sixt.cern.ch snoplus.snolab.ca \
  supernemo.vo.eu-egee.org t2k.org totalep vo.northgrid.ac.uk zeus"
 
 QUEUES="long"
 
 LONG_GROUP_ENABLE=" alice /alice/ROLE=lcgadmin /alice/ROLE=production atlas /atlas/ROLE=lcgadmin /atlas/ROLE=production /atlas/ROLE=pilot \
-  babar /babar/ROLE=lcgadmin biomed /biomed/ROLE=lcgadmin calice /calice/ROLE=lcgadmin /calice/ROLE=production \
+  /biomed/ROLE=lcgadmin calice /calice/ROLE=lcgadmin /calice/ROLE=production \
   camont /camont/ROLE=lcgadmin cdf /cdf/ROLE=lcgadmin cedar /cedar/ROLE=lcgadmin cms /cms/ROLE=lcgadmin /cms/ROLE=production \
   dteam /dteam/ROLE=lcgadmin /dteam/ROLE=production dzero /dzero/ROLE=lcgadmin esr /esr/ROLE=lcgadmin \
   fusion /fusion/ROLE=production geant4 /geant4/ROLE=lcgadmin /geant4/ROLE=production gridpp /gridpp/ROLE=lcgadmin \
@@ -405,30 +402,6 @@ Notes:
 n/a
 }}
 
-
-{{BOX VO|BABAR|
-
-
-<!-- VOMS RECORDS for BABAR-->
-
-
-''' site-info.def version (sid) '''
-<pre><nowiki>
-VO_BABAR_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar' "
-VO_BABAR_VOMSES="'babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar' "
-VO_BABAR_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
-</nowiki></pre>
-''' vo.d version (vod)'''
-<pre><nowiki>
-# $YAIM_LOCATION/vo.d/babar
-VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar' "
-VOMSES="'babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar' "
-VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
-
-</nowiki></pre>
-Notes: 
-n/a
-}}
 
 {{BOX VO|BIOMED|
 
@@ -1346,4 +1319,8 @@ n/a
 
 [[Category:GridPP Deployment]]
 [[Category:VOMS]]
+
+{{KeyDocs|responsible=Christopher J. Walker|reviewdate=2012-06-06|accuratedate=2012-06-06}}
+
+<!-- Chris, we updated all the Voms Records on 2012-06-06, as I explained. Hope that's OK -->
 

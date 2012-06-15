@@ -161,7 +161,7 @@ public class VomsSnooper {
  	  System.out.println("  --nosillysids     # When printing SIDs, don't reject ones with silly names (DNS/dot style)");
  	  System.out.println("  --extrafields     # Print some extra fields (not recommended)");
  	  System.out.println("  --contactsfile    # Where to print the VO contacts (not recommended)");
- 	  System.out.println("  --vomsdir         # Where to print LSC Files (not recommended)");
+ 	  System.out.println("  --vomsdir         # Where to print LSC Files ");
 	}
 	
 
@@ -180,7 +180,7 @@ public class VomsSnooper {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.12\n\n");
+		System.out.print("Version 1.13\n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
