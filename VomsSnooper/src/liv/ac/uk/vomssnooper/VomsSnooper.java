@@ -89,7 +89,7 @@ public class VomsSnooper {
 		while (it.hasNext()) {
 			VirtOrgInfo voi = it.next();
 			if (myVos != null) {
-				voi.setAtMySite(siteVos.isInList(voi.getVoName()));
+				voi.setAtMySite(siteVos.containsNoCase(voi.getVoName()));
 			} else {
 				voi.setAtMySite(true);
 			}
@@ -106,7 +106,7 @@ public class VomsSnooper {
 		while (it.hasNext()) {
 			VirtOrgInfo v = it.next();
 			if (vodVos != null) {
-				v.setVodStyle(myVodList.isInList(v.getVoName()));
+				v.setVodStyle(myVodList.containsNoCase(v.getVoName()));
 			} else {
 				v.setVodStyle(false);
 			}
@@ -180,7 +180,7 @@ public class VomsSnooper {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.13\n\n");
+		System.out.print("Version 1.14\n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;

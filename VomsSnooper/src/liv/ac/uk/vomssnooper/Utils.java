@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import liv.ac.uk.vomssnooper.VirtOrgInfo.ByVoName;
 
@@ -32,6 +35,8 @@ public class Utils {
 
 		ArrayList<String> vomsLines = v.getVomsLines(true, extraFields);
 		Iterator<String> i = vomsLines.iterator();
+		HashMap<String,Boolean> sillySids = new HashMap<String,Boolean>();
+		
 		while (i.hasNext()) {
 			String vs = i.next();
 
@@ -48,12 +53,21 @@ public class Utils {
 			}
 			else {
 				if (n.contains(".") == true) {
-					System.out.print("Silly SID was found, but printed anyway - " + n + "\n");
+					sillySids.put(n, true);
+					// System.out.print("Warning: silly SID was found, but printed anyway - " + n + "\n");
 				}
   			ps.print("VO_" + n + "_" + vs + "\n");
 			}
 		}
 		ps.print("\n");
+		
+		// Print the warnings
+		Iterator<Entry<String, Boolean>> entries = sillySids.entrySet().iterator();
+		while (entries.hasNext()) {
+		  Entry<String, Boolean> entry = entries.next();
+			System.out.print("Warning: silly SID was found, but printed anyway - " + entry.getKey()  + "\n");
+		}
+
 	}
 
 	/**

@@ -20,7 +20,7 @@ public class VirtOrgInfo {
 	 * 
 	 */
 	public static class ByVoName implements java.util.Comparator<VirtOrgInfo> {
-		
+
 		public int compare(VirtOrgInfo first, VirtOrgInfo second) {
 			String f = first.getVoNickName().toLowerCase();
 			String s = second.getVoNickName().toLowerCase();
@@ -28,10 +28,10 @@ public class VirtOrgInfo {
 		}
 	}
 
+	private ArrayList<VomsServer> vomsServers; // List of VOMS servers for this VO
 	private String voName; // Name of this VO
-	private String voNickName; // SHort name, explained below
-	private ArrayList<VomsServer> vomsServers; // List of VOMS server for this VO
-	private Boolean atMySite; // Do we support this
+	private String voNickName; // Short name, explained below
+	private Boolean atMySite; // If it supported flag
 	private Boolean vodStyle; // Is it in vo.d style for DNS style names (default
 														// is site-info.def style)
 	private ArrayList<IndividualContact> individualContacts; // Contacts for this
@@ -43,6 +43,9 @@ public class VirtOrgInfo {
 	public VirtOrgInfo() {
 		voName = "";
 		voNickName = "";
+		atMySite = false;
+		vodStyle = false;
+
 		vomsServers = new ArrayList<VomsServer>();
 		individualContacts = new ArrayList<IndividualContact>();
 	}
@@ -53,13 +56,13 @@ public class VirtOrgInfo {
 	 * @return String to represent the object
 	 */
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("VOInfo: " + voName + ", ");
-		Iterator<VomsServer> it = vomsServers.iterator();
-		while (it.hasNext()) {
-			sb.append(" Voms Server : " + it.next().makeUrl(voName));
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("VOInfo: " + voName + ", ");
+		Iterator<VomsServer> v = vomsServers.iterator();
+		while (v.hasNext()) {
+			buffer.append(" Voms Server : " + v.next().makeUrl(voName));
 		}
-		return sb.toString();
+		return buffer.toString();
 	}
 
 	/**
@@ -86,9 +89,9 @@ public class VirtOrgInfo {
 	 * Invoked to ask all Voms Servers to check their state of completion
 	 */
 	public void checkComplete() {
-		Iterator<VomsServer> i = vomsServers.iterator();
-		while (i.hasNext()) {
-			i.next().setWhetherComplete();
+		Iterator<VomsServer> v = vomsServers.iterator();
+		while (v.hasNext()) {
+			v.next().setWhetherComplete();
 		}
 	}
 
@@ -112,41 +115,86 @@ public class VirtOrgInfo {
 		vomsesLine.append("VOMSES=\"");
 		cadnLine.append("VOMS_CA_DN=\"");
 
-		Iterator<VomsServer> vomsServer ;
+		Iterator<VomsServer> vi;
 
 		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
 
-		vomsServer = vomsServers.iterator();
-		while (vomsServer.hasNext()) {
+		// Loop to do check if data is complete
+		vi = vomsServers.iterator();
+		while (vi.hasNext()) {
+			VomsServer vs = vi.next();
+			vs.setWhetherComplete();
+			if ((!vs.isComplete()) & (validOnly)) {
+				System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded\n");
+				vs.printIncomplete();
+			}
+		}
 
-			VomsServer v = vomsServer.next();
-			v.setWhetherComplete();
-			if ((!v.isComplete())) {
-				if (validOnly ) {
-					System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded\n");
-					// v.printIncomplete();
-					continue;
-  			}
+		// Loop to do vomses line and caDn line
+		vi = vomsServers.iterator();
+		while (vi.hasNext()) {
+
+			VomsServer vs = vi.next();
+			if ((!vs.isComplete()) & (validOnly)) {
+				continue;
 			}
 
-			// Populate Voms server line
-			vomsServerLine.append("'");
-			vomsServerLine.append(v.makeUrl(this.voName.toLowerCase()));
-			vomsServerLine.append("' ");
-
-			// Populate vomses Line line
+			// Populate vomses line
 			vomsesLine.append("'");
-			vomsesLine.append(voName.toLowerCase() + " " + v.getHostname() + " " + v.getVomsesPort() + " " + v.getDn() + " " + voName.toLowerCase());
+			vomsesLine.append(voName.toLowerCase() + " " + vs.getHostname() + " " + vs.getVomsesPort() + " " + vs.getDn() + " "
+					+ voName.toLowerCase());
 			vomsesLine.append("' ");
 
 			// Populate cadn line
 			cadnLine.append("'");
-			cadnLine.append(v.getCaDn());
+			cadnLine.append(vs.getCaDn());
 			cadnLine.append("' ");
-
 		}
-		// Finalise lines
 
+		// Loop to do the voms servers line; first find out if it's all
+		// superceded by the cern rule (For CERN servers it was deemed desirable
+		// that
+		// grid-mapfiles be generated using voms.cern.ch only, because
+		// lcg-voms.cern.ch
+		// is already running the VOMRS (sic) service as an extra load).
+
+		ArrayList<String> urls = new ArrayList<String>();
+		String superceder = null;
+
+		vi = vomsServers.iterator();
+		while (vi.hasNext()) {
+
+			VomsServer vs = vi.next();
+			if ((!vs.isComplete()) & (validOnly)) {
+				continue;
+			}
+			// Only use this Vomes Server if it has all the fields defined
+			// (some only have a subset)
+			if (vs.getHttpsPort() == -1) {
+				continue;
+			}
+			
+			String url = vs.makeUrl(this.voName.toLowerCase());
+			urls.add(url);
+			if (url.contains("voms.cern.ch")) {
+				superceder = url;
+			}
+		}
+		
+		if (superceder == null) {
+			Iterator<String> i = urls.iterator();
+			while (i.hasNext()) {
+				vomsServerLine.append("'");
+				vomsServerLine.append(i.next());
+				vomsServerLine.append("' ");
+			}
+		} else {
+			vomsServerLine.append("'");
+			vomsServerLine.append(superceder);
+			vomsServerLine.append("' ");
+		}
+
+		// Finalise lines
 		vomsServerLine.append("\"");
 		vomsesLine.append("\"");
 		cadnLine.append("\"");
@@ -224,7 +272,7 @@ public class VirtOrgInfo {
 	 */
 	public void setVoNameAndVoNickName(String voName) {
 
-		this.voName = voName;
+		this.voName = voName.toLowerCase();
 
 		// The nickname is sometimes the same as the voName.
 		// Otherwise, if the voName is one of those DNS style names,
@@ -258,9 +306,9 @@ public class VirtOrgInfo {
 	 * 
 	 * @return null
 	 */
-	public void setVomsServers(ArrayList<VomsServer> vomsServers) {
-		this.vomsServers = vomsServers;
-	}
+	// public void setVomsServers(ArrayList<VomsServer> vomsServers) {
+	// this.vomsServers = vomsServers;
+	// }
 
 	/**
 	 * Getter for a field - the contacts list of the VO
@@ -279,7 +327,7 @@ public class VirtOrgInfo {
 	public void setIndividualContacts(ArrayList<IndividualContact> individualContacts) {
 		this.individualContacts = individualContacts;
 	}
-	
+
 	public void sortVomsServers() {
 		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
 	}

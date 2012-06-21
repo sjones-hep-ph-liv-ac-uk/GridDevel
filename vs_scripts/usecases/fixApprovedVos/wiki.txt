@@ -200,7 +200,7 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 |-
 |[http://www.cedar.ac.uk CEDAR]
 |Combined e-Science Data Analysis Resource for high-energy physics
-|Ben Waugh (UCL)
+|Ben Waugh: The CEDAR VO has never been seriously used and there are no plans to revive it in the short term
 
 |-
 |[http://www.geog.leeds.ac.uk/projects/neiss/about.php neiss.org.uk]
@@ -343,7 +343,9 @@ LONG_GROUP_ENABLE=" alice /alice/ROLE=lcgadmin /alice/ROLE=production atlas /atl
 
 === VO Yaim Records ===
 
-'''Important Note:''' The following sections detail three important VO variables; 
+'''Note about SIDs versus VODs:''' 
+
+The following sections detail three important VO variables; 
 VO_<UCVONAME>_VOMS_SERVERS, VO_<UCVONAME>_VOMSES and VO_<UCVONAME>_VOMS_CA_DN. Sometimes,
 additional notes preserved from the original documentation are also given.
 
@@ -351,6 +353,21 @@ As stated above, it is possible to represent any VO using VOD records, but the i
 true - some VOs (i.e. those with dots in the name) can't be represented in SID format. In the tables 
 below,  SID records for such VOs are still given but they are commented out with hash signs. In these cases, 
 please use VOD format records. The SID records will not work and they will be deleted later.
+
+'''Note about record multiplicity:''' 
+
+Data in the CIC portal for the VO_<UCVONAME>_VOMS_SERVERS, VO_<UCVONAME>_VOMSES and VO_<UCVONAME>_VOMS_CA_DN records
+is related by order and multiplicity - they match up. 
+
+When generating the Yaim versions of this data, records for VO_<UCVONAME>_VOMSES and VO_<UCVONAME>_VOMS_CA_DN 
+must also match in order and multiplicity.
+
+But it is optional with respect to the  VO_<UCVONAME>_VOMS_SERVERS record. According to Maarten Litmaath "for the CERN 
+servers it actually was deemed desirable that grid-mapfiles be generated using voms.cern.ch only, because 
+lcg-voms.cern.ch is already running the VOMRS (sic) service as an extra load".  
+
+Thus, in the sections below, VO_<UCVONAME>_VOMS_SERVERS for CERN based VOs are restricted to a single record related to 
+voms.cern.ch.
 
 <!-- START OF SIDSECTION -->
 
@@ -386,14 +403,14 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_ATLAS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://vo.racf.bnl.gov:8443/voms/atlas?/atlas' "
+VO_ATLAS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
 VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
 VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/atlas
-VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://vo.racf.bnl.gov:8443/voms/atlas?/atlas' "
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
 VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
 VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 
@@ -507,14 +524,14 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_CMS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.fnal.gov:8443/voms/cms?/cms' "
+VO_CMS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/cms?/cms' "
 VO_CMS_VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' 'cms voms.fnal.gov 15015 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cms' "
 VO_CMS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/cms
-VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.fnal.gov:8443/voms/cms?/cms' "
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/cms?/cms' "
 VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' 'cms voms.fnal.gov 15015 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cms' "
 VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 
@@ -645,14 +662,14 @@ Web site http://grid.bifi.unizar.es/egee/fusion-vo/
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_GEANT4_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/geant4?/geant4' 'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
+VO_GEANT4_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
 VO_GEANT4_VOMSES="'geant4 lcg-voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch geant4' 'geant4 voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch geant4' "
 VO_GEANT4_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/geant4
-VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/geant4?/geant4' 'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
 VOMSES="'geant4 lcg-voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch geant4' 'geant4 voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch geant4' "
 VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
@@ -741,14 +758,14 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_LHCB_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/lhcb?/lhcb' 'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
+VO_LHCB_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
 VO_LHCB_VOMSES="'lhcb lcg-voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch lhcb' 'lhcb voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch lhcb' "
 VO_LHCB_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/lhcb
-VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/lhcb?/lhcb' 'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
 VOMSES="'lhcb lcg-voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch lhcb' 'lhcb voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch lhcb' "
 VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
@@ -859,6 +876,31 @@ VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B"
 </nowiki></pre>
 }}
 
+{{BOX VO|NA62.VO.GRIDPP.AC.UK|
+
+
+<!-- VOMS RECORDS for NA62.VO.GRIDPP.AC.UK-->
+
+
+''' site-info.def version (sid) '''
+<pre><nowiki>
+# VO_NA62.VO.GRIDPP.AC.UK_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/na62.vo.gridpp.ac.uk?/na62.vo.gridpp.ac.uk' "
+# VO_NA62.VO.GRIDPP.AC.UK_VOMSES="'na62.vo.gridpp.ac.uk voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk na62.vo.gridpp.ac.uk' "
+# VO_NA62.VO.GRIDPP.AC.UK_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+</nowiki></pre>
+''' vo.d version (vod)'''
+<pre><nowiki>
+# $YAIM_LOCATION/vo.d/na62.vo.gridpp.ac.uk
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/na62.vo.gridpp.ac.uk?/na62.vo.gridpp.ac.uk' "
+VOMSES="'na62.vo.gridpp.ac.uk voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk na62.vo.gridpp.ac.uk' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+
+</nowiki></pre>
+Notes:
+n/a
+}}
+
+
 {{BOX VO|NEISS.ORG.UK|
 <!-- === NGS VOMS server VO === -->
 '''Note:''' This data was not taken from the CIC Portal.
@@ -882,14 +924,14 @@ n/a
 <pre><nowiki>
 # VO_NGS.AC.UK_VOMS_SERVERS="'vomss://voms.ngs.ac.uk:8443/voms/ngs.ac.uk?/ngs.ac.uk' "
 # VO_NGS.AC.UK_VOMSES="'ngs.ac.uk voms.ngs.ac.uk 15010 /C=UK/O=eScience/OU=Manchester/L=MC/CN=voms.ngs.ac.uk/EMAILADDRESS=support@grid-support.ac.uk ngs.ac.uk' "
-# VO_NGS.AC.UK_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA' "
+# VO_NGS.AC.UK_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/ngs.ac.uk
 VOMS_SERVERS="'vomss://voms.ngs.ac.uk:8443/voms/ngs.ac.uk?/ngs.ac.uk' "
 VOMSES="'ngs.ac.uk voms.ngs.ac.uk 15010 /C=UK/O=eScience/OU=Manchester/L=MC/CN=voms.ngs.ac.uk/EMAILADDRESS=support@grid-support.ac.uk ngs.ac.uk' "
-VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 
 </nowiki></pre>
 Notes: 
@@ -911,14 +953,14 @@ The LDAP service at vom.ngs.rl.ac.uk is no longer available.
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_OPS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/ops?/ops' 'vomss://voms.cern.ch:8443/voms/ops?/ops' "
+VO_OPS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/ops?/ops' "
 VO_OPS_VOMSES="'ops lcg-voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch ops' 'ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops' "
 VO_OPS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/ops
-VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/ops?/ops' 'vomss://voms.cern.ch:8443/voms/ops?/ops' "
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/ops?/ops' "
 VOMSES="'ops lcg-voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch ops' 'ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops' "
 VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
@@ -1167,14 +1209,14 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-# VO_VO.SIXT.CERN.CH_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch' 'vomss://voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch' "
+# VO_VO.SIXT.CERN.CH_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch' "
 # VO_VO.SIXT.CERN.CH_VOMSES="'vo.sixt.cern.ch lcg-voms.cern.ch 15005 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch vo.sixt.cern.ch' 'vo.sixt.cern.ch voms.cern.ch 15005 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch vo.sixt.cern.ch' "
 # VO_VO.SIXT.CERN.CH_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/vo.sixt.cern.ch
-VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch' 'vomss://voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch' "
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/vo.sixt.cern.ch?/vo.sixt.cern.ch' "
 VOMSES="'vo.sixt.cern.ch lcg-voms.cern.ch 15005 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch vo.sixt.cern.ch' 'vo.sixt.cern.ch voms.cern.ch 15005 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch vo.sixt.cern.ch' "
 VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
@@ -1286,17 +1328,6 @@ n/a
 }}
 
 
-{{BOX VO|NA62.VO.GRIDPP.AC.UK <!-- NO XML --> (Note that this VO is no longer in the CIC Portal)(ticket raised)|
-<!-- === GridPP VOMS server VO === -->
-<pre><nowiki>
-VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/na62.vo.gridpp.ac.uk"
-VOMSES='"na62.vo.gridpp.ac.uk" "voms.gridpp.ac.uk" "15501" "/C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk" "na62.vo.gridpp.ac.uk"'
-VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B'"
-</nowiki></pre>
-Notes: 
-n/a
-}}
-
 
 {{BOX VO|VO.LANDSLIDES.MOSSAIC.ORG <!-- NOT APPROVED --> (Note that this VO is not in the approved lists)|
 <!-- === GridPP VOMS server VO === -->
@@ -1310,11 +1341,13 @@ n/a
 }}
 <!-- END OF SIDSECTION -->
 
-==VO enablement - 27th February 2007 ==
+==VO enablement  ==
 
-[https://gfe03.hep.ph.ic.ac.uk:4175/vosupport.html VO Supported in London (Auto Generated)]
+[https://pprc.qmul.ac.uk/~walker/votable.html Chris's table]
 
-[[Image:20070227-enabled-vos.PNG]]
+<!-- [https://gfe03.hep.ph.ic.ac.uk:4175/vosupport.html VO Supported in London (Auto Generated)]
+
+[[Image:20070227-enabled-vos.PNG]] -->
 
 
 [[Category:GridPP Deployment]]

@@ -60,7 +60,7 @@ public class CicToLsc {
 		while (it.hasNext()) {
 			VirtOrgInfo voi = it.next();
 			if (approvedVos != null) {
-				voi.setAtMySite(siteVos.isInList(voi.getVoName()));
+				voi.setAtMySite(siteVos.containsNoCase((voi.getVoName())));
 			} else {
 				voi.setAtMySite(true);
 			}

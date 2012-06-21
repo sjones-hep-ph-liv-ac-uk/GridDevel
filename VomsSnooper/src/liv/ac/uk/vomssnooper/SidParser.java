@@ -11,7 +11,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Reads in a site-info.def file (and related vo.d files) and makes the fields into objects
+ * Reads in a site-info.def file (and related vo.d files) and makes the fields
+ * into objects.
  * 
  * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
  * @since 2012-05-10
@@ -19,21 +20,34 @@ import java.util.regex.Pattern;
 
 public class SidParser {
 
-	private String oldSidDir;                            // The side file to read from
-	
-	private HashMap<String, VirtOrgInfo> allVoidInfo;    // A collection of VO info
+	private String oldSidDir; // The site file to read from
+	private WordList myVOs;   // List of VOs (used to reject backup files and trash)
+	private HashMap<String, VirtOrgInfo> voidInfo; // A collection of VO info
 
-	public SidParser(String os, HashMap<String, VirtOrgInfo> vi) {
+	/**
+	 * Constructor
+	 * @param os old sid dir
+	 * @param vi the collection of vo info 
+	 * @param mv list of VOs that I support
+	 * 
+	 */
+	public SidParser(String os, HashMap<String, VirtOrgInfo> vi, WordList mv) {
 		oldSidDir = os;
-		allVoidInfo = vi;
+		voidInfo = vi;
+		myVOs = mv;
 	}
 
 	/**
-	 * Parse the VOID XML file
+	 * Parse the site info file
 	 * 
 	 * @return null
 	 */
 	public void parseDocument() {
+
+		// Storage for the record I consider
+		String caDnLine = null;
+		String vomsServersLine = null;
+		String vomsesLine = null;
 
 		// First get the sid lines
 		File sid = new File(oldSidDir + "/site-info.def");
@@ -41,133 +55,159 @@ public class SidParser {
 			System.out.println("site-info.def file " + sid + " not found");
 			System.exit(1);
 		}
-		
+
 		// Get the yaim variables
-		ArrayList<String> yaimVariables = new ArrayList<String> ();
+		ArrayList<String> yaimVariables = new ArrayList<String>();
 		try {
-		  yaimVariables = cmdExec("bash -x " + oldSidDir + "/site-info.def");
-		}
-		catch (Exception e) {
+			yaimVariables = cmdExec("bash -x " + oldSidDir + "/site-info.def");
+		} catch (Exception e) {
 			System.out.println("Problem while while reading old site-info.def " + e.getMessage());
 			System.exit(1);
 		}
-		
-		// Sort them all, so we can depend on the order
+
+		// Sort so we can depend on the order
 		Collections.sort(yaimVariables, String.CASE_INSENSITIVE_ORDER);
 
 		// Go over the yaim variables, selecting VO lines
-		Pattern vomsPattern = Pattern.compile("VO_(.*)_VOMS.*");
-		Iterator<String> yvi = yaimVariables.iterator();
-		
-		while (yvi.hasNext()) {
-			String yaimVariable = (String) yvi.next();
-			Matcher matcher = vomsPattern.matcher(yaimVariable);
+		Pattern pattern = Pattern.compile("VO_(.*)_VOMS.*");
+		Iterator<String> var = yaimVariables.iterator();
+
+		while (var.hasNext()) {
+			String yaimVariable = (String) var.next();
+
+			Matcher matcher = pattern.matcher(yaimVariable);
 			if (matcher.find()) {
-				String voName = matcher.group(1);
+				
+				String voName = matcher.group(1).toLowerCase();
 
-				// Make a record, if not there yet
-				if (allVoidInfo.containsKey(voName) != true) {
-					allVoidInfo.put(voName, new VirtOrgInfo());
-				}
-				VirtOrgInfo thisVo = allVoidInfo.get(voName);
+				// Only use it if it's desired, else dump it.
+				if (myVOs.containsNoCase(voName)) {
 
-				// Set up the record
-				thisVo.setVoNameAndVoNickName(voName);
-				thisVo.setVodStyle(false);
-				thisVo.setAtMySite(true);
+					// Collect all the lines first to overcome any order problems
 
-				// Now do more parsing
-				if (yaimVariable.matches(".*CA_DN.*")) {
-					
-					// CA DN Found - set up some blanks voms servers
-					thisVo.setVomsServers(new ArrayList<VomsServer>());
-					
-					// Now break that CA DN variable up and go setting fields
-					ArrayList<String> elements = breakString(yaimVariable);
-					Iterator<String> ei = elements.iterator();
-					while (ei.hasNext()) {
-						VomsServer currentVomsServer = new VomsServer();
-						currentVomsServer.setMembersListUrl("dummy");
-						String caDn = (String) ei.next();
-						currentVomsServer.setCaDn(caDn);
-						thisVo.addVomsServer(currentVomsServer);
-					}
-				}
-
-				if (yaimVariable.matches(".*VOMS_SERVERS.*")) {
-					// Voms Servers found - break the variable up and go setting fields
-					
-					ArrayList<String> elements = breakString(yaimVariable);
-					
-					Iterator<String> ei = elements.iterator();
-					int ii = -1;
-					while (ei.hasNext()) {
-						ii++;
-						ArrayList<VomsServer> vses = thisVo.getVomsServers();
-						String vs = (String) ei.next();
-
-						// Fancy group pattern matching to save a lot of tinkering
-						Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
-						Matcher m = p.matcher(vs);
-						if (m.find()) {
-							String h = m.group(1);
-							vses.get(ii).setHostname(h);
-							String n = m.group(2);
-							int nPort = Integer.parseInt(n);
-							vses.get(ii).setHttpsPort(nPort);
+					if (yaimVariable.matches(".*CA_DN.*")) {
+						if (voidInfo.containsKey(voName) == true) {
+							System.out.println("Warning: the "+ voName + " sid records are duplicated! Results may be chaotic.");
 						}
 						else {
-							System.out.println("Weird VOMS_SERVER line: " + vs.toString());
+							// Make a new set of records
+							voidInfo.put(voName, new VirtOrgInfo());
+						}
+						
+						// Initial values
+						voidInfo.get(voName).setVoNameAndVoNickName(voName);
+						voidInfo.get(voName).setVodStyle(false);
+						voidInfo.get(voName).setAtMySite(true);
+
+						// Store the CA DNs
+						caDnLine = yaimVariable;
+					}
+
+					if (yaimVariable.matches(".*VOMS_SERVERS.*")) {
+						// Store the VOMS Servers
+						vomsServersLine = yaimVariable;
+					}
+					
+					if (yaimVariable.matches(".*VOMSES.*")) {
+						// Store the VOMSES
+						vomsesLine = yaimVariable;
+
+						// As it is sorted, this triggers the end of a run, so now do more parsing
+						// Break that CA DN variable up and go setting fields
+						ArrayList<String> elements = breakString(caDnLine);
+						
+						Iterator<String> els = elements.iterator();
+						while (els.hasNext()) {
+							String caDn = (String) els.next();
+							VomsServer theVomsServer = new VomsServer();
+							theVomsServer.setMembersListUrl("dummy");
+							theVomsServer.setCaDn(caDn);
+							voidInfo.get(voName).addVomsServer(theVomsServer);
+						}
+
+						// VOMSES found - break the variable up and go setting fields
+						elements = breakString(vomsesLine);
+						els = elements.iterator();
+						int ii = -1;
+						while (els.hasNext()) {
+							ii++;
+							ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
+							String vomses = (String) els.next();
+
+							// More pattern matching to save a lot of tinkering
+							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
+							Matcher m = p.matcher(vomses);
+							if (m.find()) {
+								String vo1 = m.group(1);
+								String host = m.group(2);
+								String vomsServerPort = m.group(3);
+								String dn = m.group(4);
+								String vo2 = m.group(5);
+
+								vomsServers.get(ii).setHostname(host);
+								vomsServers.get(ii).setVomsServerPort(Integer.parseInt(vomsServerPort));
+								vomsServers.get(ii).setDn(dn);
+							}
+						}
+
+						// Voms Servers found - break the variable up and go setting fields
+						elements = breakString(vomsServersLine);
+
+						els = elements.iterator();
+						while (els.hasNext()) {
+							ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
+							String el = (String) els.next();
+
+							// Pattern matching to save a lot of tinkering
+							Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
+							Matcher m = p.matcher(el);
+							if (m.find()) {
+								String hostPart = m.group(1);
+								Integer httpsPort = Integer.parseInt(m.group(2));
+
+								// Find the voms server that this record applies to
+								Iterator<VomsServer> vs = vomsServers.iterator();
+								Boolean setPort = false;
+								while (vs.hasNext()) {
+									VomsServer v = vs.next();
+									String h = v.getHostname();
+									if (h.equalsIgnoreCase(hostPart)) {
+										// This is the one
+										v.setHttpsPort(httpsPort);
+										setPort = true;
+									}
+								}
+								if (!setPort) {
+									System.out.println("Warning: Unable to find a voms server for one of these: " + vomsServersLine);
+								}
+							} else {
+								System.out.println("Warning: Weird VOMS_SERVER line: " + el.toString());
+							}
 						}
 					}
 				}
-				if (yaimVariable.matches(".*VOMSES.*")) {
-					// VOMSES found - break the variable up and go setting fields
-					ArrayList<String> elements = breakString(yaimVariable);
-					Iterator<String> ei = elements.iterator();
-					int ii = -1;
-					while (ei.hasNext()) {
-						ii++;
-						ArrayList<VomsServer> vses = thisVo.getVomsServers();
-						String vomses = (String) ei.next();
-
-						// More fancy group pattern matching to save a lot of tinkering
-						Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
-						Matcher m = p.matcher(vomses);
-						if (m.find()) {
-							String exp = m.group(1);
-							String host = m.group(2);
-							String port = m.group(3);
-							String dn = m.group(4);
-							String exp2 = m.group(5);
-							vses.get(ii).setHostname(host);
-							int nPort = Integer.parseInt(port);
-							vses.get(ii).setVomsServerPort(nPort);
-							vses.get(ii).setDn(dn);
-						}
-					}
-				}
-
 			}
 		}
 
 		// Next get the vod files, that lie in files in the vo.d directory
 		File dir = new File(oldSidDir + "/vo.d");
-		String[] chld = dir.list();
-		if (chld == null) {
-			System.out.println("the vo.d directory does not exist.");
+		String[] vodFiles = dir.list();
+		if (vodFiles == null) {
+			System.out.println("the vo.d directory does not exist");
 			System.exit(1);
-		} else {
-			for (int i = 0; i < chld.length; i++) {
-				String fileName = chld[i];
+		}
+		for (int i = 0; i < vodFiles.length; i++) {
+			String vodFile = vodFiles[i];
+
+			// Only use it if it's desired, else dump it.
+			if (myVOs.containsNoCase(vodFile)) {
 
 				// Read the yaim variables for each files found
-				ArrayList<String> vodYaimVariables = new ArrayList<String> (); 
+				ArrayList<String> vodYaimVariables = new ArrayList<String>();
 				try {
-				  vodYaimVariables = cmdExec("bash -x " + oldSidDir + "/vo.d/" + fileName);
-				}
-				catch (Exception e) {
-					System.out.println("Problem while while reading old vod. file " + fileName + ", " + e.getMessage());
+					vodYaimVariables = cmdExec("bash -x " + oldSidDir + "/vo.d/" + vodFile);
+				} catch (Exception e) {
+					System.out.println("Problem while while reading old vod. file " + vodFile + ", " + e.getMessage());
 					System.exit(1);
 				}
 				// Sort it so we can depend on the order
@@ -175,89 +215,110 @@ public class SidParser {
 
 				// Go over the lines, look for VO ones
 				Pattern vodVomsPattern = Pattern.compile("^\\+ VOMS.*");
-				Iterator<String> vyvi = vodYaimVariables.iterator();
-				
-				while (vyvi.hasNext()) {
-					String vodYaimVariable = (String) vyvi.next();
-					Matcher matcher = vodVomsPattern.matcher(vodYaimVariable);
+				Iterator<String> iter = vodYaimVariables.iterator();
+
+				while (iter.hasNext()) {
+					String vodYaimVariable = (String) iter.next();
 					
+					Matcher matcher = vodVomsPattern.matcher(vodYaimVariable);
 					if (matcher.find()) {
-						String voName = fileName;
-
-						// Make a new record, if we need to
-						if (allVoidInfo.containsKey(voName) != true) {
-							allVoidInfo.put(voName, new VirtOrgInfo());
-						}
-
-						// Set up some generic fields
-						VirtOrgInfo thisVo = allVoidInfo.get(voName);
-						thisVo.setVoNameAndVoNickName(voName);
-						thisVo.setVodStyle(true);
-						thisVo.setAtMySite(true);
 						
-						if (vodYaimVariable.matches(".*CA_DN.*")) {
-							// CA DN Found - set up some blank voms servers
-							thisVo.setVomsServers(new ArrayList<VomsServer>());
-							
-							// Now break that CA DN variable up and go setting fields
-							ArrayList<String> elements = breakString(vodYaimVariable);
-							Iterator<String> ei = elements.iterator();
-							while (ei.hasNext()) {
-								VomsServer currentVomsServer = new VomsServer();
-								currentVomsServer.setMembersListUrl("dummy");
-								String caDn = (String) ei.next();
-								currentVomsServer.setCaDn(caDn);
-								thisVo.addVomsServer(currentVomsServer);
-							}
-						}
+						// Name is same as file, for VODs
+						String voName = vodFile.toLowerCase();
+						// VirtOrgInfo thisVo = voidInfo.get(voName);
 
-						if (vodYaimVariable.matches(".*VOMS_SERVERS.*")) {
-							// Voms Servers found - break the variable up and go setting fields
-							ArrayList<String> elements = breakString(vodYaimVariable);
-							Iterator<String> ei = elements.iterator();
-							int ii = -1;
-							while (ei.hasNext()) {
-								ii++;
-								ArrayList<VomsServer> vses = thisVo.getVomsServers();
-								String vs = (String) ei.next();
-								
-								// Fancy group pattern matching to save a lot of tinkering
-								Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
-								Matcher m = p.matcher(vs);
-								if (m.find()) {
-									String h = m.group(1);
-									vses.get(ii).setHostname(h);
-									String n = m.group(2);
-									int nPort = Integer.parseInt(n);
-									vses.get(ii).setHttpsPort(nPort);
-								}
-								else {
-									System.out.println("Weird VOMS_SERVER line: " + vs.toString());
-								}
+						// Get all the fields in advance
+						if (vodYaimVariable.matches(".*CA_DN.*")) {
+							caDnLine = vodYaimVariable;
+							// Make a new record, if we need to
+							if (voidInfo.containsKey(voName.toLowerCase()) == true) {
+								System.out.println("Warning: the "+ voName + " vod records are duplicated! Results may be chaotic.");
 							}
+							else {
+								voidInfo.put(voName.toLowerCase(), new VirtOrgInfo());
+							}
+							voidInfo.put(voName, new VirtOrgInfo());
+							voidInfo.get(voName).setVoNameAndVoNickName(voName);
+							voidInfo.get(voName).setVodStyle(true);
+							voidInfo.get(voName).setAtMySite(true);
+							
+						}
+						if (vodYaimVariable.matches(".*VOMS_SERVERS.*")) {
+							vomsServersLine = vodYaimVariable;
 						}
 						if (vodYaimVariable.matches(".*VOMSES.*")) {
-							// VOMSES found - break the variable up and go setting fields
-							ArrayList<String> elements = breakString(vodYaimVariable);
+							vomsesLine = vodYaimVariable;
+							
+							// Last one found, so parse the fields
+
+							// Break up the CA DN variable 
+							ArrayList<String> elements = breakString(caDnLine);
 							Iterator<String> ei = elements.iterator();
+							while (ei.hasNext()) {
+								String caDn = (String) ei.next();
+								VomsServer theVomsServer = new VomsServer();
+								theVomsServer.setCaDn(caDn);
+								theVomsServer.setMembersListUrl("dummy");
+								voidInfo.get(voName).addVomsServer(theVomsServer);
+							}
+
+							// VOMSES found - break the variable up and go setting fields
+							elements = breakString(vomsesLine);
+							ei = elements.iterator();
 							int ii = -1;
 							while (ei.hasNext()) {
 								ii++;
-								ArrayList<VomsServer> vses = thisVo.getVomsServers();
+								ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
 								String vomses = (String) ei.next();
 
-								// Fancy group pattern matching to save a lot of tinkering
+								// Pattern matching to save a lot of tinkering
 								Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
 								Matcher m = p.matcher(vomses);
 								if (m.find()) {
-									String exp = m.group(1);
+									String vo1 = m.group(1);
 									String host = m.group(2);
-									String port = m.group(3);
+									String vomsServerPort = m.group(3);
 									String dn = m.group(4);
-									String exp2 = m.group(5);
-									vses.get(ii).setHostname(host);
-									vses.get(ii).setVomsServerPort(Integer.parseInt(port));
-									vses.get(ii).setDn(dn);
+									String vo2 = m.group(5);
+									vomsServers.get(ii).setHostname(host);
+									vomsServers.get(ii).setVomsServerPort(Integer.parseInt(vomsServerPort));
+									vomsServers.get(ii).setDn(dn);
+								}
+							}
+
+							// Voms Servers found - break the variable up and go setting
+							// fields
+							elements = breakString(vomsServersLine);
+							ei = elements.iterator();
+							ii = -1;
+							while (ei.hasNext()) {
+								ii++;
+								ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
+								String el = (String) ei.next();
+
+								// Pattern matching to save a lot of tinkering
+								Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
+								Matcher m = p.matcher(el);
+								if (m.find()) {
+									String hostToFind = m.group(1);
+									Integer httpsPort = Integer.parseInt(m.group(2));
+
+									// Go over all the VOMS Servers, finding the one that matches this record
+									Iterator<VomsServer> vs = vomsServers.iterator();
+									Boolean setPort = false;
+									while (vs.hasNext()) {
+										VomsServer v = vs.next();
+										String h = v.getHostname();
+										if (h.equalsIgnoreCase(hostToFind)) {
+											v.setHttpsPort(httpsPort);
+											setPort = true;
+										}
+									}
+									if (!setPort) {
+										System.out.println("Warning: Unable to find a voms server for one of these: " + vomsServersLine);
+									}
+								} else {
+									System.out.println("Warning: Weird VOMS_SERVER line: " + el.toString());
 								}
 							}
 						}
@@ -265,23 +326,27 @@ public class SidParser {
 				}
 			}
 		}
-		
+
 		// Finally, sort those voms servers
-		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(allVoidInfo.values ()); 
-		
+		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values());
+
 		Iterator<VirtOrgInfo> allIt = v.iterator();
 		while (allIt.hasNext()) {
 			VirtOrgInfo voi = allIt.next();
 			voi.sortVomsServers();
 		}
 	}
-	
-  /**
-   * Executes some command and returns its stdout
-   * @param cmdLine command to execute
-   * @return output from command
-   */
+
+	/**
+	 * Executes some command and returns its stdout
+	 * 
+	 * @param cmdLine
+	 *          command to execute
+	 * @return output from command
+	 */
 	public static ArrayList<String> cmdExec(String cmdLine) throws Exception {
+
+		// Return output as a list
 		ArrayList<String> output = new ArrayList<String>();
 
 		String lineBack;
@@ -299,48 +364,43 @@ public class SidParser {
 		return output;
 	}
 
-  /**
-   * Breaks up a yaim variable string, according to this contract
- 	 * Contract:
-   *  + NAME=
-	 * then: 
-	 *  Nothing - string is empty
-	 *  Space   - string is empty
-	 *   String, without leading ' char - whole content is one element
-	 *	
-	 *   String with leading ' char:
-	 *     then:
-	 *       without '\''' - string is simple string bounded by '', one element
-	 *       with '\''' ... string is a sequence of elements separated by that
-   * 
-   * @param cmdLine command to execute
-   * @return output from command
-   */
-	
+	/**
+	 * Breaks up a yaim variable string, according to this contract Contract: +
+	 * NAME= then: Nothing - string is empty Space - string is empty String,
+	 * without leading ' char - whole content is one element
+	 * 
+	 * String with leading ' char: then: without '\''' - string is simple string
+	 * bounded by '', one element with '\''' ... string is a sequence of elements
+	 * separated by that
+	 * 
+	 * @param cmdLine
+	 *          command to execute
+	 * @return output from command
+	 */
+
 	private ArrayList<String> breakString(String s) {
-    
+
 		String payload = s;
-		
+
 		payload = payload.substring(s.indexOf('=') + 1);
 		payload = payload.trim();
 		if (payload.isEmpty()) {
 			// No elements
 			return new ArrayList<String>();
 		}
-		
+
 		if (!payload.startsWith("'")) {
 			// One element
-			ArrayList <String> res = new ArrayList<String>();
-			res.add(payload);			
+			ArrayList<String> res = new ArrayList<String>();
+			res.add(payload);
 			return res;
-		}
-		else {
+		} else {
 			// String with leading ' char.
 			// Cut off bounding chars
-			payload = payload.substring(1,payload.length() - 1);
+			payload = payload.substring(1, payload.length() - 1);
 			if (payload.startsWith("'\\''")) {
 				// Some elements ...
-				
+
 				// This is what '\'' looks like in Java as a regex. Don't blame me.
 				String[] tokens = payload.split("\\'\\\\\'\'");
 				ArrayList<String> res = new ArrayList<String>();
@@ -350,11 +410,10 @@ public class SidParser {
 					}
 				}
 				return res;
-			}
-			else {
+			} else {
 				// One element
-				ArrayList <String> res = new ArrayList<String>();
-				res.add(payload);			
+				ArrayList<String> res = new ArrayList<String>();
+				res.add(payload);
 				return res;
 			}
 		}

@@ -41,12 +41,16 @@ public class VomsServer {
 
 	/**
 	 * Checks if all the fields of the VomsServer have been found
-	 * @return flag to say if all record is complete
+   * Note: I don't care about httpsPort, which is derived from VOMS_SERVERS line,
+	 * because VOMS_SERVERS line represents servers that can provide grid-mapfiles,
+	 * and not all voms servers can do this, due to the CERN rule (it actually was 
+	 * deemed desirable that grid-mapfiles be generated using voms.cern.ch only, 
+	 * because lcg-voms.cern.ch is already running the VOMRS (sic) service as an extra load).	 * @return flag to say if all relevant data is complete
 	 */
 	public void setWhetherComplete() {
 		complete = false;
-		if (httpsPort == -1)
-			return;
+//		if (httpsPort == -1)
+//			return;
 		if (vomsServerPort == -1)
 			return;
 		if (hostname == null)
@@ -61,25 +65,27 @@ public class VomsServer {
 	}
 	
 	public void printIncomplete() {
-		
+		String msg = "";
 		if (httpsPort == -1) {
-		  System.out.println("null httpsPort");	
+			msg += ", httpsPort";
 		}
 		if (vomsServerPort == -1) {
-		  System.out.println("null vomsServerPort");	
+			msg += ", vomsServerPort";
 		}
 		if (hostname == null) {
-		  System.out.println("null hostname");	
+			msg += ", hostname";
 		}
 		if (dn == null) {
-		  System.out.println("null dn");
+			msg += ", dn";
 		}
 		if (caDn == null) {
-		  System.out.println("null caDn");
+			msg += ", caDn";
 		}
 		if (membersListUrl == null) {
-		  System.out.println("null membersListUrl");	
+			msg += ", membersListUrl";
 		}
+		msg = msg.substring(1);
+		System.out.println("Missing fields were: " + msg);
 	}
 	
 
@@ -188,13 +194,13 @@ public class VomsServer {
 		return complete;
 	}
 
-	/**
-	 * Setter for a field - complete flag
-	 * @return null
-	 */
-	public void setComplete(Boolean complete) {
-		this.complete = complete;
-	}
+//	/**
+//	 * Setter for a field - complete flag
+//	 * @return null
+//	 */
+//	public void setComplete(Boolean complete) {
+//		this.complete = complete;
+//	}
 
 	/**
 	 * Returns a representative string
@@ -217,6 +223,9 @@ public class VomsServer {
 	 */
 	public String makeUrl(String vo) {
 		StringBuffer url = new StringBuffer();
+		if (this.httpsPort == -1) {
+			System.out.println("DEBUG: httpsPort is " + this.httpsPort);
+		}
 		url.append("vomss://" + hostname + ":" + this.httpsPort + "/voms/" + vo + "?/" + vo);
 
 		return url.toString();

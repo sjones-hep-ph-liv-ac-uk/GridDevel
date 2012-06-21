@@ -11,7 +11,7 @@ wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all
 
 rsync -a --delete root@hepgrid6:/root/glitecfg/ glitecfg/
 
-~/git/GridDevel/vs_scripts/ant/SidFormatter.sh  --flat --oldsiddir glitecfg/ --newsiddir site-formatted
+~/git/GridDevel/vs_scripts/ant/SidFormatter.sh  --flat --myvos myvos.txt --oldsiddir glitecfg/ --newsiddir site-formatted
 
 diff  site-formatted/site-info.def newest/site-info.def > diffs.txt
 ls -lrt diffs.txt

@@ -62,7 +62,7 @@ public class WordList {
 	 * @return whether the word is in the list
 	 */
 
-	public boolean isInList(String s) {
+	public boolean containsWithCase(String s) {
 
 		Enumeration<String> keys = dictionaryOfWords.keys();
 
@@ -75,6 +75,21 @@ public class WordList {
 		}
 		return false;
 	}
+	
+	public boolean containsNoCase(String s) {
+
+		Enumeration<String> keys = dictionaryOfWords.keys();
+
+		while (keys.hasMoreElements()) {
+			String key = keys.nextElement();
+			if (key.equalsIgnoreCase(s)) {
+				dictionaryOfWords.put(key, true);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 	/**
 	 * Return a list of any words not looked up
