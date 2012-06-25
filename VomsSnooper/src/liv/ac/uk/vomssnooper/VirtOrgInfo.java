@@ -104,7 +104,7 @@ public class VirtOrgInfo {
 	 *          some extra fields this program can generate
 	 * @return VOMS lines
 	 */
-	public ArrayList<String> getVomsLines(Boolean validOnly, Boolean extraFields) {
+	public ArrayList<String> getVomsLines(Boolean validOnly, Boolean extraFields, Boolean applyCernRule) {
 
 		ArrayList<String> vomsLines = new ArrayList<String>();
 		StringBuffer vomsServerLine = new StringBuffer();
@@ -153,10 +153,8 @@ public class VirtOrgInfo {
 
 		// Loop to do the voms servers line; first find out if it's all
 		// superceded by the cern rule (For CERN servers it was deemed desirable
-		// that
-		// grid-mapfiles be generated using voms.cern.ch only, because
-		// lcg-voms.cern.ch
-		// is already running the VOMRS (sic) service as an extra load).
+		// that grid-mapfiles be generated using voms.cern.ch only, because
+		// lcg-voms.cern.ch is already running the VOMRS (sic) service as an extra load).
 
 		ArrayList<String> urls = new ArrayList<String>();
 		String superceder = null;
@@ -180,15 +178,18 @@ public class VirtOrgInfo {
 				superceder = url;
 			}
 		}
-		
-		if (superceder == null) {
+
+		if ((superceder == null) || (applyCernRule == false)) {
 			Iterator<String> i = urls.iterator();
 			while (i.hasNext()) {
+				String u = i.next();
+				// System.out.println("DEBUG: For vo " + voName + " adding url " + u);
 				vomsServerLine.append("'");
-				vomsServerLine.append(i.next());
+				vomsServerLine.append(u);
 				vomsServerLine.append("' ");
 			}
 		} else {
+			// System.out.println("DEBUG: For vo " + voName + " adding superceder " + superceder);
 			vomsServerLine.append("'");
 			vomsServerLine.append(superceder);
 			vomsServerLine.append("' ");

@@ -31,11 +31,12 @@ public class Utils {
 	 * 
 	 * @return null
 	 */
-	private static void printStandardStyle(VirtOrgInfo v, PrintStream ps, Boolean extraFields, Boolean noSillySids) {
+	private static void printStandardStyle(VirtOrgInfo v, PrintStream ps, Boolean extraFields, Boolean noSillySids, Boolean applyCernRule) {
 
-		ArrayList<String> vomsLines = v.getVomsLines(true, extraFields);
+		ArrayList<String> vomsLines = v.getVomsLines(true, extraFields, applyCernRule);
 		Iterator<String> i = vomsLines.iterator();
-		HashMap<String,Boolean> sillySids = new HashMap<String,Boolean>();
+		HashMap<String,Boolean> sillySidAcceptedWarnings = new HashMap<String,Boolean>();
+		HashMap<String,Boolean> sillySidDroppedWarnings = new HashMap<String,Boolean>();
 		
 		while (i.hasNext()) {
 			String vs = i.next();
@@ -47,14 +48,13 @@ public class Utils {
   			  ps.print("VO_" + n + "_" + vs + "\n");
 				}
 				else {
-					System.out.print("Silly SID was dropped - " + n + "\n");
+					sillySidDroppedWarnings.put(n, true);
   			  ps.print("# VO_" + n + "_" + vs + "\n");
 				}
 			}
 			else {
 				if (n.contains(".") == true) {
-					sillySids.put(n, true);
-					// System.out.print("Warning: silly SID was found, but printed anyway - " + n + "\n");
+					sillySidAcceptedWarnings.put(n, true);
 				}
   			ps.print("VO_" + n + "_" + vs + "\n");
 			}
@@ -62,10 +62,15 @@ public class Utils {
 		ps.print("\n");
 		
 		// Print the warnings
-		Iterator<Entry<String, Boolean>> entries = sillySids.entrySet().iterator();
+		Iterator<Entry<String, Boolean>> entries = sillySidAcceptedWarnings.entrySet().iterator();
 		while (entries.hasNext()) {
 		  Entry<String, Boolean> entry = entries.next();
-			System.out.print("Warning: silly SID was found, but printed anyway - " + entry.getKey()  + "\n");
+			System.out.print("Warning: silly SIDs for - " + entry.getKey()  + " - were found but processed anyway\n");
+		}
+		entries = sillySidDroppedWarnings.entrySet().iterator();
+		while (entries.hasNext()) {
+		  Entry<String, Boolean> entry = entries.next();
+			System.out.print("Warning: silly SIDs were dropped for - " + entry.getKey()  + "\n");
 		}
 
 	}
@@ -76,7 +81,7 @@ public class Utils {
 	 * @param The vo to print
 	 * @return null
 	 */
-	private static void printVodStyle(VirtOrgInfo v, String vodDir, Boolean extraFields, Boolean printVodTitleLine) {
+	private static void printVodStyle(VirtOrgInfo v, String vodDir, Boolean extraFields, Boolean printVodTitleLine, Boolean applyCernRule) {
 
 		String filename = vodDir + "/" + v.getVoName();
 		
@@ -84,7 +89,7 @@ public class Utils {
 		try {
 			fos = new FileOutputStream(filename);
 			PrintStream ps = new PrintStream(fos);
-			ArrayList<String> vomsLines = v.getVomsLines(true, extraFields);
+			ArrayList<String> vomsLines = v.getVomsLines(true, extraFields, applyCernRule);
 			
 			if (printVodTitleLine) {
 				ps.print("# $YAIM_LOCATION/vo.d/" + v.getVoName() + "\n");
@@ -119,7 +124,7 @@ public class Utils {
 	 * @return null
 	 */
 	public static void printVoVariables(ArrayList<VirtOrgInfo> voidInfo, String sidFile, String vodDir , 
-			Boolean extraFields, Boolean noSillySids, Boolean printVodTitle, Boolean flat) {
+			Boolean extraFields, Boolean noSillySids, Boolean printVodTitle, Boolean flat, Boolean applyCernRule) {
 
 		Collections.sort(voidInfo, new ByVoName());
 
@@ -135,9 +140,9 @@ public class Utils {
 					
 					// Print out on standard style if either not a VOD, or if flat is specified
 					if ( (v.isVodStyle() != true) | (flat)) {
-						printStandardStyle(v, ps, extraFields,noSillySids);
+						printStandardStyle(v, ps, extraFields,noSillySids,applyCernRule);
 					} else {
-						printVodStyle(v, vodDir, extraFields, printVodTitle);
+						printVodStyle(v, vodDir, extraFields, printVodTitle,applyCernRule);
 					}
 				}
 			}

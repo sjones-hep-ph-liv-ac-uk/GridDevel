@@ -142,7 +142,7 @@ my @oldKeysInOrder = sort (keys( %hashOfOldFiles));
 my @deltaKeysInOrder = sort (keys( %hashOfDeltaFiles));
   
 # For every old file, you need a new file, and vice versa.
-die ("Incompatible - different files in each repo\n$oldFileBases,$deltaFileBases\n") unless ($oldFileBases eq $deltaFileBases);
+die ("Incompatible - different files in each repo\n$oldFileBases\n$deltaFileBases\n") unless ($oldFileBases eq $deltaFileBases);
 
  # Now go over the old files 
 for (my $ii = 0; $ii <= $#oldKeysInOrder; $ii++) {

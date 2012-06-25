@@ -224,7 +224,7 @@ public class VomsServer {
 	public String makeUrl(String vo) {
 		StringBuffer url = new StringBuffer();
 		if (this.httpsPort == -1) {
-			System.out.println("DEBUG: httpsPort is " + this.httpsPort);
+			System.out.println("Warning: httpsPort for " + vo + " is " + this.httpsPort);
 		}
 		url.append("vomss://" + hostname + ":" + this.httpsPort + "/voms/" + vo + "?/" + vo);
 

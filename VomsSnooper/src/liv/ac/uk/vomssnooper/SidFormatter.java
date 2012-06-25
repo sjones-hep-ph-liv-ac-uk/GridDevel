@@ -64,7 +64,7 @@ public class SidFormatter {
 	 */
 	public void printResults(){
 		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values ()); 
-		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false,false,false,flat);
+		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false,false,false,flat,false);
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class SidFormatter {
 		System.out.println("Mandatory arguments: ");
 		System.out.println("  --oldsiddir dir   # Some existing directory that contains a populated site-info.def file and vo.d directory");
 		System.out.println("  --newsiddir dir   # Some existing directory that contains an unpopulated site-info.def file and vo.d directory");
-	  System.out.println("  --myvos   f       # Names of VO that I support");
+	  System.out.println("  --myvos   f       # Names of VOs that I support");
 		System.out.println("Optional arguments: ");
 		System.out.println("  --flat            # Print all the records out in a site-info.def, even when they are silly sids");
 		System.out.println("  --help            # Prints this info");
@@ -102,7 +102,7 @@ public class SidFormatter {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.13 \n\n");
+		System.out.print("Version 1.14 \n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;

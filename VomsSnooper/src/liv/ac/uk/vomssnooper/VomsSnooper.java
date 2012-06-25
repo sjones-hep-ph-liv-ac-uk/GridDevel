@@ -126,7 +126,7 @@ public class VomsSnooper {
 	
 	public void printResults(){
 		
-		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields,noSillySids, printVodTitleLine,false);
+		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields,noSillySids, printVodTitleLine,false,true);
 		Utils.printContacts(voidInfo, contactsOutFile);
 		Utils.printLscFiles(voidInfo, vomsDir);
 	}
@@ -151,8 +151,8 @@ public class VomsSnooper {
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
 	  System.out.println("  --xmlfile f       # Input XML file downloaded from CIC portal");
-	  System.out.println("  --myvos   f       # Names of VO that I support");
-	  System.out.println("  --vodfile f       # Names of VO that must be output in VOD format");
+	  System.out.println("  --myvos   f       # Names of VOs that I support");
+	  System.out.println("  --vodfile f       # Names of VOs that must be output in VOD format");
 	  System.out.println("  --outfile f       # Where to write SIDs (records that can be represented in a site-info.def)");
 		System.out.println("Optional arguments: ");
 		System.out.println("  --help            # Prints this info");
