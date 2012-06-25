@@ -40,6 +40,9 @@ cat deleteme1 deleteme2 > VOIDCardInfo.xml
 # Transfer from hepgrid6 via:
 rsync -a --delete root@hepgrid6:/root/glitecfg/ $HOME/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/deployed
 
-./merger.pl --oldsiddir void/deployed --deltadir void/xml/ --newsiddir  void/merged
+# Merge those records in
+./sid_merger.pl --oldsid void/deployed/site-info.def --deltas void/xml/site-info.def --newsid void/merged/site-info.def
 
+# Completely replace the vo.d files
+rsync -a --delete void/xml/vo.d/ void/merged/vo.d
 

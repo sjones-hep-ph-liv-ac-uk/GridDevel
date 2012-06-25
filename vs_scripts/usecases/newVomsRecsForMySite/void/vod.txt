@@ -6,3 +6,4 @@ supernemo.vo.eu-egee.org
 minos.vo.gridpp.ac.uk
 camont.gridpp.ac.uk
 snoplus.snolab.ca
+na62.vo.gridpp.ac.uk
