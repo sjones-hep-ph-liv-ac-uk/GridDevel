@@ -42,6 +42,7 @@ my %vodArrays;
 foreach my $l (@oldSidFile) {
   if (($l =~ /^VO_/) and ($l !~ /^VO_SW_DIR/)) {
     # Hm... SIDs style VOMS Record
+    die ("This tool can't be used on files that use backslashes to extend lines.\n") unless($l !~ /\$/);
     $l =~ /^VO_([^_]*)_/;
     my $vo = $1;
     if (!(defined($vodArrays{$vo}))) {
@@ -54,22 +55,22 @@ foreach my $l (@oldSidFile) {
   } 
 }
 
-# Make sure VOs are not defined twice
-my $okToGo = 1;
-my $count = 0;
-foreach my $k (keys(%vodArrays)) {
-  my $voName = lc($k);
-  $count++;
-  if (-f $vodDir . $voName) {
-    print("The vo.d directory for VO " . $vodDir . $voName . " already exists\n");
-    $okToGo = 0;
-  }
-}
-
-die ("Clear up conflicts first. No changes made.\n") unless $okToGo;
-die ("Nothing to do. No changes made.\n") unless $count > 0;
-
 if ($parameter{'NOVODS'} == 0) {
+  # Make sure VOs are not defined twice
+  my $okToGo = 1;
+  my $count = 0;
+  foreach my $k (keys(%vodArrays)) {
+    my $voName = lc($k);
+    $count++;
+    if (-f $vodDir . $voName) {
+      print("The vo.d directory for VO " . $vodDir . $voName . " already exists\n");
+      $okToGo = 0;
+    }
+  }
+  
+  die ("Clear up conflicts first. No changes made.\n") unless $okToGo;
+  die ("Nothing to do. No changes made.\n") unless $count > 0;
+
   # Print out the new VODs
   foreach my $k (keys(%vodArrays)) {
     my $voName = lc($k);
