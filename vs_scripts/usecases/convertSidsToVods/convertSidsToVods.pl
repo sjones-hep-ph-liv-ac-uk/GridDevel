@@ -38,11 +38,12 @@ my %vodArrays;
 
 # Split the file into a new sid-info.def, that contains no VO_ variables (bar VO_SW_DIR),
 # and set of new individual files for each VOD
-
+my $lineCount = 0;
 foreach my $l (@oldSidFile) {
+  $lineCount++;
   if (($l =~ /^VO_/) and ($l !~ /^VO_SW_DIR/)) {
     # Hm... SIDs style VOMS Record
-    die ("This tool can't be used on files that use backslashes to extend lines.\n") unless($l !~ /\$/);
+    die ("This tool can't be used on records that use backslashes to extend lines (line: $lineCount).\n") unless($l !~ /\\$/);
     $l =~ /^VO_([^_]*)_/;
     my $vo = $1;
     if (!(defined($vodArrays{$vo}))) {
