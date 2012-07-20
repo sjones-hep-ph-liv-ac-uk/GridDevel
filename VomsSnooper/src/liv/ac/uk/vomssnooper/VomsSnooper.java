@@ -11,51 +11,46 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import liv.ac.uk.snooputils.Utils;
+
 /**
  * Control the whole job
- * @author      Steve Jones  <sjones@hep.ph.liv.ac.uk>
- * @since       2012-02-24          
+ * 
+ * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
+ * @since 2012-02-24
  */
 
 public class VomsSnooper {
-	
 
-	private String xmlFile;  // the xml file that contains vo data
-	private String myVos;    // list of VOs that we support
-	private String vodVos;   // VOs that need to be printed in VOD format
-	private String vodDir;   // where to print the VOD files
-	private String sidFile;  // where to print the SID records
-	private Boolean extraFields;    // Whether to print some common extra fields
-	private Boolean noSillySids;    // Whether to omit silly SIDs, (e.g. VO_VO.LONDONGRID.AC.UK)
-	private Boolean printVodTitleLine;    // Whether to print the vo.d dir name used
+	private String xmlFile; // the xml file that contains vo data
+	private String myVos; // list of VOs that we support
+	private String vodVos; // VOs that need to be printed in VOD format
+	private String vodDir; // where to print the VOD files
+	private String sidFile; // where to print the SID records
+	private Boolean extraFields; // Whether to print some common extra fields
+	private Boolean noSillySids; // Whether to omit silly SIDs, (e.g. VO_VO.LONDONGRID.AC.UK)
+	private Boolean printVodTitleLine; // Whether to print the vo.d dir name used
 	private String contactsOutFile; // File to write contacts to
-	private String vomsDir;         // Directory where LSC files would get written
-	
+	private String vomsDir; // Directory where LSC files would get written
+
 	private ArrayList<VirtOrgInfo> voidInfo = new ArrayList<VirtOrgInfo>();;
 
 	/**
 	 * Basic constructor
-	 *  
-	 * @param x
-	 *          xml file to read for the VO info
-	 * @param vos
-	 *          list of Vos to select for this site
-	 * @param vods
-	 *          List of vos that need to be on vo.d format
-	 * @param dir
-	 *          Place to put the vo.d files
-	 * @param out
-	 *          Regular output file for other (not vo.d) VOs
-	 * @param ef
-	 *          Whether to print extra fields
-	 * @param cof
-	 *          Contacts output file
-	 * @param vd
-	 *          Where to write LSC files
-	 *          
+	 * 
+	 * @param x xml file to read for the VO info
+	 * @param vos list of Vos to select for this site
+	 * @param vods List of vos that need to be on vo.d format
+	 * @param dir Place to put the vo.d files
+	 * @param out Regular output file for other (not vo.d) VOs
+	 * @param ef Whether to print extra fields
+	 * @param cof Contacts output file
+	 * @param vd Where to write LSC files
+	 * 
 	 * @return null
 	 */
-	public VomsSnooper(String x, String vos, String vods, String dir, String out, Boolean ef, Boolean nss, Boolean pvd, String cos, String vd) {
+	public VomsSnooper(String x, String vos, String vods, String dir, String out, Boolean ef, Boolean nss, Boolean pvd, String cos,
+			String vd) {
 
 		xmlFile = x;
 		myVos = vos;
@@ -90,7 +85,8 @@ public class VomsSnooper {
 			VirtOrgInfo voi = it.next();
 			if (myVos != null) {
 				voi.setAtMySite(siteVos.containsNoCase(voi.getVoName()));
-			} else {
+			}
+			else {
 				voi.setAtMySite(true);
 			}
 			voi.checkComplete();
@@ -107,7 +103,8 @@ public class VomsSnooper {
 			VirtOrgInfo v = it.next();
 			if (vodVos != null) {
 				v.setVodStyle(myVodList.containsNoCase(v.getVoName()));
-			} else {
+			}
+			else {
 				v.setVodStyle(false);
 			}
 		}
@@ -123,15 +120,13 @@ public class VomsSnooper {
 			System.out.print("  No void info found for : " + spare + "\n");
 		}
 	}
-	
-	public void printResults(){
-		
-		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields,noSillySids, printVodTitleLine,false,true);
+
+	public void printResults() {
+
+		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields, noSillySids, printVodTitleLine, false, true);
 		Utils.printContacts(voidInfo, contactsOutFile);
 		Utils.printLscFiles(voidInfo, vomsDir);
 	}
-
-
 
 	/**
 	 * Main
@@ -143,27 +138,26 @@ public class VomsSnooper {
 	private enum OptList {
 		printvodtitle, nosillysids, extrafields, xmlfile, myvos, vodfile, voddir, outfile, help, contactsfile, vomsdir
 	}
-	
+
 	public static void printHelpPage() {
 		System.out.println("");
 		System.out.println("This tool takes an XML file from the CIC portal, and ");
 		System.out.println("formats it into a standard, sorted manner for Yaim. ");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
-	  System.out.println("  --xmlfile f       # Input XML file downloaded from CIC portal");
-	  System.out.println("  --myvos   f       # Names of VOs that I support");
-	  System.out.println("  --vodfile f       # Names of VOs that must be output in VOD format");
-	  System.out.println("  --outfile f       # Where to write SIDs (records that can be represented in a site-info.def)");
+		System.out.println("  --xmlfile f       # Input XML file downloaded from CIC portal");
+		System.out.println("  --myvos   f       # Names of VOs that I support");
+		System.out.println("  --vodfile f       # Names of VOs that must be output in VOD format");
+		System.out.println("  --outfile f       # Where to write SIDs (records that can be represented in a site-info.def)");
 		System.out.println("Optional arguments: ");
 		System.out.println("  --help            # Prints this info");
-	  System.out.println("  --voddir  d       # Where to write VODs (records that cannot be represented in a site-info.def)");
- 	  System.out.println("  --printvodtitle   # When printing VODs, put the name of the VOD file in the output");
- 	  System.out.println("  --nosillysids     # When printing SIDs, don't reject ones with silly names (DNS/dot style)");
- 	  System.out.println("  --extrafields     # Print some extra fields (not recommended)");
- 	  System.out.println("  --contactsfile    # Where to print the VO contacts (not recommended)");
- 	  System.out.println("  --vomsdir         # Where to print LSC Files ");
+		System.out.println("  --voddir  d       # Where to write VODs (records that cannot be represented in a site-info.def)");
+		System.out.println("  --printvodtitle   # When printing VODs, put the name of the VOD file in the output");
+		System.out.println("  --nosillysids     # When printing SIDs, don't reject ones with silly names (DNS/dot style)");
+		System.out.println("  --extrafields     # Print some extra fields (not recommended)");
+		System.out.println("  --contactsfile    # Where to print the VO contacts (not recommended)");
+		System.out.println("  --vomsdir         # Where to print LSC Files ");
 	}
-	
 
 	public static void main(String[] args) {
 
@@ -180,7 +174,7 @@ public class VomsSnooper {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.14\n\n");
+		System.out.print("Version 1.16\n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
@@ -239,17 +233,23 @@ public class VomsSnooper {
 
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.xmlfile.ordinal()) {
 				xmlFile = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.myvos.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.myvos.ordinal()) {
 				myVos = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.vodfile.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.vodfile.ordinal()) {
 				vodFile = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.voddir.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.voddir.ordinal()) {
 				vodDir = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.outfile.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.outfile.ordinal()) {
 				outFile = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.contactsfile.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.contactsfile.ordinal()) {
 				contactsOutFile = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.vomsdir.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.vomsdir.ordinal()) {
 				vomsDir = ((arg != null) ? arg : "null");
 			}
 		}
@@ -290,7 +290,7 @@ public class VomsSnooper {
 			}
 		}
 
-    // Print LSC files in vomsdir?
+		// Print LSC files in vomsdir?
 		if (vomsDir != null) {
 			if (!(new File(vomsDir)).isDirectory()) {
 				System.out.print("The --vomdsdir (" + vomsDir + ") is not a directory\n");
@@ -299,13 +299,13 @@ public class VomsSnooper {
 		}
 
 		// Make the Controller class
-		
-		VomsSnooper vs = new VomsSnooper(xmlFile, myVos, vodFile, vodDir, outFile, extraFields, noSillySids, printVodTitle, contactsOutFile, vomsDir);
+
+		VomsSnooper vs = new VomsSnooper(xmlFile, myVos, vodFile, vodDir, outFile, extraFields, noSillySids, printVodTitle,
+				contactsOutFile, vomsDir);
 
 		// Parse the XML File
 		vs.parse();
 
-    
 		// Print out various results
 		vs.printResults();
 	}

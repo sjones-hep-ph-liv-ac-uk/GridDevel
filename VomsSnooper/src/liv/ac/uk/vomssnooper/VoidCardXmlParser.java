@@ -11,27 +11,30 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/** Parses an XML File of VOID cards 
- * @author      Steve Jones  <sjones@hep.ph.liv.ac.uk>                                    
- * @since       2012-02-24          
+/**
+ * Parses an XML File of VOID cards
+ * 
+ * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
+ * @since 2012-02-24
  */
 public class VoidCardXmlParser extends DefaultHandler {
 
 	private VirtOrgInfo currentVoInfo;
 	private VomsServer currentVomsServer;
 	private IndividualContact currentIc;
-	
+
 	private Boolean hasGlite;
 	private String currentTag;
 	private String chars;
 	private String xmlFile;
 	private ArrayList<VirtOrgInfo> allVoidInfo;
 
-  /**
-   * Constructor
-   * @param x XML FIle to parse
-   * @param v Where to parse the results into
-   */
+	/**
+	 * Constructor
+	 * 
+	 * @param x XML FIle to parse
+	 * @param v Where to parse the results into
+	 */
 	public VoidCardXmlParser(String x, ArrayList<VirtOrgInfo> v) {
 		xmlFile = x;
 		allVoidInfo = v;
@@ -39,6 +42,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 	/**
 	 * Parse the VOID XML file
+	 * 
 	 * @return null
 	 */
 	public void parseDocument() {
@@ -52,20 +56,23 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 			// parse the file and also register this class for call backs
 			sp.parse(xmlFile, this);
-			
+
 			// Finally, sort those voms servers
-			
+
 			Iterator<VirtOrgInfo> allIt = allVoidInfo.iterator();
 			while (allIt.hasNext()) {
 				VirtOrgInfo voi = allIt.next();
 				voi.sortVomsServers();
 			}
-			
-		} catch (SAXException se) {
+
+		}
+		catch (SAXException se) {
 			se.printStackTrace();
-		} catch (ParserConfigurationException pce) {
+		}
+		catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
-		} catch (IOException ie) {
+		}
+		catch (IOException ie) {
 			ie.printStackTrace();
 		}
 	}
@@ -94,14 +101,16 @@ public class VoidCardXmlParser extends DefaultHandler {
 			try {
 
 				currentVomsServer.setHttpsPort(Integer.valueOf(attributes.getValue("HttpsPort")));
-			} catch (NumberFormatException e) {
+			}
+			catch (NumberFormatException e) {
 				System.out.print("Bad format for port, HttpsPort\n");
 				currentVomsServer.setHttpsPort(-1);
 			}
 			try {
 
 				currentVomsServer.setVomsServerPort(Integer.valueOf(attributes.getValue("VomsesPort")));
-			} catch (NumberFormatException e) {
+			}
+			catch (NumberFormatException e) {
 				System.out.print("Bad format for port, VomsesPort\n");
 				currentVomsServer.setVomsServerPort(-1);
 			}
@@ -110,12 +119,12 @@ public class VoidCardXmlParser extends DefaultHandler {
 			currentVomsServer.setMembersListUrl(attributes.getValue("MembersListUrl"));
 
 		}
-		
+
 		if (qName.equalsIgnoreCase("Contact")) {
 			currentTag = "Contact";
-			currentIc= new IndividualContact("nowt","nowt","nowt","nowt");
+			currentIc = new IndividualContact("nowt", "nowt", "nowt", "nowt");
 		}
-		
+
 		if (qName.equals("X509Cert")) {
 			currentTag = "X509Cert";
 		}
@@ -133,25 +142,28 @@ public class VoidCardXmlParser extends DefaultHandler {
 			currentVoInfo.addIc(currentIc);
 			currentTag = "";
 		}
-		
+
 		if (currentTag.equals("Contact")) {
-  		if (qName.equalsIgnoreCase("Name")) {
-  			
+			if (qName.equalsIgnoreCase("Name")) {
+
 				currentIc.setName(chars.trim().replace("\n", ""));
 			}
-  		if (qName.equalsIgnoreCase("Role")) {
+			if (qName.equalsIgnoreCase("Role")) {
 				currentIc.setRole(chars.trim().replace("\n", ""));
 			}
-  		if (qName.equalsIgnoreCase("Email")) {
+			if (qName.equalsIgnoreCase("Email")) {
 				currentIc.setEmail(chars.trim().replace("\n", ""));
 			}
-  		if (qName.equalsIgnoreCase("DN")) {
+			if (qName.equalsIgnoreCase("DN")) {
 				currentIc.setDn(chars.trim().replace("\n", ""));
 			}
 		}
-			
+
 		if (qName.equalsIgnoreCase("VOMS_Server")) {
-			currentVoInfo.addVomsServer(currentVomsServer);
+			// Throw away incomplete VOMS Servers
+			if (currentVomsServer.getDn() != null) {
+				currentVoInfo.addVomsServer(currentVomsServer);
+			}
 		}
 		if (qName.equalsIgnoreCase("hostname")) {
 			currentVomsServer.setHostname(chars);
@@ -176,7 +188,6 @@ public class VoidCardXmlParser extends DefaultHandler {
 			currentTag = "";
 	}
 
-	
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		chars = new String(ch, start, length);
 	}

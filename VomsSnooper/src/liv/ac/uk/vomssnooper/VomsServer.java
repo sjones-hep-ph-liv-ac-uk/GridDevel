@@ -6,11 +6,12 @@
 package liv.ac.uk.vomssnooper;
 
 public class VomsServer {
-	
+
 	/**
 	 * Class to facilitate a sort function
+	 * 
 	 * @author sjones
-	 *
+	 * 
 	 */
 	public static class ByVomsServerDn implements java.util.Comparator<VomsServer> {
 		public int compare(VomsServer first, VomsServer second) {
@@ -40,17 +41,16 @@ public class VomsServer {
 	}
 
 	/**
-	 * Checks if all the fields of the VomsServer have been found
-   * Note: I don't care about httpsPort, which is derived from VOMS_SERVERS line,
-	 * because VOMS_SERVERS line represents servers that can provide grid-mapfiles,
-	 * and not all voms servers can do this, due to the CERN rule (it actually was 
-	 * deemed desirable that grid-mapfiles be generated using voms.cern.ch only, 
-	 * because lcg-voms.cern.ch is already running the VOMRS (sic) service as an extra load).	 * @return flag to say if all relevant data is complete
+	 * Checks if all the fields of the VomsServer have been found Note: I don't care about httpsPort, which is derived from
+	 * VOMS_SERVERS line, because VOMS_SERVERS line represents servers that can provide grid-mapfiles, and not all voms servers can do
+	 * this, due to the CERN rule (it actually was deemed desirable that grid-mapfiles be generated using voms.cern.ch only, because
+	 * lcg-voms.cern.ch is already running the VOMRS (sic) service as an extra load). * @return flag to say if all relevant data is
+	 * complete
 	 */
 	public void setWhetherComplete() {
 		complete = false;
-//		if (httpsPort == -1)
-//			return;
+		// if (httpsPort == -1)
+		// return;
 		if (vomsServerPort == -1)
 			return;
 		if (hostname == null)
@@ -63,7 +63,7 @@ public class VomsServer {
 			return;
 		complete = true;
 	}
-	
+
 	public void printIncomplete() {
 		String msg = "";
 		if (httpsPort == -1) {
@@ -87,10 +87,10 @@ public class VomsServer {
 		msg = msg.substring(1);
 		System.out.println("Missing fields were: " + msg);
 	}
-	
 
 	/**
 	 * Getter for a field - membersListUrl
+	 * 
 	 * @return the field requested
 	 */
 	public String getMembersListUrl() {
@@ -99,6 +99,7 @@ public class VomsServer {
 
 	/**
 	 * Setter for a field - membersListUrl
+	 * 
 	 * @return null
 	 */
 	public void setMembersListUrl(String membersListUrl) {
@@ -107,6 +108,7 @@ public class VomsServer {
 
 	/**
 	 * Getter for a field - httpsPort
+	 * 
 	 * @return the field requested
 	 */
 	public Integer getHttpsPort() {
@@ -115,6 +117,7 @@ public class VomsServer {
 
 	/**
 	 * Setter for a field - httpsPort
+	 * 
 	 * @return null
 	 */
 	public void setHttpsPort(Integer httpsPort) {
@@ -123,6 +126,7 @@ public class VomsServer {
 
 	/**
 	 * Getter for a field - vomsesPort
+	 * 
 	 * @return the field requested
 	 */
 	public Integer getVomsesPort() {
@@ -131,6 +135,7 @@ public class VomsServer {
 
 	/**
 	 * Setter for a field - vomsesPort
+	 * 
 	 * @return null
 	 */
 	public void setVomsServerPort(Integer vomsesPort) {
@@ -139,6 +144,7 @@ public class VomsServer {
 
 	/**
 	 * Getter for a field - hostname
+	 * 
 	 * @return the field requested
 	 */
 	public String getHostname() {
@@ -147,6 +153,7 @@ public class VomsServer {
 
 	/**
 	 * Setter for a field - hostname
+	 * 
 	 * @return null
 	 */
 	public void setHostname(String hostname) {
@@ -155,6 +162,7 @@ public class VomsServer {
 
 	/**
 	 * Getter for a field - dn
+	 * 
 	 * @return the field requested
 	 */
 	public String getDn() {
@@ -163,6 +171,7 @@ public class VomsServer {
 
 	/**
 	 * Setter for a field - dn
+	 * 
 	 * @return null
 	 */
 	public void setDn(String dn) {
@@ -171,6 +180,7 @@ public class VomsServer {
 
 	/**
 	 * Getter for a field - cadn
+	 * 
 	 * @return the field requested
 	 */
 	public String getCaDn() {
@@ -179,31 +189,33 @@ public class VomsServer {
 
 	/**
 	 * Setter for a field - cadn
+	 * 
 	 * @return null
 	 */
 	public void setCaDn(String caDn) {
 		this.caDn = caDn;
 	}
 
-
 	/**
 	 * Getter for a field - complete flag
+	 * 
 	 * @return the field requested
 	 */
 	public Boolean isComplete() {
 		return complete;
 	}
 
-//	/**
-//	 * Setter for a field - complete flag
-//	 * @return null
-//	 */
-//	public void setComplete(Boolean complete) {
-//		this.complete = complete;
-//	}
+	// /**
+	// * Setter for a field - complete flag
+	// * @return null
+	// */
+	// public void setComplete(Boolean complete) {
+	// this.complete = complete;
+	// }
 
 	/**
 	 * Returns a representative string
+	 * 
 	 * @return String to represent the object
 	 */
 	public String toString() {
@@ -213,12 +225,13 @@ public class VomsServer {
 		sb.append(" " + hostname + ",");
 		sb.append(" " + dn + ",");
 		sb.append(" " + caDn + ",");
-		sb.append(" " + membersListUrl );
+		// sb.append(" " + membersListUrl );
 		return sb.toString();
 	}
 
 	/**
 	 * Returns a representative URL
+	 * 
 	 * @return URL to represent the object
 	 */
 	public String makeUrl(String vo) {
@@ -229,5 +242,16 @@ public class VomsServer {
 		url.append("vomss://" + hostname + ":" + this.httpsPort + "/voms/" + vo + "?/" + vo);
 
 		return url.toString();
+	}
+
+	public StringBuffer isAlike(VomsServer other) {
+		StringBuffer report = new StringBuffer();
+		String thisVs = this.toString();
+		String otherVs = other.toString();
+
+		if (!otherVs.equals(thisVs)) {
+			report.append("This voms server:\n" + thisVs + "\ndiffers from the other one:\n" + otherVs);
+		}
+		return report;
 	}
 }

@@ -29,8 +29,7 @@ public class WordList {
 	/**
 	 * Read the word into the list from some file
 	 * 
-	 * @param file
-	 *          File to read
+	 * @param file File to read
 	 * @return null
 	 */
 	void readWords(String file) {
@@ -48,7 +47,8 @@ public class WordList {
 				dictionaryOfWords.put(strLine.trim(), false);
 			}
 			in.close();
-		} catch (Exception e) {// Catch exception if any
+		}
+		catch (Exception e) {// Catch exception if any
 			System.err.println("Error: " + e.getMessage());
 			System.exit(1);
 		}
@@ -57,8 +57,7 @@ public class WordList {
 	/**
 	 * Check if a given word is in the list
 	 * 
-	 * @param s
-	 *          word to check
+	 * @param s word to check
 	 * @return whether the word is in the list
 	 */
 
@@ -75,7 +74,7 @@ public class WordList {
 		}
 		return false;
 	}
-	
+
 	public boolean containsNoCase(String s) {
 
 		Enumeration<String> keys = dictionaryOfWords.keys();
@@ -89,12 +88,11 @@ public class WordList {
 		}
 		return false;
 	}
-	
 
 	/**
 	 * Return a list of any words not looked up
 	 * 
-	 * @return ArrayList<String> 
+	 * @return ArrayList<String>
 	 */
 	public ArrayList<String> getSpareWords() {
 		Enumeration<String> keys = dictionaryOfWords.keys();

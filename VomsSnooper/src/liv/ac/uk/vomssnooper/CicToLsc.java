@@ -6,35 +6,34 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import liv.ac.uk.snooputils.Utils;
+
 /**
- * Control the whole job
- * @author      Steve Jones  <sjones@hep.ph.liv.ac.uk>
- * @since       2012-06-15          
+ * Convert CIC Portal data to LSC files directly
+ * 
+ * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
+ * @since 2012-06-15
+ * 
  */
-
 public class CicToLsc {
-	
 
-	private String xmlFile;     // the xml file that contains vo data
+	private String xmlFile; // the xml file that contains vo data
 	private String approvedVos; // list of VOs that we support
-	private String vomsDir;     // Directory where LSC files would get written
-	
+	private String vomsDir; // directory where LSC files would get written
+
 	private ArrayList<VirtOrgInfo> voidInfo = new ArrayList<VirtOrgInfo>();;
 
 	/**
 	 * Basic constructor
-	 *  
-	 * @param x
-	 *          xml file to read for the VO info
-	 * @param vos
-	 *          list of Vos to select for this site
-	 * @param vd
-	 *          Where to write LSC files
-	 *          
+	 * 
+	 * @param x xml file to read for the VO info
+	 * @param vos list of Vos to select for this site
+	 * @param vd where to write LSC files
+	 * 
 	 * @return null
+	 * 
 	 */
 	public CicToLsc(String x, String vos, String vd) {
-
 		xmlFile = x;
 		approvedVos = vos;
 		vomsDir = vd;
@@ -47,28 +46,31 @@ public class CicToLsc {
 	 */
 	public void parse() {
 
+		// Parse that XML file
 		VoidCardXmlParser spe = new VoidCardXmlParser(xmlFile, (ArrayList<VirtOrgInfo>) voidInfo);
-
 		spe.parseDocument();
 
+		// Get a list of VOs to support
 		WordList siteVos = new WordList();
 		if (approvedVos != null) {
 			siteVos.readWords(approvedVos);
 		}
 
+		// Get the ones at my site
 		Iterator<VirtOrgInfo> it = voidInfo.iterator();
 		while (it.hasNext()) {
 			VirtOrgInfo voi = it.next();
 			if (approvedVos != null) {
 				voi.setAtMySite(siteVos.containsNoCase((voi.getVoName())));
-			} else {
+			}
+			else {
 				voi.setAtMySite(true);
 			}
 			voi.checkComplete();
 		}
 
+		// Find any VOs supposedly at my site, but which were not found in the XML
 		ArrayList<String> spares = siteVos.getSpareWords();
-
 		Iterator<String> s = spares.iterator();
 		if (s.hasNext()) {
 			System.out.print("Warning: No void info could not be found for some of your VOs:\n");
@@ -78,8 +80,8 @@ public class CicToLsc {
 			System.out.print("  No void info found for : " + spare + "\n");
 		}
 	}
-	
-	public void printResults(){
+
+	public void printResults() {
 		Utils.printLscFiles(voidInfo, vomsDir);
 	}
 
@@ -93,20 +95,20 @@ public class CicToLsc {
 	private enum OptList {
 		help, xmlfile, approvedvos, vomsdir
 	}
-	
+
 	public static void printHelpPage() {
 		System.out.println("");
 		System.out.println("This tool takes an XML file from the CIC portal, and ");
 		System.out.println("creates a set of LSC files from the data, bypassing Yaim.");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
-	  System.out.println("  --xmlfile       f       # Input XML file downloaded from CIC portal");
-	  System.out.println("  --approvedvos   f       # File of names of VOs that I support");
- 	  System.out.println("  --vomsdir               # Where to print LSC Files ");
+		System.out.println("  --xmlfile       f       # Input XML file downloaded from CIC portal");
+		System.out.println("  --approvedvos   f       # File of names of VOs that I support");
+		System.out.println("  --vomsdir               # Where to print LSC Files ");
 		System.out.println("Optional arguments: ");
 		System.out.println("  --help                  # Prints this info");
 	}
-	
+
 	public static void main(String[] args) {
 
 		String xmlFile = null;
@@ -115,7 +117,7 @@ public class CicToLsc {
 
 		// Announcement
 		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.14\n\n");
+		System.out.print("Version 1.16\n\n");
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
@@ -125,7 +127,8 @@ public class CicToLsc {
 		longopts[OptList.help.ordinal()] = new LongOpt(OptList.help.name(), LongOpt.NO_ARGUMENT, sb, OptList.help.ordinal());
 		longopts[OptList.xmlfile.ordinal()] = new LongOpt(OptList.xmlfile.name(), LongOpt.REQUIRED_ARGUMENT, sb,
 				OptList.xmlfile.ordinal());
-		longopts[OptList.approvedvos.ordinal()] = new LongOpt(OptList.approvedvos.name(), LongOpt.REQUIRED_ARGUMENT, sb, OptList.approvedvos.ordinal());
+		longopts[OptList.approvedvos.ordinal()] = new LongOpt(OptList.approvedvos.name(), LongOpt.REQUIRED_ARGUMENT, sb,
+				OptList.approvedvos.ordinal());
 		longopts[OptList.vomsdir.ordinal()] = new LongOpt(OptList.vomsdir.name(), LongOpt.REQUIRED_ARGUMENT, sb,
 				OptList.vomsdir.ordinal());
 
@@ -149,12 +152,13 @@ public class CicToLsc {
 				System.exit(1);
 			}
 
-
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.xmlfile.ordinal()) {
 				xmlFile = ((arg != null) ? arg : "null");
-			} else if ((char) (new Integer(sb.toString())).intValue() == OptList.approvedvos.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.approvedvos.ordinal()) {
 				approvedVos = ((arg != null) ? arg : "null");
-			}else if ((char) (new Integer(sb.toString())).intValue() == OptList.vomsdir.ordinal()) {
+			}
+			else if ((char) (new Integer(sb.toString())).intValue() == OptList.vomsdir.ordinal()) {
 				vomsDir = ((arg != null) ? arg : "null");
 			}
 		}
@@ -164,24 +168,26 @@ public class CicToLsc {
 			System.out.print("The --approvedvos argument must be given\n");
 			System.exit(1);
 		}
-		// voidCardFile is mandatory input
+		// xmlFile is mandatory input
 		if (xmlFile == null) {
 			System.out.print("The --xmlfile argument must be given\n");
 			System.exit(1);
 		}
-		if (vomsDir  == null) {
+		
+		// as is the vomsDir
+		if (vomsDir == null) {
 			System.out.print("The --vomsdir argument must be given\n");
 			System.exit(1);
 		}
 
-    // Print LSC files in vomsdir
+		// check vomsDir
 		if (!(new File(vomsDir)).isDirectory()) {
-		  System.out.print("The --vomdsdir (" + vomsDir + ") is not a directory\n");
+			System.out.print("The --vomdsdir (" + vomsDir + ") is not a directory\n");
 			System.exit(1);
 		}
 
-		// Make the Controller class
-		CicToLsc cicToLsc = new CicToLsc (xmlFile, approvedVos, vomsDir);
+		// Make the controller class
+		CicToLsc cicToLsc = new CicToLsc(xmlFile, approvedVos, vomsDir);
 
 		// Parse the XML File
 		cicToLsc.parse();

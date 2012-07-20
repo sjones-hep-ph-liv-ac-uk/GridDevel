@@ -19,6 +19,7 @@ public class VirtOrgInfo {
 	 * @author sjones
 	 * 
 	 */
+
 	public static class ByVoName implements java.util.Comparator<VirtOrgInfo> {
 
 		public int compare(VirtOrgInfo first, VirtOrgInfo second) {
@@ -57,10 +58,13 @@ public class VirtOrgInfo {
 	 */
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append("VOInfo: " + voName + ", ");
+		buffer.append("VONAME: " + voName + "\n");
+		buffer.append("VONICKNAME: " + voNickName + "\n");
+
 		Iterator<VomsServer> v = vomsServers.iterator();
 		while (v.hasNext()) {
-			buffer.append(" Voms Server : " + v.next().makeUrl(voName));
+			VomsServer vs = v.next();
+			buffer.append("VOMSSERVER: " + vs.toString() + "\n");
 		}
 		return buffer.toString();
 	}
@@ -68,8 +72,7 @@ public class VirtOrgInfo {
 	/**
 	 * Add a new VOMS server for this VO
 	 * 
-	 * @param v
-	 *          vomsserver
+	 * @param v vomsserver
 	 */
 	public void addVomsServer(VomsServer v) {
 		vomsServers.add(v);
@@ -78,8 +81,7 @@ public class VirtOrgInfo {
 	/**
 	 * Add a new contact for this VO
 	 * 
-	 * @param ic
-	 *          contact
+	 * @param ic contact
 	 */
 	public void addIc(IndividualContact ic) {
 		individualContacts.add(ic);
@@ -98,10 +100,8 @@ public class VirtOrgInfo {
 	/**
 	 * Invoked to retrieve all the VOMS lines for this VO
 	 * 
-	 * @param validOnly
-	 *          only VOMS that are valid/complete
-	 * @param extraFields
-	 *          some extra fields this program can generate
+	 * @param validOnly only VOMS that are valid/complete
+	 * @param extraFields some extra fields this program can generate
 	 * @return VOMS lines
 	 */
 	public ArrayList<String> getVomsLines(Boolean validOnly, Boolean extraFields, Boolean applyCernRule) {
@@ -171,7 +171,7 @@ public class VirtOrgInfo {
 			if (vs.getHttpsPort() == -1) {
 				continue;
 			}
-			
+
 			String url = vs.makeUrl(this.voName.toLowerCase());
 			urls.add(url);
 			if (url.contains("voms.cern.ch")) {
@@ -188,7 +188,8 @@ public class VirtOrgInfo {
 				vomsServerLine.append(u);
 				vomsServerLine.append("' ");
 			}
-		} else {
+		}
+		else {
 			// System.out.println("DEBUG: For vo " + voName + " adding superceder " + superceder);
 			vomsServerLine.append("'");
 			vomsServerLine.append(superceder);

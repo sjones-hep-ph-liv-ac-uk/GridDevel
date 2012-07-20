@@ -1353,7 +1353,8 @@ n/a
 [[Category:GridPP Deployment]]
 [[Category:VOMS]]
 
-{{KeyDocs|responsible=Christopher J. Walker|reviewdate=2012-06-06|accuratedate=2012-06-06}}
+{{KeyDocs|responsible=Christopher J. Walker|reviewdate=2012-06-06|accuratedate=2012-06-06|percentage=0}}
 
 <!-- Chris, we updated all the Voms Records on 2012-06-06, as I explained. Hope that's OK -->
+
 
