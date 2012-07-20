@@ -379,6 +379,7 @@ public class SiteChecker {
 				}
 			}
 		}
+		System.out.println("\nDone compare.");
 	}
 
 	/**
@@ -394,7 +395,7 @@ public class SiteChecker {
 
 	public static void printHelpPage() {
 		System.out.println("");
-		System.out.println("This tool check if a site complies with the CIC portal XML");
+		System.out.println("This tool checks if a site complies with the CIC portal XML");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
 		System.out.println("  --xmlurl  f       # Url of XML file (i.e. CIC portal)");
