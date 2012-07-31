@@ -173,8 +173,7 @@ public class VomsSnooper {
 		String vomsDir = null;
 
 		// Announcement
-		System.out.print("Copyright © The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.16\n\n");
+		Utils.printVersion();
 
 		StringBuffer sb = new StringBuffer();
 		String arg;
