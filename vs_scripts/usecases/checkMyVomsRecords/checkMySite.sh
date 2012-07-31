@@ -7,7 +7,7 @@ mkdir -p site-formatted/vo.d
 mkdir -p newest/vo.d
 
 wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
-~/git/GridDevel/vs_scripts/ant/VomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile novos.txt  --voddir newest/vo.d --outfile newest/site-info.def 
+~/git/GridDevel/vs_scripts/ant/VomsSnooper.sh --ignorecernrule --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile novos.txt  --voddir newest/vo.d --outfile newest/site-info.def 
 
 rsync -a --delete root@hepgrid6:/root/glitecfg/ glitecfg/
 

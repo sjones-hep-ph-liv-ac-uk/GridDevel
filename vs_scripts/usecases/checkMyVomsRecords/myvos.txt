@@ -21,6 +21,7 @@ magic
 mice
 minos.vo.gridpp.ac.uk
 na48
+na62.vo.gridpp.ac.uk
 ngs.ac.uk
 ops
 pheno

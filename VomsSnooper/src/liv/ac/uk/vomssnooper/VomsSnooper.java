@@ -29,6 +29,7 @@ public class VomsSnooper {
 	private String sidFile; // where to print the SID records
 	private Boolean extraFields; // Whether to print some common extra fields
 	private Boolean noSillySids; // Whether to omit silly SIDs, (e.g. VO_VO.LONDONGRID.AC.UK)
+	private Boolean ignoreCernRule ; // Take no heed of the cern rule
 	private Boolean printVodTitleLine; // Whether to print the vo.d dir name used
 	private String contactsOutFile; // File to write contacts to
 	private String vomsDir; // Directory where LSC files would get written
@@ -49,7 +50,7 @@ public class VomsSnooper {
 	 * 
 	 * @return null
 	 */
-	public VomsSnooper(String x, String vos, String vods, String dir, String out, Boolean ef, Boolean nss, Boolean pvd, String cos,
+	public VomsSnooper(String x, String vos, String vods, String dir, String out, Boolean ef, Boolean nss, Boolean icr, Boolean pvd, String cos,
 			String vd) {
 
 		xmlFile = x;
@@ -59,6 +60,7 @@ public class VomsSnooper {
 		sidFile = out;
 		extraFields = ef;
 		noSillySids = nss;
+		ignoreCernRule = icr;
 		printVodTitleLine = pvd;
 		contactsOutFile = cos;
 		vomsDir = vd;
@@ -123,7 +125,7 @@ public class VomsSnooper {
 
 	public void printResults() {
 
-		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields, noSillySids, printVodTitleLine, false, true);
+		Utils.printVoVariables(voidInfo, sidFile, vodDir, extraFields, noSillySids, printVodTitleLine, false, ! ignoreCernRule);
 		Utils.printContacts(voidInfo, contactsOutFile);
 		Utils.printLscFiles(voidInfo, vomsDir);
 	}
@@ -136,7 +138,7 @@ public class VomsSnooper {
 
 	// List of the CLI options
 	private enum OptList {
-		printvodtitle, nosillysids, extrafields, xmlfile, myvos, vodfile, voddir, outfile, help, contactsfile, vomsdir
+		printvodtitle, nosillysids, ignorecernrule, extrafields, xmlfile, myvos, vodfile, voddir, outfile, help, contactsfile, vomsdir
 	}
 
 	public static void printHelpPage() {
@@ -153,10 +155,11 @@ public class VomsSnooper {
 		System.out.println("  --help            # Prints this info");
 		System.out.println("  --voddir  d       # Where to write VODs (records that cannot be represented in a site-info.def)");
 		System.out.println("  --printvodtitle   # When printing VODs, put the name of the VOD file in the output");
-		System.out.println("  --nosillysids     # When printing SIDs, don't reject ones with silly names (DNS/dot style)");
+		System.out.println("  --nosillysids     # When printing SIDs, reject ones with silly names (DNS/dot style)");
+		System.out.println("  --ignorecernrule  # Ignore the cern rule (use only voms.cern.ch)");
 		System.out.println("  --extrafields     # Print some extra fields (not recommended)");
 		System.out.println("  --contactsfile    # Where to print the VO contacts (not recommended)");
-		System.out.println("  --vomsdir         # Where to print LSC Files ");
+		System.out.println("  --vomsdir         # Where to print LSC files ");
 	}
 
 	public static void main(String[] args) {
@@ -168,6 +171,7 @@ public class VomsSnooper {
 		String outFile = null;
 		Boolean extraFields = false;
 		Boolean noSillySids = false;
+		Boolean ignoreCernRule = false;
 		Boolean printVodTitle = false;
 		String contactsOutFile = null;
 		String vomsDir = null;
@@ -193,6 +197,8 @@ public class VomsSnooper {
 				OptList.extrafields.ordinal());
 		longopts[OptList.nosillysids.ordinal()] = new LongOpt(OptList.nosillysids.name(), LongOpt.NO_ARGUMENT, sb,
 				OptList.nosillysids.ordinal());
+		longopts[OptList.ignorecernrule.ordinal()] = new LongOpt(OptList.ignorecernrule.name(), LongOpt.NO_ARGUMENT, sb,
+				OptList.ignorecernrule.ordinal());
 		longopts[OptList.printvodtitle.ordinal()] = new LongOpt(OptList.printvodtitle.name(), LongOpt.NO_ARGUMENT, sb,
 				OptList.printvodtitle.ordinal());
 		longopts[OptList.contactsfile.ordinal()] = new LongOpt(OptList.contactsfile.name(), LongOpt.REQUIRED_ARGUMENT, sb,
@@ -226,10 +232,12 @@ public class VomsSnooper {
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.nosillysids.ordinal()) {
 				noSillySids = true;
 			}
+			if ((char) (new Integer(sb.toString())).intValue() == OptList.ignorecernrule.ordinal()) {
+				ignoreCernRule = true;
+			}
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.printvodtitle.ordinal()) {
 				printVodTitle = true;
 			}
-
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.xmlfile.ordinal()) {
 				xmlFile = ((arg != null) ? arg : "null");
 			}
@@ -299,7 +307,7 @@ public class VomsSnooper {
 
 		// Make the Controller class
 
-		VomsSnooper vs = new VomsSnooper(xmlFile, myVos, vodFile, vodDir, outFile, extraFields, noSillySids, printVodTitle,
+		VomsSnooper vs = new VomsSnooper(xmlFile, myVos, vodFile, vodDir, outFile, extraFields, noSillySids, ignoreCernRule, printVodTitle,
 				contactsOutFile, vomsDir);
 
 		// Parse the XML File

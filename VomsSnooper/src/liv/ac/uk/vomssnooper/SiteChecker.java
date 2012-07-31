@@ -398,7 +398,7 @@ public class SiteChecker {
 		System.out.println("This tool checks if a site complies with the CIC portal XML");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
-		System.out.println("  --xmlurl  f       # Url of XML file (i.e. CIC portal)");
+		System.out.println("  --xmlurl  f       # URL of XML file (i.e. CIC portal)");
 		System.out.println("  --sidfile f       # Location of site-info.def file");
 		System.out.println("Optional arguments: ");
 		System.out.println("  --help            # Prints this info");

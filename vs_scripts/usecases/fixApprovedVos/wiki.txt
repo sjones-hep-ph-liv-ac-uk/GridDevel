@@ -272,8 +272,8 @@ scroll down to the ALICE VOMS records, below. Note that it is possible to repres
 VOs with names with dots in them, however, can not be represented in SID format. 
 
 In the boxes below, each VO has a set of records that are used by Yaim to configure a site. Some
-other required records follow a generic pattern; these are VO_*_SW_DIR, VO_*_DEFAULT_SE 
-and VO_*_STORAGE_DIR.  The values for these records are described generically as
+other required records follow a generic pattern; these are VO_*_SW_DIR AND VO_*_DEFAULT_SE.  
+The values for these records are described generically as
 follows, using the Liverpool site-info.def as the model.  These will vary according to
 the specifics at your site. In any case, by way of example (at Liverpool) the 
 following is defined first.
@@ -290,7 +290,7 @@ Then the generic records are defined as follows.
 <pre>
 VO_<UCVONAME>_SW_DIR=$VO_SW_DIR/<LCVONAME>
 VO_<UCVONAME>_DEFAULT_SE=$DPM_HOST
-VO_<UCVONAME>_STORAGE_DIR=$STORAGE_PATH/<LCVONAME>
+
 </pre>
 
 '''Special note on CVMFS'''
@@ -611,11 +611,7 @@ VOMS_CA_DN="'/C=NL/O=NIKHEF/CN=NIKHEF medium-security certification auth' "
 
 </nowiki></pre>
 Notes: 
-Some spare fields are provided from the original version of this document.
-<pre>
-VO_ESR_SGM="vomss://voms.grid.sara.nl:8443/voms/esr?/esr/Role=VO-Admin"
-VO_ESR_USERS="vomss://voms.grid.sara.nl:8443/voms/esr?/esr/eobs"
-</pre>
+n/a
 }}
 
 {{BOX VO|FUSION as of 20/1/10|
@@ -639,13 +635,9 @@ VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
 
 </nowiki></pre>
 Notes: 
-n/a
 Some spare fields are provided from the original version of this document.
 <pre>
-VO_FUSION_SGM=ldap://swevo.ific.uv.es/ou=swadmin,o=fusion,dc=swe,dc=lcg,dc=org
-VO_FUSION_USERS=ldap://swevo.ific.uv.es/ou=lcg1,o=fusion,dc=swe,dc=lcg,dc=org
 GRIDMAP_AUTH should include "ldap://swevo.ific.uv.es/ou=users,o=registrar,dc=swe,dc=lcg,dc=org"
-
 FUSION VOMS server certificate http://swevo.ific.uv.es/vo/files/swevo.ific.uv.es.pem
 
 Web site http://grid.bifi.unizar.es/egee/fusion-vo/
@@ -782,16 +774,16 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_MAGIC_VOMS_SERVERS="'vomss://voms01.pic.es:8443/voms/magic?/magic' 'vomss://voms02.pic.es:8443/voms/magic?/magic' "
-VO_MAGIC_VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic' 'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
-VO_MAGIC_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' '/DC=es/DC=irisgrid/CN=IRISGridCA' "
+VO_MAGIC_VOMS_SERVERS="'vomss://voms02.pic.es:8443/voms/magic?/magic' "
+VO_MAGIC_VOMSES="'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
+VO_MAGIC_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/magic
-VOMS_SERVERS="'vomss://voms01.pic.es:8443/voms/magic?/magic' 'vomss://voms02.pic.es:8443/voms/magic?/magic' "
-VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic' 'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
-VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' '/DC=es/DC=irisgrid/CN=IRISGridCA' "
+VOMS_SERVERS="'vomss://voms02.pic.es:8443/voms/magic?/magic' "
+VOMSES="'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
+VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
 
 </nowiki></pre>
 Notes: 
@@ -819,21 +811,7 @@ VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 
 </nowiki></pre>
 Notes: 
-Some spare fields are provided from the original version of this document.
-<pre>
-RBS="lcgrb01.gridpp.rl.ac.uk"
-WMS_HOSTS="lcgwms03.gridpp.rl.ac.uk svr022.gla.scotgrid.ac.uk svr023.gla.scotgrid.ac.uk"
-
-MICE_GROUP_ENABLE="mice /VO=mice/GROUP=/mice/ROLE=lcgadmin  /VO=mice/GROUP=/mice/ROLE=production"
-</pre>
-
-The groups.conf entries should be
-<pre>
-"/mice/ROLE=lcgadmin":::sgm:
-"/mice/ROLE=production":::prd:
-"/mice"::::
-"/mice/*"::::
-</pre>
+n/a
 
 }}
 
@@ -858,22 +836,7 @@ VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 
 </nowiki></pre>
 Notes: 
-Some spare fields are provided from the original version of this document.
-These include a definition for the new vo.d style of record.
-
-New DNS style name:
-minos.vo.gridpp.ac.uk
-contents to be stored in the vo.d directory
-<pre><nowiki>
-
-VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/minos.vo.gridpp.ac.uk?/minos.vo.gridpp.ac.uk/"
-VOMSES="'minos.vo.gridpp.ac.uk voms.gridpp.ac.uk 15016 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk minos.vo.gridpp.ac.uk'"
-VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B"
-
-"/minos"::::
-"/minos/ROLE=lcgadmin":::sgm:
-
-</nowiki></pre>
+n/a
 }}
 
 {{BOX VO|NA62.VO.GRIDPP.AC.UK|
@@ -1063,14 +1026,8 @@ VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA' '/C=IT/O=INFN/CN=INFN CA' "
 
 </nowiki></pre>
 Notes: 
-Some spare fields are provided from the original version of this document.
+n/a
 
-The groups.conf entries for superbvo.org:
-<pre><nowiki>
-"/superbvo.org/ROLE=SoftwareManager":::sgm:
-"/superbvo.org/ROLE=ProductionManager":::prd:
-"/superbvo.org"::::
-</nowiki></pre>
 }}
 
 {{BOX VO|SUPERNEMO.VO.EU-EGEE.ORG|
@@ -1094,18 +1051,7 @@ VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 
 </nowiki></pre>
 Notes:
-Some spare fields are provided from the original version of this document.
-
-Add this to site-info.def
-<pre><nowiki>
-<queue_name>_GROUP_ENABLE="supernemo.vo.eu-egee.org"
-</nowiki></pre>
-Add this to groups.conf
-<pre><nowiki>
-"/supernemo.vo.eu-egee.org/ROLE=lcgadmin":::sgm:
-"/supernemo.vo.eu-egee.org/ROLE=production":::prd:
-"/supernemo.vo.eu-egee.org"::::
-</nowiki></pre>
+n/a
 }}
 
 
@@ -1130,27 +1076,7 @@ VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 
 </nowiki></pre>
 Notes:
-Some spare fields are provided from the original version of this document.
-
-must also add this to site-info.def
-<pre><nowiki>
-<queue_name>_GROUP_ENABLE="t2k.org"
-</nowiki></pre>
-
-The groups.conf entries should be
-<pre><nowiki>
-"/t2k.org/ROLE=lcgadmin":::sgm:
-"/t2k.org/ROLE=production":::prd:
-"/t2k.org/*"::::
-"/t2k.org"::::
-</nowiki></pre>
-
-(OLD STYLE) If just modifying site-info.def then _ replaces . in DNS name for Yaim compatible environment vars.
-<pre><nowiki>
-VO_T2K_ORG_VOMS_SERVERS="vomss://voms.gridpp.ac.uk:8443/voms/t2k.org?/t2k.org/"
-VO_T2K_ORG_VOMSES="'t2k.org voms.gridpp.ac.uk 15003 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk t2k.org'"
-VO_T2K_ORG_VOMS_CA_DN="/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B"
-</nowiki></pre>
+n/a
 }}
 
 {{BOX VO|VO.LONDONGRID.AC.UK|
@@ -1272,14 +1198,7 @@ VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA' "
 
 </nowiki></pre>
 Notes: 
-Some spare fields are provided from the original version of this document.
-<pre>
-VO_ZEUS_USERS="ldap://grid-vo.desy.de/ou=zeus,ou=vo,o=desy,c=de"
-VO_ZEUS_SGM="ldap://grid-vo.desy.de/ou=zeussm,ou=vo,o=desy,c=de"
-VO_ZEUS_VOMS_EXTRA_MAPS=""
-VO_ZEUS_VOMS_POOL_PATH=""
-</pre>
-
+N/A
 }}
 
 
@@ -1353,8 +1272,5 @@ n/a
 [[Category:GridPP Deployment]]
 [[Category:VOMS]]
 
-{{KeyDocs|responsible=Christopher J. Walker|reviewdate=2012-06-06|accuratedate=2012-06-06|percentage=0}}
-
-<!-- Chris, we updated all the Voms Records on 2012-06-06, as I explained. Hope that's OK -->
-
+{{KeyDocs|responsible=Christopher J. Walker|reviewdate=2012-07-18|accuratedate=2012-07-18|percentage=0}}
 
