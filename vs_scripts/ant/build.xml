@@ -43,6 +43,17 @@
       <zipfileset excludes="META-INF/*.SF" src="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/>
     </jar>
 
+    <exec executable="/bin/chmod"> <arg value="755"/> <arg value="${dist}/lib/VomsSnooper.jar"/> </exec>
+    <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/SiteChecker.jar"/>  </exec>
+    <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/SidFormatter.jar"/> </exec>
+    <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/CicToLsc.jar"/>     </exec>
+
+    <!-- <exec executable="/bin/ln"> <arg value="-sf"/> <arg value="${dist}/lib/VomsSnooper.jar"/> <arg value="${dist}/lib/SiteChecker.jar"/> </exec>
+    <exec executable="/bin/ln"> <arg value="-sf"/> <arg value="${dist}/lib/VomsSnooper.jar"/> <arg value="${dist}/lib/SidFormatter.jar"/> </exec>
+    <exec executable="/bin/ln"> <arg value="-sf"/> <arg value="${dist}/lib/VomsSnooper.jar"/> <arg value="${dist}/lib/CicToLsc.jar"/> </exec> -->
+
+
+
   </target>
 
   <target name="clean" description="clean up" >

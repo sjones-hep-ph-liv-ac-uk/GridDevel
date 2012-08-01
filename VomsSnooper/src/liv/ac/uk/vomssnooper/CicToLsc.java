@@ -94,7 +94,7 @@ public class CicToLsc {
 
 	public static void printHelpPage() {
 		System.out.println("");
-		System.out.println("This tool takes an XML file from the CIC portal, and ");
+		System.out.println("The CicToLsc tool takes an XML file from the CIC portal, and ");
 		System.out.println("creates a set of LSC files from the data, bypassing Yaim.");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
@@ -111,12 +111,9 @@ public class CicToLsc {
 		String approvedVos = null;
 		String vomsDir = null;
 
-		// Announcement
-		Utils.printVersion();
-
+		// Arg processing
 		StringBuffer sb = new StringBuffer();
 		String arg;
-
 		LongOpt[] longopts = new LongOpt[OptList.values().length];
 
 		longopts[OptList.help.ordinal()] = new LongOpt(OptList.help.name(), LongOpt.NO_ARGUMENT, sb, OptList.help.ordinal());

@@ -408,7 +408,7 @@ public class SiteChecker {
 
 	public static void printHelpPage() {
 		System.out.println("");
-		System.out.println("This tool checks if a site complies with the CIC portal XML");
+		System.out.println("The SiteChecker tool checks if a site complies with the CIC portal XML");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
 		System.out.println("  --xmlurl  f       # URL of XML file (i.e. CIC portal)");
@@ -422,14 +422,10 @@ public class SiteChecker {
 		String xmlurl = null;
 		String sidfile = null;
 
-		// Announcement
-		Utils.printVersion();
-
+		// Arg processing
 		StringBuffer sb = new StringBuffer();
 		String arg;
-
 		LongOpt[] longopts = new LongOpt[OptList.values().length];
-
 		longopts[OptList.help.ordinal()] = new LongOpt(OptList.help.name(), LongOpt.NO_ARGUMENT, sb, OptList.help.ordinal());
 		longopts[OptList.xmlurl.ordinal()] = new LongOpt(OptList.xmlurl.name(), LongOpt.REQUIRED_ARGUMENT, sb, OptList.xmlurl.ordinal());
 		longopts[OptList.sidfile.ordinal()] = new LongOpt(OptList.sidfile.name(), LongOpt.REQUIRED_ARGUMENT, sb,

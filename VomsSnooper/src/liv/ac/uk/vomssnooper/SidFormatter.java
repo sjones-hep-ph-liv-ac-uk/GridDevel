@@ -83,7 +83,7 @@ public class SidFormatter {
 
 	public static void printHelpPage() {
 		System.out.println("");
-		System.out.println("This tool takes an existing populated site-info.def file and vo.d directory, and ");
+		System.out.println("The SidFormatter tool takes an existing populated site-info.def file and vo.d directory, and ");
 		System.out.println("formats it into a standard, sorted manner. It writes its output into a new, ");
 		System.out.println("unpopulated site-info.def file and vo.d directory.");
 		System.out.println("");
@@ -105,13 +105,9 @@ public class SidFormatter {
 		Boolean flat = false;
 		String myVos = null;
 
-		// Announcement
-		Utils.printVersion();
-
+		// Arg processing
 		StringBuffer sb = new StringBuffer();
 		String arg;
-
-		// Set up a model of the options
 		LongOpt[] longopts = new LongOpt[OptList.values().length + 1];
 
 		longopts[OptList.help.ordinal()] = new LongOpt(OptList.help.name(), LongOpt.NO_ARGUMENT, sb, OptList.help.ordinal());

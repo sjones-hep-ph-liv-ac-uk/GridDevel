@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../../set_paths.sh
+
 ##########################################################################
 # Script automate the update to our site-info.def_vo.d (i.e. "sidvods"). #
 # sj, 17 May 2012                                                        #
@@ -29,7 +31,7 @@ cat  ExtraVOIDCardInfo.xml | grep -v "^<VoDump>"  > deleteme2
 cat deleteme1 deleteme2 > VOIDCardInfo.xml
 
 # Convert it into sidvod format
-../../ant/VomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir ~/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/vo.d --outfile $HOME//git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/site-info.def
+VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir ~/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/vo.d --outfile $HOME//git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/site-info.def
 
 ############################################
 # Section 2 - Get the operational data,    #

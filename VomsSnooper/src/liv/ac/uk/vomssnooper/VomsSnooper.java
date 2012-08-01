@@ -136,7 +136,7 @@ public class VomsSnooper {
 
 	public static void printHelpPage() {
 		System.out.println("");
-		System.out.println("This tool takes an XML file from the CIC portal, and ");
+		System.out.println("The VomsSnooper tool takes an XML file from the CIC portal, and ");
 		System.out.println("formats it into a standard, sorted manner for Yaim. ");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
@@ -156,6 +156,34 @@ public class VomsSnooper {
 	}
 
 	public static void main(String[] args) {
+		
+		// Announcement
+		Utils.printVersion();
+
+		// Get the name of the jar file
+		String program = System.getProperty("sun.java.command").split(" ")[0];
+
+		// Dispatch the logic to the appropriate main
+		if (program == null) {  
+			System.out.println("ERROR: There has been an error with this program. Sorry."); System.exit(1);
+		}
+		else if (program.contains("SidFormatter")) {  
+			liv.ac.uk.vomssnooper.SidFormatter.main(args); System.exit(0);
+		}
+		else if (program.contains("SiteChecker")) {  
+			liv.ac.uk.vomssnooper.SiteChecker.main(args); System.exit(0);
+		}
+		else if (program.contains("CicToLsc")) {  
+			liv.ac.uk.vomssnooper.CicToLsc.main(args); System.exit(0);
+		}
+		else if (program.contains("VomsSnooper")) {  
+		  // Let it fall through to the main below	
+		}
+		else {  
+			System.out.println("ERROR: There has been a fatal error with this program. Sorry."); System.exit(1);
+		}
+
+		// In this case, the command was invoked as "VomsSnooper"
 
 		String xmlFile = null;
 		String myVos = null;
@@ -169,12 +197,9 @@ public class VomsSnooper {
 		String contactsOutFile = null;
 		String vomsDir = null;
 
-		// Announcement
-		Utils.printVersion();
-
+		// Arg processing
 		StringBuffer sb = new StringBuffer();
 		String arg;
-
 		LongOpt[] longopts = new LongOpt[OptList.values().length];
 
 		longopts[OptList.help.ordinal()] = new LongOpt(OptList.help.name(), LongOpt.NO_ARGUMENT, sb, OptList.help.ordinal());
@@ -218,7 +243,6 @@ public class VomsSnooper {
 				printHelpPage();
 				System.exit(1);
 			}
-
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.extrafields.ordinal()) {
 				extraFields = true;
 			}
@@ -254,7 +278,7 @@ public class VomsSnooper {
 			}
 		}
 
-		// voidCardFile is mandatory input
+		// xmlfile is mandatory input
 		if (xmlFile == null) {
 			System.out.print("The --xmlfile argument must be given\n");
 			System.exit(1);
@@ -266,7 +290,7 @@ public class VomsSnooper {
 			System.exit(1);
 		}
 
-		// If you give a vosfile, it must exist
+		// If you give a vos file, it must exist
 		if (myVos != null) {
 			if (!(new File(myVos)).isFile()) {
 				System.out.print("The --myvos file (" + myVos + ") doesn't exist\n");
@@ -274,7 +298,7 @@ public class VomsSnooper {
 			}
 		}
 
-		// If you give a vodfile, it must exist, and you need a voddir
+		// If you give a vod file, it must exist, and you need a vod dir
 		if (vodFile != null) {
 			if (!(new File(vodFile)).isFile()) {
 				System.out.print("The --vodfile (" + vodFile + ") doesn't exist\n");
