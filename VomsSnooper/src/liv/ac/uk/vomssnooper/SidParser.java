@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,10 +70,9 @@ public class SidParser {
 
 		// Go over the yaim variables, selecting VO lines
 		Pattern pattern = Pattern.compile("VO_(.*)_VOMS.*");
-		Iterator<String> var = yaimVariables.iterator();
-
-		while (var.hasNext()) {
-			String yaimVariable = (String) var.next();
+		
+		
+		for (String yaimVariable: yaimVariables) {
 
 			Matcher matcher = pattern.matcher(yaimVariable);
 			if (matcher.find()) {
@@ -117,9 +115,7 @@ public class SidParser {
 						// Break that CA DN variable up and go setting fields
 						ArrayList<String> elements = breakString(caDnLine);
 
-						Iterator<String> els = elements.iterator();
-						while (els.hasNext()) {
-							String caDn = (String) els.next();
+						for (String caDn: elements){
 							VomsServer theVomsServer = new VomsServer();
 							theVomsServer.setMembersListUrl("dummy");
 							theVomsServer.setCaDn(caDn);
@@ -128,12 +124,10 @@ public class SidParser {
 
 						// VOMSES found - break the variable up and go setting fields
 						elements = breakString(vomsesLine);
-						els = elements.iterator();
 						int ii = -1;
-						while (els.hasNext()) {
+						for (String vomses: elements) {
 							ii++;
 							ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
-							String vomses = (String) els.next();
 
 							// More pattern matching to save a lot of tinkering
 							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
@@ -153,11 +147,8 @@ public class SidParser {
 
 						// Voms Servers found - break the variable up and go setting fields
 						elements = breakString(vomsServersLine);
-
-						els = elements.iterator();
-						while (els.hasNext()) {
+            for (String el: elements){
 							ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
-							String el = (String) els.next();
 
 							// Pattern matching to save a lot of tinkering
 							Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
@@ -167,10 +158,8 @@ public class SidParser {
 								Integer httpsPort = Integer.parseInt(m.group(2));
 
 								// Find the voms server that this record applies to
-								Iterator<VomsServer> vs = vomsServers.iterator();
 								Boolean setPort = false;
-								while (vs.hasNext()) {
-									VomsServer v = vs.next();
+								for (VomsServer v: vomsServers){
 									String h = v.getHostname();
 									if (h.equalsIgnoreCase(hostPart)) {
 										// This is the one
@@ -218,10 +207,9 @@ public class SidParser {
 
 				// Go over the lines, look for VO ones
 				Pattern vodVomsPattern = Pattern.compile("^\\+ VOMS.*");
-				Iterator<String> iter = vodYaimVariables.iterator();
+				
+				for (String vodYaimVariable: vodYaimVariables) {
 
-				while (iter.hasNext()) {
-					String vodYaimVariable = (String) iter.next();
 
 					Matcher matcher = vodVomsPattern.matcher(vodYaimVariable);
 					if (matcher.find()) {
@@ -256,9 +244,7 @@ public class SidParser {
 
 							// Break up the CA DN variable
 							ArrayList<String> elements = breakString(caDnLine);
-							Iterator<String> ei = elements.iterator();
-							while (ei.hasNext()) {
-								String caDn = (String) ei.next();
+							for (String caDn: elements) {
 								VomsServer theVomsServer = new VomsServer();
 								theVomsServer.setCaDn(caDn);
 								theVomsServer.setMembersListUrl("dummy");
@@ -267,12 +253,10 @@ public class SidParser {
 
 							// VOMSES found - break the variable up and go setting fields
 							elements = breakString(vomsesLine);
-							ei = elements.iterator();
 							int ii = -1;
-							while (ei.hasNext()) {
+							for (String vomses: elements) {
 								ii++;
 								ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
-								String vomses = (String) ei.next();
 
 								// Pattern matching to save a lot of tinkering
 								Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
@@ -292,12 +276,10 @@ public class SidParser {
 							// Voms Servers found - break the variable up and go setting
 							// fields
 							elements = breakString(vomsServersLine);
-							ei = elements.iterator();
 							ii = -1;
-							while (ei.hasNext()) {
+							for (String el: elements) {
 								ii++;
 								ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
-								String el = (String) ei.next();
 
 								// Pattern matching to save a lot of tinkering
 								Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
@@ -307,10 +289,9 @@ public class SidParser {
 									Integer httpsPort = Integer.parseInt(m.group(2));
 
 									// Go over all the VOMS Servers, finding the one that matches this record
-									Iterator<VomsServer> vs = vomsServers.iterator();
 									Boolean setPort = false;
-									while (vs.hasNext()) {
-										VomsServer v = vs.next();
+									for (VomsServer v: vomsServers) {
+									
 										String h = v.getHostname();
 										if (h.equalsIgnoreCase(hostToFind)) {
 											v.setHttpsPort(httpsPort);
@@ -334,9 +315,7 @@ public class SidParser {
 		// Finally, sort those voms servers
 		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values());
 
-		Iterator<VirtOrgInfo> allIt = v.iterator();
-		while (allIt.hasNext()) {
-			VirtOrgInfo voi = allIt.next();
+		for (VirtOrgInfo voi: v) {
 			voi.sortVomsServers();
 		}
 	}

@@ -4,7 +4,6 @@ import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import liv.ac.uk.snooputils.Utils;
 
@@ -26,17 +25,17 @@ public class CicToLsc {
 	/**
 	 * Basic constructor
 	 * 
-	 * @param x xml file to read for the VO info
-	 * @param vos list of Vos to select for this site
-	 * @param vd where to write LSC files
+	 * @param xmlFile xml file to read for the VO info
+	 * @param approvedVos list of Vos to select for this site
+	 * @param vomsDir where to write LSC files
 	 * 
 	 * @return null
 	 * 
 	 */
-	public CicToLsc(String x, String vos, String vd) {
-		xmlFile = x;
-		approvedVos = vos;
-		vomsDir = vd;
+	public CicToLsc(String xmlFile, String approvedVos, String vomsDir) {
+		this.xmlFile = xmlFile;
+		this.approvedVos = approvedVos;
+		this.vomsDir = vomsDir;
 	}
 
 	/**
@@ -47,21 +46,19 @@ public class CicToLsc {
 	public void parse() {
 
 		// Parse that XML file
-		VoidCardXmlParser spe = new VoidCardXmlParser(xmlFile, (ArrayList<VirtOrgInfo>) voidInfo);
-		spe.parseDocument();
+		VoidCardXmlParser parser = new VoidCardXmlParser(xmlFile, (ArrayList<VirtOrgInfo>) voidInfo);
+		parser.parseDocument();
 
 		// Get a list of VOs to support
-		WordList siteVos = new WordList();
+		WordList vos = new WordList();
 		if (approvedVos != null) {
-			siteVos.readWords(approvedVos);
+			vos.readWords(approvedVos);
 		}
 
 		// Get the ones at my site
-		Iterator<VirtOrgInfo> it = voidInfo.iterator();
-		while (it.hasNext()) {
-			VirtOrgInfo voi = it.next();
+		for(VirtOrgInfo voi: voidInfo){
 			if (approvedVos != null) {
-				voi.setAtMySite(siteVos.containsNoCase((voi.getVoName())));
+				voi.setAtMySite(vos.containsNoCase((voi.getVoName())));
 			}
 			else {
 				voi.setAtMySite(true);
@@ -70,13 +67,12 @@ public class CicToLsc {
 		}
 
 		// Find any VOs supposedly at my site, but which were not found in the XML
-		ArrayList<String> spares = siteVos.getSpareWords();
-		Iterator<String> s = spares.iterator();
-		if (s.hasNext()) {
+		ArrayList<String> spares = vos.getSpareWords();
+		if (!spares.isEmpty()) {
 			System.out.print("Warning: No void info could not be found for some of your VOs:\n");
 		}
-		while (s.hasNext()) {
-			String spare = s.next();
+		
+		for(String spare: spares){
 			System.out.print("  No void info found for : " + spare + "\n");
 		}
 	}

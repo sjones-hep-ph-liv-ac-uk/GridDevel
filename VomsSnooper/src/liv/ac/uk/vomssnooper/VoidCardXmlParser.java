@@ -2,8 +2,7 @@ package liv.ac.uk.vomssnooper;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+// import java.util.Iterator;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -59,12 +58,9 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 			// Finally, sort those voms servers
 
-			Iterator<VirtOrgInfo> allIt = allVoidInfo.iterator();
-			while (allIt.hasNext()) {
-				VirtOrgInfo voi = allIt.next();
+			for (VirtOrgInfo voi : allVoidInfo) {
 				voi.sortVomsServers();
 			}
-
 		}
 		catch (SAXException se) {
 			se.printStackTrace();

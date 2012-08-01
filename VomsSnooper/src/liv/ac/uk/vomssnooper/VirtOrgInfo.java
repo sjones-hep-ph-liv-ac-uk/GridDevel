@@ -2,8 +2,8 @@ package liv.ac.uk.vomssnooper;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn;
+// import java.util.Iterator;
+
 
 /**
  * Represents one VO
@@ -61,9 +61,7 @@ public class VirtOrgInfo {
 		buffer.append("VONAME: " + voName + "\n");
 		buffer.append("VONICKNAME: " + voNickName + "\n");
 
-		Iterator<VomsServer> v = vomsServers.iterator();
-		while (v.hasNext()) {
-			VomsServer vs = v.next();
+    for (VomsServer vs: vomsServers) {		
 			buffer.append("VOMSSERVER: " + vs.toString() + "\n");
 		}
 		return buffer.toString();
@@ -91,9 +89,8 @@ public class VirtOrgInfo {
 	 * Invoked to ask all Voms Servers to check their state of completion
 	 */
 	public void checkComplete() {
-		Iterator<VomsServer> v = vomsServers.iterator();
-		while (v.hasNext()) {
-			v.next().setWhetherComplete();
+		for (VomsServer v: vomsServers) {
+			v.setWhetherComplete();
 		}
 	}
 
@@ -115,14 +112,9 @@ public class VirtOrgInfo {
 		vomsesLine.append("VOMSES=\"");
 		cadnLine.append("VOMS_CA_DN=\"");
 
-		Iterator<VomsServer> vi;
-
 		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
 
-		// Loop to do check if data is complete
-		vi = vomsServers.iterator();
-		while (vi.hasNext()) {
-			VomsServer vs = vi.next();
+    for (VomsServer vs: vomsServers) {  		
 			vs.setWhetherComplete();
 			if ((!vs.isComplete()) & (validOnly)) {
 				System.out.print("Warning: Some voms server data for " + this.getVoName() + " is incomplete and will be excluded\n");
@@ -131,10 +123,7 @@ public class VirtOrgInfo {
 		}
 
 		// Loop to do vomses line and caDn line
-		vi = vomsServers.iterator();
-		while (vi.hasNext()) {
-
-			VomsServer vs = vi.next();
+    for (VomsServer vs: vomsServers) {
 			if ((!vs.isComplete()) & (validOnly)) {
 				continue;
 			}
@@ -159,10 +148,7 @@ public class VirtOrgInfo {
 		ArrayList<String> urls = new ArrayList<String>();
 		String superceder = null;
 
-		vi = vomsServers.iterator();
-		while (vi.hasNext()) {
-
-			VomsServer vs = vi.next();
+		for (VomsServer vs: vomsServers) {
 			if ((!vs.isComplete()) & (validOnly)) {
 				continue;
 			}
@@ -180,17 +166,13 @@ public class VirtOrgInfo {
 		}
 
 		if ((superceder == null) || (applyCernRule == false)) {
-			Iterator<String> i = urls.iterator();
-			while (i.hasNext()) {
-				String u = i.next();
-				// System.out.println("DEBUG: For vo " + voName + " adding url " + u);
+			for (String u: urls) {
 				vomsServerLine.append("'");
 				vomsServerLine.append(u);
 				vomsServerLine.append("' ");
 			}
 		}
 		else {
-			// System.out.println("DEBUG: For vo " + voName + " adding superceder " + superceder);
 			vomsServerLine.append("'");
 			vomsServerLine.append(superceder);
 			vomsServerLine.append("' ");

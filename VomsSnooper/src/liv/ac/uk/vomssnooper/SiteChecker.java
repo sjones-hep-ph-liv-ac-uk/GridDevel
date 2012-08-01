@@ -9,30 +9,23 @@ package liv.ac.uk.vomssnooper;
 
 import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import liv.ac.uk.snooputils.Utils;
-import liv.ac.uk.snooputils.Wgetter;
 
 public class SiteChecker {
 
-	private String xmlurl;    // The url to get the XML from
-	private String sidfile;   // The location of the site-info.def file (vo.d should be in same directory)
-
+	private String xmlUrl;    // The URL to get the XML from
+	private String sidFile;   // The location of the site-info.def file (vo.d should be in same directory)
 	
-	private ArrayList<VirtOrgInfo> voidInfoFromXml;       // XML VO Info
-	private HashMap<String, VirtOrgInfo> voidInfoFromSid; // SID VO Info
+	private ArrayList<VirtOrgInfo> voInfoXml;       // XML VO Info
+	private HashMap<String, VirtOrgInfo> voInfoSid; // SID VO Info
 
 	/**
 	 * Constructor
@@ -41,46 +34,49 @@ public class SiteChecker {
 	 * @param sidfile site-info.def file
 	 */
 
-	public SiteChecker(String x, String s) {
-		xmlurl = x;
-		sidfile = s;
-		voidInfoFromXml = new ArrayList<VirtOrgInfo>();
-		voidInfoFromSid = new HashMap<String, VirtOrgInfo>();
+	public SiteChecker(String xmlurl, String sidfile ) {
+		this.xmlUrl = xmlurl;
+		this.sidFile = sidfile ;
+		
+		this.voInfoXml = new ArrayList<VirtOrgInfo>();
+		this.voInfoSid = new HashMap<String, VirtOrgInfo>();
 	}
   /**
-   * Parse an XML file and a SID setup
+   * Parse an XML file 
    */
-	public void parse() {
+	private void parseXml() {
 
-		// Parse the XML
-		VoidCardXmlParser xmlParser = new VoidCardXmlParser(xmlurl, (ArrayList<VirtOrgInfo>) voidInfoFromXml);
+		VoidCardXmlParser xmlParser = new VoidCardXmlParser(xmlUrl, (ArrayList<VirtOrgInfo>) voInfoXml);
 		xmlParser.parseDocument();
 
 		// I'm interested in them all, nominally
-		Iterator<VirtOrgInfo> it = voidInfoFromXml.iterator();
-		while (it.hasNext()) {
-			VirtOrgInfo voi = it.next();
+		for (VirtOrgInfo voi: voInfoXml) {
 			voi.setAtMySite(true);
 			voi.checkComplete();
 		}
-
-		// Parse the sid
+	}
+	
+  /**
+   * Parse a SID file 
+   */
+	private void parseSid() {
 
 		// Storage for the record I consider
 		String caDnLine = null;
 		String vomsServersLine = null;
 		String vomsesLine = null;
 
-		File sid = new File(sidfile);
+		File sid = new File(sidFile);
 		if (!sid.isFile()) {
 			System.out.println("site-info.def file " + sid + " not found");
 			System.exit(1);
 		}
 
-		// Get the yaim variables
+		// Get the Yaim variables
 		ArrayList<String> yaimVariables = new ArrayList<String>();
 		try {
-			yaimVariables = Utils.cmdExec("bash -x " + sid.toString());
+			String cmd = "bash -x " + sid.toString();
+			yaimVariables = Utils.cmdExec(cmd);
 		}
 		catch (Exception e) {
 			System.out.println("Problem while while reading site-info.def " + e.getMessage());
@@ -90,12 +86,10 @@ public class SiteChecker {
 		// Sort so we can depend on the order
 		Collections.sort(yaimVariables, String.CASE_INSENSITIVE_ORDER);
 
-		// Go over the yaim variables, selecting VO lines
+		// Go over the Yaim variables, selecting VO lines
 		Pattern pattern = Pattern.compile("VO_(.*)_VOMS.*");
-		Iterator<String> var = yaimVariables.iterator();
 
-		while (var.hasNext()) {
-			String yaimVariable = (String) var.next();
+		for (String yaimVariable : yaimVariables) {
 
 			Matcher matcher = pattern.matcher(yaimVariable);
 			if (matcher.find()) {
@@ -105,18 +99,19 @@ public class SiteChecker {
 				// Collect all the lines first to overcome any order problems
 
 				if (yaimVariable.matches(".*CA_DN.*")) {
-					if (voidInfoFromSid.containsKey(voName) == true) {
+					if (voInfoSid.containsKey(voName) == true) {
 						System.out.println("Warning: the " + voName + " sid records are duplicated! Results may be chaotic.");
 					}
 					else {
+						
 						// Make a new set of records
-						voidInfoFromSid.put(voName, new VirtOrgInfo());
+						voInfoSid.put(voName, new VirtOrgInfo());
 					}
 
 					// Initial values
-					voidInfoFromSid.get(voName).setVoNameAndVoNickName(voName);
-					voidInfoFromSid.get(voName).setVodStyle(false);
-					voidInfoFromSid.get(voName).setAtMySite(true);
+					voInfoSid.get(voName).setVoNameAndVoNickName(voName);
+					voInfoSid.get(voName).setVodStyle(false);
+					voInfoSid.get(voName).setAtMySite(true);
 
 					// Store the CA DNs
 					caDnLine = yaimVariable;
@@ -135,23 +130,19 @@ public class SiteChecker {
 					// Break that CA DN variable up and go setting fields
 					ArrayList<String> elements = breakString(caDnLine);
 
-					Iterator<String> els = elements.iterator();
-					while (els.hasNext()) {
-						String caDn = (String) els.next();
+					for (String caDn : elements) {
 						VomsServer theVomsServer = new VomsServer();
 						theVomsServer.setMembersListUrl("dummy");
 						theVomsServer.setCaDn(caDn);
-						voidInfoFromSid.get(voName).addVomsServer(theVomsServer);
+						voInfoSid.get(voName).addVomsServer(theVomsServer);
 					}
 
 					// VOMSES found - break the variable up and go setting fields
 					elements = breakString(vomsesLine);
-					els = elements.iterator();
 					int ii = -1;
-					while (els.hasNext()) {
+					for (String vomses : elements) {
 						ii++;
-						ArrayList<VomsServer> vomsServers = voidInfoFromSid.get(voName).getVomsServers();
-						String vomses = (String) els.next();
+						ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
 						// More pattern matching to save a lot of tinkering
 						Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
@@ -172,10 +163,8 @@ public class SiteChecker {
 					// Voms Servers found - break the variable up and go setting fields
 					elements = breakString(vomsServersLine);
 
-					els = elements.iterator();
-					while (els.hasNext()) {
-						ArrayList<VomsServer> vomsServers = voidInfoFromSid.get(voName).getVomsServers();
-						String el = (String) els.next();
+					for (String el : elements) {
+						ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
 						// Pattern matching to save a lot of tinkering
 						Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
@@ -185,10 +174,9 @@ public class SiteChecker {
 							Integer httpsPort = Integer.parseInt(m.group(2));
 
 							// Find the voms server that this record applies to
-							Iterator<VomsServer> vs = vomsServers.iterator();
 							Boolean setPort = false;
-							while (vs.hasNext()) {
-								VomsServer v = vs.next();
+
+							for (VomsServer v : vomsServers) {
 								String h = v.getHostname();
 								if (h.equalsIgnoreCase(hostPart)) {
 									// This is the one
@@ -197,7 +185,7 @@ public class SiteChecker {
 								}
 							}
 							if (!setPort) {
-								System.out.println("Warning: Unable to find a voms server for one of these: " + vomsServersLine);
+								System.out.println("Warning: Unable to find a VOMSES record matching (one of) these: " + vomsServersLine);
 							}
 						}
 						else {
@@ -209,19 +197,23 @@ public class SiteChecker {
 		}
 
 		// Next get the vod files, that lie in files in the vo.d directory
-		File dir = new File(sid.getParent());
+
+		File dir = new File(sid.getParent() + "/vo.d");
 		String[] vodFiles = dir.list();
-		if (vodFiles == null) {
-			System.out.println("the vo.d directory does not exist");
-			System.exit(1);
+		ArrayList<String> usableVodFiles = new ArrayList<String>();
+		for (String s : vodFiles) {
+			if (!s.startsWith(".")) {
+				usableVodFiles.add(s);
+			}
 		}
-		for (int i = 0; i < vodFiles.length; i++) {
-			String vodFile = vodFiles[i];
+
+		for (String vodFile : usableVodFiles) {
 
 			// Read the yaim variables for each files found
 			ArrayList<String> vodYaimVariables = new ArrayList<String>();
 			try {
-				vodYaimVariables = Utils.cmdExec("bash -x " + dir.toString() + "/vo.d/" + vodFile);
+				String cmd = "bash -x " + dir.toString() + "/" + vodFile;
+				vodYaimVariables = Utils.cmdExec(cmd);
 			}
 			catch (Exception e) {
 				System.out.println("Problem while while reading vod. file " + vodFile + ", " + e.getMessage());
@@ -232,10 +224,8 @@ public class SiteChecker {
 
 			// Go over the lines, look for VO ones
 			Pattern vodVomsPattern = Pattern.compile("^\\+ VOMS.*");
-			Iterator<String> iter = vodYaimVariables.iterator();
 
-			while (iter.hasNext()) {
-				String vodYaimVariable = (String) iter.next();
+			for (String vodYaimVariable : vodYaimVariables) {
 
 				Matcher matcher = vodVomsPattern.matcher(vodYaimVariable);
 				if (matcher.find()) {
@@ -248,16 +238,16 @@ public class SiteChecker {
 					if (vodYaimVariable.matches(".*CA_DN.*")) {
 						caDnLine = vodYaimVariable;
 						// Make a new record, if we need to
-						if (voidInfoFromSid.containsKey(voName.toLowerCase()) == true) {
+						if (voInfoSid.containsKey(voName.toLowerCase()) == true) {
 							System.out.println("Warning: the " + voName + " vod records are duplicated! Results may be chaotic.");
 						}
 						else {
-							voidInfoFromSid.put(voName.toLowerCase(), new VirtOrgInfo());
+							voInfoSid.put(voName.toLowerCase(), new VirtOrgInfo());
 						}
-						voidInfoFromSid.put(voName, new VirtOrgInfo());
-						voidInfoFromSid.get(voName).setVoNameAndVoNickName(voName);
-						voidInfoFromSid.get(voName).setVodStyle(true);
-						voidInfoFromSid.get(voName).setAtMySite(true);
+						voInfoSid.put(voName, new VirtOrgInfo());
+						voInfoSid.get(voName).setVoNameAndVoNickName(voName);
+						voInfoSid.get(voName).setVodStyle(true);
+						voInfoSid.get(voName).setAtMySite(true);
 
 					}
 					if (vodYaimVariable.matches(".*VOMS_SERVERS.*")) {
@@ -270,23 +260,21 @@ public class SiteChecker {
 
 						// Break up the CA DN variable
 						ArrayList<String> elements = breakString(caDnLine);
-						Iterator<String> ei = elements.iterator();
-						while (ei.hasNext()) {
-							String caDn = (String) ei.next();
+
+						for (String caDn : elements) {
 							VomsServer theVomsServer = new VomsServer();
 							theVomsServer.setCaDn(caDn);
 							theVomsServer.setMembersListUrl("dummy");
-							voidInfoFromSid.get(voName).addVomsServer(theVomsServer);
+							voInfoSid.get(voName).addVomsServer(theVomsServer);
 						}
 
 						// VOMSES found - break the variable up and go setting fields
 						elements = breakString(vomsesLine);
-						ei = elements.iterator();
+
 						int ii = -1;
-						while (ei.hasNext()) {
+						for (String vomses : elements) {
 							ii++;
-							ArrayList<VomsServer> vomsServers = voidInfoFromSid.get(voName).getVomsServers();
-							String vomses = (String) ei.next();
+							ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
 							// Pattern matching to save a lot of tinkering
 							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
@@ -306,12 +294,11 @@ public class SiteChecker {
 						// Voms Servers found - break the variable up and go setting
 						// fields
 						elements = breakString(vomsServersLine);
-						ei = elements.iterator();
+
 						ii = -1;
-						while (ei.hasNext()) {
+						for (String el : elements) {
 							ii++;
-							ArrayList<VomsServer> vomsServers = voidInfoFromSid.get(voName).getVomsServers();
-							String el = (String) ei.next();
+							ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
 							// Pattern matching to save a lot of tinkering
 							Pattern p = Pattern.compile("vomss:\\/\\/(\\S+)\\:(\\d+).*");
@@ -321,10 +308,8 @@ public class SiteChecker {
 								Integer httpsPort = Integer.parseInt(m.group(2));
 
 								// Go over all the VOMS Servers, finding the one that matches this record
-								Iterator<VomsServer> vs = vomsServers.iterator();
 								Boolean setPort = false;
-								while (vs.hasNext()) {
-									VomsServer v = vs.next();
+								for (VomsServer v : vomsServers) {
 									String h = v.getHostname();
 									if (h.equalsIgnoreCase(hostToFind)) {
 										v.setHttpsPort(httpsPort);
@@ -345,26 +330,31 @@ public class SiteChecker {
 		}
 
 		// Finally, sort those voms servers
-		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfoFromSid.values());
+		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voInfoSid.values());
 
-		Iterator<VirtOrgInfo> allIt = v.iterator();
-		while (allIt.hasNext()) {
-			VirtOrgInfo voi = allIt.next();
+		for (VirtOrgInfo voi : v) {
 			voi.sortVomsServers();
 		}
-
 		// end of sid
-
 	}
 
+
+	/**
+	 * Compare a set of XML and SID records
+	 */
 	public void compare() {
 		System.out.println("Parsed both sources. Now compare.");
 
-		Iterator<VirtOrgInfo> x = voidInfoFromXml.iterator();
-		while (x.hasNext()) {
-			VirtOrgInfo xmlVo = x.next();
-			if (voidInfoFromSid.containsKey(xmlVo.getVoName())) {
-				VirtOrgInfo sidVo = voidInfoFromSid.get(xmlVo.getVoName());
+		HashSet<String> keys = new HashSet<String>();
+		keys.addAll(voInfoSid.keySet());
+		
+		ArrayList<String> matches = new ArrayList<String>(); 
+		
+		for (VirtOrgInfo xmlVo: voInfoXml) {
+			
+			if (voInfoSid.containsKey(xmlVo.getVoName())) {
+        keys.remove(xmlVo.getVoName());				
+				VirtOrgInfo sidVo = voInfoSid.get(xmlVo.getVoName());
 				String xmlVoString = xmlVo.toString();
 				String sidVoString = sidVo.toString();
 				if (!xmlVoString.equals(sidVoString)) {
@@ -374,12 +364,35 @@ public class SiteChecker {
 					System.out.println(" ");
 				}
 				else {
-					System.out.println("\nVO: " + xmlVo.getVoName() + " matches");
-					System.out.println(" ");
+					matches.add(sidVo.getVoName());
 				}
 			}
 		}
-		System.out.println("\nDone compare.");
+		
+		if (matches.isEmpty()) {
+			System.out.println("Warning: No matches were found\n");
+		}
+		else {
+			System.out.print("These VOs matched OK: ");
+			for (String m : matches) {
+				System.out.print(" " + m);
+			}
+			System.out.println();
+		}
+		
+		if (!keys.isEmpty()) {
+			System.out.print("Warning: These VOs at your site are not represented in the CIC Portal XML: ");
+
+			for (String key : keys) {
+				System.out.print(" " + key);
+			}
+			System.out.println();
+		}
+		else {
+			System.out.println("All the VOs at your site are represented in the CIC Portal XML.");
+		}
+		
+		System.out.println("\n\nDone compare.");
 	}
 
 	/**
@@ -449,7 +462,6 @@ public class SiteChecker {
 			}
 		}
 
-		// voidCardFile is mandatory input
 		if (xmlurl == null) {
 			System.out.print("The --xmlurl argument must be given\n");
 			System.exit(1);
@@ -459,7 +471,6 @@ public class SiteChecker {
 			System.exit(1);
 		}
 
-		// If you give a sidfile, it must exist
 		if (!(new File(sidfile)).isFile()) {
 			System.out.print("The --sidfile (" + sidfile + ") doesn't exist\n");
 			System.exit(1);
@@ -469,7 +480,11 @@ public class SiteChecker {
 		SiteChecker vs = new SiteChecker(xmlurl, sidfile);
 
 		// Parse the XML File
-		vs.parse();
+		vs.parseXml();
+		
+		// Parse the SID File
+		vs.parseSid();
+
 		
 		// Compare the XML to the SID
 		vs.compare();

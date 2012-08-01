@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+
 
 import liv.ac.uk.snooputils.Utils;
 
@@ -82,9 +82,7 @@ public class VomsSnooper {
 			siteVos.readWords(myVos);
 		}
 
-		Iterator<VirtOrgInfo> it = voidInfo.iterator();
-		while (it.hasNext()) {
-			VirtOrgInfo voi = it.next();
+		for(VirtOrgInfo voi : voidInfo){
 			if (myVos != null) {
 				voi.setAtMySite(siteVos.containsNoCase(voi.getVoName()));
 			}
@@ -100,9 +98,7 @@ public class VomsSnooper {
 			myVodList.readWords(vodVos);
 		}
 
-		it = voidInfo.iterator();
-		while (it.hasNext()) {
-			VirtOrgInfo v = it.next();
+		for(VirtOrgInfo v: voidInfo){
 			if (vodVos != null) {
 				v.setVodStyle(myVodList.containsNoCase(v.getVoName()));
 			}
@@ -112,13 +108,10 @@ public class VomsSnooper {
 		}
 
 		ArrayList<String> spares = siteVos.getSpareWords();
-
-		Iterator<String> s = spares.iterator();
-		if (s.hasNext()) {
+		if (!spares.isEmpty()) {
 			System.out.print("Warning: No void info could not be found for some of your VOs:\n");
 		}
-		while (s.hasNext()) {
-			String spare = s.next();
+		for(String spare : spares){
 			System.out.print("  No void info found for : " + spare + "\n");
 		}
 	}
