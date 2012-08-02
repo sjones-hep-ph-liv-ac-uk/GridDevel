@@ -343,13 +343,13 @@ public class SiteChecker {
 	 * Compare a set of XML and SID records
 	 */
 	public void compare() {
-		System.out.println("Parsed both sources. Now compare.");
+
 
 		HashSet<String> keys = new HashSet<String>();
 		keys.addAll(voInfoSid.keySet());
 		
 		ArrayList<String> matches = new ArrayList<String>(); 
-		
+		int discrepancies = 0;
 		for (VirtOrgInfo xmlVo: voInfoXml) {
 			
 			if (voInfoSid.containsKey(xmlVo.getVoName())) {
@@ -358,6 +358,7 @@ public class SiteChecker {
 				String xmlVoString = xmlVo.toString();
 				String sidVoString = sidVo.toString();
 				if (!xmlVoString.equals(sidVoString)) {
+					discrepancies ++;
 					System.out.println("\nDiscrepancy in VO:" + xmlVo.getVoName());
 					System.out.println("XML Data : \n" + xmlVoString);
 					System.out.println("Site-info: \n" + sidVoString);
@@ -368,6 +369,7 @@ public class SiteChecker {
 				}
 			}
 		}
+		System.out.println("Note: a total of " + discrepancies + " discrepancies were found");
 		
 		if (matches.isEmpty()) {
 			System.out.println("Warning: No matches were found\n");
@@ -392,7 +394,7 @@ public class SiteChecker {
 			System.out.println("All the VOs at your site are represented in the CIC Portal XML.");
 		}
 		
-		System.out.println("\n\nDone compare.");
+		System.out.println("");
 	}
 
 	/**

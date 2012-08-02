@@ -4,7 +4,6 @@ import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;
 import java.io.File;
 import java.util.ArrayList;
-
 import liv.ac.uk.snooputils.Utils;
 
 /**

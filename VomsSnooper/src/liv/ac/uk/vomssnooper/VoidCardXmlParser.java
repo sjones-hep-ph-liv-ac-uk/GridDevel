@@ -2,7 +2,6 @@ package liv.ac.uk.vomssnooper;
 
 import java.io.IOException;
 import java.util.ArrayList;
-// import java.util.Iterator;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -11,32 +10,35 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * Parses an XML File of VOID cards
+ * Parses an XML File of VOID cards from the CIC Portal
  * 
  * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
  * @since 2012-02-24
  */
+
 public class VoidCardXmlParser extends DefaultHandler {
 
-	private VirtOrgInfo currentVoInfo;
-	private VomsServer currentVomsServer;
-	private IndividualContact currentIc;
+	private VirtOrgInfo voInfo; // Single record of VO Info
+	private ArrayList<VirtOrgInfo> voInfoList; // List of records of VO Info 
 
-	private Boolean hasGlite;
-	private String currentTag;
-	private String chars;
+	private VomsServer vomsServer; // Record of a VOMS Server
+	private IndividualContact contact; // Record of a contact of a VO
+
+	private Boolean hasGlite; // Does this VO use gLite?
+	
+	private String xmlTag;    // Various parser state variables    
+	private String xmlChars;
 	private String xmlFile;
-	private ArrayList<VirtOrgInfo> allVoidInfo;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param x XML FIle to parse
-	 * @param v Where to parse the results into
+	 * @param xmlFile XML File to parse
+	 * @param voInfoList List of VOs
 	 */
-	public VoidCardXmlParser(String x, ArrayList<VirtOrgInfo> v) {
-		xmlFile = x;
-		allVoidInfo = v;
+	public VoidCardXmlParser(String xmlFile, ArrayList<VirtOrgInfo> voInfoList) {
+		this.xmlFile = xmlFile;
+		this.voInfoList = voInfoList;
 	}
 
 	/**
@@ -46,146 +48,155 @@ public class VoidCardXmlParser extends DefaultHandler {
 	 */
 	public void parseDocument() {
 
-		// Set up SAX Parser
-		SAXParserFactory spf = SAXParserFactory.newInstance();
+		// Set up SAX parser
+		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 
-			// get a new instance of parser
-			SAXParser sp = spf.newSAXParser();
+			// Get a new instance of parser
+			SAXParser parser = factory.newSAXParser();
 
-			// parse the file and also register this class for call backs
-			sp.parse(xmlFile, this);
+			// Parse the XML, registering this class for call backs
+			parser.parse(xmlFile, this);
 
 			// Finally, sort those voms servers
-
-			for (VirtOrgInfo voi : allVoidInfo) {
-				voi.sortVomsServers();
+			for (VirtOrgInfo v : voInfoList) {
+				v.sortVomsServers();
 			}
 		}
-		catch (SAXException se) {
-			se.printStackTrace();
+		catch (SAXException e) {
+			e.printStackTrace();
 		}
-		catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
+		catch (ParserConfigurationException e) {
+			e.printStackTrace();
 		}
-		catch (IOException ie) {
-			ie.printStackTrace();
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
-	// Event Handlers
+	// Event Handler for start elements
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		if (qName.equalsIgnoreCase("Middlewares")) {
-			currentTag = "Middlewares";
+			xmlTag = "Middlewares";
+
+			// Does it have gLite?
 			hasGlite = false;
 			if (attributes.getValue("gLite").equals("1"))
 				hasGlite = true;
 		}
 
 		if (qName.equalsIgnoreCase("IDCard")) {
-			currentTag = "IDCard";
+			xmlTag = "IDCard";
 
+			// Start a new VO record
+			voInfo = new VirtOrgInfo();
+			voInfo.setVoNameAndVoNickName(attributes.getValue("Name"));
 			hasGlite = false;
-
-			currentVoInfo = new VirtOrgInfo();
-			currentVoInfo.setVoNameAndVoNickName(attributes.getValue("Name"));
 		}
 
 		if (qName.equalsIgnoreCase("VOMS_Server")) {
-			currentTag = "VOMS_Server";
-			currentVomsServer = new VomsServer();
-			try {
+			xmlTag = "VOMS_Server";
 
-				currentVomsServer.setHttpsPort(Integer.valueOf(attributes.getValue("HttpsPort")));
+			// Start a new VOMS Server record, and fill it
+			vomsServer = new VomsServer();
+			try {
+				vomsServer.setHttpsPort(Integer.valueOf(attributes.getValue("HttpsPort")));
 			}
 			catch (NumberFormatException e) {
-				System.out.print("Bad format for port, HttpsPort\n");
-				currentVomsServer.setHttpsPort(-1);
+				System.out.print("Bad format for HttpsPort\n");
+				vomsServer.setHttpsPort(-1);
 			}
 			try {
-
-				currentVomsServer.setVomsServerPort(Integer.valueOf(attributes.getValue("VomsesPort")));
+				vomsServer.setVomsServerPort(Integer.valueOf(attributes.getValue("VomsesPort")));
 			}
 			catch (NumberFormatException e) {
-				System.out.print("Bad format for port, VomsesPort\n");
-				currentVomsServer.setVomsServerPort(-1);
+				System.out.print("Bad format for VomsesPort\n");
+				vomsServer.setVomsServerPort(-1);
 			}
-
-			currentVomsServer.setHostname(attributes.getValue("hostname"));
-			currentVomsServer.setMembersListUrl(attributes.getValue("MembersListUrl"));
-
+			vomsServer.setHostname(attributes.getValue("hostname"));
+			vomsServer.setMembersListUrl(attributes.getValue("MembersListUrl"));
 		}
 
 		if (qName.equalsIgnoreCase("Contact")) {
-			currentTag = "Contact";
-			currentIc = new IndividualContact("nowt", "nowt", "nowt", "nowt");
+			xmlTag = "Contact";
+			// Start a new contact record
+			contact = new IndividualContact("dummy", "dummy", "dummy", "dummy");
 		}
 
 		if (qName.equals("X509Cert")) {
-			currentTag = "X509Cert";
+			xmlTag = "X509Cert";
 		}
-
 	}
 
+	// Event Handler for end elements
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 
 		if (qName.equalsIgnoreCase("IDCard")) {
+			// Add gLite equipped VOs to the list
 			if (hasGlite) {
-				allVoidInfo.add(currentVoInfo);
+				voInfoList.add(voInfo);
 			}
 		}
+
+		// When we close Contact, add it to the list
 		if (qName.equalsIgnoreCase("Contact")) {
-			currentVoInfo.addIc(currentIc);
-			currentTag = "";
+			voInfo.addIc(contact);
+			xmlTag = "";
 		}
 
-		if (currentTag.equals("Contact")) {
+		// If in Contact data, transfer data and fix line breaks
+		if (xmlTag.equals("Contact")) {
 			if (qName.equalsIgnoreCase("Name")) {
-
-				currentIc.setName(chars.trim().replace("\n", ""));
+				contact.setName(xmlChars.trim().replace("\n", ""));
 			}
 			if (qName.equalsIgnoreCase("Role")) {
-				currentIc.setRole(chars.trim().replace("\n", ""));
+				contact.setRole(xmlChars.trim().replace("\n", ""));
 			}
 			if (qName.equalsIgnoreCase("Email")) {
-				currentIc.setEmail(chars.trim().replace("\n", ""));
+				contact.setEmail(xmlChars.trim().replace("\n", ""));
 			}
 			if (qName.equalsIgnoreCase("DN")) {
-				currentIc.setDn(chars.trim().replace("\n", ""));
+				contact.setDn(xmlChars.trim().replace("\n", ""));
 			}
 		}
 
+		// Add new VOMS servers
 		if (qName.equalsIgnoreCase("VOMS_Server")) {
 			// Throw away incomplete VOMS Servers
-			if (currentVomsServer.getDn() != null) {
-				currentVoInfo.addVomsServer(currentVomsServer);
+			if (vomsServer.getDn() != null) {
+				voInfo.addVomsServer(vomsServer);
 			}
 		}
+
+		// Set other attributes
 		if (qName.equalsIgnoreCase("hostname")) {
-			currentVomsServer.setHostname(chars);
+			vomsServer.setHostname(xmlChars);
 		}
 		if (qName.equalsIgnoreCase("DN")) {
-			if (currentTag.equals("X509Cert")) {
-				currentVomsServer.setDn(chars);
+			if (xmlTag.equals("X509Cert")) {
+				vomsServer.setDn(xmlChars);
 			}
 		}
 		if (qName.equalsIgnoreCase("CA_DN")) {
-			if (currentTag.equals("X509Cert")) {
-				currentVomsServer.setCaDn(chars);
+			if (xmlTag.equals("X509Cert")) {
+				vomsServer.setCaDn(xmlChars);
 			}
 		}
+
+		// Finalise parser state
 		if (qName.equalsIgnoreCase("Middlewares"))
-			currentTag = "";
+			xmlTag = "";
 		if (qName.equalsIgnoreCase("IDCard"))
-			currentTag = "";
+			xmlTag = "";
 		if (qName.equalsIgnoreCase("VOMS_Server"))
-			currentTag = "";
+			xmlTag = "";
 		if (qName.equalsIgnoreCase("X509Cert"))
-			currentTag = "";
+			xmlTag = "";
 	}
 
+	// Capture interstitial characters
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		chars = new String(ch, start, length);
+		xmlChars = new String(ch, start, length);
 	}
-
 }
+

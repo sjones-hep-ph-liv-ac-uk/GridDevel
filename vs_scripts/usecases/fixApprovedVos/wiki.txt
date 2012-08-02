@@ -774,16 +774,16 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_MAGIC_VOMS_SERVERS="'vomss://voms02.pic.es:8443/voms/magic?/magic' "
-VO_MAGIC_VOMSES="'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
-VO_MAGIC_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
+VO_MAGIC_VOMS_SERVERS="'vomss://voms01.pic.es:8443/voms/magic?/magic' 'vomss://voms02.pic.es:8443/voms/magic?/magic' "
+VO_MAGIC_VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic' 'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
+VO_MAGIC_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' '/DC=es/DC=irisgrid/CN=IRISGridCA' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/magic
-VOMS_SERVERS="'vomss://voms02.pic.es:8443/voms/magic?/magic' "
-VOMSES="'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
-VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
+VOMS_SERVERS="'vomss://voms01.pic.es:8443/voms/magic?/magic' 'vomss://voms02.pic.es:8443/voms/magic?/magic' "
+VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic' 'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
+VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' '/DC=es/DC=irisgrid/CN=IRISGridCA' "
 
 </nowiki></pre>
 Notes: 
