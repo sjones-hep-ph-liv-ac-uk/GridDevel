@@ -23,6 +23,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 	private VomsServer vomsServer; // Record of a VOMS Server
 	private IndividualContact contact; // Record of a contact of a VO
+	private Fqan fqan ; // Fqan of VO
 
 	private Boolean hasGlite; // Does this VO use gLite?
 	
@@ -122,6 +123,20 @@ public class VoidCardXmlParser extends DefaultHandler {
 			// Start a new contact record
 			contact = new IndividualContact("dummy", "dummy", "dummy", "dummy");
 		}
+		
+		if (qName.equalsIgnoreCase("FQAN")) {
+			xmlTag = "FQAN";
+			// Start a new FQAN record
+			fqan = new Fqan ();
+			fqan.setGroupType(attributes.getValue("GroupType"));
+			String isUsed = attributes.getValue("IsGroupUsed");
+			if (isUsed.equals("0")) {
+				fqan.setIsUsed(false);
+			}
+			else {
+				fqan.setIsUsed(true);
+			}
+		}
 
 		if (qName.equals("X509Cert")) {
 			xmlTag = "X509Cert";
@@ -143,7 +158,26 @@ public class VoidCardXmlParser extends DefaultHandler {
 			voInfo.addIc(contact);
 			xmlTag = "";
 		}
+		
+		// When we close FQAN , add it to the list
+		if (qName.equalsIgnoreCase("FQAN")) {
+			voInfo.addFqan(fqan);
+			xmlTag = "";
+		}
+		
+		// In FQAN data, transfer data and fix line breaks
+		if (xmlTag.equals("FQAN")) {
 
+			if (qName.equalsIgnoreCase("FqanExpr")) {
+				fqan.setFqanExpr(xmlChars.trim().replace("\n", ""));
+			}
+			if (qName.equalsIgnoreCase("Description")) {
+				if (fqan == null) {
+				}
+				fqan.setDescription(xmlChars.trim().replace("\n", ""));
+			}
+		}
+		
 		// If in Contact data, transfer data and fix line breaks
 		if (xmlTag.equals("Contact")) {
 			if (qName.equalsIgnoreCase("Name")) {
@@ -199,4 +233,3 @@ public class VoidCardXmlParser extends DefaultHandler {
 		xmlChars = new String(ch, start, length);
 	}
 }
-

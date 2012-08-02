@@ -35,8 +35,10 @@ public class VirtOrgInfo {
 	private Boolean atMySite; // If it supported flag
 	private Boolean vodStyle; // Is it in vo.d style for DNS style names (default
 														// is site-info.def style)
-	private ArrayList<IndividualContact> individualContacts; // Contacts for this
-																														// VO
+	private ArrayList<IndividualContact> individualContacts; // VO Contacts 
+
+	private ArrayList<Fqan> fqans; // FQANs for this VO
+	
 
 	/**
 	 * Basic Constructor
@@ -49,6 +51,7 @@ public class VirtOrgInfo {
 
 		vomsServers = new ArrayList<VomsServer>();
 		individualContacts = new ArrayList<IndividualContact>();
+		fqans = new ArrayList<Fqan>(); 
 	}
 
 	/**
@@ -84,6 +87,16 @@ public class VirtOrgInfo {
 	public void addIc(IndividualContact ic) {
 		individualContacts.add(ic);
 	}
+	
+	/**
+	 * Add a new FQAN for this VO
+	 * 
+	 * @param f contact
+	 */
+	public void addFqan(Fqan f) {
+		fqans.add(f);
+	}
+	
 
 	/**
 	 * Invoked to ask all Voms Servers to check their state of completion
@@ -312,7 +325,30 @@ public class VirtOrgInfo {
 		this.individualContacts = individualContacts;
 	}
 
+	/**
+	 * Sort the servers
+	 * 
+	 * @return null
+	 */
 	public void sortVomsServers() {
 		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
+	}
+	
+	/**
+	 * get fqans
+	 * 
+	 * @return null
+	 */
+	public ArrayList<Fqan> getFqans() {
+		return fqans;
+	}
+
+	/**
+	 * set fqans
+	 * 
+	 * @return null
+	 */
+	public void setFqans(ArrayList<Fqan> fqans) {
+		this.fqans = fqans;
 	}
 }
