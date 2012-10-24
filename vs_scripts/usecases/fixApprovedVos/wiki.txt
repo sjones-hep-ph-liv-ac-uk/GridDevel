@@ -404,15 +404,15 @@ n/a
 ''' site-info.def version (sid) '''
 <pre><nowiki>
 VO_ATLAS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
-VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
-VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
+VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' "
+VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/atlas
 VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
-VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
-VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
+VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
 </nowiki></pre>
 Notes: 
@@ -525,15 +525,15 @@ n/a
 ''' site-info.def version (sid) '''
 <pre><nowiki>
 VO_CMS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/cms?/cms' "
-VO_CMS_VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' 'cms voms.fnal.gov 15015 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cms' "
-VO_CMS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
+VO_CMS_VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' "
+VO_CMS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/cms
 VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/cms?/cms' "
-VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' 'cms voms.fnal.gov 15015 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cms' "
-VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
+VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
 </nowiki></pre>
 Notes: 
