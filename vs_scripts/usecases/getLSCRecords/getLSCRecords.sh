@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../../set_paths.sh
+#source ../../set_paths.sh
 
 
 # Set up some dirs for this job
@@ -14,5 +14,5 @@ mkdir -p vomsdir
 wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
 
 # Make a vomsdir from it (the other stuff is a by-product)
-CicToLsc.jar --xmlfile VOIDCardInfo.xml  --approvedvos myvos.txt --vomsdir vomsdir
+java -jar $VS_JAR_DIR/CicToLsc.jar --xmlfile VOIDCardInfo.xml  --approvedvos myvos.txt --vomsdir vomsdir
 

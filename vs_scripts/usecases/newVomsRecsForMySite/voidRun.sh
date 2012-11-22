@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../../set_paths.sh
+#source ../../set_paths.sh
 
 ##########################################################################
 # Script automate the update to our site-info.def_vo.d (i.e. "sidvods"). #
@@ -31,7 +31,7 @@ cat  ExtraVOIDCardInfo.xml | grep -v "^<VoDump>"  > deleteme2
 cat deleteme1 deleteme2 > VOIDCardInfo.xml
 
 # Convert it into sidvod format
-VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir ~/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/vo.d --outfile $HOME//git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/xml/site-info.def
+java -jar $VS_JAR_DIR/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir void/xml/vo.d --outfile void/xml/site-info.def
 
 ############################################
 # Section 2 - Get the operational data,    #
@@ -40,7 +40,7 @@ VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile voi
 ############################################
 #
 # Transfer from hepgrid6 via:
-rsync -a --delete root@hepgrid6:/root/glitecfg/ $HOME/git/GridDevel/vs_scripts/usecases/newVomsRecsForMySite/void/deployed
+rsync -a --delete root@hepgrid6:/root/glitecfg/ void/deployed/
 
 # Merge those records in
 ./sid_merger.pl --oldsid void/deployed/site-info.def --deltas void/xml/site-info.def --newsid void/merged/site-info.def
