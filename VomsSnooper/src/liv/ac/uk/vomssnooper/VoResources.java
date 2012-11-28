@@ -1,4 +1,4 @@
-package liv.ac.uk.vomssnooper;
+package liv.ac.uk.vomssnooper; 
 
 import gnu.getopt.Getopt;
 import gnu.getopt.LongOpt;

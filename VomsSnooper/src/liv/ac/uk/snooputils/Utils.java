@@ -9,14 +9,13 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import liv.ac.uk.vomssnooper.Fqan;
 import liv.ac.uk.vomssnooper.IndividualContact;
 import liv.ac.uk.vomssnooper.VirtOrgInfo;
 import liv.ac.uk.vomssnooper.VomsServer;
+import liv.ac.uk.vomssnooper.VoResourceSet;
 import liv.ac.uk.vomssnooper.VirtOrgInfo.ByVoName;
 
 /**
@@ -280,7 +279,7 @@ public class Utils {
 	
 	public static void printVersion() {
 		System.out.print("Copyright (c) The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.23\n\n");
+		System.out.print("Version 1.24\n\n");
 	}
 	
 	
@@ -327,5 +326,114 @@ public class Utils {
 		}
 	}
 	
-	
+	/**
+	 * Convert String to Integer
+	 * 
+	 * @param in the string with a number in it
+	 * @return the converted value
+	 */
+	public static Integer stringToInt(String in) {
+		Integer out;
+		try {
+			out = Integer.parseInt(in.trim());
+		}
+		catch (NumberFormatException e) {
+			out = null;
+		}
+		return out;
+	}
+
+	/**
+	 * Prints the resources for a VO
+	 * 
+	 * @param voidInfo VO information
+	 * @param resTab File to contain wiki table 
+	 */
+	public static void printResourcesTable(ArrayList<VirtOrgInfo> voidInfo, String resTab) {
+
+		// Deal with the resources table
+		if (resTab != null) {
+			FileOutputStream fos = null;
+			try {
+				fos = new FileOutputStream(resTab);
+				PrintStream ps = new PrintStream(fos);
+
+				ps.print("== VO Resource Requirements ==\n");
+
+				ps.print("{|border=\"1\",cellpadding=\"1\"\n");
+				ps.print("|+VO Resource Requirements\n");
+				ps.print("|-style=\"background:#7C8AAF;color:white\"\n");
+				ps.print("!VO\n");
+				ps.print("!Ram/Core\n");
+				ps.print("!MaxCPU\n");
+				ps.print("!MaxWall\n");
+				ps.print("!Scratch\n");
+				ps.print("!Other\n");
+
+				Integer maxValForRamPerCore64 = 0;
+				Integer maxValForMaxCpu = 0;
+				Integer maxValForMaxWall = 0;
+				Integer maxValForScratch = 0;
+
+				Collections.sort(voidInfo, new ByVoName());
+				for (VirtOrgInfo v : voidInfo) {
+					if (v.isAtMySite()) {
+						VoResourceSet res = v.getResourceSet();
+
+						Integer ramPerCore64 = Utils.stringToInt(res.getRamPerCore64());
+						Integer maxCpu = Utils.stringToInt(res.getMaxCpu());
+						Integer maxWall = Utils.stringToInt(res.getMaxWall());
+						Integer scratch = Utils.stringToInt(res.getScratch());
+
+						if ((ramPerCore64 == null ? 0 : ramPerCore64) > maxValForRamPerCore64) {
+							maxValForRamPerCore64 = ramPerCore64;
+						}
+						if ((maxCpu == null ? 0 : maxCpu) > maxValForMaxCpu) {
+							maxValForMaxCpu = maxCpu;
+						}
+						if ((maxWall == null ? 0 : maxWall) > maxValForMaxWall) {
+							maxValForMaxWall = maxWall;
+						}
+						if ((scratch == null ? 0 : scratch) > maxValForScratch) {
+							maxValForScratch = scratch;
+						}
+
+						ps.print("\n|-\n");
+						ps.print("|" + v.getVoName() + "\n");
+						ps.print("|" + ramPerCore64 + "\n");
+						ps.print("|" + maxCpu + "\n");
+						ps.print("|" + maxWall + "\n");
+						ps.print("|" + scratch + "\n");
+						ps.print("|" + res.getOther() + "\n");
+						ps.print("\n");
+
+						//
+					}
+				}
+				ps.print("\n|-style=\"background:#7C8AAF;color:white\"\n");
+				ps.print("|" + "Maximum:" + "\n");
+				ps.print("|" + maxValForRamPerCore64 + "\n");
+				ps.print("|" + maxValForMaxCpu + "\n");
+				ps.print("|" + maxValForMaxWall + "\n");
+				ps.print("|" + maxValForScratch + "\n");
+				ps.print("|" + "" + "\n");
+				ps.print("\n");
+				ps.print("|}\n");
+			}
+			catch (IOException e) {
+				System.out.print("Unable (3) to write to file" + e);
+				System.exit(1);
+			}
+			finally {
+				try {
+					fos.close();
+				}
+				catch (IOException e) {
+				}
+			}
+		}
+		else {
+			System.out.print("No resources to print\n");
+		}
+	}
 }

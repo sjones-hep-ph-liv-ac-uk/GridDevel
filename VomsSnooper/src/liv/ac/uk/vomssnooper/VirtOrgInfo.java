@@ -11,6 +11,10 @@ import java.util.Collections;
  * @author Steve Jones <sjones@hep.ph.liv.ac.uk>
  * @since 2012-02-24
  */
+/**
+ * @author sjones
+ *
+ */
 public class VirtOrgInfo {
 
 	/**
@@ -30,15 +34,14 @@ public class VirtOrgInfo {
 	}
 
 	private ArrayList<VomsServer> vomsServers; // List of VOMS servers for this VO
-	private String voName; // Name of this VO
-	private String voNickName; // Short name, explained below
-	private Boolean atMySite; // If it supported flag
-	private Boolean vodStyle; // Is it in vo.d style for DNS style names (default
-														// is site-info.def style)
-	private ArrayList<IndividualContact> individualContacts; // VO Contacts 
-
+	private String voName;         // Name of this VO
+	private String voNickName;     // Short name, explained below
+	private Boolean atMySite;      // If it supported flag
+	private Boolean vodStyle;      // Is it in vo.d style for DNS style names (default
+														     // is site-info.def style)
 	private ArrayList<Fqan> fqans; // FQANs for this VO
-	
+	private VoResourceSet res;     // Requirements for this VO
+	private ArrayList<IndividualContact> individualContacts; // VO Contacts 
 
 	/**
 	 * Basic Constructor
@@ -51,7 +54,8 @@ public class VirtOrgInfo {
 
 		vomsServers = new ArrayList<VomsServer>();
 		individualContacts = new ArrayList<IndividualContact>();
-		fqans = new ArrayList<Fqan>(); 
+		fqans = new ArrayList<Fqan>();
+		res = new VoResourceSet();
 	}
 
 	/**
@@ -351,4 +355,21 @@ public class VirtOrgInfo {
 	public void setFqans(ArrayList<Fqan> fqans) {
 		this.fqans = fqans;
 	}
+	
+	/**
+	 * Getter
+	 * @return resource set
+	 */
+	public VoResourceSet getResourceSet() {
+		return res;
+	}
+
+	/**
+	 * Setter
+	 * @param res resource set
+	 */
+	public void setResourceSet(VoResourceSet res) {
+		this.res = res;
+	}
+	
 }

@@ -47,6 +47,7 @@
     <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/SiteChecker.jar"/>  </exec>
     <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/SidFormatter.jar"/> </exec>
     <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/CicToLsc.jar"/>     </exec>
+    <exec executable="/bin/cp"> <arg value="${dist}/lib/VomsSnooper.jar"/>  <arg value="${dist}/lib/VoResources.jar"/>  </exec>
 
   </target>
 

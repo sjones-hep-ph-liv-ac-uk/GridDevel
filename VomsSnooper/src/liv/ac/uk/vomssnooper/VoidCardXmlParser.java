@@ -142,6 +142,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 		if (qName.equals("X509Cert")) {
 			xmlTag = "X509Cert";
 		}
+
 	}
 
 	// Event Handler for end elements
@@ -217,7 +218,27 @@ public class VoidCardXmlParser extends DefaultHandler {
 				vomsServer.setCaDn(xmlChars);
 			}
 		}
-
+		
+		// Deal with resource requirements
+		if (qName.equals("RAM_per_i386_Core")) {
+			voInfo.getResourceSet().setRamPerCore32(xmlChars);
+		}		
+		if (qName.equals("RAM_per_x86_64_Core")) {
+			voInfo.getResourceSet().setRamPerCore64(xmlChars);
+		}		
+		if (qName.equals("JobScratchSpace")) {
+			voInfo.getResourceSet().setScratch(xmlChars);
+		}		
+		if (qName.equals("JobMaxCPUTime")) {
+			voInfo.getResourceSet().setMaxCpu(xmlChars);
+		}		
+		if (qName.equals("JobMaxWallClockTime")) {
+			voInfo.getResourceSet().setMaxWall(xmlChars);
+		}		
+		if (qName.equals("OtherRequirements")) {
+			voInfo.getResourceSet().setOther(xmlChars);
+		}		
+		
 		// Finalise parser state
 		if (qName.equalsIgnoreCase("Middlewares"))
 			xmlTag = "";

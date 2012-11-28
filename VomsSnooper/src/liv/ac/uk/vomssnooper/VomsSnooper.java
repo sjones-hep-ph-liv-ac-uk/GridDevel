@@ -180,6 +180,9 @@ public class VomsSnooper {
 		else if (program.contains("CicToLsc")) {  
 			liv.ac.uk.vomssnooper.CicToLsc.main(args); System.exit(0);
 		}
+		else if (program.contains("VoResources")) {  
+			liv.ac.uk.vomssnooper.VoResources.main(args); System.exit(0);
+		}
 		else if (program.contains("VomsSnooper")) {  
 		  // Let it fall through to the main below	
 		}
