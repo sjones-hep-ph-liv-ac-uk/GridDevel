@@ -4,12 +4,12 @@ The tables below indicate VOs that the GridPP PMB approves and encourages suppor
 
 ==Approved EGI VOs==
 
-{|border="1",cellpadding="1"
-|+Approved [http://wiki.egee-see.org/index.php/Extended_VO_Information EGEE VOs]
-
+{|border="1",cellpadding="1" 
+|+Approved [http://wiki.egee-see.org/index.php/Extended_VO_Information EGEE VOs] 
 |-style="background:#7C8AAF;color:white"
 !Name
 !Area
+!Contact
 
 
 |-
@@ -404,15 +404,15 @@ n/a
 ''' site-info.def version (sid) '''
 <pre><nowiki>
 VO_ATLAS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
-VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' "
-VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
+VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
+VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/atlas
 VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
-VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' "
-VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
+VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 
 </nowiki></pre>
 Notes: 
@@ -549,16 +549,16 @@ n/a
 
 ''' site-info.def version (sid) '''
 <pre><nowiki>
-VO_DTEAM_VOMS_SERVERS="'vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam' 'vomss://voms2.hellasgrid.gr:8443/voms/dteam?/dteam' "
-VO_DTEAM_VOMSES="'dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam' 'dteam voms2.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms2.hellasgrid.gr dteam' "
-VO_DTEAM_VOMS_CA_DN="'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' '/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' "
+VO_DTEAM_VOMS_SERVERS="'vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam' "
+VO_DTEAM_VOMSES="'dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam' "
+VO_DTEAM_VOMS_CA_DN="'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' "
 </nowiki></pre>
 ''' vo.d version (vod)'''
 <pre><nowiki>
 # $YAIM_LOCATION/vo.d/dteam
-VOMS_SERVERS="'vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam' 'vomss://voms2.hellasgrid.gr:8443/voms/dteam?/dteam' "
-VOMSES="'dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam' 'dteam voms2.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms2.hellasgrid.gr dteam' "
-VOMS_CA_DN="'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' '/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' "
+VOMS_SERVERS="'vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam' "
+VOMSES="'dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam' "
+VOMS_CA_DN="'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' "
 
 </nowiki></pre>
 Notes: 
@@ -1259,6 +1259,332 @@ Notes:
 n/a
 }}
 <!-- END OF SIDSECTION -->
+
+== VO Resource Requirements ==
+{|border="1",cellpadding="1"
+|+VO Resource Requirements
+|-style="background:#7C8AAF;color:white"
+!VO
+!Ram/Core
+!MaxCPU
+!MaxWall
+!Scratch
+!Other
+
+|-
+|alice
+|2000
+|1320
+|1500
+|10
+|
+        
+
+
+|-
+|atlas
+|2048
+|3120
+|5760
+|20000
+|
+- an experimental software area (shared filesystem) with at least 500 GB free and reserved for ATLAS.
+
+
+|-
+|babar
+|1000
+|14000
+|14400
+|4
+|libg2c.so.0
+
+
+|-
+|biomed
+|100
+|1
+|1
+|100
+|For sites providing an SE, minimal required storage space is 1TB. 
+
+
+
+
+|-
+|calice
+|0
+|0
+|0
+|15
+| 
+
+
+|-
+|camont
+|1000
+|600
+|2880
+|1
+|
+        
+
+
+|-
+|cdf
+|0
+|4320
+|4320
+|10
+|
+VO_CDF_VOMSES="'cdf voms.cnaf.infn.it 15001 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it cdf' 'cdf voms-01.pd.infn.it 15001 /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it cdf'"
+
+
+|-
+|cms
+|2000
+|2880
+|4320
+|20000
+|
+
+
+
+
+|-
+|dteam
+|0
+|0
+|0
+|0
+|
+        
+
+
+|-
+|dzero
+|0
+|1500
+|24
+|6
+|Worker Nodes need outgoing internet access.
+
+
+|-
+|esr
+|2048
+|2100
+|0
+|0
+|
+Low-latency scheduling for short jobs needed.
+
+
+|-
+|fusion
+|0
+|0
+|0
+|0
+|Please see MoU for details. NOTE that the CPU numbers cannot be determined because of conflicting numbers in the MoU.
+
+
+|-
+|geant4
+|0
+|650
+|0
+|0
+|
+
+
+
+|-
+|gridpp
+|1000
+|1000
+|0
+|0
+|
+        
+
+
+|-
+|hone
+|0
+|0
+|2880
+|5
+| 
+
+
+|-
+|ilc
+|2048
+|0
+|0
+|15
+|Minimum space for software installation (VO_ILC_SW_DIR) 3 GB.
+
+
+|-
+|lhcb
+|4000
+|6000
+|7200
+|20000
+|
+
+Non T1 sites providing CVMFS, direct CREAM submission and the requested amount of local scratch space will be considered as candidates for additional workloads (e.g. data reprocessing campaign).
+
+
+
+
+|-
+|magic
+|1024
+|5000
+|0
+|0
+|Fortran77 and other compilers. See details in annex of MoU (documentation section).
+
+
+|-
+|mice
+|0
+|0
+|0
+|0
+|
+        
+
+
+|-
+|minos.vo.gridpp.ac.uk
+|0
+|600
+|600
+|20
+| 
+
+
+|-
+|na62.vo.gridpp.ac.uk
+|2048
+|0
+|0
+|2048
+|
+        
+
+
+|-
+|ngs.ac.uk
+|0
+|1
+|40
+|2
+| 
+
+
+|-
+|vo.northgrid.ac.uk
+|0
+|0
+|0
+|0
+|
+        
+
+
+|-
+|ops
+|0
+|0
+|0
+|0
+| 
+
+
+|-
+|pheno
+|0
+|0
+|0
+|0
+|
+        
+
+
+|-
+|planck
+|0
+|950
+|0
+|0
+|
+IDL(commercial) where available
+
+
+
+|-
+|vo.sixt.cern.ch
+|0
+|0
+|0
+|0
+|
+        
+
+
+|-
+|snoplus.snolab.ca
+|2000
+|1440
+|2160
+|20000
+|
+
+
+
+|-
+|supernemo.vo.eu-egee.org
+|0
+|0
+|5760
+|5
+| 
+
+
+|-
+|t2k.org
+|1000
+|600
+|600
+|20
+|
+libXpm-devel
+
+
+
+|-
+|zeus
+|0
+|0
+|0
+|0
+| 
+
+
+|-style="background:#7C8AAF;color:white"
+|Maximum:
+|4000
+|14000
+|14400
+|20000
+|
+
+|}
 
 ==VO enablement  ==
 
