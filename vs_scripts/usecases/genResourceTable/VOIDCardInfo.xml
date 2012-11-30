@@ -269,6 +269,32 @@ Siz9xaJBXJaSx7P4UD3FKl4Sn3B7tf23mvkfPnKyYkWzElgXYpBSWEX0s8rZqiXR/Z96yXyem7o=
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15002" IsVomsAdminServer="0" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/theophys/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -662,7 +688,7 @@ VO is working in several directions:
     </Ressources>
 </IDCard><IDCard CIC_ID="2332" Name="ops.ndgf.org" Serial="126" Status="Production" Alias="ops.ndgf.org" GridId="">
     <ValidationDate TimeZone="UTC">2011-05-30 10:24:30</ValidationDate>
-    <LastChange TimeZone="UTC">0000-00-00 00:00:00</LastChange>
+    <LastChange TimeZone="UTC">2012-11-29 13:19:01</LastChange>
     <Scope>Global</Scope>
     <SupportProcedure/>
     <Discipline>Infrastructure</Discipline>
@@ -731,6 +757,17 @@ ifFlb8lPT1eV7ShpaOWiVYaKYqVF4tYnvnCQvi7OglC/StPaqRDJcw==
         <Individuals>
             <Contact>
                 <Name>Wadenstein Mattias</Name>
+                <Role>VO MANAGER</Role>
+                <Email>
+                Not available
+            </Email>
+                <DN>
+                Not available
+            </DN>
+                <Phone/>
+            </Contact>
+            <Contact>
+                <Name>Ulf Tigerstedt</Name>
                 <Role>VO MANAGER</Role>
                 <Email>
                 Not available
@@ -2914,6 +2951,32 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15015" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/tps.infn.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15015" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/tps.infn.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -3237,6 +3300,32 @@ The major objectives of EU-IndiaGrid can be summarized as follows:
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15010" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/euindia/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15010" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/euindia/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -3838,6 +3927,32 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15009" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/superbvo.org/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15009" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/superbvo.org/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -4943,6 +5058,32 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15019" IsVomsAdminServer="1" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/pacs.infn.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15019" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/pacs.infn.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -5190,6 +5331,32 @@ High energy gamma-rays are tracers of the most extreme environments in the unive
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15018" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/glast.org/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15018" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/glast.org/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -8240,6 +8407,32 @@ Site type *C*: No support at the level of Storage Element is provided.</OtherReq
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15000" IsVomsAdminServer="1" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/infngrid/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15000" IsVomsAdminServer="1" MembersListUrl="https://voms.cnaf.infn.it:8443/voms/infngrid/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.cnaf.infn.it</hostname>
@@ -8676,6 +8869,32 @@ djQJZE6/Yv4y0ZYyWzGgU8sjQRlNR2mY7891UWA/2Ls=
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15008" IsVomsAdminServer="1" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/gridit/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15008" IsVomsAdminServer="1" MembersListUrl="https://voms.cnaf.infn.it:8443/voms/gridit/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.cnaf.infn.it</hostname>
@@ -11758,6 +11977,32 @@ Low-latency scheduling for short jobs needed.</OtherRequirements>
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15002" IsVomsAdminServer="0" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/inaf/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
         </VOMSServers>
     </gLiteConf>
@@ -12330,6 +12575,32 @@ services provided by Grid infrastructures, allowing them to test and exploit the
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15013" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/lights.infn.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15013" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/lights.infn.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -14004,6 +14275,32 @@ djQJZE6/Yv4y0ZYyWzGgU8sjQRlNR2mY7891UWA/2Ls=
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15011" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/cyclops/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15011" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/cyclops/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -14214,6 +14511,32 @@ ql6C2e/cuUFArKnki0tsJHt82YhfSNB87w4zZ86k4BZ5fA==
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15003" IsVomsAdminServer="1" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/compchem/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15003" IsVomsAdminServer="1" MembersListUrl="https://voms.cnaf.infn.it:8443/voms/compchem/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.cnaf.infn.it</hostname>
@@ -16050,6 +16373,32 @@ Siz9xaJBXJaSx7P4UD3FKl4Sn3B7tf23mvkfPnKyYkWzElgXYpBSWEX0s8rZqiXR/Z96yXyem7o=
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15016" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/eumed/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15016" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/eumed/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -16674,6 +17023,32 @@ By registering with the Virtual Organization (the "VO") as a GRID user you shall
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15014" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/enmr.eu/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15014" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/enmr.eu/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -18608,6 +18983,32 @@ VO target: to allow data management and computationally intensive data analysis<
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15009" IsVomsAdminServer="1" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/virgo/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15009" IsVomsAdminServer="1" MembersListUrl="https://voms.cnaf.infn.it:8443/voms/virgo/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.cnaf.infn.it</hostname>
@@ -18995,6 +19396,32 @@ pfWEdCqbRQkIqLAhHkbjyw0v
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15001" IsVomsAdminServer="0" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/cdf/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15001" IsVomsAdminServer="1" MembersListUrl="https://voms.cnaf.infn.it:8443/voms/cdf/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.cnaf.infn.it</hostname>
@@ -20577,6 +21004,32 @@ Members and Managers of the VO agree to be bound by the Grid Acceptable Usage Ru
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15007" IsVomsAdminServer="1" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/comput-er.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15007" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/comput-er.it/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -22148,6 +22601,32 @@ The VO and in general the grid infrastructure will be used to provide access to 
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15008" IsVomsAdminServer="0" MembersListUrl="https://voms-02.pd.infn.it:8443/voms/ams02.cern.ch/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-02.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-02.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPYwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODM5WhcNMTMwMTAzMTQwODM5WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAyLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAJ+fYW5euAwejEq+ESqcogQ1QEs7Up/8BKgBJ0VdAv4OLkMU8tdqH7uDcNbjgDkTGbrQ0Mfp
+Da8tQiUPToT+OeikWZin/8KDFsjWRTJa4pEwGRC9EM0CCFm2mV26jv9neb7TG01Dr5d49JU6GYMg
+JkpdQI1Om7TMfEFooTOJXDm5AgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+vuCo+MZ0UWLN9dhSFLsuRzPeyaUwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDIucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBADfHR6cHvAC2WRmZ3AgvY/6arCohN+MrpZkTYqFs1y6nipKqXAeabEBX/lYVVOhv
+6eJtZ0DpaYw8rVi1UhoJpgTX0pNNpVlj4uIoDpUfCVL1fY4PDQn6gCFH1/rhdo9y64dzhoLAhWRZ
+Ckntz7X0KaPJ4n1fmo0PgdoIfmU+UetkFTR7z7/IckFm92DtJm9jpvAK/Z9kx7eaVmwc0n33ZtZo
+Uj/hX1eQzMMX0LsVwjsHutsGjQbs+2GXVEWF0Ba2sjc9ulrOfkkOp8oN1SNP0YDf2zzzg7Hyiuge
+xvrSUEDX+B0wor3sNF2GGptvSpKlYKl6Z2CiFRNKcHpuXs+6fY0=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22774</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15008" IsVomsAdminServer="1" MembersListUrl="https://voms2.cnaf.infn.it:8443/voms/ams02.cern.ch/services/VOMSAdmin?method=listMembers">
                 <hostname>voms2.cnaf.infn.it</hostname>
@@ -23205,6 +23684,32 @@ p2N/J8NJjIq6Vh46HUyOqMAE
         <VOMSServers>
             <VOMS_Server HttpsPort="8443" VomsesPort="15013" IsVomsAdminServer="1" MembersListUrl="https://voms-01.pd.infn.it:8443/voms/pamela/services/VOMSAdmin?method=listMembers">
                 <hostname>voms-01.pd.infn.it</hostname>
+                <X509Cert>
+                    <DN>/C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it</DN>
+                    <CA_DN>/C=IT/O=INFN/CN=INFN CA</CA_DN>
+                    <X509PublicKey>-----BEGIN CERTIFICATE-----
+MIID6zCCAtOgAwIBAgICWPUwDQYJKoZIhvcNAQEFBQAwLjELMAkGA1UEBhMCSVQxDTALBgNVBAoT
+BElORk4xEDAOBgNVBAMTB0lORk4gQ0EwHhcNMTIwMTA0MTQwODI4WhcNMTMwMTAzMTQwODI4WjBZ
+MQswCQYDVQQGEwJJVDENMAsGA1UEChMESU5GTjENMAsGA1UECxMESG9zdDEPMA0GA1UEBxMGUGFk
+b3ZhMRswGQYDVQQDExJ2b21zLTAxLnBkLmluZm4uaXQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBALs5G8YC3867W3bpgmU78UW6WCJVKylhyfVbNge6vf1aKa1AcC3lN38jyH681DTiAS6AI6YV
+a3Xfu0E0pltXOhw9KoslPbw3ZuekZYUxBh23ZUh/c6Q9yfWRtXMe7pXGjrjOXvfDaSoYTP4vdHfI
+pTByqTd62h0EdgSThm35Tj5bAgMBAAGjggFqMIIBZjAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQE
+AwIFoDA0BgNVHSUELTArBggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcKAwMGCWCGSAGG+EIE
+ATA9BgNVHR8ENjA0MDKgMKAuhixodHRwOi8vc2VjdXJpdHkuZmkuaW5mbi5pdC9DQS9JTkZOQ0Ff
+Y3JsLmRlcjAlBgNVHSAEHjAcMAwGCisGAQQB0SMKAQcwDAYKKoZIhvdMBQICATAdBgNVHQ4EFgQU
+CJANj2TAVUpF1Lv8/HRmpNsReQcwVgYDVR0jBE8wTYAU0WLzs3dyyC778nkabzdOJ58T1SChMqQw
+MC4xCzAJBgNVBAYTAklUMQ0wCwYDVQQKEwRJTkZOMRAwDgYDVQQDEwdJTkZOIENBggEAMDMGA1Ud
+EQQsMCqCEnZvbXMtMDEucGQuaW5mbi5pdIEUZ3JpZC1wcm9kQHBkLmluZm4uaXQwDQYJKoZIhvcN
+AQEFBQADggEBAFdXW1+moTiqk0WAWUBcYBjFDk48CNjulLVK40+kHXdzyM83VrLjPR8kAY1DB0kr
+xhVrUNxn47fa/4OdDpoht9xJ/Ra2f3C+tNIJVEtNhMOlZkIt4aHrxumIPKR9wJATG87LboTbu0gY
+WT20Fcu9sznm0gR+hCl4PdhK3yikYVUCksc9ZJVjiVo3yHjpmICHXzkYVCE72BOxrN1OiQygKC3w
+gF8+N5qDhiNOUbRUypRdSNjxxvcmqKfkPic56xorc98jzmc0UTk5CtgP4TcnC01MyWWvr5sHCg4I
+rHZe/eleILWU7ARwyxO3tSRtqacypTOy1a2IoUkFRGUgFp+3EKs=
+-----END CERTIFICATE-----
+</X509PublicKey>
+                    <SerialNumber>22773</SerialNumber>
+                </X509Cert>
             </VOMS_Server>
             <VOMS_Server HttpsPort="8443" VomsesPort="15013" IsVomsAdminServer="1" MembersListUrl="https://voms.cnaf.infn.it:8443/voms/pamela/services/VOMSAdmin?method=listMembers">
                 <hostname>voms.cnaf.infn.it</hostname>

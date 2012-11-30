@@ -20,5 +20,12 @@ java -jar $VS_JAR_DIR/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos allvos
 java -jar $VS_JAR_DIR/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos allvos.txt --vodfile novos.txt  --voddir glitecfg/vo.d --outfile glitecfg/site-info.def --nosillysids --printvodtitle
 
 # Put it altogether and merge it with the old wiki content
-./assemble_content.pl -dir glitecfg/ -wf wiki.txt -of new.wiki.txt
+./assemble_content.pl -dir glitecfg/ -wf wiki.txt -of int.wiki.txt
+
+# Make the twiki table of resources
+java -jar $VS_JAR_DIR/VoResources.jar --xmlfile VOIDCardInfo.xml  --myvos allvos.txt --res res.txt
+
+# Put the new table in the twiki
+./insert_resource_table.pl -wf int.wiki.txt  -res res.txt -of new.wiki.txt 
+
 
