@@ -29,8 +29,8 @@ public class VoidCardXmlParser extends DefaultHandler {
 	private Boolean hasGlite; // Does this VO use gLite?
 	
 	private String xmlTag;    // Various parser state variables    
-	private String xmlChars;
 	private String xmlFile;
+	private StringBuffer xmlChars;
 
 	/**
 	 * Constructor
@@ -41,6 +41,8 @@ public class VoidCardXmlParser extends DefaultHandler {
 	public VoidCardXmlParser(String xmlFile, ArrayList<VirtOrgInfo> voInfoList) {
 		this.xmlFile = xmlFile;
 		this.voInfoList = voInfoList;
+		xmlChars = new StringBuffer("");
+
 	}
 
 	/**
@@ -78,6 +80,9 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 	// Event Handler for start elements
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+
+		xmlChars = new StringBuffer("");
+		
 		if (qName.equalsIgnoreCase("Middlewares")) {
 			xmlTag = "Middlewares";
 
@@ -171,28 +176,34 @@ public class VoidCardXmlParser extends DefaultHandler {
 		if (xmlTag.equals("FQAN")) {
 
 			if (qName.equalsIgnoreCase("FqanExpr")) {
-				fqan.setFqanExpr(xmlChars.trim().replace("\n", ""));
+				fqan.setFqanExpr(xmlChars.toString().trim().replace("\n", ""));
+				
 			}
 			if (qName.equalsIgnoreCase("Description")) {
 				if (fqan == null) {
 				}
-				fqan.setDescription(xmlChars.trim().replace("\n", ""));
+				fqan.setDescription(xmlChars.toString().trim().replace("\n", ""));
+				
 			}
 		}
 		
 		// If in Contact data, transfer data and fix line breaks
 		if (xmlTag.equals("Contact")) {
 			if (qName.equalsIgnoreCase("Name")) {
-				contact.setName(xmlChars.trim().replace("\n", ""));
+				contact.setName(xmlChars.toString().trim().replace("\n", ""));
+				
 			}
 			if (qName.equalsIgnoreCase("Role")) {
-				contact.setRole(xmlChars.trim().replace("\n", ""));
+				contact.setRole(xmlChars.toString().trim().replace("\n", ""));
+				
 			}
 			if (qName.equalsIgnoreCase("Email")) {
-				contact.setEmail(xmlChars.trim().replace("\n", ""));
+				contact.setEmail(xmlChars.toString().trim().replace("\n", ""));
+				
 			}
 			if (qName.equalsIgnoreCase("DN")) {
-				contact.setDn(xmlChars.trim().replace("\n", ""));
+				contact.setDn(xmlChars.toString().trim().replace("\n", ""));
+				
 			}
 		}
 
@@ -206,37 +217,50 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 		// Set other attributes
 		if (qName.equalsIgnoreCase("hostname")) {
-			vomsServer.setHostname(xmlChars);
+			vomsServer.setHostname(xmlChars.toString());
+			
 		}
 		if (qName.equalsIgnoreCase("DN")) {
 			if (xmlTag.equals("X509Cert")) {
-				vomsServer.setDn(xmlChars);
+				vomsServer.setDn(xmlChars.toString());
+			
+				
 			}
 		}
 		if (qName.equalsIgnoreCase("CA_DN")) {
 			if (xmlTag.equals("X509Cert")) {
-				vomsServer.setCaDn(xmlChars);
+				vomsServer.setCaDn(xmlChars.toString());
+			
+				
 			}
 		}
 		
 		// Deal with resource requirements
 		if (qName.equals("RAM_per_i386_Core")) {
-			voInfo.getResourceSet().setRamPerCore32(xmlChars);
+			voInfo.getResourceSet().setRamPerCore32(xmlChars.toString());
+			
+			
 		}		
 		if (qName.equals("RAM_per_x86_64_Core")) {
-			voInfo.getResourceSet().setRamPerCore64(xmlChars);
+			voInfo.getResourceSet().setRamPerCore64(xmlChars.toString());
+			
+			
 		}		
 		if (qName.equals("JobScratchSpace")) {
-			voInfo.getResourceSet().setScratch(xmlChars);
+			voInfo.getResourceSet().setScratch(xmlChars.toString());
+			
+			
 		}		
 		if (qName.equals("JobMaxCPUTime")) {
-			voInfo.getResourceSet().setMaxCpu(xmlChars);
+			voInfo.getResourceSet().setMaxCpu(xmlChars.toString());
+			
 		}		
 		if (qName.equals("JobMaxWallClockTime")) {
-			voInfo.getResourceSet().setMaxWall(xmlChars);
+			voInfo.getResourceSet().setMaxWall(xmlChars.toString());
+			
 		}		
 		if (qName.equals("OtherRequirements")) {
-			voInfo.getResourceSet().setOther(xmlChars);
+			voInfo.getResourceSet().setOther(xmlChars.toString());
 		}		
 		
 		// Finalise parser state
@@ -252,6 +276,6 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 	// Capture interstitial characters
 	public void characters(char[] ch, int start, int length) throws SAXException {
-		xmlChars = new String(ch, start, length);
+		xmlChars.append(new String(ch, start, length));
 	}
 }

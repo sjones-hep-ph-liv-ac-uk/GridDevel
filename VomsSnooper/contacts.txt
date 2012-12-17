@@ -1,7 +1,6 @@
 Contacts for alice:
 Latchezar Betev, VO MANAGER, null, null, 
-Latchezar Betev, VO DEPUTY, null, null, 
-Patricia Mendez Lorenzo, VO DEPUTY, null, null, 
+Maarten Litmaath, VO MANAGER, null, null, 
 Pablo Saiz, VO EXPERT, null, null, 
 Costin Grigoras, VO EXPERT, null, null, 
 
@@ -10,16 +9,16 @@ Alessandro De Salvo, VO MANAGER, null, null,
 Aart Heijboer, VO DEPUTY, null, null, 
 Simone Campana, VO DEPUTY, null, null, 
 Alessandro Di Girolamo, VO DEPUTY, null, null, 
-John Hover, VO DEPUTY, null, , 
+John Hover, VO DEPUTY, null, null, 
 Jay Packard, VO DEPUTY, null, null, 
 Luca Vaccarossa, VO DEPUTY, null, null, 
 
 Contacts for biomed:
+Tristan Glatard, VO MANAGER, null, null, 
 Yannick Legre, VO MANAGER, null, null, 
 Franck Michel, VO MANAGER, null, null, 
-Tristan Glatard, VO DEPUTY, null, null, 
-Romain Tartiere, VO DEPUTY, null, null, 
 Tristan Glatard, VO EXPERT, null, null, 
+Franck Michel, VO EXPERT, null, null, 
 
 Contacts for calice:
 Roman  Poeschl, VO MANAGER, null, null, 
@@ -49,7 +48,7 @@ Ian Fisk, VO EXPERT, null, null,
 Contacts for dzero:
 Alan Jonckheere, VO MANAGER, null, null, 
 Parag Mhashilkar, VO DEPUTY, null, null, 
-Alan Jonckheere, VO DEPUTY, null, , 
+Alan Jonckheere, VO DEPUTY, null, null, 
 
 Contacts for esr:
 Andre Gemuend, VO MANAGER, null, null, 
@@ -58,8 +57,8 @@ David Weissenbach, VO DEPUTY, null, null,
 David Weissenbach, VO EXPERT, null, null, 
 
 Contacts for fusion:
-Isabel Campos Plasencia, VO MANAGER, null, null, 
 Ruben Valles, VO MANAGER, null, null, 
+Jaime Ibar, VO MANAGER, null, null, 
 
 Contacts for geant4:
 Andrea Sciaba, VO MANAGER, null, null, 
@@ -92,6 +91,7 @@ Roger Firpo, VO MANAGER, null, null,
 
 Contacts for mice:
 David Colling, VO MANAGER, null, null, 
+Daniela Bauer, VO DEPUTY, null, null, 
 
 Contacts for minos.vo.gridpp.ac.uk:
 Philip Rodrigues, VO MANAGER, null, null, 
@@ -122,15 +122,18 @@ Patricia Mendez Lorenzo, VO DEPUTY, null, null,
 
 Contacts for snoplus.snolab.ca:
 Jeanne Wilson, VO MANAGER, null, null, 
+Christopher Walker, VO MANAGER, null, null, 
+Matthew  Mottram, VO MANAGER, null, null, 
 
 Contacts for supernemo.vo.eu-egee.org:
 Gianfranco Sciacca, VO MANAGER, null, null, 
 
 Contacts for t2k.org:
 Ben Still, VO MANAGER, null, null, 
+Jon Perkin, VO MANAGER, null, null, 
 
 Contacts for zeus:
-Janusz Szuba, VO MANAGER, , null, 
+Janusz Szuba, VO MANAGER, null, null, 
 Krzysztof Wrona, VO MANAGER, null, null, 
 Hartmut Stadie, VO MANAGER, null, null, 
 Mykhailo Lisovyi, VO MANAGER, null, null, 

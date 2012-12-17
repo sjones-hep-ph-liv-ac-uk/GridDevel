@@ -1,10 +1,10 @@
 VO_ALICE_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/alice?/alice' "
-VO_ALICE_VOMSES="'alice voms.cern.ch 15000 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch alice' "
-VO_ALICE_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
+VO_ALICE_VOMSES="'alice lcg-voms.cern.ch 15000 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch alice' 'alice voms.cern.ch 15000 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch alice' "
+VO_ALICE_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
-VO_ATLAS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://vo.racf.bnl.gov:8443/voms/atlas?/atlas' "
-VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
-VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
+VO_ATLAS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/atlas?/atlas' "
+VO_ATLAS_VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' "
+VO_ATLAS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
 VO_BIOMED_VOMS_SERVERS="'vomss://cclcgvomsli01.in2p3.fr:8443/voms/biomed?/biomed' "
 VO_BIOMED_VOMSES="'biomed cclcgvomsli01.in2p3.fr 15000 /O=GRID-FR/C=FR/O=CNRS/OU=CC-IN2P3/CN=cclcgvomsli01.in2p3.fr biomed' "
@@ -22,9 +22,9 @@ VO_CDF_VOMS_SERVERS="'vomss://voms.cnaf.infn.it:8443/voms/cdf?/cdf' 'vomss://vom
 VO_CDF_VOMSES="'cdf voms.cnaf.infn.it 15001 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it cdf' 'cdf voms-01.pd.infn.it 15001 /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it cdf' 'cdf voms.fnal.gov 15020 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cdf' "
 VO_CDF_VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA' '/C=IT/O=INFN/CN=INFN CA' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 
-VO_CMS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.fnal.gov:8443/voms/cms?/cms' "
-VO_CMS_VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' 'cms voms.fnal.gov 15015 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cms' "
-VO_CMS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
+VO_CMS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/cms?/cms' "
+VO_CMS_VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' "
+VO_CMS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
 VO_DZERO_VOMS_SERVERS="'vomss://voms.fnal.gov:8443/voms/dzero?/dzero' "
 VO_DZERO_VOMSES="'dzero voms.fnal.gov 15002 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov dzero' "
@@ -34,11 +34,11 @@ VO_ESR_VOMS_SERVERS="'vomss://voms.grid.sara.nl:8443/voms/esr?/esr' "
 VO_ESR_VOMSES="'esr voms.grid.sara.nl 30001 /O=dutchgrid/O=hosts/OU=sara.nl/CN=voms.grid.sara.nl esr' "
 VO_ESR_VOMS_CA_DN="'/C=NL/O=NIKHEF/CN=NIKHEF medium-security certification auth' "
 
-VO_FUSION_VOMS_SERVERS="'vomss://voms-prg.bifi.unizar.es:8443/voms/fusion?/fusion' "
-VO_FUSION_VOMSES="'fusion voms-prg.bifi.unizar.es 15001 /DC=es/DC=irisgrid/O=bifi-unizar/CN=voms-prg.bifi.unizar.es fusion' "
-VO_FUSION_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
+VO_FUSION_VOMS_SERVERS=""
+VO_FUSION_VOMSES=""
+VO_FUSION_VOMS_CA_DN=""
 
-VO_GEANT4_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/geant4?/geant4' 'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
+VO_GEANT4_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
 VO_GEANT4_VOMSES="'geant4 lcg-voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch geant4' 'geant4 voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch geant4' "
 VO_GEANT4_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
@@ -54,7 +54,7 @@ VO_ILC_VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/ilc?/ilc' 'vomss://vom
 VO_ILC_VOMSES="'ilc grid-voms.desy.de 15110 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de ilc' 'ilc voms.fnal.gov 15023 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov ilc' "
 VO_ILC_VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "
 
-VO_LHCB_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/lhcb?/lhcb' 'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
+VO_LHCB_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
 VO_LHCB_VOMSES="'lhcb lcg-voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch lhcb' 'lhcb voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch lhcb' "
 VO_LHCB_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 
@@ -63,10 +63,10 @@ VO_MAGIC_VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.p
 VO_MAGIC_VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' '/DC=es/DC=irisgrid/CN=IRISGridCA' "
 
 VO_MICE_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/mice?/mice' "
-VO_MICE_VOMSES="'mice voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk mice' "
+VO_MICE_VOMSES="'mice voms.gridpp.ac.uk 15001 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk mice' "
 VO_MICE_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 
-VO_OPS_VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/ops?/ops' 'vomss://voms.cern.ch:8443/voms/ops?/ops' "
+VO_OPS_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/ops?/ops' "
 VO_OPS_VOMSES="'ops lcg-voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch ops' 'ops voms.cern.ch 15009 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch ops' "
 VO_OPS_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
 

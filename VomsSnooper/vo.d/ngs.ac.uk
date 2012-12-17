@@ -1,5 +1,5 @@
 # $YAIM_LOCATION/vo.d/ngs.ac.uk
-VOMS_SERVERS="'vomss://voms.ngs.ac.uk:8443/voms/ngs.ac.uk?/ngs.ac.uk' "
-VOMSES="'ngs.ac.uk voms.ngs.ac.uk 15010 /C=UK/O=eScience/OU=Manchester/L=MC/CN=voms.ngs.ac.uk/EMAILADDRESS=support@grid-support.ac.uk ngs.ac.uk' "
-VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA' "
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/ngs.ac.uk?/ngs.ac.uk' 'vomss://voms.ngs.ac.uk:8443/voms/ngs.ac.uk?/ngs.ac.uk' "
+VOMSES="'ngs.ac.uk voms.gridpp.ac.uk 15010 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk ngs.ac.uk' 'ngs.ac.uk voms.ngs.ac.uk 15010 /C=UK/O=eScience/OU=Manchester/L=MC/CN=voms.ngs.ac.uk/EMAILADDRESS=support@grid-support.ac.uk ngs.ac.uk' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' '/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
 

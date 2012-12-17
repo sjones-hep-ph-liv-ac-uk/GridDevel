@@ -143,4 +143,16 @@ public class VoResourceSet {
 	public void setOther(String other) {
 		this.other = other;
 	}
+	
+	/**
+	 * Setter
+	 * @param other
+	 */
+	public void appendToOther(String other) {
+		if (this.other == null) {
+			this.other = "";
+		}
+		this.other = this.other + other;
+	}
+	
 }

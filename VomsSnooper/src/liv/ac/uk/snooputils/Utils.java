@@ -28,6 +28,14 @@ import liv.ac.uk.vomssnooper.VirtOrgInfo.ByVoName;
 public class Utils {
 
 	/**
+	 * 
+	 */
+	public static void printVersion() {
+		System.out.print("Copyright (c) The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
+		System.out.print("Version 1.25\n\n");
+	}
+	
+	/**
 	 * Prints the SID in regular output file
 	 * 
 	 * @param The vo to print
@@ -277,10 +285,6 @@ public class Utils {
 		return output;
 	}
 	
-	public static void printVersion() {
-		System.out.print("Copyright (c) The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.24\n\n");
-	}
 	
 	
 	/**
