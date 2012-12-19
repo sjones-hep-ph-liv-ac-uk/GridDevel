@@ -55,6 +55,7 @@ public class Utils {
 			String n = v.getVoName().toUpperCase();
 			Boolean itsSilly = n.contains(".") ;
 		  n = n.replace(".", "_");
+		  n = n.replace("-", "_");
 
 			if (noSillySids) {
 				if (! itsSilly) {
