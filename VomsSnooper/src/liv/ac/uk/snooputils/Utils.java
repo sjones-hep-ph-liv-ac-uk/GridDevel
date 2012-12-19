@@ -28,11 +28,11 @@ import liv.ac.uk.vomssnooper.VirtOrgInfo.ByVoName;
 public class Utils {
 
 	/**
-	 * 
+	 * Print out the version number
 	 */
 	public static void printVersion() {
 		System.out.print("Copyright (c) The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.25\n\n");
+		System.out.print("Version 1.26\n\n");
 	}
 	
 	/**
@@ -53,9 +53,11 @@ public class Utils {
 		for (String vs : vomsLines) {
 
 			String n = v.getVoName().toUpperCase();
+			Boolean itsSilly = n.contains(".") ;
+		  n = n.replace(".", "_");
 
 			if (noSillySids) {
-				if (n.contains(".") == false) {
+				if (! itsSilly) {
 					ps.print("VO_" + n + "_" + vs + "\n");
 				}
 				else {
@@ -64,7 +66,7 @@ public class Utils {
 				}
 			}
 			else {
-				if (n.contains(".") == true) {
+				if (itsSilly) {
 					sillySidAcceptedWarnings.put(n, true);
 				}
 				ps.print("VO_" + n + "_" + vs + "\n");
