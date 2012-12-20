@@ -60,12 +60,15 @@ while(<SID>) {
     s/#\s*//; # get rid of poss comment (silly sids)
     s/VO_//;
     s/_VOMS_CA_DN.*//;
-    my $ucName = $_;
-    my $lcName = lc($ucName);
-    chomp($lcName);
-    my $vodFile = findMatchingVodFile("$parameter{'DIR'}/vo.d/",$lcName);
-    die ("Could not find a vod file ($vodFile) for $parameter{'DIR'}/vo.d/$lcName\n") unless( -f $vodFile );
-    open(VOD,$vodFile) or die("Unable to find $vodFile\n");
+    my $ucVoPattern = $_;
+    my $lcVoPattern = lc($ucVoPattern);
+    chomp($lcVoPattern);
+    my $vodFile = findMatchingVodFile("$parameter{'DIR'}/vo.d/",$lcVoPattern);
+    if ( ! -f "$parameter{'DIR'}/vo.d/$vodFile") {
+      die ("Could not find vod file matching $lcVoPattern\n");
+    }
+
+    open(VOD,"$parameter{'DIR'}/vo.d/$vodFile") or die("Unable to find $parameter{'DIR'}/vo.d/$vodFile\n");
     push (@lines, "''' vo.d version (vod)'''\n");
     push (@lines, "<pre><nowiki>\n");
     
@@ -75,11 +78,14 @@ while(<SID>) {
     push (@lines, "</nowiki></pre>\n");
 
     # Print out the guff for this VO
-    push (@voList,$ucName);
-    $voData{$ucName} = [];
-    push (@{$voData{$ucName}},"\n\n<!-- VOMS RECORDS for $ucName-->\n");
+
+    my $voName = uc($vodFile);
+    push (@voList,$voName);
+
+    $voData{$voName} = [];
+    push (@{$voData{$voName}},"\n\n<!-- VOMS RECORDS for $voName -->\n");
     foreach my $l (@lines) { 
-      push (@{$voData{$ucName}},$l);
+      push (@{$voData{$voName}},$l);
     }
     $#lines = -1;
   }
@@ -178,7 +184,7 @@ sub findMatchingVodFile() {
     next if (-d $vodFile);
     if ($vodFile =~ /$voPattern/) {
       closedir (DIR);
-      return ("$vodDir/$vodFile");
+      return ($vodFile);
     }
   }
   closedir(DIR);
