@@ -21,6 +21,7 @@
 # There is no error handling - if the contract is broken, the script dies.
 #
 # 28/05/12, sj, initial version
+# 20/12/12, sj, fix to allow underscores in vo names, not dots
 #---------------------------------------------
 use strict;
 
@@ -58,11 +59,13 @@ while(<SID>) {
     chomp();
     s/#\s*//; # get rid of poss comment (silly sids)
     s/VO_//;
-    s/_.*//;
+    s/_VOMS_CA_DN.*//;
     my $ucName = $_;
     my $lcName = lc($ucName);
     chomp($lcName);
-    open(VOD,"$parameter{'DIR'}/vo.d/$lcName") or die("Unable to find $parameter{'DIR'}/vo.d/$lcName\n");
+    my $vodFile = findMatchingVodFile("$parameter{'DIR'}/vo.d/",$lcName);
+    die ("Could not find a vod file ($vodFile) for $parameter{'DIR'}/vo.d/$lcName\n") unless( -f $vodFile );
+    open(VOD,$vodFile) or die("Unable to find $vodFile\n");
     push (@lines, "''' vo.d version (vod)'''\n");
     push (@lines, "<pre><nowiki>\n");
     
@@ -87,8 +90,8 @@ my @surrounds;
 my $inSurrounds = 1;
 my $currentVo = '';
 my $endTagCount = 0;
-open(OUTFILE,"> $parameter{'OUTFILE'}") or die("Unable to write to $parameter{'OUTFILE'}");
 open(WIKI,"$parameter{'WIKIFILE'}") or die("Unable to open $parameter{'WIKIFILE'}\n");
+open(OUTFILE,"> $parameter{'OUTFILE'}") or die("Unable to write to $parameter{'OUTFILE'}");
 while(<WIKI>) {
   my $line = $_;
   if (($line =~ /\{\{BOX VO\|([a-zA-Z0-9\_\-\.]*).*\|/) and (defined(@{$voData{$1}}))) {
@@ -158,5 +161,27 @@ TEXT
   if (!(-f "$parameter{'WIKIFILE'}")) {
     die ("Please give a file holding the wiki content.\n");
   }
+}
+
+#-------------------------------------
+# For a given VO pattern, find the 
+# first matching vo.d file
+#-------------------------------------
+
+sub findMatchingVodFile() {
+  my $vodDir = shift();
+  my $voPattern = shift();
+  $voPattern =~ s/_/[.-]/g;
+
+  opendir (DIR, $vodDir) or die ("Could not open $vodDir; $!\n");
+  while (my $vodFile = readdir (DIR)) {
+    next if (-d $vodFile);
+    if ($vodFile =~ /$voPattern/) {
+      closedir (DIR);
+      return ("$vodDir/$vodFile");
+    }
+  }
+  closedir(DIR);
+  return "";
 }
 
