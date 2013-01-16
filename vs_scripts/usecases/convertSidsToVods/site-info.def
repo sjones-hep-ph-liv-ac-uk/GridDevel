@@ -523,7 +523,7 @@ BDII_SITE_BDII_URL="ldap://$SITE_BDII_HOST:2170/mds-vo-name=resource,o=grid"
 
 QUEUES="long"
 
-VOS="alice atlas babar biomed calice camont cdf cedar cms dteam dzero esr fusion geant4 hone gridpp ilc lhcb ltwo magic mice minos.vo.gridpp.ac.uk na48 ngs.ac.uk na62.vo.gridpp.ac.uk ops pheno planck vo.sixt.cern.ch snoplus.snolab.ca supernemo.vo.eu-egee.org t2k.org totalep vo.northgrid.ac.uk zeus"
+VOS="alice atlas babar biomed calice camont cdf cedar cms dteam dzero esr fusion geant4 hone gridpp ilc lhcb magic mice minos.vo.gridpp.ac.uk na48 ngs.ac.uk na62.vo.gridpp.ac.uk ops pheno planck vo.sixt.cern.ch snoplus.snolab.ca supernemo.vo.eu-egee.org t2k.org vo.northgrid.ac.uk zeus"
 
 LONG_GROUP_ENABLE="\
  alice /alice/ROLE=lcgadmin /alice/ROLE=production\
@@ -544,7 +544,6 @@ LONG_GROUP_ENABLE="\
  hone /hone/ROLE=lcgadmin /hone/ROLE=production\
  ilc /ilc/ROLE=lcgadmin /ilc/ROLE=production\
  lhcb /lhcb/ROLE=lcgadmin /lhcb/ROLE=production /lhcb/ROLE=pilot\
- ltwo /ltwo/ROLE=lcgadmin\
  magic /magic/ROLE=lcgadmin\
  mice /mice/ROLE=lcgadmin /mice/ROLE=production\
  minos.vo.gridpp.ac.uk /minos.vo.gridpp.ac.uk/ROLE=lcgadmin\
@@ -559,7 +558,6 @@ LONG_GROUP_ENABLE="\
  snoplus.snolab.ca /snoplus.snolab.ca/ROLE=lcgadmin /snoplus.snolab.ca/ROLE=production\
  supernemo.vo.eu-egee.org /supernemo.vo.eu-egee.org/ROLE=lcgadmin /supernemo.vo.eu-egee.org/ROLE=production\
  t2k.org /t2k.org/ROLE=lcgadmin /t2k.org/ROLE=production\
- totalep /totalep/Role=lcgadmin /totalep/Role=production\
  zeus /zeus/ROLE=lcgadmin /zeus/ROLE=production"
 
 # Global VO varialbes

@@ -16,7 +16,6 @@ gridpp
 hone
 ilc
 lhcb
-ltwo
 magic
 mice
 minos.vo.gridpp.ac.uk
@@ -30,7 +29,6 @@ planck
 snoplus.snolab.ca
 supernemo.vo.eu-egee.org
 t2k.org
-totalep
 vo.northgrid.ac.uk
 vo.sixt.cern.ch
 zeus
