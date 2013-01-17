@@ -152,20 +152,24 @@ sub processSidFile () {
 
   my @oldLines;
   open(OLDFILE,$parameter{'OLDSID'}) or die("No open $parameter{'OLDSID'} ");
-  my $assemble='';      # Var to handle (join) split lines
+#  my $assemble='';      # Var to handle (join) split lines
+#  while(<OLDFILE>) {
+#    if (/\\$/) {
+#      my $tmp = $_;
+#      chomp($tmp);
+#      $tmp =~ s/\\$//;
+#      $assemble = $assemble . $tmp;
+#   }
+#    else {
+#      $assemble = $assemble . $_;
+#      push (@oldLines,$assemble) ;
+#      $assemble = '';
+#    }
+#  }
   while(<OLDFILE>) {
-    if (/\\$/) {
-      my $tmp = $_;
-      chomp($tmp);
-      $tmp =~ s/\\$//;
-      $assemble = $assemble . $tmp;
-   }
-    else {
-      $assemble = $assemble . $_;
-      push (@oldLines,$assemble) ;
-      $assemble = '';
-    }
+    push (@oldLines,$_);
   }
+
   close (OLDFILE);
   
   my @deltaLines;
