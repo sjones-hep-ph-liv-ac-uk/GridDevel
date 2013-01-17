@@ -153,7 +153,7 @@ TEXT
     die ("You must give an --deltas option\n");
   }
 
-  if (! (-f $parameter{'NEWSID'})) { 
+  if (! (defined( $parameter{'NEWSID'}))) { 
     die ("You must give a  --newsid option\n");
   }
 }
