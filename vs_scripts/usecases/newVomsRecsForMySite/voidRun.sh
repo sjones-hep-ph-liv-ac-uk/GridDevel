@@ -43,8 +43,6 @@ java -jar $VS_JAR_DIR/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/m
 rsync -a --delete root@hepgrid6:/root/glitecfg/ void/deployed/
 
 # Merge those records in
-./sid_merger.pl --oldsid void/deployed/site-info.def --deltas void/xml/site-info.def --newsid void/merged/site-info.def
+./sidvod_merger.pl --oldsid void/deployed/site-info.def --deltas void/xml/site-info.def --newsid void/merged/site-info.def
 
-# Completely replace the vo.d files
-rsync -a --delete void/xml/vo.d/ void/merged/vo.d
 
