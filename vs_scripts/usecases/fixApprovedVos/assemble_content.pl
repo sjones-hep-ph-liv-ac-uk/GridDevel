@@ -182,7 +182,7 @@ sub findMatchingVodFile() {
   opendir (DIR, $vodDir) or die ("Could not open $vodDir; $!\n");
   while (my $vodFile = readdir (DIR)) {
     next if (-d $vodFile);
-    if ($vodFile =~ /$voPattern/) {
+    if ($vodFile =~ /^$voPattern$/) {
       closedir (DIR);
       return ($vodFile);
     }
