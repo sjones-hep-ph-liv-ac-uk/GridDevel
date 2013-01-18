@@ -8,6 +8,7 @@
 # You will have to edit this if you install the tools somewhere else.
 # sj, 29 May 2012
 
+rm -rf glitecfg/vo.d
 mkdir -p glitecfg/vo.d
 
 # Get the XML from the CIC Portal
