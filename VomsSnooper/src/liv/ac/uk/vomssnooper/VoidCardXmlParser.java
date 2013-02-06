@@ -106,6 +106,20 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 			// Start a new VOMS Server record, and fill it
 			vomsServer = new VomsServer();
+			
+			// Is it an admin server
+		  try {
+		  	if (Integer.valueOf(attributes.getValue("IsVomsAdminServer")) == 0) 
+		  		vomsServer.setIsVomsAdminServer(false);	
+		  	else
+		  		vomsServer.setIsVomsAdminServer(true);	
+		  }
+		  catch (NumberFormatException e) {
+			  System.out.print("Bad format for HttpsPort\n");
+			  vomsServer.setHttpsPort(-1);
+		  }
+
+		  // Get the https port
 			try {
 				vomsServer.setHttpsPort(Integer.valueOf(attributes.getValue("HttpsPort")));
 			}
@@ -113,6 +127,8 @@ public class VoidCardXmlParser extends DefaultHandler {
 				System.out.print("Bad format for HttpsPort\n");
 				vomsServer.setHttpsPort(-1);
 			}
+			
+		  // Get the Vomses Port
 			try {
 				vomsServer.setVomsServerPort(Integer.valueOf(attributes.getValue("VomsesPort")));
 			}
@@ -120,7 +136,9 @@ public class VoidCardXmlParser extends DefaultHandler {
 				System.out.print("Bad format for VomsesPort\n");
 				vomsServer.setVomsServerPort(-1);
 			}
+			
 			vomsServer.setHostname(attributes.getValue("hostname"));
+			
 			vomsServer.setMembersListUrl(attributes.getValue("MembersListUrl"));
 		}
 

@@ -138,21 +138,30 @@ public class VoResourceSet {
 
 	/**
 	 * Setter
-	 * @param other
+	 * @param o
 	 */
-	public void setOther(String other) {
-		this.other = other;
+	public void setOther(String o) {
+		this.other = o;
+		
+		// Constraint: lines in "other" cannot start with a hyphen.
+		other = other.replaceAll("^[ \t]*-"," _");
+		other = other.replaceAll("\n[ \t]*-","\n _");
+		
 	}
 	
 	/**
 	 * Setter
-	 * @param other
+	 * @param o
 	 */
-	public void appendToOther(String other) {
+	public void appendToOther(String o) {
 		if (this.other == null) {
 			this.other = "";
 		}
-		this.other = this.other + other;
+		this.other = this.other + o;
+		
+		// Constraint: lines in "other" cannot start with a hyphen.
+		other = other.replaceAll("^[ \t]*-"," _");
+		other = other.replaceAll("\n[ \t]*-","\n _");
 	}
 	
 }

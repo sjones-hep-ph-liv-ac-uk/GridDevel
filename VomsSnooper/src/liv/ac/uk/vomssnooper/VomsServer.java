@@ -27,6 +27,9 @@ public class VomsServer {
 	private String membersListUrl;
 	private Boolean complete;
 
+	
+	private Boolean isVomsAdminServer;
+
 	/**
 	 * Constructor
 	 */
@@ -38,6 +41,7 @@ public class VomsServer {
 		caDn = null;
 		membersListUrl = null;
 		complete = false;
+		isVomsAdminServer = false;
 	}
 
 	/**
@@ -244,6 +248,12 @@ public class VomsServer {
 		return url.toString();
 	}
 
+	/**
+	 * Compares two servers
+   * @param other the other server to compare this one to
+	 * 
+	 * @return Report of diffs
+	 */
 	public StringBuffer isAlike(VomsServer other) {
 		StringBuffer report = new StringBuffer();
 		String thisVs = this.toString();
@@ -254,4 +264,24 @@ public class VomsServer {
 		}
 		return report;
 	}
+	
+	/**
+	 * Getter for isVomsAdminServer
+	 * 
+	 * @return isVomsAdminServer whether this one is a VomsAdminServer 
+	 */
+	public Boolean isVomsAdminServer() {
+		return isVomsAdminServer;
+	}
+
+	/**
+	 * Setter for isVomsAdminServer
+	 * 
+   * @param isVomsAdminServer is it a voms admin server
+	 */
+	public void setIsVomsAdminServer(Boolean isVomsAdminServer) {
+		this.isVomsAdminServer = isVomsAdminServer;
+	}
+	
+	
 }

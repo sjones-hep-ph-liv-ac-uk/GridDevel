@@ -32,7 +32,7 @@ public class Utils {
 	 */
 	public static void printVersion() {
 		System.out.print("Copyright (c) The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.29\n\n");
+		System.out.print("Version 1.30\n\n");
 	}
 	
 	/**
@@ -44,9 +44,9 @@ public class Utils {
 	 * @return null
 	 */
 	private static void printSIDStyle(VirtOrgInfo v, PrintStream ps, Boolean extraFields, Boolean noSillySids,
-			Boolean applyCernRule) {
+			Boolean applyCernRule, Boolean useIsVomsAdminServer) {
 
-		ArrayList<String> vomsLines = v.getVomsLines(true, extraFields, applyCernRule);
+		ArrayList<String> vomsLines = v.getVomsLines(true, extraFields, applyCernRule, useIsVomsAdminServer);
 		HashMap<String, Boolean> sillySidAcceptedWarnings = new HashMap<String, Boolean>();
 		HashMap<String, Boolean> sillySidDroppedWarnings = new HashMap<String, Boolean>();
 
@@ -93,7 +93,7 @@ public class Utils {
 	 * @return null
 	 */
 	private static void printVODStyle(VirtOrgInfo v, String vodDir, Boolean extraFields, Boolean printVodTitleLine,
-			Boolean applyCernRule) {
+			Boolean applyCernRule, Boolean useIsVomsAdminServer) {
 
 		String filename = vodDir + "/" + v.getVoName();
 
@@ -101,7 +101,7 @@ public class Utils {
 		try {
 			fos = new FileOutputStream(filename);
 			PrintStream ps = new PrintStream(fos);
-			ArrayList<String> vomsLines = v.getVomsLines(true, extraFields, applyCernRule);
+			ArrayList<String> vomsLines = v.getVomsLines(true, extraFields, applyCernRule,useIsVomsAdminServer);
 
 			if (printVodTitleLine) {
 				ps.print("# $YAIM_LOCATION/vo.d/" + v.getVoName() + "\n");
@@ -131,10 +131,11 @@ public class Utils {
 	 * character in variable names. So VOD format was introduced. In this format, discrete files are written for each VO in a vo.d
 	 * directory.
 	 * 
+	 * 
 	 * @return null
 	 */
 	public static void printVoVariables(ArrayList<VirtOrgInfo> voidInfo, String sidFile, String vodDir, Boolean extraFields,
-			Boolean noSillySids, Boolean printVodTitle, Boolean flat, Boolean applyCernRule) {
+			Boolean noSillySids, Boolean printVodTitle, Boolean flat, Boolean applyCernRule, Boolean useIsVomsAdminServer) {
 
 		Collections.sort(voidInfo, new ByVoName());
 
@@ -147,10 +148,10 @@ public class Utils {
 
 					// Print out on standard style if either not a VOD, or if flat is specified
 					if ((v.isVodStyle() != true) | (flat)) {
-						printSIDStyle(v, ps, extraFields, noSillySids, applyCernRule);
+						printSIDStyle(v, ps, extraFields, noSillySids, applyCernRule,useIsVomsAdminServer);
 					}
 					else {
-						printVODStyle(v, vodDir, extraFields, printVodTitle, applyCernRule);
+						printVODStyle(v, vodDir, extraFields, printVodTitle, applyCernRule,useIsVomsAdminServer);
 					}
 				}
 			}

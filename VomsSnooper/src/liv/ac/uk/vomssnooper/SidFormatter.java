@@ -67,7 +67,7 @@ public class SidFormatter {
 	 */
 	public void printResults() {
 		ArrayList<VirtOrgInfo> v = new ArrayList<VirtOrgInfo>(voidInfo.values());
-		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false, false, false, flat, false);
+		Utils.printVoVariables(v, newSidDir + "/site-info.def", newSidDir + "/vo.d", false, false, false, flat, false, false);
 	}
 
 	/**
