@@ -56,7 +56,7 @@ foreach my $l (@oldSidFile) {
   } 
 }
 
-if ($parameter{'NOVODS'} == 0) {
+if ($parameter{'NOCHECK'} == 0) {
   # Make sure VOs are not defined twice
   my $okToGo = 1;
   my $count = 0;
@@ -86,7 +86,7 @@ if ($parameter{'NOVODS'} == 0) {
   }
 }
 
-if ($parameter{'KEEPSIDS'} == 0) {
+if ($parameter{'KEEPSID'} == 0) {
   # Print out the new SID
   open(SID,"> $parameter{'SID'}") or die("Unable to open $parameter{'SID'}, $!\n");
   foreach my $l (@newSidFile) {
@@ -103,10 +103,10 @@ sub initParams() {
   # Can accept a set of log files
 
   # Read the options
-  GetOptions ('h|help'         => \$parameter{'HELP'},
-              'sid:s'          => \$parameter{'SID'} ,
-              'keepsids:i'     => \$parameter{'KEEPSIDS'} ,
-              'novods:i'       => \$parameter{'NOVODS'} ,
+  GetOptions ('h|help'          => \$parameter{'HELP'},
+              'sid:s'           => \$parameter{'SID'} ,
+              'keepsid:i'       => \$parameter{'KEEPSID'} ,
+              'nocheck:i'       => \$parameter{'NOCHECK'} ,
              );
 
   if (defined($parameter{'HELP'})) {
@@ -114,8 +114,10 @@ sub initParams() {
 
 Abstract: A tool to convert the records in a site-info.def into new, vo.d style files
 
-  -h              Prints this help page
-  -sid   file     Name of site-info.def file
+  -h                 Prints this help page
+  -sid      file     Name of site-info.def file
+  -keepsid 0/1       Do not write new site-info.def
+  -nocheck  0/1      Proceed even if vo.d files already exist
 
 TEXT
     exit(0);
@@ -125,12 +127,12 @@ TEXT
   die ("site-info.def file must exist\n") unless ( -f     $parameter{'SID'} );
   die ("Directory where site-info.def file resides must contain a vo.d directory as well\n") unless ( -d dirname($parameter{'SID'}) . "/vo.d" );
 
-  if (!(defined($parameter{'KEEPSIDS'}))) {
-    $parameter{'KEEPSIDS'} = 0;
+  if (!(defined($parameter{'KEEPSID'}))) {
+    $parameter{'KEEPSID'} = 0;
   }
 
-  if (!(defined($parameter{'NOVODS'}))) {
-    $parameter{'NOVODS'} = 0;
+  if (!(defined($parameter{'NOCHECK'}))) {
+    $parameter{'NOCHECK'} = 0;
   }
 }
 
