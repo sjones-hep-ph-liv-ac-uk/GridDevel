@@ -359,9 +359,12 @@ public class SiteChecker {
 				String sidVoString = sidVo.toString();
 				if (!xmlVoString.equals(sidVoString)) {
 					discrepancies ++;
-					System.out.println("\nDiscrepancy in VO:" + xmlVo.getVoName());
+					System.out.println("\n##################################");
+					System.out.println("Discrepancy in VO:" + xmlVo.getVoName());
+					System.out.println("----------------------------------");
 					System.out.println("XML Data : \n" + xmlVoString);
 					System.out.println("Site-info: \n" + sidVoString);
+					System.out.println("##################################");
 					System.out.println(" ");
 				}
 				else {
