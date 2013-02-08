@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#source ../../set_paths.sh
-
+PATH=$VS_WRAPPER_DIR:$PATH
 
 # Set up some dirs for this job
 rm -rf vomsdir 
@@ -14,5 +13,5 @@ mkdir -p vomsdir
 wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
 
 # Make a vomsdir from it (the other stuff is a by-product)
-java -jar $VS_JAR_DIR/CicToLsc.jar --xmlfile VOIDCardInfo.xml  --approvedvos myvos.txt --vomsdir vomsdir
+cicToLsc.sh --xmlfile VOIDCardInfo.xml  --approvedvos myvos.txt --vomsdir vomsdir
 

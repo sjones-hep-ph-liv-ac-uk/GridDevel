@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#source ../../set_paths.sh
+PATH=$VS_WRAPPER_DIR:$PATH
 
 # Set up some dirs for this job
 rm -rf site-formatted/ cic_portal_siddir/ cic_portal_vomsdir/ site_vomsdir/
@@ -14,7 +14,7 @@ mkdir -p site_vomsdir
 wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
 
 # Make a vomsdir from it (the other stuff is a by-product)
-java -jar $VS_JAR_DIR/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile novos.txt  --voddir cic_portal_siddir/vo.d --outfile cic_portal_siddir/site-info.def  --vomsdir cic_portal_vomsdir
+vomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile novos.txt  --voddir cic_portal_siddir/vo.d --outfile cic_portal_siddir/site-info.def  --vomsdir cic_portal_vomsdir
 
 # Now get the site's voms dir
 rsync -a --delete root@hepgrid6:/etc/grid-security/vomsdir/ site_vomsdir/

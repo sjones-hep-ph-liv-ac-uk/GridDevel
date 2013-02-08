@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#source ../../set_paths.sh
+PATH=$VS_WRAPPER_DIR:$PATH
 
 ##########################################################################
 # Script automate the update to our site-info.def_vo.d (i.e. "sidvods"). #
@@ -31,7 +31,7 @@ cat  ExtraVOIDCardInfo.xml | grep -v "^<VoDump>"  > deleteme2
 cat deleteme1 deleteme2 > VOIDCardInfo.xml
 
 # Convert it into sidvod format
-java -jar $VS_JAR_DIR/VomsSnooper.jar --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir void/xml/vo.d --outfile void/xml/site-info.def
+vomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir void/xml/vo.d --outfile void/xml/site-info.def
 
 ############################################
 # Section 2 - Get the operational data,    #
