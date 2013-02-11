@@ -83,7 +83,7 @@ sub processVodFiles () {
       print("Warning: Copying $deltasFile directly, as no old file exists\n");
 
 
-      copy("$deltaDir/$deltasFile","$vodDir/$deltasFile") or die "Copy failed: $!";
+      copy("$deltaDir/$deltasFile","$newVodDir/$deltasFile") or die "Copy failed: $!";
     }
   }
    
