@@ -16,6 +16,9 @@
 # The final parameter, --newsid, gives the
 # location where the results will get written.
 #
+# If deltas are found for a VOD that does not yet
+# exist, the VOD is printed out with generated fields.
+#
 # 17/01/12, sj, init version
 #
 #---------------------------------------------
@@ -75,15 +78,14 @@ sub processVodFiles () {
     if (defined($oldVodHash{$deltasFile})) {
       #  an old vod exists - it will be a merge
       print("Merging $deltasFile\n");
-      merge("$vodDir","$deltaDir",$deltasFile,$newVodDir);
+      mergeVod("$vodDir","$deltaDir",$deltasFile,$newVodDir);
       $oldVodHash{$deltasFile} = 2;
     }
     else {
       # no old vod exists - it will be a copy and warning
-      print("Warning: Copying $deltasFile directly, as no old file exists\n");
-
-
-      copy("$deltaDir/$deltasFile","$newVodDir/$deltasFile") or die "Copy failed: $!";
+      print("Warning: No old file exists for $deltaDir/$deltasFile. Please check new VO, $newVodDir/$deltasFile\n");
+      createVod("$deltaDir",$deltasFile,$newVodDir);
+      #### copy("$deltaDir/$deltasFile","$newVodDir/$deltasFile") or die "Copy failed: $!";
     }
   }
    
@@ -97,7 +99,7 @@ sub processVodFiles () {
 }
 
 #-------------------------------------
-sub merge() {
+sub mergeVod() {
   my $oldVodDir = shift;
   my $deltasDir = shift;
   my $file      = shift;
@@ -148,24 +150,44 @@ sub merge() {
   close($ns);
 }
 #-------------------------------------
+sub createVod() {
+  my $deltasDir   = shift;
+  my $voFile  = shift;
+  my $newVodDir  = shift;
+  my @newLines = ();
+
+  open(my($dh),"$deltasDir/$voFile") or die("Could not open $deltasDir/$voFile: $!");
+  my $shortName ='';
+  while(<$dh>) {
+    my $line = $_;
+    push(@newLines,$line);
+    if ($line =~ /^VOMSES\=[\"\'\s]*([a-z0-9A-Z\_\-\.]+)\s/) {
+      my $fullVo = $1;
+      $fullVo =~ s/^vo\.//;
+      $fullVo =~ s/\..*//;
+      $shortName = $fullVo;
+    }
+  }
+  close($dh);
+
+  die("Error: Could not find right name for VO $voFile\n") unless length($shortName); 
+
+  open(my ($ns),">$newVodDir/$voFile") or die("Could not open new vod $newVodDir/$voFile\n");
+  print($ns "SW_DIR\=\$VO_SW_DIR/$shortName\n");
+  print($ns "DEFAULT_SE\=\$DPM_HOST\n");
+  print($ns "STORAGE_DIR\=\$STORAGE_PATH\/$shortName\n");
+
+  foreach my $l (@newLines) {
+    print  ($ns $l);
+  }
+  close($ns);
+
+}
+#-------------------------------------
 sub processSidFile () {
 
   my @oldLines;
   open(OLDFILE,$parameter{'OLDSID'}) or die("No open $parameter{'OLDSID'} ");
-#  my $assemble='';      # Var to handle (join) split lines
-#  while(<OLDFILE>) {
-#    if (/\\$/) {
-#      my $tmp = $_;
-#      chomp($tmp);
-#      $tmp =~ s/\\$//;
-#      $assemble = $assemble . $tmp;
-#   }
-#    else {
-#      $assemble = $assemble . $_;
-#      push (@oldLines,$assemble) ;
-#      $assemble = '';
-#    }
-#  }
   while(<OLDFILE>) {
     push (@oldLines,$_);
   }
@@ -261,6 +283,9 @@ changes to site-info.def that will be merged into the old one.
 
 The final parameter, --newsid, gives the
 location where the results will get written.
+
+If deltas are found for a VOD that does not yet
+exist, the VOD is printed out with generated fields.
 
 25/06/12, sj, init version
 
