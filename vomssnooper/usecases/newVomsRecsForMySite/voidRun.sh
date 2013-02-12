@@ -1,11 +1,12 @@
 #!/bin/bash
 
-PATH=$VS_WRAPPER_DIR:$PATH
+PATH=/opt/GridDevel/bin:$PATH
 
 ##########################################################################
-# Script automate the update to our site-info.def_vo.d (i.e. "sidvods"). #
+# Script automate the update to our vo.d records
 # sj, 17 May 2012                                                        #
 ##########################################################################
+rm -rf void/deployed/vo.d void/merged/vo.d void/xml/vo.d
 
 mkdir -p void/deployed/vo.d
 mkdir -p void/merged/vo.d
@@ -14,12 +15,13 @@ mkdir -p void/xml/vo.d
 # Note:
 # void/myvos.txt and void/vod.txt are presumed to exist already.
 # They contain the VOs to select and the ones to print in VOD style,
-# respectively.
+# respectively. At Liverpool, we only use VODs, which is much
+# simpler.
 
 ############################################
 # Section 1 - use the CIC portal XML,      #
 # and our own site XML, to make the newest #
-# SIDVOD data.                             #
+# VOD data.                                #
 ############################################
 
 # Get the newest VOID XML
@@ -30,7 +32,7 @@ cat  VOIDCardInfo.xml | sed -e "s%</VoDump>%%" > deleteme1
 cat  ExtraVOIDCardInfo.xml | grep -v "^<VoDump>"  > deleteme2
 cat deleteme1 deleteme2 > VOIDCardInfo.xml
 
-# Convert it into sidvod format
+# Convert it into vod format
 vomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void/vod.txt --voddir void/xml/vo.d --outfile void/xml/site-info.def
 
 ############################################
@@ -39,10 +41,21 @@ vomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos void/myvos.txt --vodfile void
 # it.                                      #
 ############################################
 #
-# Transfer from hepgrid6 via:
-rsync -a --delete root@hepgrid6:/root/glitecfg/ void/deployed/
+# Transfer 
+rsync -a --delete /root/svn/puppet/trunk/modules/lcg-common/files/vo.d/ void/deployed/vo.d/
 
 # Merge those records in
-./sidvod_merger.pl --oldsid void/deployed/site-info.def --deltas void/xml/site-info.def --newsid void/merged/site-info.def
+./vod_merger.pl --oldvoddir void/deployed/vo.d --deltavoddir void/xml/vo.d --newvoddir void/merged/vo.d
+
+
+############################################
+# Section 3 -                              #
+############################################
+
+echo 
+echo --- These VODs have changed ----------------------------------------
+echo 
+
+rsync -avc void/merged/vo.d/ /root/svn/puppet/trunk/modules/lcg-common/files/vo.d/ --dry-run
 
 
