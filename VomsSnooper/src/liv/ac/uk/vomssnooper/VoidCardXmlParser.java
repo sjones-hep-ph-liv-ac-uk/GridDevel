@@ -109,13 +109,16 @@ public class VoidCardXmlParser extends DefaultHandler {
 			
 			// Is it an admin server
 		  try {
-		  	if (Integer.valueOf(attributes.getValue("IsVomsAdminServer")) == 0) 
-		  		vomsServer.setIsVomsAdminServer(false);	
-		  	else
-		  		vomsServer.setIsVomsAdminServer(true);	
+		  	if (Integer.valueOf(attributes.getValue("IsVomsAdminServer")) == 0) {
+		  		vomsServer.setIsVomsAdminServer(false);
+		  	}
+		  	else {
+		  		vomsServer.setIsVomsAdminServer(true);
+		  	}
+		  	
 		  }
 		  catch (NumberFormatException e) {
-			  System.out.print("Bad format for HttpsPort\n");
+			  System.out.print("Bad format for IsVomsAdminServer\n");
 			  vomsServer.setHttpsPort(-1);
 		  }
 
