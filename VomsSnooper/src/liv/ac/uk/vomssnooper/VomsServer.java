@@ -215,7 +215,6 @@ public class VomsServer {
 	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-	  sb.append(" " + httpsPort + ",");
 		sb.append(" " + vomsServerPort + ",");
 		sb.append(" " + hostname + ",");
 		sb.append(" " + dn + ",");
