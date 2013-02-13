@@ -224,7 +224,12 @@ public class VomsServer {
 	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(" " + httpsPort + ",");
+		if (this.isVomsAdminServer) {
+		  sb.append(" " + httpsPort + ",");
+		}
+		else {
+		  sb.append(" -1,");
+		}
 		sb.append(" " + vomsServerPort + ",");
 		sb.append(" " + hostname + ",");
 		sb.append(" " + dn + ",");
