@@ -60,7 +60,6 @@ public class SiteChecker {
    * Parse a SID file 
    */
 	private void parseSid() {
-
 		// Storage for the record I consider
 		String caDnLine = null;
 		String vomsServersLine = null;
@@ -162,7 +161,6 @@ public class SiteChecker {
 
 					// Voms Servers found - break the variable up and go setting fields
 					elements = breakString(vomsServersLine);
-
 					for (String el : elements) {
 						ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
@@ -181,6 +179,9 @@ public class SiteChecker {
 								if (h.equalsIgnoreCase(hostPart)) {
 									// This is the one
 									v.setHttpsPort(httpsPort);
+
+									// If it's in the VOMS_SERVERS line, assume it's an admin server
+									v.setIsVomsAdminServer(true);
 									setPort = true;
 								}
 							}
@@ -313,6 +314,7 @@ public class SiteChecker {
 									String h = v.getHostname();
 									if (h.equalsIgnoreCase(hostToFind)) {
 										v.setHttpsPort(httpsPort);
+										v.setIsVomsAdminServer(true);
 										setPort = true;
 									}
 								}
