@@ -162,7 +162,7 @@ public class VomsSnooper {
 		System.out.println("  --contactsfile    # Where to print the VO contacts (not recommended)");
 		System.out.println("  --fqans           # File where to print VO FQANs ");
 		System.out.println("  --vomsdir         # Where to print LSC files ");
-		System.out.println("  --ignorecernrule            # Ignore the cern rule (use only voms.cern.ch)");
+		System.out.println("  --ignorecernrule           # Ignore the cern rule (use only voms.cern.ch)");
 		System.out.println("  --dontuseisvomsadminserver # Ignore whether VOMS is an admin server (not recommended)");
 	}
 
