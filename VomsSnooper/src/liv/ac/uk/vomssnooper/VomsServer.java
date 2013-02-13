@@ -26,8 +26,6 @@ public class VomsServer {
 	private String caDn;
 	private String membersListUrl;
 	private Boolean complete;
-
-	
 	private Boolean isVomsAdminServer;
 
 	/**
@@ -209,13 +207,6 @@ public class VomsServer {
 		return complete;
 	}
 
-	// /**
-	// * Setter for a field - complete flag
-	// * @return null
-	// */
-	// public void setComplete(Boolean complete) {
-	// this.complete = complete;
-	// }
 
 	/**
 	 * Returns a representative string
@@ -224,17 +215,19 @@ public class VomsServer {
 	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		if (this.isVomsAdminServer) {
-		  sb.append(" " + httpsPort + ",");
-		}
-		else {
-		  sb.append(" -1,");
-		}
+	  sb.append(" " + httpsPort + ",");
 		sb.append(" " + vomsServerPort + ",");
 		sb.append(" " + hostname + ",");
 		sb.append(" " + dn + ",");
 		sb.append(" " + caDn + ",");
-		// sb.append(" " + membersListUrl );
+
+		if (this.isVomsAdminServer) {
+		  sb.append(" isVomsAdminServer,");
+		}
+		else {
+		  sb.append(" isNotVomsAdminServer,");
+		}
+		
 		return sb.toString();
 	}
 
@@ -287,6 +280,4 @@ public class VomsServer {
 	public void setIsVomsAdminServer(Boolean isVomsAdminServer) {
 		this.isVomsAdminServer = isVomsAdminServer;
 	}
-	
-	
 }
