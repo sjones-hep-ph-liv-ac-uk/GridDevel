@@ -339,7 +339,6 @@ public class VirtOrgInfo {
 			}
 			voNickName = tmp.substring(0, tmp.indexOf('.'));
 		}
-		// System.out.println("VO NICK NAME: " + this.voNickName);
 	}
 
 	/**
@@ -356,9 +355,6 @@ public class VirtOrgInfo {
 	 * 
 	 * @return null
 	 */
-	// public void setVomsServers(ArrayList<VomsServer> vomsServers) {
-	// this.vomsServers = vomsServers;
-	// }
 
 	/**
 	 * Getter for a field - the contacts list of the VO
