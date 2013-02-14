@@ -418,16 +418,16 @@ public class SiteChecker {
 		System.out.println("The SiteChecker tool checks if a site complies with the CIC portal XML");
 		System.out.println("");
 		System.out.println("Mandatory arguments: ");
-		System.out.println("  --xmlurl  f       # URL of XML file (i.e. CIC portal)");
 		System.out.println("  --sidfile f       # Location of site-info.def file");
 		System.out.println("Optional arguments: ");
+		System.out.println("  --xmlurl  f       # URL of XML file (def: http://operations-portal.egi.eu/xml/voIDCard/public/all/true)");
 		System.out.println("  --help            # Prints this info");
 	}
 
 	public static void main(String[] args) {
 
-		String xmlurl = null;
-		String sidfile = null;
+		String xmlUrl = null;
+		String sidFile = null;
 
 		// Arg processing
 		StringBuffer sb = new StringBuffer();
@@ -458,29 +458,31 @@ public class SiteChecker {
 				System.exit(1);
 			}
 			if ((char) (new Integer(sb.toString())).intValue() == OptList.xmlurl.ordinal()) {
-				xmlurl = ((arg != null) ? arg : "null");
+				xmlUrl = ((arg != null) ? arg : "null");
 			}
 			else if ((char) (new Integer(sb.toString())).intValue() == OptList.sidfile.ordinal()) {
-				sidfile = ((arg != null) ? arg : "null");
+				sidFile = ((arg != null) ? arg : "null");
 			}
 		}
 
-		if (xmlurl == null) {
-			System.out.print("The --xmlurl argument must be given\n");
-			System.exit(1);
-		}
-		if (sidfile == null) {
+		// Set default xml url if not given
+	  if (xmlUrl == null) {
+	    xmlUrl = "http://operations-portal.egi.eu/xml/voIDCard/public/all/true";
+    }
+
+	  // Validate sidFile
+		if (sidFile == null) {
 			System.out.print("The --sidfile  argument must be given\n");
 			System.exit(1);
 		}
 
-		if (!(new File(sidfile)).isFile()) {
-			System.out.print("The --sidfile (" + sidfile + ") doesn't exist\n");
+		if (!(new File(sidFile)).isFile()) {
+			System.out.print("The --sidfile (" + sidFile + ") doesn't exist\n");
 			System.exit(1);
 		}
 
 		// Make the Controller class
-		SiteChecker vs = new SiteChecker(xmlurl, sidfile);
+		SiteChecker vs = new SiteChecker(xmlUrl, sidFile);
 
 		// Parse the XML File
 		vs.parseXml();
