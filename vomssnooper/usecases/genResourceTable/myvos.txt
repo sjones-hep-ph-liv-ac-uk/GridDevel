@@ -9,6 +9,7 @@ cedar
 cms
 dteam
 dzero
+epic.vo.gridpp.ac.uk
 esr 
 fusion
 geant4
