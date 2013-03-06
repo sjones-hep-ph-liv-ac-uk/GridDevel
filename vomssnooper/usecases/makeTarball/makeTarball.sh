@@ -36,7 +36,8 @@ rm -rf novos.txt; touch novos.txt
 vomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile novos.txt --voddir glitecfg/vo.d --outfile glitecfg/site-info.def.tmp2
 
 # Add default values to the sid and vod records
-./addDefaults.pl -commentsids 1 -sid glitecfg/site-info.def.tmp2  -swdir '$VO_SW_DIR' -spath '$STORAGE_PATH' -defse '$DPM_HOST' -cswdir atlas:/cvmfs/atlas.cern.ch/repo/sw -cswdir lhcb:/cvmfs/lhcb.cern.ch
+./addDefaults.pl -commentsids 1 -sid glitecfg/site-info.def.tmp2  -swdir '$VO_SW_DIR' -spath '$STORAGE_PATH' -defse '$DPM_HOST' -cswdir atlas:/cvmfs/atlas.cern.ch/repo/sw -cswdir lhcb:/cvmfs/lhcb.cern.ch -cswdir cms:/cvmfs/cms.cern.ch -cswdir mice:/cvmfs/mice.gridpp.ac.uk -cswdir na62.vo.gridpp.ac.uk:/cvmfs/na62.gridpp.ac.uk -cswdir hone:/cvmfs/hone.gridpp.ac.uk
+
 
 # Concat the lot togther
 cat glitecfg/site-info.def.tmp1 glitecfg/site-info.def.tmp2 >> glitecfg/site-info.def.frag
