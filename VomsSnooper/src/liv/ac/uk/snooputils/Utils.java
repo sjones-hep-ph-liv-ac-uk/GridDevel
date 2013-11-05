@@ -31,8 +31,8 @@ public class Utils {
 	 * Print out the version number
 	 */
 	public static void printVersion() {
-		System.out.print("Copyright (c) The University of Liverpool, 2012 (Licensed under the Academic Free License version 3.0)\n\n");
-		System.out.print("Version 1.39\n\n");
+		System.out.print("Copyright (c) The University of Liverpool, 2013 (Licensed under the GNU General Public License, version 3)\n\n");
+		System.out.print("Version 1.40\n\n");
 	}
 	
 	/**

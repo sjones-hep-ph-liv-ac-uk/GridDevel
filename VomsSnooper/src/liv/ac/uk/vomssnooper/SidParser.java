@@ -130,7 +130,8 @@ public class SidParser {
 							ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
 
 							// More pattern matching to save a lot of tinkering
-							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
+							//                           name       svr       port      dn        name
+							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(.+)\\s+(\\S+)\\s*$");
 							Matcher m = p.matcher(vomses);
 							if (m.find()) {
 								String vo1 = m.group(1);
@@ -259,7 +260,7 @@ public class SidParser {
 								ArrayList<VomsServer> vomsServers = voidInfo.get(voName).getVomsServers();
 
 								// Pattern matching to save a lot of tinkering
-								Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
+								Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(.+)\\s+(\\S+)\\s*$");
 								Matcher m = p.matcher(vomses);
 								if (m.find()) {
 									String vo1 = m.group(1);
@@ -348,11 +349,15 @@ public class SidParser {
 	}
 
 	/**
-	 * Breaks up a yaim variable string, according to this contract Contract: + NAME= then: Nothing - string is empty Space - string
-	 * is empty String, without leading ' char - whole content is one element
 	 * 
-	 * String with leading ' char: then: without '\''' - string is simple string bounded by '', one element with '\''' ... string is a
-	 * sequence of elements separated by that
+	 * Breaks up a yaim variable string, according to this contract: 
+   * + NAME= then: 
+   *    Nothing - string is empty 
+   *    Space   - string is empty
+   *    String, without leading ' char - whole content is one element
+   *    String with leading ' char: then: 
+   *      without '\''' - string is simple string bounded by '', one element 
+   *      with '\''' ... string is a sequence of elements separated by that
 	 * 
 	 * @param cmdLine command to execute
 	 * @return output from command
