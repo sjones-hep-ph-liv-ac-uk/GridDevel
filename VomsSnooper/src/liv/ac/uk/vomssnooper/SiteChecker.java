@@ -144,7 +144,7 @@ public class SiteChecker {
 						ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
 						// More pattern matching to save a lot of tinkering
-						Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
+						Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(.+)\\s+(\\S+)\\s*$");
 						Matcher m = p.matcher(vomses);
 						if (m.find()) {
 							String vo1 = m.group(1);
@@ -278,7 +278,7 @@ public class SiteChecker {
 							ArrayList<VomsServer> vomsServers = voInfoSid.get(voName).getVomsServers();
 
 							// Pattern matching to save a lot of tinkering
-							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(\\S+)\\s+(\\S+)");
+							Pattern p = Pattern.compile("(\\S+)\\s+(\\S+)\\s+(\\d+)\\s+(.+)\\s+(\\S+)\\s*$");
 							Matcher m = p.matcher(vomses);
 							if (m.find()) {
 								String vo1 = m.group(1);
