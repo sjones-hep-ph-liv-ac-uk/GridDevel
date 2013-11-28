@@ -1,47 +1,77 @@
 #!/bin/bash
 
 ##########################################################################
-# Script to quickly setup a UI                                           #
+# Script to quickly set up a UI                                          #
 # sj, 22 Nov 2013                                                        #
 ##########################################################################
 
+############################################
+# Prepare                                  #
+############################################
+mkdir -p glitecfg/vo.d
+rm  glitecfg/vo.d/* 
+rm glitecfg/site-info.def 
 PATH=/opt/GridDevel/bin:$PATH
 
-# Must be run as root
+# run as root
 if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root" 
-   exit 1
+   echo "This script must be run as root" ; exit 1
 fi
 
-# Must have emi-ui package
+# have emi-ui 
 if [[ "$(rpm -q emi-ui)" =~ "not installed" ]]; then
-  echo "emi-ui package should be installed"
-  exit 1
+  echo "emi-ui package should be installed"; exit 2
 fi
 
-# Must have VomsSnooper package
+# have VomsSnooper 
 if [[ "$(rpm -q VomsSnooper)" =~ "not installed" ]]; then
-  echo "VomsSnooper package should be installed"
-  exit 1
+  echo "VomsSnooper package should be installed"; exit 3
 fi
 
-
-rm -rf glitecfg/vo.d; rm -rf glitecfg/site-info.def; 
-mkdir -p glitecfg/vo.d
-
 ############################################
-# Section 1 - use the CIC portal XML to    # 
-# make the newest VOMS records             #
+# Get the newest portal VOMS records       #
 ############################################
-
-# Get the newest VOID XML
 wget -O VOIDCardInfo.xml http://operations-portal.egi.eu/xml/voIDCard/public/all/true
+if [ ! -s VOIDCardInfo.xml ]; then
+  echo "Failed to download operations portal XML file"; exit 5
+fi
 
-# Convert it into vod format
+############################################
+# Process VOs to support                   #
+############################################
+echo -n > myvos.txt
+if [ $# -gt 0 ]; then
+  # If he's given any VOs on the CLI, use them 
+  for vo in "$@"; do
+    echo "$vo" >> myvos.txt
+  done
+else
+  # No vos on the CLI; use the approved set
+  cat vos.txt >> myvos.txt
+fi
+
+############################################
+# Check desired records are in portal      #
+############################################
+good=0
+for vo in `cat myvos.txt`; do
+  grep "IDCard.*Name=\"$vo\"" VOIDCardInfo.xml > /dev/null 2>&1
+  if [ $? != 0 ]; then
+    echo The $vo VO is not present in the VOIDCardInfo.xml file
+    good=1
+  fi
+done
+if [ $good != 0 ]; then
+  echo Exiting early; exit 4
+fi
+
+############################################
+# Convert it into vod format               #
+############################################
 vomsSnooper.sh --xmlfile VOIDCardInfo.xml  --myvos myvos.txt --vodfile myvos.txt --voddir glitecfg/vo.d --outfile glitecfg/site-info.def
 
 ############################################
-# Section 2 - now, from the default BDII   #
+# Now, from the default BDII               #
 # get the wms data for each VO you support #
 ############################################
 
@@ -66,10 +96,9 @@ echo VOS=$vos  >> glitecfg/site-info.def
 chmod 700 glitecfg/site-info.def
 
 ############################################
-# Section 3 - Copy the config into place   #
+# Copy the config into place               #
 # and run yaim                             #
 ############################################
-
 rsync -av glitecfg/ /root/glitecfg/
 
 /opt/glite/yaim/bin/yaim -c -s /root/glitecfg/site-info.def -n UI

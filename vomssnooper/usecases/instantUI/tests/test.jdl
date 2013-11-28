@@ -1,0 +1,7 @@
+
+Executable = "test.sh";
+StdOutput = "test.out";
+StdError = "test.err";
+InputSandbox = {"./test.sh"};
+OutputSandbox = {"test.out","test.err"};
+
