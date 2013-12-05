@@ -115,8 +115,11 @@ public class SidParser {
 						// Break that CA DN variable up and go setting fields
 						ArrayList<String> elements = breakString(caDnLine);
 
+						int index = 0;
 						for (String caDn: elements){
 							VomsServer theVomsServer = new VomsServer();
+							index++;
+							theVomsServer.setIndex(index);
 							theVomsServer.setMembersListUrl("dummy");
 							theVomsServer.setCaDn(caDn);
 							voidInfo.get(voName).addVomsServer(theVomsServer);
@@ -244,9 +247,12 @@ public class SidParser {
 							// Last one found, so parse the fields
 
 							// Break up the CA DN variable
+							int index = 0;
 							ArrayList<String> elements = breakString(caDnLine);
 							for (String caDn: elements) {
 								VomsServer theVomsServer = new VomsServer();
+								index++;
+								theVomsServer.setIndex(index);
 								theVomsServer.setCaDn(caDn);
 								theVomsServer.setMembersListUrl("dummy");
 								voidInfo.get(voName).addVomsServer(theVomsServer);

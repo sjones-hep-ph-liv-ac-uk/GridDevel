@@ -32,7 +32,7 @@ public class Utils {
 	 */
 	public static void printVersion() {
 		System.out.print("Copyright (c) The University of Liverpool, 2013 (Licensed under the GNU General Public License, version 3)\n\n");
-		System.out.print("Version 1.41\n\n");
+		System.out.print("Version 1.42\n\n");
 	}
 	
 	/**

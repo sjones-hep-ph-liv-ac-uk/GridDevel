@@ -129,7 +129,8 @@ public class VirtOrgInfo {
 		vomsesLine.append("VOMSES=\"");
 		cadnLine.append("VOMS_CA_DN=\"");
 
-		Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
+		// Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerDn());
+    Collections.sort(vomsServers, new liv.ac.uk.vomssnooper.VomsServer.ByVomsServerIndex());
 
 		for (VomsServer vs : vomsServers) {
 			vs.setWhetherComplete();

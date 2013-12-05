@@ -8,7 +8,7 @@ package liv.ac.uk.vomssnooper;
 public class VomsServer {
 
 	/**
-	 * Class to facilitate a sort function
+	 * Sort on dn
 	 * 
 	 * @author sjones
 	 * 
@@ -19,6 +19,19 @@ public class VomsServer {
 		}
 	}
 
+	/**
+	 * Sort on index
+	 * 
+	 * @author sjones
+	 * 
+	 */
+	public static class ByVomsServerIndex implements java.util.Comparator<VomsServer> {
+		public int compare(VomsServer first, VomsServer second) {
+			return ((first.getIndex()  != null) ? first.getIndex() : new Integer(0)).compareTo(
+					   ((second.getIndex() != null) ? second.getIndex() : new Integer(0)));
+		}
+	}
+	
 	private Integer httpsPort;
 	private Integer vomsServerPort;
 	private String hostname;
@@ -27,6 +40,7 @@ public class VomsServer {
 	private String membersListUrl;
 	private Boolean complete;
 	private Boolean isVomsAdminServer;
+	private Integer index;
 
 	/**
 	 * Constructor
@@ -40,6 +54,23 @@ public class VomsServer {
 		membersListUrl = null;
 		complete = false;
 		isVomsAdminServer = false;
+		index = -1;
+	}
+
+	/**
+	 * Get the index of the element
+	 * @return
+	 */
+	public Integer getIndex() {
+		return index;
+	}
+
+	/**
+	 * Set the index of the element
+	 * @param index
+	 */
+	public void setIndex(Integer index) {
+		this.index = index;
 	}
 
 	/**

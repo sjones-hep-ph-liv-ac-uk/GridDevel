@@ -31,6 +31,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 	private String xmlTag;    // Various parser state variables    
 	private String xmlFile;
 	private StringBuffer xmlChars;
+	private Integer vomsServerIndex;
 
 	/**
 	 * Constructor
@@ -97,6 +98,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 			// Start a new VO record
 			voInfo = new VirtOrgInfo();
+			vomsServerIndex = 0;
 			voInfo.setVoNameAndVoNickName(attributes.getValue("Name"));
 			hasGlite = false;
 		}
@@ -106,6 +108,8 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 			// Start a new VOMS Server record, and fill it
 			vomsServer = new VomsServer();
+			vomsServerIndex++;
+			vomsServer.setIndex(vomsServerIndex);
 			
 			// Is it an admin server
 		  try {
