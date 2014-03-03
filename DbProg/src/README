@@ -1,0 +1,25 @@
+These directories contain the examples from Database Programming with
+JDBC and Java, 2nd Edition. Each example that is specific to a
+particular chapter appears in the subdirectory named for that
+chapter. For example, the GuestBookServlet class from Chapter 3
+appears in the chapter3/ directory. The examples that span multiple
+chapters, such as the code from the banking application, appear in the
+etc/ directory.
+
+Any example that requires any special information to get it running
+has that information listed in the README in the example's
+directory. For example, directions on how to run the banking
+application appear in etc/README.
+
+You are granted full, unrestricted permission to use all of the
+example code from my book in any way, shape or form. You do not need
+to email me or O'Reilly requesting permission. It would be nice,
+however, to hear about places in which it is being used, so please do
+drop me an email!
+
+If you have any troubles, please do not hesitate to contact me. My
+email address (which I do not publish here for fear of harvesting by
+spammers) is in the Preface of the book.
+
+George Reese
+August 2000

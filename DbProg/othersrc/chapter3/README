@@ -1,0 +1,10 @@
+The GuestBookServlet example differs a bit from the example in the
+book. I modified it to be placed inside a .shtml file using
+server-side Java servlet tags. The guestbook.shtml file is the file in
+which I call this servlet. On my server, I gave it the server alias of
+gb. Remember to configuration your initialization parameters when you
+deploy the servlet!
+
+You can view the servlet (slightly modified backwards to JDBC 1.2
+since my servlet engine does not support JDK 1.2) at
+http://www.imaginary.com/~george/guestbook.shtml.

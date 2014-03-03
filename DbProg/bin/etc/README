@@ -1,0 +1,233 @@
+I. Contents
+
+                     I.   Contents
+                     II.  Introduction
+                     III. Running the Teller App
+                     IV.  Pounding on the Server
+                     V.   I Have No Database!
+
+**************************************************************************
+II. Introduction
+
+The examples that span the book fall into two groups: the infrastructural
+classes that make up Dasein's Lightweight Persistence Library (LWP)
+and the classes that make up the banking application. LWP classes
+appear in the lwp/ and util/ directories and banking classes in the bank/
+directory. 
+
+This README first shows you how to run the Teller App. Of course, the
+teller app is fairly uninteresting. Its purpose is to show an
+end-to-end distributed application persisting against a JDBC
+database. The README therefore goes on to show you how to play with
+all of the things covered in the second half of "Database Programming
+with JDBC and Java" using a command tool that lets you call arbitrary
+methods in server side components.
+
+**************************************************************************
+III. Running the Teller App
+
+In order to run the banking application you will need the following:
+
+* lwp.jar (from this archive)
+* bank.jar (from this archive)
+* a SQL database
+* a JDBC driver for your SQL database
+
+**********************************
+1. Install and Start Your Database
+**********************************
+Get your SQL database up and running. MySQL works well (http://www.mysql.com).
+The banking application comes with a script to create MySQL tables for
+you if you are using MySQL.
+
+****************************************
+2. Create the Banking Application Tables
+****************************************
+If you are using MySQL, create a database for the banking application
+and then run the mysql.cre script in the bank/ directory. You run this
+script by executing the following command:
+
+mysql -u USERID -h HOST -p DATABASE < mysql.cre
+
+If you are using some other database, use the mysql.cre script as a
+reference for the tables you need to create.
+
+**************************
+3. Obtain the JDBC Drivers
+**************************
+You need a JDBC driver specifically designed to support your database
+engine of choice.
+
+****************************
+4. Install the Java Software
+****************************
+Place lwp.jar, bank.jar, and the jar for your JDBC driver somewhere in
+your CLASSPATH. If you are unfamiliar with CLASSPATH issues, please
+see the book "Learning Java" for a detailed description on managing
+your CLASSPATH.
+
+**************************
+5. Install bank.properties
+**************************
+Place the file bank.properties from the bank/ directory in a place
+where you can find it.
+
+********************
+6. Start rmiregistry
+********************
+On windows:
+
+start rmiregistry
+
+On UNIX:
+
+rmiregistry &
+
+This will start the process in the background.
+
+*****************
+7. Run the Server
+*****************
+java -Djdbc.drivers=YOUR_JDBC_DRIVER -Dimaginary.lwp.propsFile=bank.properties com.imaginary.lwp.ObjectServerImpl
+
+Feel free to run it as a background process. You should place the name
+of your JDBC driver in place of YOUR_JDBC_DRIVER exactly as I describe
+in Chapter 3 of "Database Programming with JDBC and Java". If the
+bank.properties file is somewhere other than the current directory,
+make sure you provide the exact location of it on the command line.
+
+*****************
+8. Run the Client
+*****************
+java -Dimaginary.lwp.objectServer=RMI_URL com.imaginary.bank.ui.TellerApp
+
+Of course, replace the express RMI_URL with a URL pointing to your
+server process. The URL should look like: rmi://HOST/ObjectServer. For
+example, to point to it running on sparta.imaginary.com, I use the
+URL: rmi://sparta.imaginary.com/ObjectServer.
+
+
+**************************************************************************
+IV. Pounding on the Server
+
+The GUI client is very basic. Its purpose is simply to show an actual
+Swing GUI talking to an RMI server that persists against a database so
+that you can get a simple (well, as simple as distributed computing
+can get) picture of Swing threads talking to distributed components
+with long-lived events. Of course, the guts of the book is about the
+backend of things. You are probably going to want to spend most of
+your time picking at server issues in ways my canned client does not
+achieve. This section describes how you can do just that.
+
+********************
+1. Set up the Server
+********************
+
+Follow steps 1-7 from Section III (Running the Teller App)
+above. Ignore step 8.
+
+*******************************
+2. Download and Install JPython
+*******************************
+
+JPython is the greatest tool for unit testing in the Java language,
+and it is free! It is basically a Python language interpreter running
+on a Java VM. As a result, you can write Python scripts that test your
+Java code or, even better, call arbitrary Java code from a Python
+command line. You can download it at http://www.jpython.org. You will
+not need the optional Python libraries. I do, however, recommend
+downloading the version with the regexp package and also downloading
+the Python libraries. They will prove useful if you ever do anything
+beyond the scope of these examples.
+
+******************
+3. Execute JPython
+******************
+
+Simply execute the command:
+
+jpython
+
+You will be placed in the JPython command line interepreter. You can
+now run any arbitrary Python. And because JPython enables Python use
+of Java classes, that means you can access the Java server. Here is an
+example session of mine:
+
+C:\lib\com\imaginary\util>jpython JPython 1.1 on java1.3.0 (JIT: null)
+Copyright (C) 1997-1999 Corporation for National Research Initiatives
+>>> from com.imaginary.lwp import BaseHome, SearchCriteria,
+SearchBoolean, Identifier;
+>>> from java.lang import Class, System;
+>>> System.setProperty("imaginary.lwp.objectServer","rmi://sparta.imaginary.com/ObjectServer");
+>>> id = Identifier.login("borg", "nothing");
+>>> cls = Class.forName("com.imaginary.bank.Account");
+>>> home = BaseHome.getInstance(id,cls);
+>>> sc = SearchCriteria();
+>>> from com.imaginary.lwp import SearchOperator;
+>>> from java.lang import Double;
+>>> sc.addBinding(SearchBoolean.AND, "balance",SearchOperator.GREATER_THAN, Double(15.0));
+>>> accts = home.find(id, sc);
+>>> for acct in accts:
+...     print acct.getObjectID();
+...     print acct.getNumber();
+...     print acct.getBalance();
+...     print ""
+...
+1300000L
+1.0
+30.5
+
+>>> acct
+com.imaginary.bank.AccountFacade@13d620
+>>> cust = acct.getCustomer();
+>>> print cust.getLastName();
+Reese
+>>> sc = SearchCriteria();
+>>> accts = home.find(id, sc);
+>>> for acct in accts:
+...     print acct.getObjectID();
+...     print acct.getNumber();
+...     print acct.getBalance();
+...     print ""
+...
+1200001L
+0.0
+10.5
+
+1300000L
+1.0
+30.5
+
+>>>
+
+*************************
+4. Script Out Test Suites
+*************************
+
+Python is actually a scripting language. As a result, you can script
+out everything and run your tests without having to compile and
+recompile Java code. For example, you could run the following:
+
+#!/usr/local/bin/jpython
+
+from com.imaginary.lwp import BaseHome, Identifier;
+from java.lang import Class, System;
+
+System.setProperty("imaginary.lwp.objectServer","rmi://sparta.imaginary.com/ObjectServer");
+
+id = Identifier.login("borg", "nothing");
+# Don't use Customer.class!! Does not work in JPython
+cls = Class.forName("com.imaginary.bank.Customer");
+home = BaseHome.getInstance(id, cls);
+cust.create(id, "Fred", "Flintstone", "555-55-5555");
+
+**************************************************************************
+V. I Have No Database!
+
+You can try a MySQL database I have set up at
+carthage.imaginary.com. The database name is OREILLY, user oreilly,
+password oreilly. I have granted select, delete, insert, and update
+privs to that user ID. This bit is important: THIS DATABASE SERVER
+WILL GO UP AND DOWN AT MY WHIM. If you cannot connect to it, please do
+not contact me asking why it is down. It may or may not come back up
+again--especially if I took it down because someone was abusing it.
