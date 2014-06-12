@@ -3,6 +3,8 @@ package liv.ac.uk.vomssnooper;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -32,6 +34,17 @@ public class VoidCardXmlParser extends DefaultHandler {
 	private String xmlFile;
 	private StringBuffer xmlChars;
 	private Integer vomsServerIndex;
+	
+	// Contains warnings about any VO (e.g. incomplete VOMS servers)
+	private Hashtable<String, ArrayList<String>> warnings ;
+
+	/**
+	 * Get the list VOs with warnings
+	 * @return
+	 */
+	public Hashtable<String, ArrayList<String>> getWarnings() {
+		return warnings;
+	}
 
 	/**
 	 * Constructor
@@ -44,6 +57,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 		this.voInfoList = voInfoList;
 		xmlChars = new StringBuffer("");
 
+		warnings = new Hashtable<String, ArrayList<String>>();	
 	}
 
 	/**
@@ -234,15 +248,18 @@ public class VoidCardXmlParser extends DefaultHandler {
 
 		// Add new VOMS servers
 		if (qName.equalsIgnoreCase("VOMS_Server")) {
-			// Throw away incomplete VOMS Servers
+
 			if (vomsServer.getDn() != null) {
 				voInfo.addVomsServer(vomsServer);
 			}
 			else {
-				// An incomplete VOMS server was seen  
-				System.out.print("For " + voInfo.getVoName() + 
-				  " VO, VOMS server data for " + vomsServer.getHostname() + 
-				  ", port: " + vomsServer.getVomsesPort().toString() + " is incomplete.\n");
+				// Create warning, then throw away incomplete VOMS Servers
+				if (warnings.get(voInfo.getVoName()) == null) {
+				  warnings.put(voInfo.getVoName(), new ArrayList<String>());
+				}
+				warnings.get(voInfo.getVoName()).add("For " + voInfo.getVoName() + 
+					  " VO, VOMS server data for " + vomsServer.getHostname() + 
+					  ", port: " + vomsServer.getVomsesPort().toString() + " is incomplete.\n");
 			}
 		}
 

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Hashtable;
 
 
 import liv.ac.uk.snooputils.Utils;
@@ -85,6 +86,9 @@ public class VomsSnooper {
 
 		spe.parseDocument();
 
+		// Retrieve any warnings that come out
+		Hashtable<String, ArrayList<String>> warnings = spe.getWarnings();
+		
 		WordList siteVos = new WordList();
 		if (myVos != null) {
 			siteVos.readWords(myVos);
@@ -97,7 +101,20 @@ public class VomsSnooper {
 			else {
 				voi.setAtMySite(true);
 			}
+			
+			// Do some validations
 			voi.checkComplete();
+			
+			// Print any warnings
+			if (voi.isAtMySite()) {
+				String name = voi.getVoName();
+				ArrayList<String> list = warnings.get(name); 
+				if (list != null) {
+					for (String w : list) {
+						System.out.print("Warning: " + w + "\n");
+					}
+				}
+			}
 		}
 
 		// Find if some VOs need VOD format
