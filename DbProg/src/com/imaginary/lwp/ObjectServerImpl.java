@@ -38,6 +38,8 @@ extends UnicastRemoteObject implements ObjectServer {
                     r.read(new File(fname));
                 }
             }
+            String x = System.getProperty(LWPProperties.RMI_URL);
+            System.out.print("X: " + x + '\n');
             Naming.rebind(System.getProperty(LWPProperties.RMI_URL),
                           new ObjectServerImpl());
         }
