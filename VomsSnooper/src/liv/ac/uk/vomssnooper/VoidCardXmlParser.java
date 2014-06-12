@@ -238,6 +238,12 @@ public class VoidCardXmlParser extends DefaultHandler {
 			if (vomsServer.getDn() != null) {
 				voInfo.addVomsServer(vomsServer);
 			}
+			else {
+				// An incomplete VOMS server was seen  
+				System.out.print("For " + voInfo.getVoName() + 
+				  " VO, VOMS server data for " + vomsServer.getHostname() + 
+				  ", port: " + vomsServer.getVomsesPort().toString() + " is incomplete.\n");
+			}
 		}
 
 		// Set other attributes
