@@ -259,7 +259,7 @@ public class VoidCardXmlParser extends DefaultHandler {
 				}
 				warnings.get(voInfo.getVoName()).add("For " + voInfo.getVoName() + 
 					  " VO, VOMS server data for " + vomsServer.getHostname() + 
-					  ", port: " + vomsServer.getVomsesPort().toString() + " is incomplete.\n");
+					  ", port: " + vomsServer.getVomsesPort().toString() + " is incomplete.");
 			}
 		}
 
