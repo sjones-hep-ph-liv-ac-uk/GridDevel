@@ -1,7 +1,0 @@
-I changed line 11 of Interest.java to point to the mSQL-JDBC row set
-class so that the example would compile. Naturally, you should change
-the example to reference whatever row set implementation you have
-handy.
-
-Also, it follows, this example will only run with a copy of the
-mSQL-JDBC driver lying around with an mSQL database.
