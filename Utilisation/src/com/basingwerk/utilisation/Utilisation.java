@@ -12,6 +12,10 @@ import org.apache.commons.cli.PosixParser;
 
 public class Utilisation {
 
+	public static void printVersion() {
+		System.out.print("Copyright (c) The University of Liverpool, 2014 (Licensed under the GNU General Public License, version 3)\n\n");
+		System.out.print("Version 1.0\n\n");
+	}	
 	public static void main(final String[] args) {
 		String theLogFile = null;
 		

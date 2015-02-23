@@ -4,7 +4,7 @@
   </description>
 
   <!-- global properties for this build -->
-  <property name="src" location="/user2/sjones/git/GridDevel/Utilisation/src"/>
+  <property name="src" location="/user2/sjones/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/Utilisation/src"/>
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
 
@@ -20,8 +20,21 @@
 
     <!-- Compile the java code from ${src} into ${build} -->
 
-    <javac srcdir="${src}" destdir="${build}">
-      <classpath> <pathelement location="${user.home}/git/GridDevel/libs/java-getopt-1.0.14.jar"/> </classpath>
+    <javac srcdir="${src}" destdir="${build}"> 
+      <classpath> 
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/> 
+        
+        <!-- commons-cli-1.2.jar  commons-cli-1.2.jar.zip  java-getopt-1.0.14.jar  jcommon-1.0.23.jar  jfreechart-1.0.19.jar  swingx-core-1.6.2.jar -->
+        <!-- /utilisation/ant/dist/lib/Utilisation.jar -->
+
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/utilisation/ant/dist/lib/Utilisation.jar"/>
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar"/> 
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar.zip"/> 
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/> 
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jcommon-1.0.23.jar"/> 
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jfreechart-1.0.19.jar"/> 
+        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/swingx-core-1.6.2.jar"/> 
+      </classpath>
     </javac>
 
   </target>
@@ -34,14 +47,25 @@
 
     <jar destfile="${dist}/lib/Utilisation.jar" > <!-- filesetmanifest="mergewithoutmain">  -->
       <manifest>
-        <attribute name="Main-Class" value="lcom.basingwerk.utilisation.Utilisation"/>
+        <attribute name="Main-Class" value="com.basingwerk.utilisation.ShowUsage"/>
         <attribute name="Class-Path" value="."/>
       </manifest>
 
-      <!-- <fileset dir="/user2/sjones/git/GridDevel/Utilisation/bin"/> -->
+      <fileset dir="/user2/sjones/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/utilisation/ant/build"> </fileset> 
+
       <fileset dir="${build}"/>
-      <zipfileset excludes="META-INF/*.SF" src="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar.zip"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jcommon-1.0.23.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jfreechart-1.0.19.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/swingx-core-1.6.2.jar"/>
+
+      <fileset dir="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs"/> 
+      <fileset dir="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/bin"/> 
     </jar>
+
 
     <exec executable="/bin/chmod"> <arg value="755"/> <arg value="${dist}/lib/Utilisation.jar"/> </exec>
     <!-- <exec executable="/bin/cp"> <arg value="${dist}/lib/Utilisation.jar"/>  <arg value="${dist}/lib/SiteChecker.jar"/>  </exec> -->

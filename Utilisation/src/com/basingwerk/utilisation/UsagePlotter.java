@@ -162,7 +162,7 @@ public class UsagePlotter extends ApplicationFrame {
 			}
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			System.err.print("Log file not found\n");
 		}
 		finally {
 			try {
