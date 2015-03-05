@@ -1,7 +1,5 @@
 <project name="Utilisation" default="dist" basedir=".">
-  <description>
-    Parses a data file and makes a graph
-  </description>
+  <description> Parses a data file of arc/condor usage records and makes a graph </description>
 
   <!-- global properties for this build -->
   <property name="src" location="/user2/sjones/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/Utilisation/src"/>
@@ -24,28 +22,21 @@
       <classpath> 
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/> 
         
-        <!-- commons-cli-1.2.jar  commons-cli-1.2.jar.zip  java-getopt-1.0.14.jar  jcommon-1.0.23.jar  jfreechart-1.0.19.jar  swingx-core-1.6.2.jar -->
-        <!-- /utilisation/ant/dist/lib/Utilisation.jar -->
-
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/utilisation/ant/dist/lib/Utilisation.jar"/>
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar"/> 
-        <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar.zip"/> 
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/> 
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jcommon-1.0.23.jar"/> 
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jfreechart-1.0.19.jar"/> 
         <pathelement location="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/swingx-core-1.6.2.jar"/> 
       </classpath>
     </javac>
-
   </target>
 
   <target name="dist" depends="compile" description="generate the distribution" >
     <!-- Create the distribution directory -->
     <mkdir dir="${dist}/lib"/>
 
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-
-    <jar destfile="${dist}/lib/Utilisation.jar" > <!-- filesetmanifest="mergewithoutmain">  -->
+    <jar destfile="${dist}/lib/Utilisation.jar" > 
       <manifest>
         <attribute name="Main-Class" value="com.basingwerk.utilisation.ShowUsage"/>
         <attribute name="Class-Path" value="."/>
@@ -56,7 +47,6 @@
       <fileset dir="${build}"/>
       <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/>
       <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar"/>
-      <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/commons-cli-1.2.jar.zip"/>
       <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/>
       <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jcommon-1.0.23.jar"/>
       <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/jfreechart-1.0.19.jar"/>
@@ -68,12 +58,10 @@
 
 
     <exec executable="/bin/chmod"> <arg value="755"/> <arg value="${dist}/lib/Utilisation.jar"/> </exec>
-    <!-- <exec executable="/bin/cp"> <arg value="${dist}/lib/Utilisation.jar"/>  <arg value="${dist}/lib/SiteChecker.jar"/>  </exec> -->
 
   </target>
 
   <target name="clean" description="clean up" >
-    <!-- Delete the ${build} and ${dist} directory trees -->
     <delete dir="${build}"/>
     <delete dir="${dist}"/>
   </target>

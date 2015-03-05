@@ -9,7 +9,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Group;
@@ -17,14 +16,16 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import org.jfree.data.time.Second;
 import org.jfree.ui.RefineryUtilities;
 
+@SuppressWarnings("serial")
 public class ShowUsage extends JFrame {
 
-	private File theLogFile;
+	private File dataFile;
 	private DateTimePicker startDateTimePicker;
 	private DateTimePicker endDateTimePicker;
 
@@ -45,11 +46,17 @@ public class ShowUsage extends JFrame {
 
 				if (result == JFileChooser.APPROVE_OPTION) {
 					File file = chooser.getSelectedFile();
-					theLogFile = file;
-					fileField.setText(file.getPath());
+					if (file.canRead() != true) {
+						JOptionPane.showMessageDialog( null, "File not found.");
+					}
+					else {
+					  dataFile = file;
+					  fileField.setText(file.getPath());
+					}
 				}
 				else if (result == JFileChooser.CANCEL_OPTION) {
-					fileField.setText("Operation cancelled");
+					JOptionPane.showMessageDialog( null, "Operation cancelled.");
+				  dataFile = null;
 				}
 			}
 		});
@@ -63,20 +70,22 @@ public class ShowUsage extends JFrame {
 		plotButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 
-				if (theLogFile != null) {
+				if (dataFile != null) {
 
 					Date sd = startDateTimePicker.getDate();
 					Date ed = endDateTimePicker.getDate();
 					Second startSec = new Second(sd);
 					Second endSec = new Second(ed);
 
-					final UsagePlotter demo = new UsagePlotter("Usage", theLogFile, startSec, endSec);
-					demo.pack();
-					RefineryUtilities.centerFrameOnScreen(demo);
-					demo.setVisible(true);
-					demo.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+					final UsagePlotter plotter = new UsagePlotter("Usage", dataFile, startSec, endSec);
+					// plotter.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					plotter.pack();
+					RefineryUtilities.centerFrameOnScreen(plotter);
+					plotter.setVisible(true);
 				}
-
+				else {
+					JOptionPane.showMessageDialog( null, "Select a datafile first.");
+				}
 			}
 		});
 
@@ -104,41 +113,41 @@ public class ShowUsage extends JFrame {
     // Horizontal
 		Group horz = layout.createSequentialGroup();
 
-		Group pgh1 = layout.createParallelGroup( GroupLayout.Alignment.LEADING);
-		pgh1.addComponent(selectFileButton);
-		pgh1.addComponent(startLabel);
-		pgh1.addComponent(endLabel);
-		pgh1.addComponent(plotButton);
-		horz.addGroup(pgh1);	
-		Group pgh2 = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
-		pgh2.addComponent(fileField);
-		pgh2.addComponent(startDateTimePicker);
-		pgh2.addComponent(endDateTimePicker);
+		Group column1TopDown = layout.createParallelGroup( GroupLayout.Alignment.LEADING);
+		column1TopDown.addComponent(selectFileButton);
+		column1TopDown.addComponent(startLabel);
+		column1TopDown.addComponent(endLabel);
+		column1TopDown.addComponent(plotButton);
+		horz.addGroup(column1TopDown);	
+		Group column2TopDown = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		column2TopDown.addComponent(fileField);
+		column2TopDown.addComponent(startDateTimePicker);
+		column2TopDown.addComponent(endDateTimePicker);
     // missing
-		horz.addGroup(pgh2);
+		horz.addGroup(column2TopDown);
 		layout.setHorizontalGroup(horz);
 
     // Vertical		
 		Group virt = layout.createSequentialGroup();
 		
-		Group pgv1 = layout.createParallelGroup( GroupLayout.Alignment.LEADING);
-		pgv1.addComponent(selectFileButton);
-		pgv1.addComponent(fileField);
-		virt.addGroup(pgv1);
-		Group pgv2 = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
-		pgv2.addComponent(startLabel);
-		pgv2.addComponent(startDateTimePicker);
-		virt.addGroup(pgv2);
+		Group row1LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING);
+		row1LeftToRight.addComponent(selectFileButton);
+		row1LeftToRight.addComponent(fileField);
+		virt.addGroup(row1LeftToRight);
+		Group row2LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row2LeftToRight.addComponent(startLabel);
+		row2LeftToRight.addComponent(startDateTimePicker);
+		virt.addGroup(row2LeftToRight);
 		layout.setVerticalGroup(virt);
-		Group pgv3 = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
-		pgv3.addComponent(endLabel);
-		pgv3.addComponent(endDateTimePicker);
-		virt.addGroup(pgv3);
+		Group row3LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row3LeftToRight.addComponent(endLabel);
+		row3LeftToRight.addComponent(endDateTimePicker);
+		virt.addGroup(row3LeftToRight);
 		layout.setVerticalGroup(virt);
-		Group pgv4 = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
-		pgv4.addComponent(plotButton);
+		Group row4LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row4LeftToRight.addComponent(plotButton);
 		// missing
-		virt.addGroup(pgv4);
+		virt.addGroup(row4LeftToRight);
 		layout.setVerticalGroup(virt);
 
 		setTitle("Arc/Condor usage plot");
@@ -154,7 +163,6 @@ public class ShowUsage extends JFrame {
 			@Override
 			public void run() {
 				ShowUsage su = new ShowUsage();
-//				su.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				su.setVisible(true);
 			}
 		});

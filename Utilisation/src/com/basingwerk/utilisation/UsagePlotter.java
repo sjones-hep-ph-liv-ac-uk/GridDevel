@@ -1,6 +1,7 @@
 package com.basingwerk.utilisation;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,7 +25,9 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
 
+@SuppressWarnings("serial")
 public class UsagePlotter extends ApplicationFrame {
 
 	private File logFile;
@@ -34,14 +37,15 @@ public class UsagePlotter extends ApplicationFrame {
 	public UsagePlotter(final String title, File lf) {
 		this(title, lf, new Second(0, 0, 0, 1, 1, 2000), new Second(0, 0, 0, 1, 1, 2100));
 	}
+	
+	public void windowClosing(WindowEvent e) {
+    System.out.print("WindowListener method called: windowClosing.");
+  }	
 
 	public UsagePlotter(final String title, File lf, Second ss, Second es) {
 
 		super(title);
 
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	
-		
 		this.startSecond = ss;
 		this.endSecond = es;
 

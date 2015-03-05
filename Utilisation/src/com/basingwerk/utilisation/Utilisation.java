@@ -17,7 +17,7 @@ public class Utilisation {
 		System.out.print("Version 1.0\n\n");
 	}	
 	public static void main(final String[] args) {
-		String theLogFile = null;
+		String dataFile = null;
 		
 		Options options = new Options();
 
@@ -38,10 +38,10 @@ public class Utilisation {
 				System.exit(0);
 			}
 
-			theLogFile = commandLine.getOptionValue(serverURLOption.getOpt());
+			dataFile = commandLine.getOptionValue(serverURLOption.getOpt());
 			String[] otherArgs = commandLine.getArgs();
 
-			if (theLogFile == null || otherArgs.length > 1) {
+			if (dataFile == null || otherArgs.length > 1) {
 				System.out.println("Please specify a logfile");
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp( "Usage grapher", options );
@@ -56,7 +56,7 @@ public class Utilisation {
 		finally {
 		}
 
-		final UsagePlotter demo = new UsagePlotter("Usage", new File(theLogFile));
+		final UsagePlotter demo = new UsagePlotter("Usage", new File(dataFile));
 		demo.pack();
 		RefineryUtilities.centerFrameOnScreen(demo);
 		demo.setVisible(true);
