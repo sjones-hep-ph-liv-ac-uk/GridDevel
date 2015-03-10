@@ -18,7 +18,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.AbstractXYItemRenderer;
 import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
+import org.jfree.chart.renderer.xy.XYDotRenderer;
 
 import org.jfree.data.time.Second;
 import org.jfree.data.time.TimeSeries;
@@ -29,7 +31,7 @@ import org.jfree.ui.RefineryUtilities;
 
 @SuppressWarnings("serial")
 public class UsagePlotter extends ApplicationFrame {
-
+  private Boolean useDots;
 	private File logFile;
 	private Second startSecond;
 	private Second endSecond;
@@ -39,13 +41,18 @@ public class UsagePlotter extends ApplicationFrame {
 	}
 	
 	public void windowClosing(WindowEvent e) {
-    System.out.print("WindowListener method called: windowClosing.");
-  }	
-
+    // System.out.print("WindowListener method called: windowClosing.");
+  }
+	
 	public UsagePlotter(final String title, File lf, Second ss, Second es) {
+		this(title, lf,ss,es, false);
+	}
+
+	public UsagePlotter(final String title, File lf, Second ss, Second es, Boolean ud) {
 
 		super(title);
 
+		this.useDots = ud;
 		this.startSecond = ss;
 		this.endSecond = es;
 
@@ -75,38 +82,72 @@ public class UsagePlotter extends ApplicationFrame {
 		axis2.setAutoRangeIncludesZero(false);
 		plot.setRangeAxis(1, axis2);
 
+		if (useDots) {
+  	  XYDotRenderer xydotrenderer = new XYDotRenderer();
+		  xydotrenderer.setDotHeight(2);
+		  xydotrenderer.setDotWidth(2);
+		  plot.setRenderer(xydotrenderer);
+		}
+
 		// ---------------------------------------------------
 		// Apply another dataset for total queued jobs
 		final XYDataset totalQueued = getFields("Total queued", "Queued", new int[] { 7, 8 }, 1.0);
 		plot.setDataset(1, totalQueued);
-		final StandardXYItemRenderer queuedColor = new StandardXYItemRenderer();
-		queuedColor.setSeriesPaint(0, Color.black);
-		plot.setRenderer(1, queuedColor);
-		plot.mapDatasetToRangeAxis(1, 1);
+		
+    AbstractXYItemRenderer xyr = new StandardXYItemRenderer();
+		if (useDots) {
+  	  XYDotRenderer xydotrenderer = new XYDotRenderer();
+		  xydotrenderer.setDotHeight(2);
+		  xydotrenderer.setDotWidth(2);
+		  xyr = xydotrenderer;
+		}
+	  xyr.setSeriesPaint(0, Color.black);
+	  plot.setRenderer(1, xyr);
+	  plot.mapDatasetToRangeAxis(1, 1);
+
 
 		// ---------------------------------------------------
 		// Apply another dataset for available CPUS
 		final XYDataset totalCpus = getFields("Cluster CPUs", "Running", new int[] { 7 }, 1.0);
 		plot.setDataset(2, totalCpus);
-		final StandardXYItemRenderer availableColor = new StandardXYItemRenderer();
-		availableColor.setSeriesPaint(0, Color.blue);
-		plot.setRenderer(2, availableColor);
+		xyr = new StandardXYItemRenderer();
+		if (useDots) {
+  	  XYDotRenderer xydotrenderer = new XYDotRenderer();
+		  xydotrenderer.setDotHeight(2);
+		  xydotrenderer.setDotWidth(2);
+		  xyr = xydotrenderer;
+		}
+		plot.setRenderer(2, xyr);
+		xyr.setSeriesPaint(0, Color.blue);
 
 		// ---------------------------------------------------
 		// Apply another dataset
 		final XYDataset totalMulticore = getFields("Multicores running", "Running", new int[] { 9 }, 1.0);
 		plot.setDataset(3, totalMulticore);
-		final StandardXYItemRenderer runningColor = new StandardXYItemRenderer();
-		runningColor.setSeriesPaint(0, Color.GREEN);
-		plot.setRenderer(3, runningColor);
+
+		xyr = new StandardXYItemRenderer();
+		if (useDots) {
+  	  XYDotRenderer xydotrenderer = new XYDotRenderer();
+		  xydotrenderer.setDotHeight(2);
+		  xydotrenderer.setDotWidth(2);
+		  xyr = xydotrenderer ;
+		}
+		plot.setRenderer(3, xyr);
+    xyr.setSeriesPaint(0, Color.GREEN);
 
 		// //---------------------------------------------------
 		// // Apply another dataset for multicore queued jobs
 		final XYDataset mcQueued = getFields("Multicore queued", "Queued", new int[] { 7, }, 1.0);
 		plot.setDataset(4, mcQueued);
-		final StandardXYItemRenderer mcColor = new StandardXYItemRenderer();
-		mcColor.setSeriesPaint(0, Color.orange);
-		plot.setRenderer(4, mcColor);
+		xyr = new StandardXYItemRenderer();
+		if (useDots) {
+  	  XYDotRenderer xydotrenderer = new XYDotRenderer();
+		  xydotrenderer.setDotHeight(2);
+		  xydotrenderer.setDotWidth(2);
+		  xyr = xydotrenderer ;
+		}
+		plot.setRenderer(4, xyr);
+		xyr.setSeriesPaint(0, Color.orange);
 		plot.mapDatasetToRangeAxis(4, 1);
 
 		// ---------------------------------------------------

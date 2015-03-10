@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Group;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -65,6 +66,10 @@ public class ShowUsage extends JFrame {
 
 		JLabel endLabel = new JLabel("End:");
 
+		
+		JLabel useDotsLabel = new JLabel("Use dots");
+		final JCheckBox useDotsCheckbox = new JCheckBox();
+
 		JButton plotButton = new JButton("Plot");
 
 		plotButton.addActionListener(new ActionListener() {
@@ -77,8 +82,7 @@ public class ShowUsage extends JFrame {
 					Second startSec = new Second(sd);
 					Second endSec = new Second(ed);
 
-					final UsagePlotter plotter = new UsagePlotter("Usage", dataFile, startSec, endSec);
-					// plotter.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					final UsagePlotter plotter = new UsagePlotter("Usage", dataFile, startSec, endSec, useDotsCheckbox.isSelected());
 					plotter.pack();
 					RefineryUtilities.centerFrameOnScreen(plotter);
 					plotter.setVisible(true);
@@ -110,6 +114,7 @@ public class ShowUsage extends JFrame {
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		
+		
     // Horizontal
 		Group horz = layout.createSequentialGroup();
 
@@ -117,12 +122,14 @@ public class ShowUsage extends JFrame {
 		column1TopDown.addComponent(selectFileButton);
 		column1TopDown.addComponent(startLabel);
 		column1TopDown.addComponent(endLabel);
+		column1TopDown.addComponent(useDotsLabel);
 		column1TopDown.addComponent(plotButton);
 		horz.addGroup(column1TopDown);	
 		Group column2TopDown = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
 		column2TopDown.addComponent(fileField);
 		column2TopDown.addComponent(startDateTimePicker);
 		column2TopDown.addComponent(endDateTimePicker);
+		column2TopDown.addComponent(useDotsCheckbox);
     // missing
 		horz.addGroup(column2TopDown);
 		layout.setHorizontalGroup(horz);
@@ -134,20 +141,30 @@ public class ShowUsage extends JFrame {
 		row1LeftToRight.addComponent(selectFileButton);
 		row1LeftToRight.addComponent(fileField);
 		virt.addGroup(row1LeftToRight);
+
 		Group row2LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
 		row2LeftToRight.addComponent(startLabel);
 		row2LeftToRight.addComponent(startDateTimePicker);
 		virt.addGroup(row2LeftToRight);
 		layout.setVerticalGroup(virt);
+		
 		Group row3LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
 		row3LeftToRight.addComponent(endLabel);
 		row3LeftToRight.addComponent(endDateTimePicker);
 		virt.addGroup(row3LeftToRight);
 		layout.setVerticalGroup(virt);
+
 		Group row4LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
-		row4LeftToRight.addComponent(plotButton);
-		// missing
+		row4LeftToRight.addComponent(useDotsLabel);
+		row4LeftToRight.addComponent(useDotsCheckbox);
 		virt.addGroup(row4LeftToRight);
+		layout.setVerticalGroup(virt);
+		
+		
+		Group row5LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row5LeftToRight.addComponent(plotButton);
+		// missing
+		virt.addGroup(row5LeftToRight);
 		layout.setVerticalGroup(virt);
 
 		setTitle("Arc/Condor usage plot");
