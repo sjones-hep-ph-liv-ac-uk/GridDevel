@@ -39,6 +39,7 @@ public class ShowUsage extends JFrame {
 
     final JTextField fileField = new JTextField("<selected file>");
     fileField.setMaximumSize(new Dimension(99999,selectFileButton.getMaximumSize().height));
+    fileField.setEditable(false);
     
 		selectFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -69,7 +70,25 @@ public class ShowUsage extends JFrame {
 		
 		JLabel useDotsLabel = new JLabel("Use dots");
 		final JCheckBox useDotsCheckbox = new JCheckBox();
-
+		
+		JLabel ccLabel = new JLabel("Cluster CPUs");
+		JLabel trLabel = new JLabel("Total running");
+		JLabel tqLabel = new JLabel("Total queued");
+		JLabel mrLabel = new JLabel("Multi running ");
+		JLabel mqLabel = new JLabel("Multi queued");
+		
+		final JCheckBox ccCheckbox = new JCheckBox();
+		ccCheckbox.setSelected(true);
+		ccCheckbox.setEnabled(false);
+		final JCheckBox trCheckbox = new JCheckBox();
+		trCheckbox.setSelected(true);
+		final JCheckBox tqCheckbox = new JCheckBox();
+		tqCheckbox.setSelected(true);
+		final JCheckBox mrCheckbox = new JCheckBox();
+		mrCheckbox.setSelected(true);
+		final JCheckBox mqCheckbox = new JCheckBox();
+		mqCheckbox.setSelected(true);
+		
 		JButton plotButton = new JButton("Plot");
 
 		plotButton.addActionListener(new ActionListener() {
@@ -82,7 +101,10 @@ public class ShowUsage extends JFrame {
 					Second startSec = new Second(sd);
 					Second endSec = new Second(ed);
 
-					final UsagePlotter plotter = new UsagePlotter("Usage", dataFile, startSec, endSec, useDotsCheckbox.isSelected());
+					final UsagePlotter plotter = new UsagePlotter("Usage", dataFile, startSec, endSec, useDotsCheckbox.isSelected(),							
+					trCheckbox.isSelected(),tqCheckbox.isSelected(),ccCheckbox.isSelected(),
+					mrCheckbox.isSelected(),mqCheckbox.isSelected());
+					
 					plotter.pack();
 					RefineryUtilities.centerFrameOnScreen(plotter);
 					plotter.setVisible(true);
@@ -114,7 +136,6 @@ public class ShowUsage extends JFrame {
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		
-		
     // Horizontal
 		Group horz = layout.createSequentialGroup();
 
@@ -123,6 +144,13 @@ public class ShowUsage extends JFrame {
 		column1TopDown.addComponent(startLabel);
 		column1TopDown.addComponent(endLabel);
 		column1TopDown.addComponent(useDotsLabel);
+
+		column1TopDown.addComponent(ccLabel);
+		column1TopDown.addComponent(trLabel);
+		column1TopDown.addComponent(tqLabel);
+		column1TopDown.addComponent(mrLabel);
+		column1TopDown.addComponent(mqLabel);		
+		
 		column1TopDown.addComponent(plotButton);
 		horz.addGroup(column1TopDown);	
 		Group column2TopDown = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
@@ -130,6 +158,14 @@ public class ShowUsage extends JFrame {
 		column2TopDown.addComponent(startDateTimePicker);
 		column2TopDown.addComponent(endDateTimePicker);
 		column2TopDown.addComponent(useDotsCheckbox);
+		
+		column2TopDown.addComponent(ccCheckbox);
+		column2TopDown.addComponent(trCheckbox);
+		column2TopDown.addComponent(tqCheckbox);
+		column2TopDown.addComponent(mrCheckbox);
+		column2TopDown.addComponent(mqCheckbox);
+		
+		
     // missing
 		horz.addGroup(column2TopDown);
 		layout.setHorizontalGroup(horz);
@@ -159,7 +195,36 @@ public class ShowUsage extends JFrame {
 		row4LeftToRight.addComponent(useDotsCheckbox);
 		virt.addGroup(row4LeftToRight);
 		layout.setVerticalGroup(virt);
+
+		Group row4dLeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row4dLeftToRight.addComponent(ccLabel);
+		row4dLeftToRight.addComponent(ccCheckbox);
+		virt.addGroup(row4dLeftToRight);
+		layout.setVerticalGroup(virt);
 		
+		Group row4bLeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row4bLeftToRight.addComponent(trLabel);
+		row4bLeftToRight.addComponent(trCheckbox);
+		virt.addGroup(row4bLeftToRight);
+		layout.setVerticalGroup(virt);
+
+		Group row4cLeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row4cLeftToRight.addComponent(tqLabel);
+		row4cLeftToRight.addComponent(tqCheckbox);
+		virt.addGroup(row4cLeftToRight);
+		layout.setVerticalGroup(virt);
+
+		Group row4eLeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row4eLeftToRight.addComponent(mrLabel);
+		row4eLeftToRight.addComponent(mrCheckbox);
+		virt.addGroup(row4eLeftToRight);
+		layout.setVerticalGroup(virt);
+		
+		Group row4fLeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
+		row4fLeftToRight.addComponent(mqLabel);
+		row4fLeftToRight.addComponent(mqCheckbox);
+		virt.addGroup(row4fLeftToRight);
+		layout.setVerticalGroup(virt);
 		
 		Group row5LeftToRight = layout.createParallelGroup( GroupLayout.Alignment.LEADING );
 		row5LeftToRight.addComponent(plotButton);
@@ -168,7 +233,7 @@ public class ShowUsage extends JFrame {
 		layout.setVerticalGroup(virt);
 
 		setTitle("Arc/Condor usage plot");
-		setSize(300, 200);
+		setSize(300, 300);
 		setLocationRelativeTo(null);
 
 	}
