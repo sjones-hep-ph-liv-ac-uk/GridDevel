@@ -1,0 +1,8 @@
+SW_DIR=$VO_SW_DIR/alice
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/alice
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/alice?/alice' "
+VOMS_POOL_PATH=""
+VOMS_EXTRA_MAPS=""
+VOMSES="'alice voms.cern.ch 15000 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch alice' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "

@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/esr
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/esr
+VOMS_SERVERS="'vomss://voms.grid.sara.nl:8443/voms/esr?/esr' "
+VOMSES="'esr voms.grid.sara.nl 30001 /O=dutchgrid/O=hosts/OU=sara.nl/CN=voms.grid.sara.nl esr' "
+VOMS_CA_DN="'/C=NL/O=NIKHEF/CN=NIKHEF medium-security certification auth' "

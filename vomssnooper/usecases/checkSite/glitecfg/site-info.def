@@ -1,0 +1,349 @@
+##############################################################################
+# Copyright (c) Members of the EGEE Collaboration. 2004.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+##############################################################################
+
+##########################
+# YAIM related variables #
+##########################
+
+# Values: NONE, ABORT, ERROR, WARNING, INFO, DEBUG
+YAIM_LOGGING_LEVEL=INFO
+
+###################################
+# General configuration variables #
+###################################
+
+INSTALL_ROOT=/opt
+
+# These variables tell YAIM where to find additional configuration files.
+WN_LIST=/opt/glite/yaim/etc/wn-list.conf
+USERS_CONF=/opt/glite/yaim/etc/users.conf
+GROUPS_CONF=/opt/glite/yaim/etc/groups.conf
+FUNCTIONS_DIR=/opt/glite/yaim/functions
+
+GSSKLOG=no
+
+OUTPUT_STORAGE=/tmp/jobOutput
+JAVA_LOCATION="/usr/java/default/"
+
+# Set this to '/dev/null' or some other dir if you want
+# to turn off yaim installation of cron jobs
+CRON_DIR=/etc/cron.d
+
+# Set this to your prefered and firewall allowed port range
+GLOBUS_TCP_PORT_RANGE="20000,25000"
+
+# Choose a good password !
+# And be sure that this file cannot be read by any grid job !
+MYSQL_PASSWORD=nufc4EVA
+
+# Site-wide settings
+SITE_EMAIL=gridteam@hep.ph.liv.ac.uk
+SITE_CRON_EMAIL=$SITE_EMAIL  # not yet used will appear in a later release
+SITE_SUPPORT_EMAIL=$SITE_EMAIL
+SITE_NAME=UKI-NORTHGRID-LIV-HEP
+SITE_LOC="Liverpool, UK"
+SITE_LAT=53.4035
+SITE_LONG=-2.964
+SITE_WEB="http://www.gridpp.ac.uk/northgrid/liverpool"
+SITE_OTHER_GRID="EGI|WLCG|NORTHGRID|GRIDPP"
+SITE_SECURITY_EMAIL="security@hep.ph.liv.ac.uk"
+SITE_DESC="University of Liverpool"
+SITE_OTHER_BLOG="http://northgrid-tech.blogspot.com/feeds/posts/default"
+SITE_OTHER_ICON="http://planet.gridpp.ac.uk/images/northgrid.png"
+SITE_OTHER_WLCG_NAMEICON="http://planet.gridpp.ac.uk/images/northgrid.png"
+SITE_OTHER_EGI_NGI="NGI_UK"
+SITE_OTHER_EGEE_SERVICE="prod"
+SITE_OTHER_WLCG_TIER=2
+SITE_OTHER_WLCG_PARENT=RAL-LCG2
+SITE_OTHER_WLCG_NAME="UK-Northgrid"
+
+# Set this if your WNs have a shared directory for temporary storage
+CE_DATADIR=""
+
+##############################
+# CE configuration variables #
+##############################
+
+CE_HOST=hepgrid6.ph.liv.ac.uk
+CE2_HOST=hepgrid10.ph.liv.ac.uk
+TORQUE_SERVER=hammer.ph.liv.ac.uk
+CE_OTHERDESCR=Cores=5.47,Benchmark=11.69-HEP-SPEC06
+CE_CAPABILITY="CPUScalingReferenceSI00=2500 Share=atlas:63 Share=lhcb:25 glexec"
+CE_SI00=2922
+
+# Totally bogus value based on ratio computed on hg2
+CE_SF00=1820
+SE_MOUNT_INFO_LIST=none
+
+
+# Architecture and enviroment specific settings
+CE_CPU_MODEL=Xeon
+CE_CPU_VENDOR=intel
+CE_CPU_SPEED=2400
+CE_OS=ScientificSL
+CE_OS_RELEASE=5.3
+CE_OS_VERSION=Boron
+CE_OS_ARCH=x86_64
+CE_MINPHYSMEM=16384
+CE_MINVIRTMEM=16384
+CE_PHYSCPU=0  
+CE_LOGCPU=0  
+CE_SMPSIZE=8
+
+CE_OUTBOUNDIP=TRUE
+CE_INBOUNDIP=FALSE
+CE_RUNTIMEENV="
+    HYDRA-CLIENT-3_1
+    LCG-2
+    LCG-2_1_0
+    LCG-2_1_1
+    LCG-2_2_0
+    LCG-2_3_0
+    LCG-2_3_1
+    LCG-2_4_0
+    LCG-2_5_0
+    LCG-2_6_0
+    LCG-2_7_0
+    GLITE-3_0_0
+    GLITE-3_1_0
+    R-GMA
+"
+##############################
+# TORQUE/MAUI config vars    #
+##############################
+
+# No change to some files
+CONFIG_MAUI=no
+CONFIG_TORQUE_NODES=no
+
+# Tell APEL to use old location for TORQUE (would default to wrong /var/torque)
+TORQUE_VAR_DIR=/var/spool/pbs
+
+##############################
+# LB configuration variables #
+##############################
+
+LB_HOST=wms105.cern.ch
+
+##############################
+# RB configuration variables #
+##############################
+
+RB_HOST=lcgrb01.gridpp.rl.ac.uk
+
+###############################
+# WMS configuration variables #
+###############################
+
+WMS_HOST=grid-wms0.desy.de
+
+###################################
+# myproxy configuration variables #
+###################################
+
+PX_HOST=lcgrbp01.gridpp.rl.ac.uk
+
+# GRID_TRUSTED_BROKERS: DNs of services (RBs) allowed to renew/retrives
+# credentials from/at the myproxy server. Put single quotes around each trusted DN !!!
+
+GRID_TRUSTED_BROKERS="
+'broker one'
+'broker two'
+"
+
+################################
+# RGMA configuration variables #
+################################
+
+MON_HOST=hepgrid2.ph.liv.ac.uk
+# REG_HOST=lcgic01.gridpp.rl.ac.uk	
+
+###################################
+# FTS configuration variables #
+###################################
+
+FTS_HOST=lcgfts.gridpp.rl.ac.uk
+FTS_SERVER_URL="https://lcgfts.gridpp.rl.ac.uk:8443/glite-data-transfer-fts"
+
+#########################################
+# Torque server configuration variables #
+#########################################
+
+# Change this if your torque server is not on the CE
+# This is ignored for other batch systems
+BATCH_SERVER=$TORQUE_SERVER
+
+# Jobmanager specific settings
+JOB_MANAGER=pbs
+CE_BATCH_SYS=pbs
+BATCH_BIN_DIR=/usr/bin
+BATCH_VERSION=torque-2.1.9
+BATCH_LOG_DIR=/var/spool/pbs/server_priv/accounting
+
+################################
+# APEL configuration variables #
+################################
+
+APEL_DB_PASSWORD="nufc4EVA"
+APEL_PUBLISH_USER_DN=yes
+
+##########################################
+# Gridice server configuration variables #
+##########################################
+
+# GridIce server host name (usually run on the MON node).
+GRIDICE_SERVER_HOST=$MON_HOST
+
+####################################
+# E2EMONIT configuration variables #
+####################################
+
+# This specifies the location to download the host specific configuration file
+E2EMONIT_LOCATION=grid-deployment.web.cern.ch/grid-deployment/e2emonit/production
+
+# Replace this with the siteid supplied by the person setting up the networking
+# topology.
+E2EMONIT_SITEID=UKI-NORTHGRID-LIV-HEP
+
+###############################
+# DPM configuration variables #
+###############################
+
+# DPMDATA is now deprecated. Use an entry like $DPM_HOST:/filesystem in
+# the DPM_FILESYSTEMS variable.
+# From now on we use DPM_DB_USER and DPM_DB_PASSWORD to make clear
+# its different role from that of the dpmmgr unix user who owns the
+# directories and runs the daemons.
+
+# The name of the DPM head node
+DPM_HOST="hepgrid11.ph.liv.ac.uk"   # my-dpm.ph.liv.ac.uk
+
+# The DPM pool name (max 15 character long name)
+DPMPOOL=newPool
+
+# The filesystems/partitions parts of the pool
+DPM_FILESYSTEMS="/data"
+
+# The database user
+DPM_DB_USER=dpmuser
+
+# The database user password
+DPM_DB_PASSWORD=nufc4EVA
+
+# The DPM database host
+DPM_DB_HOST=$DPM_HOST
+
+# The DPM db name. Default is dpm_db
+DPM_DB=dpm_db
+
+# The DPNS db name. Default is cns_db
+DPNS_DB=cns_db
+
+# The DPM infosystem user name
+DPM_INFO_USER=dpminfo
+
+# The DPM infosystem user password
+DPM_INFO_PASS=nufc4EVA
+
+# Specifies the default amount of space reserved  for a file
+DPMFSIZE=1G
+
+# Variable for the port range  - Optional, default value is shown
+RFIO_PORT_RANGE="20000 25000"
+
+DPM_HTTPS="no"
+
+DPM_XROOTD="no"
+
+SE_GRIDFTP_LOGFILE=/var/log/dpm-gsiftp/dpm-gsiftp.log
+
+# Take defintions from users.conf and place here for 1.8.2
+DPMMGR_USER=dpmmgr
+DPMMGR_GROUP=dpmmgr
+DPMMGR_UID=104
+DPMMGR_GID=104
+DPMMGR_USER_HOME=/home/dpmmgr
+
+###########
+# SE_LIST #
+###########
+
+SE_LIST="$DPM_HOST"
+SE_ARCH="multidisk" # "disk, tape, multidisk, other"
+
+################################
+# BDII configuration variables #
+################################
+
+BDII_HOST=lcg-bdii.gridpp.ac.uk
+BDII_LIST=lcg-bdii.gridpp.ac.uk:2170,topbdii.grid.hep.ph.ic.ac.uk:2170
+SITE_BDII_HOST=hepgrid4.ph.liv.ac.uk
+BDII_DELETE_DELAY=0
+BDII_SITE_TIMEOUT=120
+BDII_RESOURCE_TIMEOUT=`expr "$BDII_SITE_TIMEOUT" - 5`
+GIP_RESPONSE=`expr "$BDII_RESOURCE_TIMEOUT" - 5`
+GIP_FRESHNESS=60
+GIP_CACHE_TTL=300
+GIP_TIMEOUT=150
+BDII_HTTP_URL="http://grid-deployment.web.cern.ch/grid-deployment/gis/lcg2-bdii/dteam/lcg2-all-sites.conf"
+BDII_FCR=http://lcg-fcr.cern.ch:8083/fcr-data/exclude.ldif
+BDII_REGIONS="CE CE2 SE SITE_BDII"    # list of the services provided by the site
+BDII_CE_URL="ldap://$CE_HOST:2170/mds-vo-name=resource,o=grid"
+BDII_CE2_URL="ldap://$CE2_HOST:2170/mds-vo-name=resource,o=grid"
+BDII_SE_URL="ldap://$DPM_HOST:2170/mds-vo-name=resource,o=grid"
+BDII_SITE_BDII_URL="ldap://$SITE_BDII_HOST:2170/mds-vo-name=resource,o=grid"
+
+##############################
+# VO configuration variables #
+##############################
+
+QUEUES="long"
+
+VOS="alice atlas babar biomed calice camont cdf cedar cms dteam dzero esr fusion geant4 hone gridpp ilc lhcb magic mice minos.vo.gridpp.ac.uk na48 ngs.ac.uk na62.vo.gridpp.ac.uk ops pheno planck vo.sixt.cern.ch snoplus.snolab.ca supernemo.vo.eu-egee.org t2k.org vo.northgrid.ac.uk zeus"
+
+LONG_GROUP_ENABLE="\
+ alice /alice/ROLE=lcgadmin /alice/ROLE=production\
+ atlas /atlas/ROLE=lcgadmin /atlas/ROLE=production /atlas/ROLE=pilot\
+ babar /babar/ROLE=lcgadmin\
+ biomed /biomed/ROLE=lcgadmin\
+ calice /calice/ROLE=lcgadmin /calice/ROLE=production\
+ camont /camont/ROLE=lcgadmin\
+ cdf /cdf/ROLE=lcgadmin\
+ cedar /cedar/ROLE=lcgadmin\
+ cms /cms/ROLE=lcgadmin /cms/ROLE=production\
+ dteam /dteam/ROLE=lcgadmin /dteam/ROLE=production\
+ dzero /dzero/ROLE=lcgadmin\
+ esr /esr/ROLE=lcgadmin\
+ fusion /fusion/ROLE=production\
+ geant4 /geant4/ROLE=lcgadmin /geant4/ROLE=production\
+ gridpp /gridpp/ROLE=lcgadmin\
+ hone /hone/ROLE=lcgadmin /hone/ROLE=production\
+ ilc /ilc/ROLE=lcgadmin /ilc/ROLE=production\
+ lhcb /lhcb/ROLE=lcgadmin /lhcb/ROLE=production /lhcb/ROLE=pilot\
+ magic /magic/ROLE=lcgadmin\
+ mice /mice/ROLE=lcgadmin /mice/ROLE=production\
+ minos.vo.gridpp.ac.uk /minos.vo.gridpp.ac.uk/ROLE=lcgadmin\
+ na48 /na48/ROLE=lcgadmin\
+ na62.vo.gridpp.ac.uk /na62.vo.gridpp.ac.uk/ROLE=lcgadmin /na62.vo.gridpp.ac.uk/ROLE=production\
+ ngs.ac.uk /ngs.ac.uk/ROLE=lcgadmin\
+ vo.northgrid.ac.uk /vo.northgrid.ac.uk/ROLE=lcgadmin\
+ ops /ops/ROLE=lcgadmin /ops/ROLE=pilot\
+ pheno /pheno/ROLE=lcgadmin\
+ planck /planck/ROLE=lcgadmin /planck/ROLE=production\
+ vo.sixt.cern.ch /vo.sixt.cern.ch/ROLE=lcgadmin\
+ snoplus.snolab.ca /snoplus.snolab.ca/ROLE=lcgadmin /snoplus.snolab.ca/ROLE=production\
+ supernemo.vo.eu-egee.org /supernemo.vo.eu-egee.org/ROLE=lcgadmin /supernemo.vo.eu-egee.org/ROLE=production\
+ t2k.org /t2k.org/ROLE=lcgadmin /t2k.org/ROLE=production\
+ zeus /zeus/ROLE=lcgadmin /zeus/ROLE=production"
+
+# Global VO variables
+VO_SW_DIR=/opt/exp_soft_sl5
+
+STORAGE_PATH=/dpm/ph.liv.ac.uk/home
+
+# Set this if you want a scratch directory for jobs
+EDG_WL_SCRATCH=""
+

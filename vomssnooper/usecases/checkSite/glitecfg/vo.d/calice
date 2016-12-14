@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/calice
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/calice
+VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/calice?/calice' "
+VOMSES="'calice grid-voms.desy.de 15102 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de calice' "
+VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA' "

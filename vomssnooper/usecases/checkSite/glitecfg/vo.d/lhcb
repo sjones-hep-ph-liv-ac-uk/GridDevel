@@ -1,0 +1,7 @@
+SW_DIR=/cvmfs/lhcb.cern.ch
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/lhcb
+VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/lhcb?/lhcb' 'vomss://voms.cern.ch:8443/voms/lhcb?/lhcb' "
+VOMS_EXTRA_MAPS="lcgprod lhcbprod"
+VOMSES="'lhcb lcg-voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch lhcb' 'lhcb voms.cern.ch 15003 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch lhcb' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "

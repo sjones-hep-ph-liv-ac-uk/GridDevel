@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/planck
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/planck
+VOMS_SERVERS="'vomss://voms.cnaf.infn.it:8443/voms/planck?/planck' "
+VOMSES="'planck voms.cnaf.infn.it 15002 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it planck' "
+VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA' "

@@ -1,0 +1,8 @@
+SW_DIR=$VO_SW_DIR/cdf
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/cdf
+VOMS_SERVERS="'vomss://voms.cnaf.infn.it:8443/voms/cdf?/cdf' 'vomss://voms-01.pd.infn.it:8443/voms/cdf?/cdf' 'vomss://voms.fnal.gov:8443/voms/cdf?/cdf' "
+VOMS_POOL_PATH=""
+VOMS_EXTRA_MAPS=""
+VOMSES="'cdf voms.cnaf.infn.it 15001 /C=IT/O=INFN/OU=Host/L=CNAF/CN=voms.cnaf.infn.it cdf' 'cdf voms-01.pd.infn.it 15001 /C=IT/O=INFN/OU=Host/L=Padova/CN=voms-01.pd.infn.it cdf' 'cdf voms.fnal.gov 15020 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cdf' "
+VOMS_CA_DN="'/C=IT/O=INFN/CN=INFN CA' '/C=IT/O=INFN/CN=INFN CA' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "

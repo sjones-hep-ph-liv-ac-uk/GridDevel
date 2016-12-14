@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/magic
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/magic
+VOMS_SERVERS="'vomss://voms01.pic.es:8443/voms/magic?/magic' 'vomss://voms02.pic.es:8443/voms/magic?/magic' "
+VOMSES="'magic voms01.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms01.pic.es magic' 'magic voms02.pic.es 15003 /DC=es/DC=irisgrid/O=pic/CN=voms02.pic.es magic' "
+VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' '/DC=es/DC=irisgrid/CN=IRISGridCA' "

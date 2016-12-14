@@ -1,0 +1,6 @@
+VOMS_SERVERS="'vomss://voms.hellasgrid.gr:8443/voms/dteam?/dteam' 'vomss://voms2.hellasgrid.gr:8443/voms/dteam?/dteam' "
+VOMSES="'dteam voms.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms.hellasgrid.gr dteam' 'dteam voms2.hellasgrid.gr 15004 /C=GR/O=HellasGrid/OU=hellasgrid.gr/CN=voms2.hellasgrid.gr dteam' "
+VOMS_CA_DN="'/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' '/C=GR/O=HellasGrid/OU=Certification Authorities/CN=HellasGrid CA 2006' "
+SW_DIR=$VO_SW_DIR/dteam
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/dteam

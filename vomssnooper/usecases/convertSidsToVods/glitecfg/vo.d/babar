@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/babar
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/babar
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/babar?/babar' "
+VOMSES="'babar voms.gridpp.ac.uk 15002 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk babar' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "

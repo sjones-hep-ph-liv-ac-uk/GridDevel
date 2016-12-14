@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/ilc
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/ilc
+VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/ilc?/ilc' 'vomss://voms.fnal.gov:8443/voms/ilc?/ilc' "
+VOMSES="'ilc grid-voms.desy.de 15110 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de ilc' 'ilc voms.fnal.gov 15023 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov ilc' "
+VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "

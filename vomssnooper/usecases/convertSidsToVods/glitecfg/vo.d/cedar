@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/cedar
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/cedar
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/cedar?/cedar' "
+VOMSES="'cedar voms.gridpp.ac.uk 15006 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk cedar' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "

@@ -1,0 +1,7 @@
+SW_DIR=$VO_SW_DIR/na48
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/na48
+VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/na48?/na48' "
+VOMS_EXTRA_MAPS="Role=admin na48adm"
+VOMSES="'na48 voms.cern.ch 15011 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch na48' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "

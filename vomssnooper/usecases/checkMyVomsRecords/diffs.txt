@@ -1,0 +1,20 @@
+29,32d28
+< VO_CEDAR_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/cedar?/cedar' "
+< VO_CEDAR_VOMSES="'cedar voms.gridpp.ac.uk 15006 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk cedar' "
+< VO_CEDAR_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+< 
+73,76d68
+< VO_LTWO_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/ltwo?/ltwo' "
+< VO_LTWO_VOMSES="'ltwo voms.gridpp.ac.uk 15005 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk ltwo' "
+< VO_LTWO_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+< 
+89,92d80
+< VO_NA48_VOMS_SERVERS="'vomss://voms.cern.ch:8443/voms/na48?/na48' "
+< VO_NA48_VOMSES="'na48 voms.cern.ch 15011 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch na48' "
+< VO_NA48_VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "
+< 
+133,136d120
+< VO_TOTALEP_VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/totalep?/totalep' "
+< VO_TOTALEP_VOMSES="'totalep voms.gridpp.ac.uk 15026 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk totalep' "
+< VO_TOTALEP_VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "
+< 

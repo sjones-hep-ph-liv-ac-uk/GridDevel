@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/geant4
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/geant4
+VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/geant4?/geant4' 'vomss://voms.cern.ch:8443/voms/geant4?/geant4' "
+VOMSES="'geant4 lcg-voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch geant4' 'geant4 voms.cern.ch 15007 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch geant4' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' "

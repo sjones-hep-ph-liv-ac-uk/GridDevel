@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/hone
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/hone
+VOMS_SERVERS="'vomss://grid-voms.desy.de:8443/voms/hone?/hone' "
+VOMSES="'hone grid-voms.desy.de 15106 /C=DE/O=GermanGrid/OU=DESY/CN=host/grid-voms.desy.de hone' "
+VOMS_CA_DN="'/C=DE/O=GermanGrid/CN=GridKa-CA' "

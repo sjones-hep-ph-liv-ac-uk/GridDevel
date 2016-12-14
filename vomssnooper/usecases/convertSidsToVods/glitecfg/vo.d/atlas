@@ -1,0 +1,7 @@
+SW_DIR=/cvmfs/atlas.cern.ch/repo/sw
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/atlas
+VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://voms.cern.ch:8443/voms/atlas?/atlas' 'vomss://vo.racf.bnl.gov:8443/voms/atlas?/atlas' "
+VOMS_POOL_PATH="/lcg1"
+VOMSES="'atlas lcg-voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch atlas' 'atlas voms.cern.ch 15001 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch atlas' 'atlas vo.racf.bnl.gov 15003 /DC=org/DC=doegrids/OU=Services/CN=vo.racf.bnl.gov atlas' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "

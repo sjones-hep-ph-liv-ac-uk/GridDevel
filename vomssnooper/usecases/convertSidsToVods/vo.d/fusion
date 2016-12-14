@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/fusion
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/fusion
+VOMS_CA_DN="'/DC=es/DC=irisgrid/CN=IRISGridCA' "
+VOMS_SERVERS="'vomss://voms-prg.bifi.unizar.es:8443/voms/fusion?/fusion' "
+VOMSES="'fusion voms-prg.bifi.unizar.es 15001 /DC=es/DC=irisgrid/O=bifi-unizar/CN=voms-prg.bifi.unizar.es fusion' "

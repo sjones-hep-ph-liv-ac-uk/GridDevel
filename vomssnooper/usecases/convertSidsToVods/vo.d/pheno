@@ -1,0 +1,6 @@
+SW_DIR=$VO_SW_DIR/pheno
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/pheno
+VOMS_SERVERS="'vomss://voms.gridpp.ac.uk:8443/voms/pheno?/pheno' "
+VOMSES="'pheno voms.gridpp.ac.uk 15011 /C=UK/O=eScience/OU=Manchester/L=HEP/CN=voms.gridpp.ac.uk pheno' "
+VOMS_CA_DN="'/C=UK/O=eScienceCA/OU=Authority/CN=UK e-Science CA 2B' "

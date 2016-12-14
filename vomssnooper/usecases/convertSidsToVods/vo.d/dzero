@@ -1,0 +1,8 @@
+SW_DIR=$VO_SW_DIR/dzero
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/dzero
+VOMS_SERVERS="'vomss://voms.fnal.gov:8443/voms/dzero?/dzero' "
+VOMS_POOL_PATH=""
+VOMS_EXTRA_MAPS=""
+VOMSES="'dzero voms.fnal.gov 15002 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov dzero' "
+VOMS_CA_DN="'/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "

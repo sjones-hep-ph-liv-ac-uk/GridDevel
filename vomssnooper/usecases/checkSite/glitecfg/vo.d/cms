@@ -1,0 +1,8 @@
+SW_DIR=$VO_SW_DIR/cms
+DEFAULT_SE=$DPM_HOST
+STORAGE_DIR=$STORAGE_PATH/cms
+VOMS_SERVERS="'vomss://lcg-voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.cern.ch:8443/voms/cms?/cms' 'vomss://voms.fnal.gov:8443/voms/cms?/cms' "
+VOMS_POOL_PATH=""
+VOMS_EXTRA_MAPS=""
+VOMSES="'cms lcg-voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=lcg-voms.cern.ch cms' 'cms voms.cern.ch 15002 /DC=ch/DC=cern/OU=computers/CN=voms.cern.ch cms' 'cms voms.fnal.gov 15015 /DC=org/DC=doegrids/OU=Services/CN=http/voms.fnal.gov cms' "
+VOMS_CA_DN="'/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=ch/DC=cern/CN=CERN Trusted Certification Authority' '/DC=org/DC=DOEGrids/OU=Certificate Authorities/CN=DOEGrids CA 1' "

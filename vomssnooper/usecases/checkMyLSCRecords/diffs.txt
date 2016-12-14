@@ -1,0 +1,8 @@
+12d11
+< cedar/voms.gridpp.ac.uk.lsc 107fd2f04a7fea3278fc6eb5c1906ff6  -
+29d27
+< ltwo/voms.gridpp.ac.uk.lsc 107fd2f04a7fea3278fc6eb5c1906ff6  -
+34d31
+< na48/voms.cern.ch.lsc 49bb61e3fd367854a2a57443d1bef4dd  -
+44d40
+< totalep/voms.gridpp.ac.uk.lsc 107fd2f04a7fea3278fc6eb5c1906ff6  -
