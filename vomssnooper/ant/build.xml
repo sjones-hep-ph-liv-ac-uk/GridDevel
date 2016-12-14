@@ -4,7 +4,7 @@
   </description>
 
   <!-- global properties for this build -->
-  <property name="src" location="/user2/sjones/git/GridDevel/VomsSnooper/src"/>
+  <property name="src" location="/home/rpmuser/git/GridDevel/VomsSnooper/src"/>
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
 
@@ -38,9 +38,9 @@
         <attribute name="Class-Path" value="."/>
       </manifest>
 
-      <!-- <fileset dir="/user2/sjones/git/GridDevel/VomsSnooper/bin"/> -->
+      <!-- <fileset dir="/home/rpmuser/git/GridDevel/VomsSnooper/bin"/> -->
       <fileset dir="${build}"/>
-      <zipfileset excludes="META-INF/*.SF" src="/user2/sjones/git/GridDevel/libs/java-getopt-1.0.14.jar"/>
+      <zipfileset excludes="META-INF/*.SF" src="/home/rpmuser/git/GridDevel/libs/java-getopt-1.0.14.jar"/>
     </jar>
 
     <exec executable="/bin/chmod"> <arg value="755"/> <arg value="${dist}/lib/VomsSnooper.jar"/> </exec>

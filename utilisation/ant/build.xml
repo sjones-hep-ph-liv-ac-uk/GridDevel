@@ -2,7 +2,7 @@
   <description> Parses a data file of arc/condor usage records and makes a graph </description>
 
   <!-- global properties for this build -->
-  <property name="src" location="/user2/sjones/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/Utilisation/src"/>
+  <property name="src" location="/home/rpmuser/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/Utilisation/src"/>
   <property name="build" location="build"/>
   <property name="dist"  location="dist"/>
 
@@ -42,7 +42,7 @@
         <attribute name="Class-Path" value="."/>
       </manifest>
 
-      <fileset dir="/user2/sjones/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/utilisation/ant/build"> </fileset> 
+      <fileset dir="/home/rpmuser/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/utilisation/ant/build"> </fileset> 
 
       <fileset dir="${build}"/>
       <zipfileset excludes="META-INF/*.SF" src="${user.home}/rpmbuild/BUILD/Utilisation--root/opt/GridDevel/libs/java-getopt-1.0.14.jar"/>
