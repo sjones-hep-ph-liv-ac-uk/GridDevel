@@ -70,6 +70,8 @@ public class UsagePlotter extends ApplicationFrame {
 
 		this.startSecond = ss;
 		this.endSecond = es;
+		
+		int dotSize = 3;
 
 		// Get the file to use
 		this.logFile = lf;
@@ -105,8 +107,8 @@ public class UsagePlotter extends ApplicationFrame {
 		AbstractXYItemRenderer xyr = new StandardXYItemRenderer();
 		if (useDots) {
 			XYDotRenderer xydotrenderer = new XYDotRenderer();
-			xydotrenderer.setDotHeight(2);
-			xydotrenderer.setDotWidth(2);
+			xydotrenderer.setDotHeight(dotSize);
+			xydotrenderer.setDotWidth(dotSize);
 			xyr = xydotrenderer;
 		}
 		
@@ -127,11 +129,11 @@ public class UsagePlotter extends ApplicationFrame {
 			xyr = new StandardXYItemRenderer();
 			if (useDots) {
 				XYDotRenderer xydotrenderer = new XYDotRenderer();
-				xydotrenderer.setDotHeight(2);
-				xydotrenderer.setDotWidth(2);
+				xydotrenderer.setDotHeight(dotSize);
+				xydotrenderer.setDotWidth(dotSize);
 				xyr = xydotrenderer;
 			}
-			xyr.setSeriesPaint(0, Color.blue);
+			xyr.setSeriesPaint(0, Color.cyan);
 			plot.setRenderer(2, xyr);
 		}
 
@@ -142,11 +144,11 @@ public class UsagePlotter extends ApplicationFrame {
 			xyr = new StandardXYItemRenderer();
 			if (useDots) {
 				XYDotRenderer xydotrenderer = new XYDotRenderer();
-				xydotrenderer.setDotHeight(2);
-				xydotrenderer.setDotWidth(2);
+				xydotrenderer.setDotHeight(dotSize);
+				xydotrenderer.setDotWidth(dotSize);
 				xyr = xydotrenderer;
 			}
-			xyr.setSeriesPaint(0, Color.orange);
+			xyr.setSeriesPaint(0, Color.magenta);
 			plot.setRenderer(3, xyr);
 			plot.mapDatasetToRangeAxis(3, 1);
 		}
@@ -160,11 +162,11 @@ public class UsagePlotter extends ApplicationFrame {
 			xyr = new StandardXYItemRenderer();
 			if (useDots) {
 				XYDotRenderer xydotrenderer = new XYDotRenderer();
-				xydotrenderer.setDotHeight(2);
-				xydotrenderer.setDotWidth(2);
+				xydotrenderer.setDotHeight(dotSize);
+				xydotrenderer.setDotWidth(dotSize);
 				xyr = xydotrenderer;
 			}
-			xyr.setSeriesPaint(0, Color.GREEN);
+			xyr.setSeriesPaint(0, Color.blue);
 			plot.setRenderer(4, xyr);
 		}
 
@@ -253,7 +255,8 @@ public class UsagePlotter extends ApplicationFrame {
     Double totalValue = 0.0;
     Second firstTime = null;
     Second lastTime = null;
-    Second timestamp = null;
+    Second validTimestamp = null;
+    
     
 		try {
 			reader = new BufferedReader(new FileReader(this.logFile));
@@ -273,13 +276,14 @@ public class UsagePlotter extends ApplicationFrame {
 						Integer year = new Integer(matcher.group(1));
 						Integer month = new Integer(matcher.group(2));
 						Integer day = new Integer(matcher.group(3));
-
-						timestamp = new Second(sec, min, hour, day, month, year);
+						
+				    Second timestamp = new Second(sec, min, hour, day, month, year);
 
 						if ((timestamp.compareTo(this.startSecond) >= 0) & (timestamp.compareTo(this.endSecond) <= 0)) {
 							count = count + 1;
 							totalValue = totalValue + (new Float(matcher.group(7)));
-							if (count == 1) {
+							validTimestamp = timestamp;
+						if (count == 1) {
 								firstTime = timestamp;
 							}
 						}
@@ -300,7 +304,7 @@ public class UsagePlotter extends ApplicationFrame {
 			catch (IOException e) {
 			}
 		}
-		lastTime = timestamp;
+		lastTime = validTimestamp;
 		
 	  double avg = totalValue / count;
 		s1.add(firstTime, avg);
